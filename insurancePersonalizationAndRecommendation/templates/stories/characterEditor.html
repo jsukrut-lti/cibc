@@ -1,0 +1,47 @@
+<!-- templates/home.html -->
+
+
+
+
+<main>
+
+  <section class="py-5 text-center container">
+    <div class="progress">
+  <div class="progress-bar" role="progressbar" style="width: 25%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">25%</div>
+</div>
+
+    <div class="row py-lg-5">
+      <div class="col-lg-6 col-md-8 mx-auto">
+        <form method="post" >
+  {% csrf_token %}
+  {{ form.as_p }}
+  {% buttons %}
+    <button type="submit" class="btn btn-primary">
+      Submit
+    </button>
+  {% endbuttons %}
+        </form>
+      </div>
+    </div>
+  </section>
+
+
+
+</main>
+
+<footer class="text-muted py-5">
+  <div class="container">
+    <p class="float-end mb-1">
+      <a href="#">Back to top</a>
+    </p>
+    <p class="mb-1">&copy; Simon-Kucher and Partners Software</p>
+  </div>
+</footer>
+
+
+
+    <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+
+
+  </body>
+</html>

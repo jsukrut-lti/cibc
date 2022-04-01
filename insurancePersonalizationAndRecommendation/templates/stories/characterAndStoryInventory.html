@@ -1,0 +1,154 @@
+<!doctype html>
+{% load static %}
+{# Load the tag library #}
+{% load bootstrap5 %}
+
+{# Load CSS and JavaScript #}
+{% bootstrap_css %}
+{% bootstrap_javascript %}
+
+{# Display django.contrib.messages as Bootstrap alerts #}
+{% bootstrap_messages %}
+
+{# Display a form #}
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <title>Insurance Conversation</title>
+
+    <!-- Bootstrap core CSS -->
+<link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+
+    <style>
+      .bd-placeholder-img {
+        font-size: 1.125rem;
+        text-anchor: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        user-select: none;
+      }
+
+      @media (min-width: 768px) {
+        .bd-placeholder-img-lg {
+          font-size: 3.5rem;
+        }
+      }
+    </style>
+
+    <!-- Custom styles for this template -->
+    <link href="{% static 'css/headers.css' %}" rel="stylesheet">
+
+  </head>
+  <body>
+<div class="container">
+  <header class="d-flex flex-wrap justify-content-center py-3 mb-4 border-bottom">
+    <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-dark text-decoration-none">
+      <svg class="bi me-2" width="40" height="32"><use xlink:href="#bootstrap"/></svg>
+      <span class="fs-4">Stories and Characters</span>
+    </a>
+
+    <ul class="nav nav-pills">
+      <li class="nav-item"><a href="/story/CharacterAndStoryInventoryView" class="nav-link active">Inventory</a></li>
+      <li class="nav-item"><a href="#" class="nav-link">FAQ</a></li>
+      <li class="nav-item"><a href="/" class="nav-link">Home</a></li>
+    </ul>
+
+  </header>
+
+</div>
+
+<main>
+    <section class="py-5 text-center container">
+
+ <span class="fs-4">Stories
+ <a href="#" class="btn btn-primary btn-lg" tabindex="-1" role="button" aria-disabled="true">Add Story</a>
+ </span>
+ <div class="bd-example">
+    <table class="table table-striped">
+          <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">First</th>
+            <th scope="col">Last</th>
+            <th scope="col">Handle</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr>
+            <th scope="row">1</th>
+            <td>Mark</td>
+            <td>Otto</td>
+            <td>@mdo</td>
+          </tr>
+          <tr>
+            <th scope="row">2</th>
+            <td>Jacob</td>
+            <td>Thornton</td>
+            <td>@fat</td>
+          </tr>
+          <tr>
+            <th scope="row">3</th>
+            <td colspan="2">Larry the Bird</td>
+            <td>@twitter</td>
+          </tr>
+          </tbody>
+        </table>
+        </div>
+     </section>
+    <section class="py-5 text-center container">
+
+ <span class="fs-4">Characters
+  <a href="#" class="btn btn-primary btn-lg" tabindex="-1" role="button" aria-disabled="true">Add Story</a>
+ </span>
+ <div class="bd-example">
+    <table class="table table-striped">
+          <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">First</th>
+            <th scope="col">Last</th>
+            <th scope="col">Handle</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr>
+            <th scope="row">1</th>
+            <td>Mark</td>
+            <td>Otto</td>
+            <td>@mdo</td>
+          </tr>
+          <tr>
+            <th scope="row">2</th>
+            <td>Jacob</td>
+            <td>Thornton</td>
+            <td>@fat</td>
+          </tr>
+          <tr>
+            <th scope="row">3</th>
+            <td colspan="2">Larry the Bird</td>
+            <td>@twitter</td>
+          </tr>
+          </tbody>
+        </table>
+        </div>
+     </section>
+</main>
+
+<footer class="text-muted py-5">
+  <div class="container">
+    <p class="float-end mb-1">
+      <a href="#">Back to top</a>
+    </p>
+    <p class="mb-1">&copy; Simon-Kucher and Partners Software</p>
+  </div>
+</footer>
+
+
+
+    <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+
+
+  </body>
+</html>

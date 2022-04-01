@@ -1,0 +1,2697 @@
+[
+{
+  "model": "accounts.customuser",
+  "pk": 1,
+  "fields": {
+    "password": "pbkdf2_sha256$260000$2qz0VaJDswJWqPnTxZY7je$1xLvtS1Mwc6vxBVZE0BRE9oYMk0eNdcYzeTm3FTTIdY=",
+    "last_login": "2021-05-11T01:05:45.878Z",
+    "is_superuser": true,
+    "username": "nfrank",
+    "first_name": "",
+    "last_name": "",
+    "email": "nfrank@skp.com",
+    "is_staff": true,
+    "is_active": true,
+    "date_joined": "2021-05-06T17:37:09.421Z",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "insuranceProducts.insuranceproduct",
+  "pk": 1,
+  "fields": {
+    "created": "2021-05-06T17:37:44.461Z",
+    "modified": "2021-05-06T17:37:44.461Z",
+    "productCode": "mortgage",
+    "title": "Mortgage Creditor Insurance"
+  }
+},
+{
+  "model": "insuranceProducts.insurancediscussion",
+  "pk": 1,
+  "fields": {
+    "created": "2021-05-06T17:39:03.074Z",
+    "modified": "2021-05-06T17:39:03.074Z",
+    "insProduct": 1,
+    "agent": 1,
+    "primaryFirstName": "",
+    "primaryMiddleName": "",
+    "primaryLastName": "",
+    "primaryAge": null,
+    "coFirstName": "",
+    "coMiddleName": "",
+    "coLastName": "",
+    "coAge": null,
+    "canada_provence": null,
+    "hoursWeekWorking": null,
+    "hasPartnerFinResponsibility": null,
+    "hasChildrenFinResponsibility": null,
+    "hasParentsFinResponsibility": null,
+    "hasOthersFinResponsibility": null,
+    "mortgageBalance": null,
+    "mortgagePmtAmount": null,
+    "mortgagePmtFrequency": null,
+    "hlocLimit": null,
+    "hlocBalance": null,
+    "hlocMonthlyPmt": null,
+    "personalLoanLimit": null,
+    "personalAmortizationMonths": null,
+    "personalLoanBalance": null,
+    "personalLoanMonthlyPmt": null,
+    "personalPmtFrequency": null,
+    "creditCardLimit": null,
+    "creditCardBalance": null,
+    "monthlyIncomeAfterTaxes": null,
+    "totalMonthlyExpenses": null,
+    "monthlyExpenseOtherCredit": null,
+    "monthlyExpensePersonal": null,
+    "monthlyExpenseOtherHousing": null,
+    "monthlyExpensePropTaxFees": null,
+    "monthlyExpenseOther": null,
+    "totalSavings": null,
+    "totalSavingsChequing": null,
+    "totalSavingsTaxFreeAccts": null,
+    "totalSavingsRegRetirement": null,
+    "totalSavingsGuarantedInvestmentCerts": null,
+    "totalSavingsOther": null,
+    "lifeInsuranceLimit": null,
+    "criticalIllnessLimit": null,
+    "disabilityInsuranceMonthlyBenefit": null,
+    "disabilityInsurancePercentCoveredByEmployer": null,
+    "disabilityInsuranceUnknownEmployerCoverage": null,
+    "lifeInsurancePremiumPerMonth": null,
+    "criticalIllnessPremiumPerMonth": null,
+    "disabilityPremiumPerMonth": null,
+    "agentOverallPerceptionOfCustomerResp": "",
+    "isRelatedToFinalizedSoldProduct": false,
+    "discussionOutcomes": "",
+    "currentSection": null
+  }
+},
+{
+  "model": "insuranceProducts.insurancediscussion",
+  "pk": 2,
+  "fields": {
+    "created": "2021-05-07T00:34:36.087Z",
+    "modified": "2021-05-07T00:34:36.087Z",
+    "insProduct": 1,
+    "agent": 1,
+    "primaryFirstName": "",
+    "primaryMiddleName": "",
+    "primaryLastName": "",
+    "primaryAge": null,
+    "coFirstName": "",
+    "coMiddleName": "",
+    "coLastName": "",
+    "coAge": null,
+    "canada_provence": null,
+    "hoursWeekWorking": null,
+    "hasPartnerFinResponsibility": null,
+    "hasChildrenFinResponsibility": null,
+    "hasParentsFinResponsibility": null,
+    "hasOthersFinResponsibility": null,
+    "mortgageBalance": null,
+    "mortgagePmtAmount": null,
+    "mortgagePmtFrequency": null,
+    "hlocLimit": null,
+    "hlocBalance": null,
+    "hlocMonthlyPmt": null,
+    "personalLoanLimit": null,
+    "personalAmortizationMonths": null,
+    "personalLoanBalance": null,
+    "personalLoanMonthlyPmt": null,
+    "personalPmtFrequency": null,
+    "creditCardLimit": null,
+    "creditCardBalance": null,
+    "monthlyIncomeAfterTaxes": null,
+    "totalMonthlyExpenses": null,
+    "monthlyExpenseOtherCredit": null,
+    "monthlyExpensePersonal": null,
+    "monthlyExpenseOtherHousing": null,
+    "monthlyExpensePropTaxFees": null,
+    "monthlyExpenseOther": null,
+    "totalSavings": null,
+    "totalSavingsChequing": null,
+    "totalSavingsTaxFreeAccts": null,
+    "totalSavingsRegRetirement": null,
+    "totalSavingsGuarantedInvestmentCerts": null,
+    "totalSavingsOther": null,
+    "lifeInsuranceLimit": null,
+    "criticalIllnessLimit": null,
+    "disabilityInsuranceMonthlyBenefit": null,
+    "disabilityInsurancePercentCoveredByEmployer": null,
+    "disabilityInsuranceUnknownEmployerCoverage": null,
+    "lifeInsurancePremiumPerMonth": null,
+    "criticalIllnessPremiumPerMonth": null,
+    "disabilityPremiumPerMonth": null,
+    "agentOverallPerceptionOfCustomerResp": "",
+    "isRelatedToFinalizedSoldProduct": false,
+    "discussionOutcomes": "",
+    "currentSection": null
+  }
+},
+{
+  "model": "insuranceProducts.insurancediscussion",
+  "pk": 3,
+  "fields": {
+    "created": "2021-05-07T00:53:24.742Z",
+    "modified": "2021-05-07T00:53:24.742Z",
+    "insProduct": 1,
+    "agent": 1,
+    "primaryFirstName": "",
+    "primaryMiddleName": "",
+    "primaryLastName": "",
+    "primaryAge": null,
+    "coFirstName": "",
+    "coMiddleName": "",
+    "coLastName": "",
+    "coAge": null,
+    "canada_provence": null,
+    "hoursWeekWorking": null,
+    "hasPartnerFinResponsibility": null,
+    "hasChildrenFinResponsibility": null,
+    "hasParentsFinResponsibility": null,
+    "hasOthersFinResponsibility": null,
+    "mortgageBalance": null,
+    "mortgagePmtAmount": null,
+    "mortgagePmtFrequency": null,
+    "hlocLimit": null,
+    "hlocBalance": null,
+    "hlocMonthlyPmt": null,
+    "personalLoanLimit": null,
+    "personalAmortizationMonths": null,
+    "personalLoanBalance": null,
+    "personalLoanMonthlyPmt": null,
+    "personalPmtFrequency": null,
+    "creditCardLimit": null,
+    "creditCardBalance": null,
+    "monthlyIncomeAfterTaxes": null,
+    "totalMonthlyExpenses": null,
+    "monthlyExpenseOtherCredit": null,
+    "monthlyExpensePersonal": null,
+    "monthlyExpenseOtherHousing": null,
+    "monthlyExpensePropTaxFees": null,
+    "monthlyExpenseOther": null,
+    "totalSavings": null,
+    "totalSavingsChequing": null,
+    "totalSavingsTaxFreeAccts": null,
+    "totalSavingsRegRetirement": null,
+    "totalSavingsGuarantedInvestmentCerts": null,
+    "totalSavingsOther": null,
+    "lifeInsuranceLimit": null,
+    "criticalIllnessLimit": null,
+    "disabilityInsuranceMonthlyBenefit": null,
+    "disabilityInsurancePercentCoveredByEmployer": null,
+    "disabilityInsuranceUnknownEmployerCoverage": null,
+    "lifeInsurancePremiumPerMonth": null,
+    "criticalIllnessPremiumPerMonth": null,
+    "disabilityPremiumPerMonth": null,
+    "agentOverallPerceptionOfCustomerResp": "",
+    "isRelatedToFinalizedSoldProduct": false,
+    "discussionOutcomes": "",
+    "currentSection": null
+  }
+},
+{
+  "model": "insuranceProducts.insurancediscussion",
+  "pk": 4,
+  "fields": {
+    "created": "2021-05-07T00:53:32.625Z",
+    "modified": "2021-05-07T00:53:32.625Z",
+    "insProduct": 1,
+    "agent": 1,
+    "primaryFirstName": "",
+    "primaryMiddleName": "",
+    "primaryLastName": "",
+    "primaryAge": null,
+    "coFirstName": "",
+    "coMiddleName": "",
+    "coLastName": "",
+    "coAge": null,
+    "canada_provence": null,
+    "hoursWeekWorking": null,
+    "hasPartnerFinResponsibility": null,
+    "hasChildrenFinResponsibility": null,
+    "hasParentsFinResponsibility": null,
+    "hasOthersFinResponsibility": null,
+    "mortgageBalance": null,
+    "mortgagePmtAmount": null,
+    "mortgagePmtFrequency": null,
+    "hlocLimit": null,
+    "hlocBalance": null,
+    "hlocMonthlyPmt": null,
+    "personalLoanLimit": null,
+    "personalAmortizationMonths": null,
+    "personalLoanBalance": null,
+    "personalLoanMonthlyPmt": null,
+    "personalPmtFrequency": null,
+    "creditCardLimit": null,
+    "creditCardBalance": null,
+    "monthlyIncomeAfterTaxes": null,
+    "totalMonthlyExpenses": null,
+    "monthlyExpenseOtherCredit": null,
+    "monthlyExpensePersonal": null,
+    "monthlyExpenseOtherHousing": null,
+    "monthlyExpensePropTaxFees": null,
+    "monthlyExpenseOther": null,
+    "totalSavings": null,
+    "totalSavingsChequing": null,
+    "totalSavingsTaxFreeAccts": null,
+    "totalSavingsRegRetirement": null,
+    "totalSavingsGuarantedInvestmentCerts": null,
+    "totalSavingsOther": null,
+    "lifeInsuranceLimit": null,
+    "criticalIllnessLimit": null,
+    "disabilityInsuranceMonthlyBenefit": null,
+    "disabilityInsurancePercentCoveredByEmployer": null,
+    "disabilityInsuranceUnknownEmployerCoverage": null,
+    "lifeInsurancePremiumPerMonth": null,
+    "criticalIllnessPremiumPerMonth": null,
+    "disabilityPremiumPerMonth": null,
+    "agentOverallPerceptionOfCustomerResp": "",
+    "isRelatedToFinalizedSoldProduct": false,
+    "discussionOutcomes": "",
+    "currentSection": null
+  }
+},
+{
+  "model": "insuranceProducts.insurancediscussion",
+  "pk": 5,
+  "fields": {
+    "created": "2021-05-07T00:53:37.028Z",
+    "modified": "2021-05-07T00:53:37.028Z",
+    "insProduct": 1,
+    "agent": 1,
+    "primaryFirstName": "",
+    "primaryMiddleName": "",
+    "primaryLastName": "",
+    "primaryAge": null,
+    "coFirstName": "",
+    "coMiddleName": "",
+    "coLastName": "",
+    "coAge": null,
+    "canada_provence": null,
+    "hoursWeekWorking": null,
+    "hasPartnerFinResponsibility": null,
+    "hasChildrenFinResponsibility": null,
+    "hasParentsFinResponsibility": null,
+    "hasOthersFinResponsibility": null,
+    "mortgageBalance": null,
+    "mortgagePmtAmount": null,
+    "mortgagePmtFrequency": null,
+    "hlocLimit": null,
+    "hlocBalance": null,
+    "hlocMonthlyPmt": null,
+    "personalLoanLimit": null,
+    "personalAmortizationMonths": null,
+    "personalLoanBalance": null,
+    "personalLoanMonthlyPmt": null,
+    "personalPmtFrequency": null,
+    "creditCardLimit": null,
+    "creditCardBalance": null,
+    "monthlyIncomeAfterTaxes": null,
+    "totalMonthlyExpenses": null,
+    "monthlyExpenseOtherCredit": null,
+    "monthlyExpensePersonal": null,
+    "monthlyExpenseOtherHousing": null,
+    "monthlyExpensePropTaxFees": null,
+    "monthlyExpenseOther": null,
+    "totalSavings": null,
+    "totalSavingsChequing": null,
+    "totalSavingsTaxFreeAccts": null,
+    "totalSavingsRegRetirement": null,
+    "totalSavingsGuarantedInvestmentCerts": null,
+    "totalSavingsOther": null,
+    "lifeInsuranceLimit": null,
+    "criticalIllnessLimit": null,
+    "disabilityInsuranceMonthlyBenefit": null,
+    "disabilityInsurancePercentCoveredByEmployer": null,
+    "disabilityInsuranceUnknownEmployerCoverage": null,
+    "lifeInsurancePremiumPerMonth": null,
+    "criticalIllnessPremiumPerMonth": null,
+    "disabilityPremiumPerMonth": null,
+    "agentOverallPerceptionOfCustomerResp": "",
+    "isRelatedToFinalizedSoldProduct": false,
+    "discussionOutcomes": "",
+    "currentSection": null
+  }
+},
+{
+  "model": "insuranceProducts.insurancediscussion",
+  "pk": 6,
+  "fields": {
+    "created": "2021-05-07T00:53:45.167Z",
+    "modified": "2021-05-07T00:53:45.167Z",
+    "insProduct": 1,
+    "agent": 1,
+    "primaryFirstName": "",
+    "primaryMiddleName": "",
+    "primaryLastName": "",
+    "primaryAge": null,
+    "coFirstName": "",
+    "coMiddleName": "",
+    "coLastName": "",
+    "coAge": null,
+    "canada_provence": null,
+    "hoursWeekWorking": null,
+    "hasPartnerFinResponsibility": null,
+    "hasChildrenFinResponsibility": null,
+    "hasParentsFinResponsibility": null,
+    "hasOthersFinResponsibility": null,
+    "mortgageBalance": null,
+    "mortgagePmtAmount": null,
+    "mortgagePmtFrequency": null,
+    "hlocLimit": null,
+    "hlocBalance": null,
+    "hlocMonthlyPmt": null,
+    "personalLoanLimit": null,
+    "personalAmortizationMonths": null,
+    "personalLoanBalance": null,
+    "personalLoanMonthlyPmt": null,
+    "personalPmtFrequency": null,
+    "creditCardLimit": null,
+    "creditCardBalance": null,
+    "monthlyIncomeAfterTaxes": null,
+    "totalMonthlyExpenses": null,
+    "monthlyExpenseOtherCredit": null,
+    "monthlyExpensePersonal": null,
+    "monthlyExpenseOtherHousing": null,
+    "monthlyExpensePropTaxFees": null,
+    "monthlyExpenseOther": null,
+    "totalSavings": null,
+    "totalSavingsChequing": null,
+    "totalSavingsTaxFreeAccts": null,
+    "totalSavingsRegRetirement": null,
+    "totalSavingsGuarantedInvestmentCerts": null,
+    "totalSavingsOther": null,
+    "lifeInsuranceLimit": null,
+    "criticalIllnessLimit": null,
+    "disabilityInsuranceMonthlyBenefit": null,
+    "disabilityInsurancePercentCoveredByEmployer": null,
+    "disabilityInsuranceUnknownEmployerCoverage": null,
+    "lifeInsurancePremiumPerMonth": null,
+    "criticalIllnessPremiumPerMonth": null,
+    "disabilityPremiumPerMonth": null,
+    "agentOverallPerceptionOfCustomerResp": "",
+    "isRelatedToFinalizedSoldProduct": false,
+    "discussionOutcomes": "",
+    "currentSection": null
+  }
+},
+{
+  "model": "insuranceProducts.insurancediscussion",
+  "pk": 7,
+  "fields": {
+    "created": "2021-05-07T00:53:55.605Z",
+    "modified": "2021-05-07T00:53:55.605Z",
+    "insProduct": 1,
+    "agent": 1,
+    "primaryFirstName": "",
+    "primaryMiddleName": "",
+    "primaryLastName": "",
+    "primaryAge": null,
+    "coFirstName": "",
+    "coMiddleName": "",
+    "coLastName": "",
+    "coAge": null,
+    "canada_provence": null,
+    "hoursWeekWorking": null,
+    "hasPartnerFinResponsibility": null,
+    "hasChildrenFinResponsibility": null,
+    "hasParentsFinResponsibility": null,
+    "hasOthersFinResponsibility": null,
+    "mortgageBalance": null,
+    "mortgagePmtAmount": null,
+    "mortgagePmtFrequency": null,
+    "hlocLimit": null,
+    "hlocBalance": null,
+    "hlocMonthlyPmt": null,
+    "personalLoanLimit": null,
+    "personalAmortizationMonths": null,
+    "personalLoanBalance": null,
+    "personalLoanMonthlyPmt": null,
+    "personalPmtFrequency": null,
+    "creditCardLimit": null,
+    "creditCardBalance": null,
+    "monthlyIncomeAfterTaxes": null,
+    "totalMonthlyExpenses": null,
+    "monthlyExpenseOtherCredit": null,
+    "monthlyExpensePersonal": null,
+    "monthlyExpenseOtherHousing": null,
+    "monthlyExpensePropTaxFees": null,
+    "monthlyExpenseOther": null,
+    "totalSavings": null,
+    "totalSavingsChequing": null,
+    "totalSavingsTaxFreeAccts": null,
+    "totalSavingsRegRetirement": null,
+    "totalSavingsGuarantedInvestmentCerts": null,
+    "totalSavingsOther": null,
+    "lifeInsuranceLimit": null,
+    "criticalIllnessLimit": null,
+    "disabilityInsuranceMonthlyBenefit": null,
+    "disabilityInsurancePercentCoveredByEmployer": null,
+    "disabilityInsuranceUnknownEmployerCoverage": null,
+    "lifeInsurancePremiumPerMonth": null,
+    "criticalIllnessPremiumPerMonth": null,
+    "disabilityPremiumPerMonth": null,
+    "agentOverallPerceptionOfCustomerResp": "",
+    "isRelatedToFinalizedSoldProduct": false,
+    "discussionOutcomes": "",
+    "currentSection": null
+  }
+},
+{
+  "model": "insuranceProducts.insurancediscussion",
+  "pk": 8,
+  "fields": {
+    "created": "2021-05-07T00:55:45.620Z",
+    "modified": "2021-05-07T00:55:45.620Z",
+    "insProduct": 1,
+    "agent": 1,
+    "primaryFirstName": "",
+    "primaryMiddleName": "",
+    "primaryLastName": "",
+    "primaryAge": null,
+    "coFirstName": "",
+    "coMiddleName": "",
+    "coLastName": "",
+    "coAge": null,
+    "canada_provence": null,
+    "hoursWeekWorking": null,
+    "hasPartnerFinResponsibility": null,
+    "hasChildrenFinResponsibility": null,
+    "hasParentsFinResponsibility": null,
+    "hasOthersFinResponsibility": null,
+    "mortgageBalance": null,
+    "mortgagePmtAmount": null,
+    "mortgagePmtFrequency": null,
+    "hlocLimit": null,
+    "hlocBalance": null,
+    "hlocMonthlyPmt": null,
+    "personalLoanLimit": null,
+    "personalAmortizationMonths": null,
+    "personalLoanBalance": null,
+    "personalLoanMonthlyPmt": null,
+    "personalPmtFrequency": null,
+    "creditCardLimit": null,
+    "creditCardBalance": null,
+    "monthlyIncomeAfterTaxes": null,
+    "totalMonthlyExpenses": null,
+    "monthlyExpenseOtherCredit": null,
+    "monthlyExpensePersonal": null,
+    "monthlyExpenseOtherHousing": null,
+    "monthlyExpensePropTaxFees": null,
+    "monthlyExpenseOther": null,
+    "totalSavings": null,
+    "totalSavingsChequing": null,
+    "totalSavingsTaxFreeAccts": null,
+    "totalSavingsRegRetirement": null,
+    "totalSavingsGuarantedInvestmentCerts": null,
+    "totalSavingsOther": null,
+    "lifeInsuranceLimit": null,
+    "criticalIllnessLimit": null,
+    "disabilityInsuranceMonthlyBenefit": null,
+    "disabilityInsurancePercentCoveredByEmployer": null,
+    "disabilityInsuranceUnknownEmployerCoverage": null,
+    "lifeInsurancePremiumPerMonth": null,
+    "criticalIllnessPremiumPerMonth": null,
+    "disabilityPremiumPerMonth": null,
+    "agentOverallPerceptionOfCustomerResp": "",
+    "isRelatedToFinalizedSoldProduct": false,
+    "discussionOutcomes": "",
+    "currentSection": null
+  }
+},
+{
+  "model": "insuranceProducts.insurancediscussion",
+  "pk": 9,
+  "fields": {
+    "created": "2021-05-07T00:56:14.837Z",
+    "modified": "2021-05-07T00:56:14.837Z",
+    "insProduct": 1,
+    "agent": 1,
+    "primaryFirstName": "",
+    "primaryMiddleName": "",
+    "primaryLastName": "",
+    "primaryAge": null,
+    "coFirstName": "",
+    "coMiddleName": "",
+    "coLastName": "",
+    "coAge": null,
+    "canada_provence": null,
+    "hoursWeekWorking": null,
+    "hasPartnerFinResponsibility": null,
+    "hasChildrenFinResponsibility": null,
+    "hasParentsFinResponsibility": null,
+    "hasOthersFinResponsibility": null,
+    "mortgageBalance": null,
+    "mortgagePmtAmount": null,
+    "mortgagePmtFrequency": null,
+    "hlocLimit": null,
+    "hlocBalance": null,
+    "hlocMonthlyPmt": null,
+    "personalLoanLimit": null,
+    "personalAmortizationMonths": null,
+    "personalLoanBalance": null,
+    "personalLoanMonthlyPmt": null,
+    "personalPmtFrequency": null,
+    "creditCardLimit": null,
+    "creditCardBalance": null,
+    "monthlyIncomeAfterTaxes": null,
+    "totalMonthlyExpenses": null,
+    "monthlyExpenseOtherCredit": null,
+    "monthlyExpensePersonal": null,
+    "monthlyExpenseOtherHousing": null,
+    "monthlyExpensePropTaxFees": null,
+    "monthlyExpenseOther": null,
+    "totalSavings": null,
+    "totalSavingsChequing": null,
+    "totalSavingsTaxFreeAccts": null,
+    "totalSavingsRegRetirement": null,
+    "totalSavingsGuarantedInvestmentCerts": null,
+    "totalSavingsOther": null,
+    "lifeInsuranceLimit": null,
+    "criticalIllnessLimit": null,
+    "disabilityInsuranceMonthlyBenefit": null,
+    "disabilityInsurancePercentCoveredByEmployer": null,
+    "disabilityInsuranceUnknownEmployerCoverage": null,
+    "lifeInsurancePremiumPerMonth": null,
+    "criticalIllnessPremiumPerMonth": null,
+    "disabilityPremiumPerMonth": null,
+    "agentOverallPerceptionOfCustomerResp": "",
+    "isRelatedToFinalizedSoldProduct": false,
+    "discussionOutcomes": "",
+    "currentSection": null
+  }
+},
+{
+  "model": "insuranceProducts.insurancediscussion",
+  "pk": 10,
+  "fields": {
+    "created": "2021-05-07T00:56:29.652Z",
+    "modified": "2021-05-07T00:56:29.652Z",
+    "insProduct": 1,
+    "agent": 1,
+    "primaryFirstName": "",
+    "primaryMiddleName": "",
+    "primaryLastName": "",
+    "primaryAge": null,
+    "coFirstName": "",
+    "coMiddleName": "",
+    "coLastName": "",
+    "coAge": null,
+    "canada_provence": null,
+    "hoursWeekWorking": null,
+    "hasPartnerFinResponsibility": null,
+    "hasChildrenFinResponsibility": null,
+    "hasParentsFinResponsibility": null,
+    "hasOthersFinResponsibility": null,
+    "mortgageBalance": null,
+    "mortgagePmtAmount": null,
+    "mortgagePmtFrequency": null,
+    "hlocLimit": null,
+    "hlocBalance": null,
+    "hlocMonthlyPmt": null,
+    "personalLoanLimit": null,
+    "personalAmortizationMonths": null,
+    "personalLoanBalance": null,
+    "personalLoanMonthlyPmt": null,
+    "personalPmtFrequency": null,
+    "creditCardLimit": null,
+    "creditCardBalance": null,
+    "monthlyIncomeAfterTaxes": null,
+    "totalMonthlyExpenses": null,
+    "monthlyExpenseOtherCredit": null,
+    "monthlyExpensePersonal": null,
+    "monthlyExpenseOtherHousing": null,
+    "monthlyExpensePropTaxFees": null,
+    "monthlyExpenseOther": null,
+    "totalSavings": null,
+    "totalSavingsChequing": null,
+    "totalSavingsTaxFreeAccts": null,
+    "totalSavingsRegRetirement": null,
+    "totalSavingsGuarantedInvestmentCerts": null,
+    "totalSavingsOther": null,
+    "lifeInsuranceLimit": null,
+    "criticalIllnessLimit": null,
+    "disabilityInsuranceMonthlyBenefit": null,
+    "disabilityInsurancePercentCoveredByEmployer": null,
+    "disabilityInsuranceUnknownEmployerCoverage": null,
+    "lifeInsurancePremiumPerMonth": null,
+    "criticalIllnessPremiumPerMonth": null,
+    "disabilityPremiumPerMonth": null,
+    "agentOverallPerceptionOfCustomerResp": "",
+    "isRelatedToFinalizedSoldProduct": false,
+    "discussionOutcomes": "",
+    "currentSection": null
+  }
+},
+{
+  "model": "insuranceProducts.insurancediscussion",
+  "pk": 11,
+  "fields": {
+    "created": "2021-05-07T00:59:09.064Z",
+    "modified": "2021-05-07T00:59:09.064Z",
+    "insProduct": 1,
+    "agent": 1,
+    "primaryFirstName": "",
+    "primaryMiddleName": "",
+    "primaryLastName": "",
+    "primaryAge": null,
+    "coFirstName": "",
+    "coMiddleName": "",
+    "coLastName": "",
+    "coAge": null,
+    "canada_provence": null,
+    "hoursWeekWorking": null,
+    "hasPartnerFinResponsibility": null,
+    "hasChildrenFinResponsibility": null,
+    "hasParentsFinResponsibility": null,
+    "hasOthersFinResponsibility": null,
+    "mortgageBalance": null,
+    "mortgagePmtAmount": null,
+    "mortgagePmtFrequency": null,
+    "hlocLimit": null,
+    "hlocBalance": null,
+    "hlocMonthlyPmt": null,
+    "personalLoanLimit": null,
+    "personalAmortizationMonths": null,
+    "personalLoanBalance": null,
+    "personalLoanMonthlyPmt": null,
+    "personalPmtFrequency": null,
+    "creditCardLimit": null,
+    "creditCardBalance": null,
+    "monthlyIncomeAfterTaxes": null,
+    "totalMonthlyExpenses": null,
+    "monthlyExpenseOtherCredit": null,
+    "monthlyExpensePersonal": null,
+    "monthlyExpenseOtherHousing": null,
+    "monthlyExpensePropTaxFees": null,
+    "monthlyExpenseOther": null,
+    "totalSavings": null,
+    "totalSavingsChequing": null,
+    "totalSavingsTaxFreeAccts": null,
+    "totalSavingsRegRetirement": null,
+    "totalSavingsGuarantedInvestmentCerts": null,
+    "totalSavingsOther": null,
+    "lifeInsuranceLimit": null,
+    "criticalIllnessLimit": null,
+    "disabilityInsuranceMonthlyBenefit": null,
+    "disabilityInsurancePercentCoveredByEmployer": null,
+    "disabilityInsuranceUnknownEmployerCoverage": null,
+    "lifeInsurancePremiumPerMonth": null,
+    "criticalIllnessPremiumPerMonth": null,
+    "disabilityPremiumPerMonth": null,
+    "agentOverallPerceptionOfCustomerResp": "",
+    "isRelatedToFinalizedSoldProduct": false,
+    "discussionOutcomes": "",
+    "currentSection": null
+  }
+},
+{
+  "model": "insuranceProducts.insurancediscussion",
+  "pk": 12,
+  "fields": {
+    "created": "2021-05-07T01:00:15.194Z",
+    "modified": "2021-05-07T01:00:15.194Z",
+    "insProduct": 1,
+    "agent": 1,
+    "primaryFirstName": "",
+    "primaryMiddleName": "",
+    "primaryLastName": "",
+    "primaryAge": null,
+    "coFirstName": "",
+    "coMiddleName": "",
+    "coLastName": "",
+    "coAge": null,
+    "canada_provence": null,
+    "hoursWeekWorking": null,
+    "hasPartnerFinResponsibility": null,
+    "hasChildrenFinResponsibility": null,
+    "hasParentsFinResponsibility": null,
+    "hasOthersFinResponsibility": null,
+    "mortgageBalance": null,
+    "mortgagePmtAmount": null,
+    "mortgagePmtFrequency": null,
+    "hlocLimit": null,
+    "hlocBalance": null,
+    "hlocMonthlyPmt": null,
+    "personalLoanLimit": null,
+    "personalAmortizationMonths": null,
+    "personalLoanBalance": null,
+    "personalLoanMonthlyPmt": null,
+    "personalPmtFrequency": null,
+    "creditCardLimit": null,
+    "creditCardBalance": null,
+    "monthlyIncomeAfterTaxes": null,
+    "totalMonthlyExpenses": null,
+    "monthlyExpenseOtherCredit": null,
+    "monthlyExpensePersonal": null,
+    "monthlyExpenseOtherHousing": null,
+    "monthlyExpensePropTaxFees": null,
+    "monthlyExpenseOther": null,
+    "totalSavings": null,
+    "totalSavingsChequing": null,
+    "totalSavingsTaxFreeAccts": null,
+    "totalSavingsRegRetirement": null,
+    "totalSavingsGuarantedInvestmentCerts": null,
+    "totalSavingsOther": null,
+    "lifeInsuranceLimit": null,
+    "criticalIllnessLimit": null,
+    "disabilityInsuranceMonthlyBenefit": null,
+    "disabilityInsurancePercentCoveredByEmployer": null,
+    "disabilityInsuranceUnknownEmployerCoverage": null,
+    "lifeInsurancePremiumPerMonth": null,
+    "criticalIllnessPremiumPerMonth": null,
+    "disabilityPremiumPerMonth": null,
+    "agentOverallPerceptionOfCustomerResp": "",
+    "isRelatedToFinalizedSoldProduct": false,
+    "discussionOutcomes": "",
+    "currentSection": null
+  }
+},
+{
+  "model": "insuranceProducts.insurancediscussion",
+  "pk": 13,
+  "fields": {
+    "created": "2021-05-07T01:02:22.755Z",
+    "modified": "2021-05-07T01:02:22.755Z",
+    "insProduct": 1,
+    "agent": 1,
+    "primaryFirstName": "",
+    "primaryMiddleName": "",
+    "primaryLastName": "",
+    "primaryAge": null,
+    "coFirstName": "",
+    "coMiddleName": "",
+    "coLastName": "",
+    "coAge": null,
+    "canada_provence": null,
+    "hoursWeekWorking": null,
+    "hasPartnerFinResponsibility": null,
+    "hasChildrenFinResponsibility": null,
+    "hasParentsFinResponsibility": null,
+    "hasOthersFinResponsibility": null,
+    "mortgageBalance": null,
+    "mortgagePmtAmount": null,
+    "mortgagePmtFrequency": null,
+    "hlocLimit": null,
+    "hlocBalance": null,
+    "hlocMonthlyPmt": null,
+    "personalLoanLimit": null,
+    "personalAmortizationMonths": null,
+    "personalLoanBalance": null,
+    "personalLoanMonthlyPmt": null,
+    "personalPmtFrequency": null,
+    "creditCardLimit": null,
+    "creditCardBalance": null,
+    "monthlyIncomeAfterTaxes": null,
+    "totalMonthlyExpenses": null,
+    "monthlyExpenseOtherCredit": null,
+    "monthlyExpensePersonal": null,
+    "monthlyExpenseOtherHousing": null,
+    "monthlyExpensePropTaxFees": null,
+    "monthlyExpenseOther": null,
+    "totalSavings": null,
+    "totalSavingsChequing": null,
+    "totalSavingsTaxFreeAccts": null,
+    "totalSavingsRegRetirement": null,
+    "totalSavingsGuarantedInvestmentCerts": null,
+    "totalSavingsOther": null,
+    "lifeInsuranceLimit": null,
+    "criticalIllnessLimit": null,
+    "disabilityInsuranceMonthlyBenefit": null,
+    "disabilityInsurancePercentCoveredByEmployer": null,
+    "disabilityInsuranceUnknownEmployerCoverage": null,
+    "lifeInsurancePremiumPerMonth": null,
+    "criticalIllnessPremiumPerMonth": null,
+    "disabilityPremiumPerMonth": null,
+    "agentOverallPerceptionOfCustomerResp": "",
+    "isRelatedToFinalizedSoldProduct": false,
+    "discussionOutcomes": "",
+    "currentSection": null
+  }
+},
+{
+  "model": "insuranceProducts.insurancediscussion",
+  "pk": 14,
+  "fields": {
+    "created": "2021-05-07T01:02:36.075Z",
+    "modified": "2021-05-07T01:02:36.075Z",
+    "insProduct": 1,
+    "agent": 1,
+    "primaryFirstName": "",
+    "primaryMiddleName": "",
+    "primaryLastName": "",
+    "primaryAge": null,
+    "coFirstName": "",
+    "coMiddleName": "",
+    "coLastName": "",
+    "coAge": null,
+    "canada_provence": null,
+    "hoursWeekWorking": null,
+    "hasPartnerFinResponsibility": null,
+    "hasChildrenFinResponsibility": null,
+    "hasParentsFinResponsibility": null,
+    "hasOthersFinResponsibility": null,
+    "mortgageBalance": null,
+    "mortgagePmtAmount": null,
+    "mortgagePmtFrequency": null,
+    "hlocLimit": null,
+    "hlocBalance": null,
+    "hlocMonthlyPmt": null,
+    "personalLoanLimit": null,
+    "personalAmortizationMonths": null,
+    "personalLoanBalance": null,
+    "personalLoanMonthlyPmt": null,
+    "personalPmtFrequency": null,
+    "creditCardLimit": null,
+    "creditCardBalance": null,
+    "monthlyIncomeAfterTaxes": null,
+    "totalMonthlyExpenses": null,
+    "monthlyExpenseOtherCredit": null,
+    "monthlyExpensePersonal": null,
+    "monthlyExpenseOtherHousing": null,
+    "monthlyExpensePropTaxFees": null,
+    "monthlyExpenseOther": null,
+    "totalSavings": null,
+    "totalSavingsChequing": null,
+    "totalSavingsTaxFreeAccts": null,
+    "totalSavingsRegRetirement": null,
+    "totalSavingsGuarantedInvestmentCerts": null,
+    "totalSavingsOther": null,
+    "lifeInsuranceLimit": null,
+    "criticalIllnessLimit": null,
+    "disabilityInsuranceMonthlyBenefit": null,
+    "disabilityInsurancePercentCoveredByEmployer": null,
+    "disabilityInsuranceUnknownEmployerCoverage": null,
+    "lifeInsurancePremiumPerMonth": null,
+    "criticalIllnessPremiumPerMonth": null,
+    "disabilityPremiumPerMonth": null,
+    "agentOverallPerceptionOfCustomerResp": "",
+    "isRelatedToFinalizedSoldProduct": false,
+    "discussionOutcomes": "",
+    "currentSection": null
+  }
+},
+{
+  "model": "insuranceProducts.insurancediscussion",
+  "pk": 15,
+  "fields": {
+    "created": "2021-05-07T15:01:45.842Z",
+    "modified": "2021-05-07T15:01:45.842Z",
+    "insProduct": 1,
+    "agent": 1,
+    "primaryFirstName": "",
+    "primaryMiddleName": "",
+    "primaryLastName": "",
+    "primaryAge": null,
+    "coFirstName": "",
+    "coMiddleName": "",
+    "coLastName": "",
+    "coAge": null,
+    "canada_provence": null,
+    "hoursWeekWorking": null,
+    "hasPartnerFinResponsibility": null,
+    "hasChildrenFinResponsibility": null,
+    "hasParentsFinResponsibility": null,
+    "hasOthersFinResponsibility": null,
+    "mortgageBalance": null,
+    "mortgagePmtAmount": null,
+    "mortgagePmtFrequency": null,
+    "hlocLimit": null,
+    "hlocBalance": null,
+    "hlocMonthlyPmt": null,
+    "personalLoanLimit": null,
+    "personalAmortizationMonths": null,
+    "personalLoanBalance": null,
+    "personalLoanMonthlyPmt": null,
+    "personalPmtFrequency": null,
+    "creditCardLimit": null,
+    "creditCardBalance": null,
+    "monthlyIncomeAfterTaxes": null,
+    "totalMonthlyExpenses": null,
+    "monthlyExpenseOtherCredit": null,
+    "monthlyExpensePersonal": null,
+    "monthlyExpenseOtherHousing": null,
+    "monthlyExpensePropTaxFees": null,
+    "monthlyExpenseOther": null,
+    "totalSavings": null,
+    "totalSavingsChequing": null,
+    "totalSavingsTaxFreeAccts": null,
+    "totalSavingsRegRetirement": null,
+    "totalSavingsGuarantedInvestmentCerts": null,
+    "totalSavingsOther": null,
+    "lifeInsuranceLimit": null,
+    "criticalIllnessLimit": null,
+    "disabilityInsuranceMonthlyBenefit": null,
+    "disabilityInsurancePercentCoveredByEmployer": null,
+    "disabilityInsuranceUnknownEmployerCoverage": null,
+    "lifeInsurancePremiumPerMonth": null,
+    "criticalIllnessPremiumPerMonth": null,
+    "disabilityPremiumPerMonth": null,
+    "agentOverallPerceptionOfCustomerResp": "",
+    "isRelatedToFinalizedSoldProduct": false,
+    "discussionOutcomes": "",
+    "currentSection": null
+  }
+},
+{
+  "model": "stories.character",
+  "pk": 1,
+  "fields": {
+    "created": "2021-05-07T14:55:42.186Z",
+    "modified": "2021-05-07T14:55:42.186Z",
+    "characterName": "Freddy",
+    "backstory": "Great coder and consultant",
+    "topType": "HairColor",
+    "accessoriesType": "Kurt",
+    "hatColor": "Blue01",
+    "hairColor": "Blonde",
+    "facialHairType": "BeardMagestic",
+    "facialHairColor": "Black",
+    "clotheType": "BlazerSweater",
+    "clotheColor": "Blue01",
+    "graphicType": "Bat",
+    "eyeType": "Cry",
+    "eyebrowType": "Angry",
+    "mouthType": "Angry",
+    "skinColor": "Yellow",
+    "avatarImage": ""
+  }
+},
+{
+  "model": "stories.story",
+  "pk": 1,
+  "fields": {
+    "created": "2021-05-07T20:59:31.819Z",
+    "modified": "2021-05-07T20:59:31.819Z",
+    "storyName": "The Working Professional Single Mother Raising Two",
+    "summary": "Working professional 35-54 year old mother of two that has recently been divorced and is now juggling responsibilities at work with taking care of the kids during the week.",
+    "introduction": "Due to a downturn in the economy she has been let go from her job as an accounting professional for a national hotel chain",
+    "middle": "While has been able to set aside a financial emergency fund that   will help her cover daily living expenses for herself and her two children over the next 4 months, she is in need of additional financial support should it take longer than 4 months to line-up another job opportunity",
+    "conclusion": "This is where her existing job loss insurance policy provides reassurance and peace of mind that she and her children will be able to cope, and enable her to successfully search for new employment opportunities from a stronger position of power.",
+    "keyInsights": "A job loss insurance provides the necessary financial protection and peace of mind to protect my family in case of the main bread-earner�s loss of income."
+  }
+},
+{
+  "model": "stories.story",
+  "pk": 2,
+  "fields": {
+    "created": "2021-05-07T21:00:40.048Z",
+    "modified": "2021-05-07T21:00:40.048Z",
+    "storyName": "The Excited Empty Nesters",
+    "summary": "+55 year retired husband, + 55 year old still working wife, three children that are now financially standing on their own feet",
+    "introduction": "The children have successfully gone off to college and started their working professional careers. He has retired already with her looking forward to retiring within the next 2 years.",
+    "middle": "They are enjoying their new found freedom and flexibility with their children having moved out of the nest and successfully standing on their own feet and together are contemplating relocating to warmer-weather once she has successfully retired as well. While they probably have enough financial reso",
+    "conclusion": "To adequately be prepared for the eventuality they are looking into a Critical Illness type product that provides coverage in such a scenario.",
+    "keyInsights": "A Critical Illness policy can provide the financial coverage needed to cover unexpected expensive medical bills that are more likely to accrue with older age."
+  }
+},
+{
+  "model": "stories.story",
+  "pk": 3,
+  "fields": {
+    "created": "2021-05-07T21:01:58.453Z",
+    "modified": "2021-05-07T21:01:58.453Z",
+    "storyName": "The Young Professional Caring For Her Critically I",
+    "summary": "Young working professional <34 years that moved back in at home to care of her critically ill mother",
+    "introduction": "..",
+    "middle": "..",
+    "conclusion": "..",
+    "keyInsights": "A disability insurance can be a worthwhile investment for individuals at the beginning of their career who have no immediate dependents they could rely on for help in the potential event of disability."
+  }
+},
+{
+  "model": "stories.story",
+  "pk": 4,
+  "fields": {
+    "created": "2021-05-07T21:02:32.511Z",
+    "modified": "2021-05-07T21:02:32.511Z",
+    "storyName": "The Young Family Confronted With A Global Economic",
+    "summary": "..",
+    "introduction": "...",
+    "middle": "...",
+    "conclusion": "...",
+    "keyInsights": "A job loss insurance provides the necessary financial protection and peace of mind to protect my family in case of the main bread-earner�s loss of income."
+  }
+},
+{
+  "model": "stories.story",
+  "pk": 5,
+  "fields": {
+    "created": "2021-05-07T21:04:11.279Z",
+    "modified": "2021-05-07T21:04:11.279Z",
+    "storyName": "Family Father Caught In An Unexpected Car Accident",
+    "summary": "...",
+    "introduction": "...",
+    "middle": "...",
+    "conclusion": "...",
+    "keyInsights": "The purchase of a disability insurance policy protects the families financial future from the main bread-earners loss of income"
+  }
+},
+{
+  "model": "stories.story",
+  "pk": 6,
+  "fields": {
+    "created": "2021-05-07T21:04:55.258Z",
+    "modified": "2021-05-07T21:04:55.258Z",
+    "storyName": "The Caring Family Grandfather",
+    "summary": "Through his Life Insurance policy he wants to be able to support his children and grandchildren in a meaningful way even beyond his departure.",
+    "introduction": "...",
+    "middle": "...",
+    "conclusion": "...",
+    "keyInsights": "Through his Life Insurance policy he wants to be able to support his children and grandchildren in a meaningful way even beyond his departure."
+  }
+},
+{
+  "model": "stories.story",
+  "pk": 7,
+  "fields": {
+    "created": "2021-05-07T21:05:39.138Z",
+    "modified": "2021-05-12T11:52:33.916Z",
+    "storyName": "The Young Starter Family",
+    "summary": "To set a solid financial foundation and protect your young family's financial future, the purchase of a Life Insurance and Disability Insurance can cover the potential negative impact of two of the biggest unforeseen financial events.",
+    "introduction": "...",
+    "middle": "...",
+    "conclusion": "...",
+    "keyInsights": "To set a solid financial foundation and protect your young family�s financial future, the purchase of a Life Insurance and Disability Insurance can cover the potential negative impact of two of the biggest unforeseen financial events."
+  }
+},
+{
+  "model": "stories.story",
+  "pk": 8,
+  "fields": {
+    "created": "2021-05-07T21:06:15.514Z",
+    "modified": "2021-05-07T21:06:15.514Z",
+    "storyName": "The Proactive Planner Couple",
+    "summary": "In preparation of welcoming their first child, to secure their financial future and protect against the dependency on the husbands professional income, the couple decides to purchase a disability insurance product for to ensure financial stability even in case of possible job-limiting disability",
+    "introduction": "...",
+    "middle": "...",
+    "conclusion": "...",
+    "keyInsights": "In preparation of welcoming their first child, to secure their financial future and protect against the dependency on the husbands professional income, the couple decides to purchase a disability insurance product for to ensure financial stability even in case of possible job-limiting disability"
+  }
+},
+{
+  "model": "stories.story",
+  "pk": 9,
+  "fields": {
+    "created": "2021-05-07T21:08:02.123Z",
+    "modified": "2021-05-07T21:08:02.123Z",
+    "storyName": "The Widowed Family Father",
+    "summary": "Dependent on both spouses income to financially provide for his three children, a life insurance policy gives him peace of mind that his children will be financially taken care off in the eventuallity of his unexpected passing.",
+    "introduction": "...",
+    "middle": "...",
+    "conclusion": "...",
+    "keyInsights": "Dependent on both spouses income to financially provide for his three children, a life insurance policy gives him peace of mind that his children will be financially taken care off in the eventuallity of his unexpected passing."
+  }
+},
+{
+  "model": "stories.story",
+  "pk": 10,
+  "fields": {
+    "created": "2021-05-07T21:10:29.469Z",
+    "modified": "2021-05-07T21:10:29.469Z",
+    "storyName": "The Recent Retiree",
+    "summary": "Recently retired and widowed, the critical illness policy helps ensure that in old age he will always be taken care of in case of unexpected health or wellness events",
+    "introduction": "...",
+    "middle": "...",
+    "conclusion": "...",
+    "keyInsights": "Recently retired and widowed, the critical illness policy helps ensure that in old age he will always be taken care of in case of unexpected health or wellness events"
+  }
+},
+{
+  "model": "stories.objection",
+  "pk": 1,
+  "fields": {
+    "created": "2021-05-07T20:11:41.723Z",
+    "modified": "2021-05-07T20:11:41.723Z",
+    "objectionName": "I already have coverage",
+    "primaryIssueOrConcern": "I already have coverage through work."
+  }
+},
+{
+  "model": "stories.objection",
+  "pk": 2,
+  "fields": {
+    "created": "2021-05-07T20:12:17.888Z",
+    "modified": "2021-05-12T11:50:57.853Z",
+    "objectionName": "I already have enough insurance & don't need more",
+    "primaryIssueOrConcern": "I already have enough insurance and don't need more"
+  }
+},
+{
+  "model": "stories.objection",
+  "pk": 3,
+  "fields": {
+    "created": "2021-05-07T20:12:32.003Z",
+    "modified": "2021-05-07T20:12:32.003Z",
+    "objectionName": "I already have LIFE Insurance",
+    "primaryIssueOrConcern": "I already have LIFE Insurance"
+  }
+},
+{
+  "model": "stories.objection",
+  "pk": 4,
+  "fields": {
+    "created": "2021-05-07T20:12:42.783Z",
+    "modified": "2021-05-07T20:12:42.783Z",
+    "objectionName": "I already have coverage through work",
+    "primaryIssueOrConcern": "I already have coverage through work"
+  }
+},
+{
+  "model": "stories.objection",
+  "pk": 5,
+  "fields": {
+    "created": "2021-05-07T20:19:55.621Z",
+    "modified": "2021-05-12T11:50:41.855Z",
+    "objectionName": "It's too expensive",
+    "primaryIssueOrConcern": "It's too expensive"
+  }
+},
+{
+  "model": "stories.objection",
+  "pk": 6,
+  "fields": {
+    "created": "2021-05-07T20:20:04.783Z",
+    "modified": "2021-05-07T20:20:04.783Z",
+    "objectionName": "It costs too much",
+    "primaryIssueOrConcern": "It costs too much"
+  }
+},
+{
+  "model": "stories.objection",
+  "pk": 7,
+  "fields": {
+    "created": "2021-05-07T20:24:00.208Z",
+    "modified": "2021-05-12T11:50:32.088Z",
+    "objectionName": "I don't need insurance",
+    "primaryIssueOrConcern": "I don't need insurance"
+  }
+},
+{
+  "model": "stories.objection",
+  "pk": 8,
+  "fields": {
+    "created": "2021-05-07T20:24:07.498Z",
+    "modified": "2021-05-12T11:50:23.031Z",
+    "objectionName": "I'm not interested",
+    "primaryIssueOrConcern": "I'm not interested"
+  }
+},
+{
+  "model": "stories.objection",
+  "pk": 9,
+  "fields": {
+    "created": "2021-05-07T20:28:30.238Z",
+    "modified": "2021-05-07T20:28:30.238Z",
+    "objectionName": "I want to think about it",
+    "primaryIssueOrConcern": "I want to think about it"
+  }
+},
+{
+  "model": "stories.objection",
+  "pk": 10,
+  "fields": {
+    "created": "2021-05-07T20:31:01.069Z",
+    "modified": "2021-05-07T20:31:01.069Z",
+    "objectionName": "I will shop around for a better price",
+    "primaryIssueOrConcern": "I will shop around for a better price"
+  }
+},
+{
+  "model": "stories.objection",
+  "pk": 11,
+  "fields": {
+    "created": "2021-05-07T20:32:48.470Z",
+    "modified": "2021-05-12T11:50:14.657Z",
+    "objectionName": "Cultural considerations and practices",
+    "primaryIssueOrConcern": "Our culture does not believe in insurance. We think it's bad luck to discuss it"
+  }
+},
+{
+  "model": "stories.objection",
+  "pk": 12,
+  "fields": {
+    "created": "2021-05-07T20:36:26.018Z",
+    "modified": "2021-05-07T20:36:26.018Z",
+    "objectionName": "Using or selling assets as the source for cash",
+    "primaryIssueOrConcern": "I have assets I will use or sell to pay off the new borrowing product"
+  }
+},
+{
+  "model": "stories.objection",
+  "pk": 13,
+  "fields": {
+    "created": "2021-05-07T20:36:38.543Z",
+    "modified": "2021-05-12T11:50:07.735Z",
+    "objectionName": "I'll sell the property",
+    "primaryIssueOrConcern": "I'll sell the property."
+  }
+},
+{
+  "model": "stories.objection",
+  "pk": 14,
+  "fields": {
+    "created": "2021-05-07T20:37:19.489Z",
+    "modified": "2021-05-07T20:37:19.489Z",
+    "objectionName": "Only a rental property always easy to sell",
+    "primaryIssueOrConcern": "This is only a rental property I can always sell it if I have to."
+  }
+},
+{
+  "model": "stories.objection",
+  "pk": 15,
+  "fields": {
+    "created": "2021-05-07T20:39:18.423Z",
+    "modified": "2021-05-07T20:39:18.423Z",
+    "objectionName": "Talking with spouse/partner",
+    "primaryIssueOrConcern": "I need to talk to my spouse/partner"
+  }
+},
+{
+  "model": "stories.objection",
+  "pk": 16,
+  "fields": {
+    "created": "2021-05-07T20:42:04.483Z",
+    "modified": "2021-05-12T11:49:59.216Z",
+    "objectionName": "Does not use PLC/Credit card",
+    "primaryIssueOrConcern": "I don't use my PLC/ Credit card and I don't have a balance."
+  }
+},
+{
+  "model": "stories.objection",
+  "pk": 17,
+  "fields": {
+    "created": "2021-05-07T20:46:04.518Z",
+    "modified": "2021-05-07T20:46:04.518Z",
+    "objectionName": "Reliably pay-off account each month",
+    "primaryIssueOrConcern": "I use my PLC/Credit Card but I pay off my account each month."
+  }
+},
+{
+  "model": "stories.objection",
+  "pk": 18,
+  "fields": {
+    "created": "2021-05-07T20:49:20.028Z",
+    "modified": "2021-05-07T20:50:00.153Z",
+    "objectionName": "I already have Creditor Insurance",
+    "primaryIssueOrConcern": "I already have Creditor Insurance"
+  }
+},
+{
+  "model": "stories.objection",
+  "pk": 19,
+  "fields": {
+    "created": "2021-05-07T20:53:45.088Z",
+    "modified": "2021-05-12T11:49:49.559Z",
+    "objectionName": "Uncertain eligibility for creditor insurance",
+    "primaryIssueOrConcern": "I'm not sure if I am eligible for creditor insurance."
+  }
+},
+{
+  "model": "stories.objection",
+  "pk": 20,
+  "fields": {
+    "created": "2021-05-07T20:56:17.709Z",
+    "modified": "2021-05-07T20:56:17.709Z",
+    "objectionName": "Declined for creditor insurance",
+    "primaryIssueOrConcern": "I have been declined previously for creditor insurances."
+  }
+},
+{
+  "model": "stories.objectionhandle",
+  "pk": 1,
+  "fields": {
+    "created": "2021-05-07T20:14:10.008Z",
+    "modified": "2021-05-07T20:14:10.008Z",
+    "buttleName": "Check for sufficient debt & long-term needs cover",
+    "buttleMessaging": "Is your existing insurance enough to cover your debt and look after your family�s immediate and long-term needs?",
+    "buttleType": "rebuttle",
+    "objection": 1
+  }
+},
+{
+  "model": "stories.objectionhandle",
+  "pk": 2,
+  "fields": {
+    "created": "2021-05-07T20:15:07.693Z",
+    "modified": "2021-05-07T20:15:07.693Z",
+    "buttleName": "Typical employer life insurance often insufficient",
+    "buttleMessaging": "Typically, life insurance provided through employers only provides coverage that amounts to 1 to 2 times your salary in the event of your death. Would that be enough to cover your debt and look after your family�s immediate and long-term needs?",
+    "buttleType": "rebuttle",
+    "objection": 4
+  }
+},
+{
+  "model": "stories.objectionhandle",
+  "pk": 3,
+  "fields": {
+    "created": "2021-05-07T20:15:52.343Z",
+    "modified": "2021-05-07T20:15:52.343Z",
+    "buttleName": "Employer disabillity insurance often insufficient",
+    "buttleMessaging": "Disability insurance through your employer might only replace a portion of your current income (e.g., 60-70%). Would you be able to manage with less income and increased expenses?",
+    "buttleType": "rebuttle",
+    "objection": 2
+  }
+},
+{
+  "model": "stories.objectionhandle",
+  "pk": 4,
+  "fields": {
+    "created": "2021-05-07T20:17:11.368Z",
+    "modified": "2021-05-12T11:52:09.753Z",
+    "buttleName": "Abillity to make payments if income eliminated",
+    "buttleMessaging": "I know you said you have life insurance, however have you considered how you would make your payments if your income was reduced or eliminated if you�re unable to work due to a: [Note: customize to relevant product you're offering your client: [disability] [job loss] [covered critical illness e.g.,",
+    "buttleType": "rebuttle",
+    "objection": 3
+  }
+},
+{
+  "model": "stories.objectionhandle",
+  "pk": 5,
+  "fields": {
+    "created": "2021-05-07T20:17:52.793Z",
+    "modified": "2021-05-07T20:17:56.233Z",
+    "buttleName": "Loss of coverage in case of job loss",
+    "buttleMessaging": "Have you considered if you leave your employer or lose your job, that any group coverage you have through your employer may terminate, meaning you and your family could be left without coverage?",
+    "buttleType": null,
+    "objection": 4
+  }
+},
+{
+  "model": "stories.objectionhandle",
+  "pk": 6,
+  "fields": {
+    "created": "2021-05-07T20:20:54.058Z",
+    "modified": "2021-05-07T20:20:54.058Z",
+    "buttleName": "Offer to provide a quote",
+    "buttleMessaging": "May I provide you with a quote to help you decide if any of these protection plans are within your budget?",
+    "buttleType": "rebuttle",
+    "objection": 5
+  }
+},
+{
+  "model": "stories.objectionhandle",
+  "pk": 7,
+  "fields": {
+    "created": "2021-05-07T20:22:00.138Z",
+    "modified": "2021-05-07T20:22:00.138Z",
+    "buttleName": "Protect yourself against unforseen events",
+    "buttleMessaging": "I agree it is an additional expense. Without a plan, though, have you considered what would happen if you could no longer afford to make your regular payments on your [new borrowing product] if your income was ever reduced or eliminated due to an unexpected event such as your death, or inability to",
+    "buttleType": "rebuttle",
+    "objection": 6
+  }
+},
+{
+  "model": "stories.objectionhandle",
+  "pk": 8,
+  "fields": {
+    "created": "2021-05-07T20:25:12.914Z",
+    "modified": "2021-05-12T11:51:47.069Z",
+    "buttleName": "Sufficient savings/assets/insurance coverage?",
+    "buttleMessaging": "Is your savings/assets/term insurance/insurance through your employer enough to cover your debt and look after your family's immediate and long-term needs?",
+    "buttleType": "rebuttle",
+    "objection": 7
+  }
+},
+{
+  "model": "stories.objectionhandle",
+  "pk": 9,
+  "fields": {
+    "created": "2021-05-07T20:26:07.694Z",
+    "modified": "2021-05-07T20:26:07.694Z",
+    "buttleName": "Liquidation of assets impact on retirement",
+    "buttleMessaging": "If you liquidate assets, would that disrupt your savings or retirement planning goals? And what would happen if your family had to suddenly sell your assets in a down market to pay off your debts?",
+    "buttleType": "rebuttle",
+    "objection": 8
+  }
+},
+{
+  "model": "stories.objectionhandle",
+  "pk": 10,
+  "fields": {
+    "created": "2021-05-07T20:26:49.188Z",
+    "modified": "2021-05-07T20:26:49.188Z",
+    "buttleName": "Employer coverage typically not sufficient",
+    "buttleMessaging": "Disability insurance through your employer might only replace a portion of your current income (e.g., 60-70%). Would you be able to manage with less income and increased expenses?",
+    "buttleType": "rebuttle",
+    "objection": 7
+  }
+},
+{
+  "model": "stories.objectionhandle",
+  "pk": 11,
+  "fields": {
+    "created": "2021-05-07T20:29:35.762Z",
+    "modified": "2021-05-07T20:29:35.762Z",
+    "buttleName": "Schedule a follw-up",
+    "buttleMessaging": "May I follow up with you in a few days to see if you have had a chance to think about this and answer any questions that you might have?",
+    "buttleType": "rebuttle",
+    "objection": 9
+  }
+},
+{
+  "model": "stories.objectionhandle",
+  "pk": 12,
+  "fields": {
+    "created": "2021-05-07T20:30:14.428Z",
+    "modified": "2021-05-12T11:51:30.973Z",
+    "buttleName": "Provide client with product summary",
+    "buttleMessaging": "I'll be happy to share some information for your consideration, [provide client with Creditor insurance product summary to review].",
+    "buttleType": "rebuttle",
+    "objection": 9
+  }
+},
+{
+  "model": "stories.objectionhandle",
+  "pk": 13,
+  "fields": {
+    "created": "2021-05-07T20:31:36.328Z",
+    "modified": "2021-05-07T20:31:36.328Z",
+    "buttleName": "Schedule a follw-up appointment",
+    "buttleMessaging": "May I follow up with you in a few days to see if you have had a chance to shop around and answer any questions that you might have?",
+    "buttleType": "rebuttle",
+    "objection": 10
+  }
+},
+{
+  "model": "stories.objectionhandle",
+  "pk": 14,
+  "fields": {
+    "created": "2021-05-07T20:34:01.139Z",
+    "modified": "2021-05-07T20:34:01.139Z",
+    "buttleName": "Show understanding and offer support at later date",
+    "buttleMessaging": "I totally understand, if you ever want to learn more about insurance and how it can help protect you, just let us know.",
+    "buttleType": "rebuttle",
+    "objection": 11
+  }
+},
+{
+  "model": "stories.objectionhandle",
+  "pk": 15,
+  "fields": {
+    "created": "2021-05-07T20:38:23.413Z",
+    "modified": "2021-05-07T20:38:23.413Z",
+    "buttleName": "Consider all existing insurance policies",
+    "buttleMessaging": "When considering whether CIBC creditor insurance is right for you, you should take into account other insurance you may have, for example, term life insurance, disability insurance, or group insurance you may have through your employer. You can also consider whether you have sufficient savings or ot",
+    "buttleType": "rebuttle",
+    "objection": 12
+  }
+},
+{
+  "model": "stories.objectionhandle",
+  "pk": 16,
+  "fields": {
+    "created": "2021-05-07T20:40:07.444Z",
+    "modified": "2021-05-07T20:40:07.444Z",
+    "buttleName": "Schedule a follw-up check-in",
+    "buttleMessaging": "May I follow up with you in a few days to see if you have had a chance to review this with your spouse and answer any questions that you might have?",
+    "buttleType": "rebuttle",
+    "objection": 15
+  }
+},
+{
+  "model": "stories.objectionhandle",
+  "pk": 17,
+  "fields": {
+    "created": "2021-05-07T20:43:20.568Z",
+    "modified": "2021-05-07T20:43:20.568Z",
+    "buttleName": "Inform about PLC terms & conditions",
+    "buttleMessaging": "If you start using your PLC, this insurance would automatically provide coverage and only then would you start paying premiums. If you have a balance on any day, there will be a premium payable for that day. The accumulated daily insurance premiums, plus any applicable taxes, are charged to your PLC",
+    "buttleType": "rebuttle",
+    "objection": 15
+  }
+},
+{
+  "model": "stories.objectionhandle",
+  "pk": 18,
+  "fields": {
+    "created": "2021-05-07T20:43:52.148Z",
+    "modified": "2021-05-07T20:43:52.148Z",
+    "buttleName": "Inform about Credit Card terms & conditions",
+    "buttleMessaging": "If you start using your Credit Card, this insurance would automatically provide coverage and only then would you start paying premiums. The monthly premium is based on the amount you owe CIBC on your statement date and is charged to your insured credit card on its statement date. Please note you wil",
+    "buttleType": "rebuttle",
+    "objection": 16
+  }
+},
+{
+  "model": "stories.objectionhandle",
+  "pk": 19,
+  "fields": {
+    "created": "2021-05-07T20:46:47.978Z",
+    "modified": "2021-05-12T11:51:23.061Z",
+    "buttleName": "Safety net for the unexpected",
+    "buttleMessaging": "That's great, and we appreciate the fact that you manage your account so well. This insurance would be your safety net should the unexpected happen and you were unable to pay off your account",
+    "buttleType": "rebuttle",
+    "objection": 17
+  }
+},
+{
+  "model": "stories.objectionhandle",
+  "pk": 20,
+  "fields": {
+    "created": "2021-05-07T20:47:24.322Z",
+    "modified": "2021-05-07T20:47:24.322Z",
+    "buttleName": "Dependency on monthly income",
+    "buttleMessaging": "Have you considered whether your ability to make your Credit card payments or pay off your balance every month is contingent upon you working? If so how would you continue to pay off the balance if you lost your job?",
+    "buttleType": "rebuttle",
+    "objection": 17
+  }
+},
+{
+  "model": "stories.objectionhandle",
+  "pk": 21,
+  "fields": {
+    "created": "2021-05-07T20:51:07.058Z",
+    "modified": "2021-05-07T20:51:07.058Z",
+    "buttleName": "Check CIBC client records for existing coverage",
+    "buttleMessaging": "Let me quickly Check our CIBC client records for existing coverage policies you might already have.",
+    "buttleType": "rebuttle",
+    "objection": 18
+  }
+},
+{
+  "model": "stories.objectionhandle",
+  "pk": 22,
+  "fields": {
+    "created": "2021-05-07T20:54:24.638Z",
+    "modified": "2021-05-07T20:54:24.638Z",
+    "buttleName": "Determine clients product eligibility",
+    "buttleMessaging": "Determine their eligibility. Draw their attention to both the general eligibility criteria and the benefit-specific eligibility criteria before they apply for the insurance. Proactively review these with your client and, together with your client, determine whether your client meets both the genera",
+    "buttleType": "rebuttle",
+    "objection": 19
+  }
+},
+{
+  "model": "stories.objectionhandle",
+  "pk": 23,
+  "fields": {
+    "created": "2021-05-07T20:57:36.349Z",
+    "modified": "2021-05-07T20:57:36.349Z",
+    "buttleName": "Determine cause for decline",
+    "buttleMessaging": "If a client was previously declined creditor insurance, ask them if they remember why. If the client was declined due to a health condition, then for product with pre-existing medical condition exclusions, ask the client to carefully read the exclusion and decide if it applies to their current healt",
+    "buttleType": "rebuttle",
+    "objection": 20
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 1,
+  "fields": {
+    "action_time": "2021-05-06T17:37:44.462Z",
+    "user": 1,
+    "content_type": 2,
+    "object_id": "1",
+    "object_repr": "Mortgage Creditor Insurance",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 2,
+  "fields": {
+    "action_time": "2021-05-07T14:55:42.204Z",
+    "user": 1,
+    "content_type": 4,
+    "object_id": "1",
+    "object_repr": "Character object (1)",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 3,
+  "fields": {
+    "action_time": "2021-05-07T14:56:47.906Z",
+    "user": 1,
+    "content_type": 7,
+    "object_id": "1",
+    "object_repr": "Freddy Loses his job because Postgress doesn't wor",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 4,
+  "fields": {
+    "action_time": "2021-05-07T14:57:32.462Z",
+    "user": 1,
+    "content_type": 5,
+    "object_id": "1",
+    "object_repr": "I need to think about it",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 5,
+  "fields": {
+    "action_time": "2021-05-07T14:58:50.921Z",
+    "user": 1,
+    "content_type": 6,
+    "object_id": "1",
+    "object_repr": "Offer materials to inform thinking",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 6,
+  "fields": {
+    "action_time": "2021-05-07T15:00:30.176Z",
+    "user": 1,
+    "content_type": 10,
+    "object_id": "1",
+    "object_repr": "ObjectioonStatsTracker object (1)",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 7,
+  "fields": {
+    "action_time": "2021-05-07T15:01:19.620Z",
+    "user": 1,
+    "content_type": 8,
+    "object_id": "1",
+    "object_repr": "StoryStatsTracker object (1)",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 8,
+  "fields": {
+    "action_time": "2021-05-10T18:46:45.169Z",
+    "user": 1,
+    "content_type": 7,
+    "object_id": "2",
+    "object_repr": "What is the next story?",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 9,
+  "fields": {
+    "action_time": "2021-05-12T11:45:06.449Z",
+    "user": 1,
+    "content_type": 7,
+    "object_id": "11",
+    "object_repr": "Test1",
+    "action_flag": 3,
+    "change_message": ""
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 10,
+  "fields": {
+    "action_time": "2021-05-12T11:46:20.888Z",
+    "user": 1,
+    "content_type": 7,
+    "object_id": "10",
+    "object_repr": "asdasdasdas",
+    "action_flag": 3,
+    "change_message": ""
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 11,
+  "fields": {
+    "action_time": "2021-05-12T11:46:28.097Z",
+    "user": 1,
+    "content_type": 7,
+    "object_id": "9",
+    "object_repr": "asdas",
+    "action_flag": 3,
+    "change_message": ""
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 12,
+  "fields": {
+    "action_time": "2021-05-12T11:46:34.955Z",
+    "user": 1,
+    "content_type": 7,
+    "object_id": "8",
+    "object_repr": "test 1",
+    "action_flag": 3,
+    "change_message": ""
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 13,
+  "fields": {
+    "action_time": "2021-05-12T11:46:48.245Z",
+    "user": 1,
+    "content_type": 6,
+    "object_id": "1",
+    "object_repr": "Offer materials to inform thinking",
+    "action_flag": 3,
+    "change_message": ""
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 14,
+  "fields": {
+    "action_time": "2021-05-12T11:47:05.439Z",
+    "user": 1,
+    "content_type": 5,
+    "object_id": "1",
+    "object_repr": "I need to think about it",
+    "action_flag": 3,
+    "change_message": ""
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 15,
+  "fields": {
+    "action_time": "2021-05-12T11:49:49.562Z",
+    "user": 1,
+    "content_type": 5,
+    "object_id": "19",
+    "object_repr": "Uncertain eligibility for creditor insurance",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Primary issues or concerns\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 16,
+  "fields": {
+    "action_time": "2021-05-12T11:49:59.217Z",
+    "user": 1,
+    "content_type": 5,
+    "object_id": "16",
+    "object_repr": "Does not use PLC/Credit card",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Primary issues or concerns\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 17,
+  "fields": {
+    "action_time": "2021-05-12T11:50:07.737Z",
+    "user": 1,
+    "content_type": 5,
+    "object_id": "13",
+    "object_repr": "I'll sell the property",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Name of Objection\", \"Primary issues or concerns\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 18,
+  "fields": {
+    "action_time": "2021-05-12T11:50:14.658Z",
+    "user": 1,
+    "content_type": 5,
+    "object_id": "11",
+    "object_repr": "Cultural considerations and practices",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Primary issues or concerns\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 19,
+  "fields": {
+    "action_time": "2021-05-12T11:50:23.032Z",
+    "user": 1,
+    "content_type": 5,
+    "object_id": "8",
+    "object_repr": "I'm not interested",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Name of Objection\", \"Primary issues or concerns\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 20,
+  "fields": {
+    "action_time": "2021-05-12T11:50:32.089Z",
+    "user": 1,
+    "content_type": 5,
+    "object_id": "7",
+    "object_repr": "I don't need insurance",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Name of Objection\", \"Primary issues or concerns\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 21,
+  "fields": {
+    "action_time": "2021-05-12T11:50:41.856Z",
+    "user": 1,
+    "content_type": 5,
+    "object_id": "5",
+    "object_repr": "It's too expensive",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Name of Objection\", \"Primary issues or concerns\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 22,
+  "fields": {
+    "action_time": "2021-05-12T11:50:57.854Z",
+    "user": 1,
+    "content_type": 5,
+    "object_id": "2",
+    "object_repr": "I already have enough insurance & don't need more",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Name of Objection\", \"Primary issues or concerns\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 23,
+  "fields": {
+    "action_time": "2021-05-12T11:51:23.063Z",
+    "user": 1,
+    "content_type": 6,
+    "object_id": "19",
+    "object_repr": "Safety net for the unexpected",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Message\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 24,
+  "fields": {
+    "action_time": "2021-05-12T11:51:30.974Z",
+    "user": 1,
+    "content_type": 6,
+    "object_id": "12",
+    "object_repr": "Provide client with product summary",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Message\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 25,
+  "fields": {
+    "action_time": "2021-05-12T11:51:39.612Z",
+    "user": 1,
+    "content_type": 6,
+    "object_id": "4",
+    "object_repr": "Abillity to make payments if income eliminated",
+    "action_flag": 2,
+    "change_message": "[]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 26,
+  "fields": {
+    "action_time": "2021-05-12T11:51:47.070Z",
+    "user": 1,
+    "content_type": 6,
+    "object_id": "8",
+    "object_repr": "Sufficient savings/assets/insurance coverage?",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Message\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 27,
+  "fields": {
+    "action_time": "2021-05-12T11:51:58.425Z",
+    "user": 1,
+    "content_type": 6,
+    "object_id": "4",
+    "object_repr": "Abillity to make payments if income eliminated",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Message\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 28,
+  "fields": {
+    "action_time": "2021-05-12T11:52:09.753Z",
+    "user": 1,
+    "content_type": 6,
+    "object_id": "4",
+    "object_repr": "Abillity to make payments if income eliminated",
+    "action_flag": 2,
+    "change_message": "[]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 29,
+  "fields": {
+    "action_time": "2021-05-12T11:52:33.917Z",
+    "user": 1,
+    "content_type": 7,
+    "object_id": "7",
+    "object_repr": "The Young Starter Family",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Summary\"]}}]"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 1,
+  "fields": {
+    "name": "Can add user",
+    "content_type": 1,
+    "codename": "add_customuser"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 2,
+  "fields": {
+    "name": "Can change user",
+    "content_type": 1,
+    "codename": "change_customuser"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 3,
+  "fields": {
+    "name": "Can delete user",
+    "content_type": 1,
+    "codename": "delete_customuser"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 4,
+  "fields": {
+    "name": "Can view user",
+    "content_type": 1,
+    "codename": "view_customuser"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 5,
+  "fields": {
+    "name": "Can add insurance product",
+    "content_type": 2,
+    "codename": "add_insuranceproduct"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 6,
+  "fields": {
+    "name": "Can change insurance product",
+    "content_type": 2,
+    "codename": "change_insuranceproduct"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 7,
+  "fields": {
+    "name": "Can delete insurance product",
+    "content_type": 2,
+    "codename": "delete_insuranceproduct"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 8,
+  "fields": {
+    "name": "Can view insurance product",
+    "content_type": 2,
+    "codename": "view_insuranceproduct"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 9,
+  "fields": {
+    "name": "Can add insurance discussion",
+    "content_type": 3,
+    "codename": "add_insurancediscussion"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 10,
+  "fields": {
+    "name": "Can change insurance discussion",
+    "content_type": 3,
+    "codename": "change_insurancediscussion"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 11,
+  "fields": {
+    "name": "Can delete insurance discussion",
+    "content_type": 3,
+    "codename": "delete_insurancediscussion"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 12,
+  "fields": {
+    "name": "Can view insurance discussion",
+    "content_type": 3,
+    "codename": "view_insurancediscussion"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 13,
+  "fields": {
+    "name": "Can add character",
+    "content_type": 4,
+    "codename": "add_character"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 14,
+  "fields": {
+    "name": "Can change character",
+    "content_type": 4,
+    "codename": "change_character"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 15,
+  "fields": {
+    "name": "Can delete character",
+    "content_type": 4,
+    "codename": "delete_character"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 16,
+  "fields": {
+    "name": "Can view character",
+    "content_type": 4,
+    "codename": "view_character"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 17,
+  "fields": {
+    "name": "Can add objection",
+    "content_type": 5,
+    "codename": "add_objection"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 18,
+  "fields": {
+    "name": "Can change objection",
+    "content_type": 5,
+    "codename": "change_objection"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 19,
+  "fields": {
+    "name": "Can delete objection",
+    "content_type": 5,
+    "codename": "delete_objection"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 20,
+  "fields": {
+    "name": "Can view objection",
+    "content_type": 5,
+    "codename": "view_objection"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 21,
+  "fields": {
+    "name": "Can add objection handle",
+    "content_type": 6,
+    "codename": "add_objectionhandle"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 22,
+  "fields": {
+    "name": "Can change objection handle",
+    "content_type": 6,
+    "codename": "change_objectionhandle"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 23,
+  "fields": {
+    "name": "Can delete objection handle",
+    "content_type": 6,
+    "codename": "delete_objectionhandle"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 24,
+  "fields": {
+    "name": "Can view objection handle",
+    "content_type": 6,
+    "codename": "view_objectionhandle"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 25,
+  "fields": {
+    "name": "Can add story",
+    "content_type": 7,
+    "codename": "add_story"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 26,
+  "fields": {
+    "name": "Can change story",
+    "content_type": 7,
+    "codename": "change_story"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 27,
+  "fields": {
+    "name": "Can delete story",
+    "content_type": 7,
+    "codename": "delete_story"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 28,
+  "fields": {
+    "name": "Can view story",
+    "content_type": 7,
+    "codename": "view_story"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 29,
+  "fields": {
+    "name": "Can add story stats tracker",
+    "content_type": 8,
+    "codename": "add_storystatstracker"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 30,
+  "fields": {
+    "name": "Can change story stats tracker",
+    "content_type": 8,
+    "codename": "change_storystatstracker"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 31,
+  "fields": {
+    "name": "Can delete story stats tracker",
+    "content_type": 8,
+    "codename": "delete_storystatstracker"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 32,
+  "fields": {
+    "name": "Can view story stats tracker",
+    "content_type": 8,
+    "codename": "view_storystatstracker"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 33,
+  "fields": {
+    "name": "Can add story character",
+    "content_type": 9,
+    "codename": "add_storycharacter"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 34,
+  "fields": {
+    "name": "Can change story character",
+    "content_type": 9,
+    "codename": "change_storycharacter"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 35,
+  "fields": {
+    "name": "Can delete story character",
+    "content_type": 9,
+    "codename": "delete_storycharacter"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 36,
+  "fields": {
+    "name": "Can view story character",
+    "content_type": 9,
+    "codename": "view_storycharacter"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 37,
+  "fields": {
+    "name": "Can add objectioon stats tracker",
+    "content_type": 10,
+    "codename": "add_objectioonstatstracker"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 38,
+  "fields": {
+    "name": "Can change objectioon stats tracker",
+    "content_type": 10,
+    "codename": "change_objectioonstatstracker"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 39,
+  "fields": {
+    "name": "Can delete objectioon stats tracker",
+    "content_type": 10,
+    "codename": "delete_objectioonstatstracker"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 40,
+  "fields": {
+    "name": "Can view objectioon stats tracker",
+    "content_type": 10,
+    "codename": "view_objectioonstatstracker"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 41,
+  "fields": {
+    "name": "Can add objection handle stats tracker",
+    "content_type": 11,
+    "codename": "add_objectionhandlestatstracker"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 42,
+  "fields": {
+    "name": "Can change objection handle stats tracker",
+    "content_type": 11,
+    "codename": "change_objectionhandlestatstracker"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 43,
+  "fields": {
+    "name": "Can delete objection handle stats tracker",
+    "content_type": 11,
+    "codename": "delete_objectionhandlestatstracker"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 44,
+  "fields": {
+    "name": "Can view objection handle stats tracker",
+    "content_type": 11,
+    "codename": "view_objectionhandlestatstracker"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 45,
+  "fields": {
+    "name": "Can add log entry",
+    "content_type": 12,
+    "codename": "add_logentry"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 46,
+  "fields": {
+    "name": "Can change log entry",
+    "content_type": 12,
+    "codename": "change_logentry"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 47,
+  "fields": {
+    "name": "Can delete log entry",
+    "content_type": 12,
+    "codename": "delete_logentry"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 48,
+  "fields": {
+    "name": "Can view log entry",
+    "content_type": 12,
+    "codename": "view_logentry"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 49,
+  "fields": {
+    "name": "Can add permission",
+    "content_type": 13,
+    "codename": "add_permission"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 50,
+  "fields": {
+    "name": "Can change permission",
+    "content_type": 13,
+    "codename": "change_permission"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 51,
+  "fields": {
+    "name": "Can delete permission",
+    "content_type": 13,
+    "codename": "delete_permission"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 52,
+  "fields": {
+    "name": "Can view permission",
+    "content_type": 13,
+    "codename": "view_permission"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 53,
+  "fields": {
+    "name": "Can add group",
+    "content_type": 14,
+    "codename": "add_group"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 54,
+  "fields": {
+    "name": "Can change group",
+    "content_type": 14,
+    "codename": "change_group"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 55,
+  "fields": {
+    "name": "Can delete group",
+    "content_type": 14,
+    "codename": "delete_group"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 56,
+  "fields": {
+    "name": "Can view group",
+    "content_type": 14,
+    "codename": "view_group"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 57,
+  "fields": {
+    "name": "Can add content type",
+    "content_type": 15,
+    "codename": "add_contenttype"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 58,
+  "fields": {
+    "name": "Can change content type",
+    "content_type": 15,
+    "codename": "change_contenttype"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 59,
+  "fields": {
+    "name": "Can delete content type",
+    "content_type": 15,
+    "codename": "delete_contenttype"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 60,
+  "fields": {
+    "name": "Can view content type",
+    "content_type": 15,
+    "codename": "view_contenttype"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 61,
+  "fields": {
+    "name": "Can add session",
+    "content_type": 16,
+    "codename": "add_session"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 62,
+  "fields": {
+    "name": "Can change session",
+    "content_type": 16,
+    "codename": "change_session"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 63,
+  "fields": {
+    "name": "Can delete session",
+    "content_type": 16,
+    "codename": "delete_session"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 64,
+  "fields": {
+    "name": "Can view session",
+    "content_type": 16,
+    "codename": "view_session"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 1,
+  "fields": {
+    "app_label": "accounts",
+    "model": "customuser"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 2,
+  "fields": {
+    "app_label": "insuranceProducts",
+    "model": "insuranceproduct"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 3,
+  "fields": {
+    "app_label": "insuranceProducts",
+    "model": "insurancediscussion"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 4,
+  "fields": {
+    "app_label": "stories",
+    "model": "character"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 5,
+  "fields": {
+    "app_label": "stories",
+    "model": "objection"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 6,
+  "fields": {
+    "app_label": "stories",
+    "model": "objectionhandle"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 7,
+  "fields": {
+    "app_label": "stories",
+    "model": "story"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 8,
+  "fields": {
+    "app_label": "stories",
+    "model": "storystatstracker"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 9,
+  "fields": {
+    "app_label": "stories",
+    "model": "storycharacter"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 10,
+  "fields": {
+    "app_label": "stories",
+    "model": "objectioonstatstracker"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 11,
+  "fields": {
+    "app_label": "stories",
+    "model": "objectionhandlestatstracker"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 12,
+  "fields": {
+    "app_label": "admin",
+    "model": "logentry"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 13,
+  "fields": {
+    "app_label": "auth",
+    "model": "permission"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 14,
+  "fields": {
+    "app_label": "auth",
+    "model": "group"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 15,
+  "fields": {
+    "app_label": "contenttypes",
+    "model": "contenttype"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 16,
+  "fields": {
+    "app_label": "sessions",
+    "model": "session"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "2iwc2e4h03hsre8unqd8o9wal3teei29",
+  "fields": {
+    "session_data": ".eJxVjEEOwiAQRe_C2hBmoBRcuu8ZCAOMrRpISrsy3t006UK3_7333yLEfZvD3ssaliyuAsTld6OYnqUeID9ivTeZWt3WheShyJN2ObVcXrfT_TuYY5-PGlICYCYDmpxxpHhE9IO3SBpx5KIHDca76K0ZmRMMllwywBmtUig-X9KSNxA:1lf26E:b_SJVEMG_VgmLF6WO5FwdnQzw4o_yHAFTXT9idJA3Nw",
+    "expire_date": "2021-05-21T15:09:06.206Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "h0l8hze626tysuqhezgxzjn7z0uus15h",
+  "fields": {
+    "session_data": ".eJxVjEEOwiAQRe_C2hBmoBRcuu8ZCAOMrRpISrsy3t006UK3_7333yLEfZvD3ssaliyuAsTld6OYnqUeID9ivTeZWt3WheShyJN2ObVcXrfT_TuYY5-PGlICYCYDmpxxpHhE9IO3SBpx5KIHDca76K0ZmRMMllwywBmtUig-X9KSNxA:1lgGqH:husydmVU5ON-i_MNSV524SqHOOye3OJDbIkAvZgQmqo",
+    "expire_date": "2021-05-25T01:05:45.880Z"
+  }
+}
+]

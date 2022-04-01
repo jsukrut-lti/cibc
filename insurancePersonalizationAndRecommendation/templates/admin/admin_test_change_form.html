@@ -1,0 +1,67 @@
+{% extends "admin/change_form.html" %}
+
+<!-- Fieldsets -->
+{% block field_sets %}
+<style>
+    .character_form {
+        position: relative;
+    }
+
+    .avtar {
+        position: sticky;
+        top: 70px;
+    }
+</style>
+
+<div style="width: 75%; float:left">
+    {% for fieldset in adminform %}
+        {% include "admin/includes/fieldset.html" %}
+    {% endfor %}
+</div>
+
+<div style="width: 5%; float:left">
+    <p> </p>
+</div>
+
+<div style="width: 20%;float:right;" class="avtar">
+    <img class="img_class" src="" style="height: 150px;"/>
+    <label style="display: block; padding: 5% 10%; font-weight: bold"><b>Avataar Preview</b></label>
+</div>
+
+<script>
+(function($) {
+    $(document).ready(function() {
+        let avatarStyle = 'Circle';
+        let topTypeChoice = $('#id_topType').find(":selected").val();
+        let accessoriesType = $('#id_accessoriesType').find(":selected").val();
+        var avatar_url = "{{ avatar_url }}";
+
+        $('.img_class').attr('src', avatar_url).show();
+        $("select").change(function () {
+            var prev_img = $('.img_class').attr('src')
+            var changed_attr = this.id.replace('id_', '')
+            var final_url = ''
+            if (prev_img.includes(changed_attr)) {
+                let iter_img = prev_img.split('&')
+                for (let t = 0; t < iter_img.length; t++) {
+                    if (iter_img[t].includes(changed_attr)) {
+                        console.log(iter_img[t])
+                        final_url = final_url+'&'+changed_attr+'='+this.value
+                    } else {
+                        if (final_url) {
+                            final_url = final_url+'&'+iter_img[t]
+                        } else {
+                            final_url = iter_img[t]
+                        }
+                    }
+                }
+            } else {
+                final_url = prev_img+'&'+changed_attr+'='+this.value
+            }
+            console.log(final_url)
+            $('.img_class').attr('src', final_url).show();
+        });
+    });
+})(django.jQuery);
+</script>
+{% endblock %}

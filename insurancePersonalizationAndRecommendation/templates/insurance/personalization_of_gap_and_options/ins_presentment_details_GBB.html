@@ -1,0 +1,559 @@
+<!doctype html>
+<html lang="en">
+{% load static %}
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+    <script src=" {% static 'js/chart.js' %}"></script>
+
+    <!-- Bootstrap core CSS -->
+    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+
+    <style>
+      .bd-placeholder-img {
+        font-size: 1.125rem;
+        text-anchor: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        user-select: none;
+      }
+
+      @media (min-width: 768px) {
+        .bd-placeholder-img-lg {
+          font-size: 3.5rem;
+        }
+      }
+    </style>
+
+
+    <!-- Custom styles for this template -->
+    <link href="{% static 'css/ins_presentment_details.css' %}" rel="stylesheet">
+
+    <title>Final page</title>
+</head>
+
+
+<!-- As a link -->
+
+
+<nav class="navbar navbar-light bg-light header">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="#"><img src="{% static 'img/skp_small_logo.png' %}" width="100" height="100"></a>
+    </div>
+</nav>
+<div class="text-center container-fluid">
+    <h1 class="text-center"><b> {{personalize_context_object.primaryFirstName}} {{personalize_context_object.primaryLastName}}:</b></h1>
+    <p>Mortgage Protection can help you protect your mortgage and home, which can also have a positive impact on
+        your partner, your children, your parents & other loved ones who may depend on you financially.</p>
+    <p>Mortgage Protection can pay off your outstanding mortgage balance in the event you experience the
+        following</p>
+</div>
+<div class="text-center container-fluid">
+    <div class="row">
+        <div class="col-md-6">
+            <div class="text-center insurance--box">
+                <p class="no--margin">Mortgage Life Insurance:</p>
+            </div>
+            <p> Coverage includes death, covered terminal illnesses and accidental dismemberment</p>
+
+        </div>
+        <div class="col-md-6">
+            <div class="text-center insurance--box">
+                <p class="no--margin">Mortgage Critical Illness Insurance:</p>
+            </div>
+            <p> Coverage includes life-threatening cancer, acute heart attack and stroke </p>
+        </div>
+
+    </div>
+</div>
+<section>
+    <div class="container-fluid">
+        <input id="monthly-payment-value" type="hidden"  value="{{personalize_context_object.mortgagePmtAmount}}">
+        <div class="finance">
+            <h1 class="finance--title"> {{personalize_context_object.primaryFirstName}} {{personalize_context_object.primaryLastName}}’s coverage and finances</h1>
+            <p class="finance--edit">Edit financial details</p>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+
+                <h2 class="finance--options"> Your coverage options : <img class="questionmark--icon" src="{% static 'img/question-mark.svg' %}"></h2>
+                <p class="finance--options--text">Here’s an overview of your coverage and premium quote. </p>
+                <div class="finance--balance">
+                    <p class="finance--balance--text">Your remaining Mortgage balance of</p>
+                    <p class="finance--balance--price">${{personalize_context_object.mortgageBalance}}</p>
+                    <p class="finance--balance--text">Could be paid off instead of ${{personalize_context_object.mortgagePmtAmount}} per month</p>
+                </div>
+
+
+
+
+
+
+                <h2 class="finance--options"> Insurance impact and gap : <img class="questionmark--icon" src="{% static 'img/question-mark.svg' %}"></h2>
+
+                <div class="finance--row">
+                    <p>Understand your gap in case of Job Loss,Disability, Critical Illness or Death:</p>
+                    <div class="btn-group" role="group" aria-label="Basic outlined example">
+                        <button type="button" onclick="catEventBtnClk()" class="btn btn-danger">Catastrophic Event</button>
+                        <button type="button" id="setTotalBtn" onclick="setTotalBtnClk()" class="btn btn-outline-primary">Set Totals</button>
+                        <button type="button" id="resetTotalBtn" onclick="resetTotalBtnClk()" class="btn btn-outline-primary">Reset Totals</button>
+                    </div>
+                </div>
+
+                <div id="impactMsg" class="" role="alert">
+                </div>
+
+                <input id="income-value-set" type="hidden"  value="{personalize_context_object.monthlyIncomeAfterTaxes}} ">
+                <input id="expense-value-set" type="hidden"  value="{personalize_context_object.totalMonthlyExpenses}} ">
+                <input id="saving-value-set" type="hidden"  value="{personalize_context_object.totalSavings}} ">
+
+
+                <div class="finance--row">
+                    <p class="finance--row--text" style="padding-right: 10px;">Monthly Income
+                        <span class="finance-gray"><br>post-tax</span></p>
+
+                    <input class="form-range" type="range" id="income-input-range" min="1000" max="10000" value="{{personalize_context_object.monthlyIncomeAfterTaxes}}" step="250" style="width:75%;" />
+                    <div class="finance--row--price" style="padding-left: 30px;">
+                                  <span class="input-group-text">$
+                                  <input id="income-value" type="text"  aria-label="Amount (to the nearest dollar)" value="{{personalize_context_object.monthlyIncomeAfterTaxes}}">
+                                      </span>
+                    </div>
+                </div>
+                <div class="finance--row">
+                    <p class="finance--row--text">Monthly Expense</p>
+
+                    <input class="form-range" type="range" id="expense-input-range" min="1000" max="10000" value="{{personalize_context_object.totalMonthlyExpenses}}" step="250" style="width:75%" />
+                    <div class="finance--row--price" style="padding-left: 30px;">
+                                  <span class="input-group-text">$
+                                  <input id="expense-value" type="text"  aria-label="Amount (to the nearest dollar)" value="{{personalize_context_object.totalMonthlyExpenses}}">
+                                      </span>
+                    </div>
+                </div>
+
+                <div class="finance--row">
+                    <p class="finance--row--text" style="padding-right: 60px;">Savings</p>
+
+                    <input class="form-range" type="range" id="saving-input-range" min="1000" max="1000000" value="{{personalize_context_object.totalSavings}}" step="250" style="width:75%" />
+                    <div class="finance--row--price" style="padding-left: 30px;">
+                                  <span class="input-group-text">$
+                                  <input id="saving-value" type="text"  aria-label="Amount (to the nearest dollar)" value="{{personalize_context_object.totalSavings}}">
+                                      </span>
+                    </div>
+                </div>
+
+                <h2 class="finance--options"> As a married individual with children, please consider these packages:
+      <img class="questionmark--icon" src="{% static 'img/question-mark.svg' %}"></h2>
+<div class="table_wrapper">
+
+    <div class="table_container">
+        <p></p>
+        <p  class="text-center"> <b>Pay </b>  <br>
+            Daily
+        </p>
+        <p class="discount--color text-center"><b>Complete </b>
+        </p>
+        <p class="discount--color text-center"> <b>Enhanced </b> </p>
+        <p class="discount--color text-center"> <b>Basic </b>
+        </p>
+        <p class="text-center">Custom
+        </p>
+
+        <p class="border__left">
+           <b>Job Loss </b>  <br>
+            <span class="font-style-normal ">
+                Up to $3000 per month <br>
+                Paid for up to 24 months<br>
+            </span>
+        </p>
+        <p class="align-middle text-center icon_wrapper border__middle">$0.90
+        </p>
+        <span class="text-center icon-first icon_wrapper border__middle"> <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svgjs="http://svgjs.com/svgjs" version="1.1" width="25" height="25" x="0" y="0" viewBox="0 0 512 512" style="enable-background:new 0 0 512 512" xml:space="preserve" class=""><g><script/><path xmlns="http://www.w3.org/2000/svg" d="m256 0c-141.164062 0-256 114.835938-256 256s114.835938 256 256 256 256-114.835938 256-256-114.835938-256-256-256zm129.75 201.75-138.667969 138.664062c-4.160156 4.160157-9.621093 6.253907-15.082031 6.253907s-10.921875-2.09375-15.082031-6.253907l-69.332031-69.332031c-8.34375-8.339843-8.34375-21.824219 0-30.164062 8.339843-8.34375 21.820312-8.34375 30.164062 0l54.25 54.25 123.585938-123.582031c8.339843-8.34375 21.820312-8.34375 30.164062 0 8.339844 8.339843 8.339844 21.820312 0 30.164062zm0 0" fill="#c5c5c5" data-original="#000000" style="" class=""/></g></svg>
+        </span>
+        <span class="text-center border__middle">
+        </span>
+        <span class="text-center border__right">
+        </span>
+        <span class="text-center icon_wrapper mt-l ">
+            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svgjs="http://svgjs.com/svgjs" version="1.1" width="25" height="25" x="0" y="0" viewBox="0 0 511.978 511.978" style="enable-background:new 0 0 512 512" xml:space="preserve" class=""><g><script/><g xmlns="http://www.w3.org/2000/svg"><path d="m436.947 74.979c-48.335-48.351-112.601-74.979-180.958-74.979s-132.623 26.628-180.958 74.979c-48.334 48.35-74.953 112.634-74.953 181.01s26.619 132.66 74.953 181.01c48.335 48.351 112.601 74.979 180.958 74.979s132.623-26.628 180.958-74.979c48.334-48.35 74.953-112.633 74.953-181.01 0-68.376-26.619-132.66-74.953-181.01zm-21.217 340.81c-42.668 42.683-99.399 66.189-159.742 66.189s-117.073-23.506-159.742-66.189c-42.67-42.684-66.169-99.435-66.169-159.8s23.5-117.116 66.169-159.8c42.67-42.683 99.401-66.189 159.743-66.189s117.073 23.506 159.742 66.189c42.67 42.684 66.17 99.435 66.17 159.8s-23.5 117.116-66.171 159.8z" fill="#d9d9d9" data-original="#000000" style="" class=""/><path d="m366.382 135.436c-5.857-5.858-15.355-5.858-21.213 0l-121.138 121.137-56.713-56.713c-5.742-5.743-15.012-5.873-20.912-.293l-44.841 42.396c-2.944 2.783-4.637 6.639-4.693 10.689s1.527 7.952 4.392 10.816l113.051 113.052c2.929 2.929 6.768 4.394 10.606 4.394s7.678-1.464 10.606-4.394l175.363-175.363c5.858-5.858 5.858-15.355 0-21.213zm-141.46 209.264-91.536-91.536 23.033-21.777 57.006 57.006c5.857 5.858 15.355 5.858 21.213 0l121.138-121.137 23.295 23.295z" fill="#d9d9d9" data-original="#000000" style="" class=""/></g></g></svg>
+        </span>
+
+
+        <p class="border__left">
+          <b>Disability </b>  <br>
+            <span class="font-style-normal">
+                Disability monthly mortgage <br>
+                payment up to $3,500
+
+            </span>
+        </p>
+        <p class="align-middle text-center icon_wrapper border__middle">$0.77
+        </p>
+        <span class="text-center icon-first icon_wrapper border__middle"> <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svgjs="http://svgjs.com/svgjs" version="1.1" width="25" height="25" x="0" y="0" viewBox="0 0 512 512" style="enable-background:new 0 0 512 512" xml:space="preserve" class=""><g><script/><path xmlns="http://www.w3.org/2000/svg" d="m256 0c-141.164062 0-256 114.835938-256 256s114.835938 256 256 256 256-114.835938 256-256-114.835938-256-256-256zm129.75 201.75-138.667969 138.664062c-4.160156 4.160157-9.621093 6.253907-15.082031 6.253907s-10.921875-2.09375-15.082031-6.253907l-69.332031-69.332031c-8.34375-8.339843-8.34375-21.824219 0-30.164062 8.339843-8.34375 21.820312-8.34375 30.164062 0l54.25 54.25 123.585938-123.582031c8.339843-8.34375 21.820312-8.34375 30.164062 0 8.339844 8.339843 8.339844 21.820312 0 30.164062zm0 0" fill="#c5c5c5" data-original="#000000" style="" class=""/></g></svg>
+        </span>
+        <span class="text-center icon-second icon_wrapper border__middle"> <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svgjs="http://svgjs.com/svgjs" version="1.1" width="25" height="25" x="0" y="0" viewBox="0 0 512 512" style="enable-background:new 0 0 512 512" xml:space="preserve" class=""><g><script/><path xmlns="http://www.w3.org/2000/svg" d="m256 0c-141.164062 0-256 114.835938-256 256s114.835938 256 256 256 256-114.835938 256-256-114.835938-256-256-256zm129.75 201.75-138.667969 138.664062c-4.160156 4.160157-9.621093 6.253907-15.082031 6.253907s-10.921875-2.09375-15.082031-6.253907l-69.332031-69.332031c-8.34375-8.339843-8.34375-21.824219 0-30.164062 8.339843-8.34375 21.820312-8.34375 30.164062 0l54.25 54.25 123.585938-123.582031c8.339843-8.34375 21.820312-8.34375 30.164062 0 8.339844 8.339843 8.339844 21.820312 0 30.164062zm0 0" fill="#c5c5c5" data-original="#000000" style="" class=""/></g></svg>
+        </span>
+        <span class="text-center border__right">
+        </span>
+        <span class="text-center icon_wrapper mt-l">
+            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svgjs="http://svgjs.com/svgjs" version="1.1" width="25" height="25" x="0" y="0" viewBox="0 0 511.978 511.978" style="enable-background:new 0 0 512 512" xml:space="preserve" class=""><g><script/><g xmlns="http://www.w3.org/2000/svg"><path d="m436.947 74.979c-48.335-48.351-112.601-74.979-180.958-74.979s-132.623 26.628-180.958 74.979c-48.334 48.35-74.953 112.634-74.953 181.01s26.619 132.66 74.953 181.01c48.335 48.351 112.601 74.979 180.958 74.979s132.623-26.628 180.958-74.979c48.334-48.35 74.953-112.633 74.953-181.01 0-68.376-26.619-132.66-74.953-181.01zm-21.217 340.81c-42.668 42.683-99.399 66.189-159.742 66.189s-117.073-23.506-159.742-66.189c-42.67-42.684-66.169-99.435-66.169-159.8s23.5-117.116 66.169-159.8c42.67-42.683 99.401-66.189 159.743-66.189s117.073 23.506 159.742 66.189c42.67 42.684 66.17 99.435 66.17 159.8s-23.5 117.116-66.171 159.8z" fill="#d9d9d9" data-original="#000000" style="" class=""/><path d="m366.382 135.436c-5.857-5.858-15.355-5.858-21.213 0l-121.138 121.137-56.713-56.713c-5.742-5.743-15.012-5.873-20.912-.293l-44.841 42.396c-2.944 2.783-4.637 6.639-4.693 10.689s1.527 7.952 4.392 10.816l113.051 113.052c2.929 2.929 6.768 4.394 10.606 4.394s7.678-1.464 10.606-4.394l175.363-175.363c5.858-5.858 5.858-15.355 0-21.213zm-141.46 209.264-91.536-91.536 23.033-21.777 57.006 57.006c5.857 5.858 15.355 5.858 21.213 0l121.138-121.137 23.295 23.295z" fill="#d9d9d9" data-original="#000000" style="" class=""/></g></g></svg>
+
+        </span>
+
+        <p class="border__left">
+           <b>Critical Illness </b>  <br>
+            <span class="font-style-normal">
+                Terminal illness coverage <br>
+                Cancer, stroke, heart attack
+            </span>
+
+
+        </p>
+        <p class="align-middle text-center icon_wrapper border__middle">$1.59
+        </p>
+        <span class=" text-center icon-first icon_wrapper border__middle"> <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svgjs="http://svgjs.com/svgjs" version="1.1" width="25" height="25" x="0" y="0" viewBox="0 0 512 512" style="enable-background:new 0 0 512 512" xml:space="preserve" class=""><g><script/><path xmlns="http://www.w3.org/2000/svg" d="m256 0c-141.164062 0-256 114.835938-256 256s114.835938 256 256 256 256-114.835938 256-256-114.835938-256-256-256zm129.75 201.75-138.667969 138.664062c-4.160156 4.160157-9.621093 6.253907-15.082031 6.253907s-10.921875-2.09375-15.082031-6.253907l-69.332031-69.332031c-8.34375-8.339843-8.34375-21.824219 0-30.164062 8.339843-8.34375 21.820312-8.34375 30.164062 0l54.25 54.25 123.585938-123.582031c8.339843-8.34375 21.820312-8.34375 30.164062 0 8.339844 8.339843 8.339844 21.820312 0 30.164062zm0 0" fill="#c5c5c5" data-original="#000000" style="" class=""/></g></svg>
+        </span>
+        <span class=" text-center icon-second icon_wrapper border__middle"> <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svgjs="http://svgjs.com/svgjs" version="1.1" width="25" height="25" x="0" y="0" viewBox="0 0 512 512" style="enable-background:new 0 0 512 512" xml:space="preserve" class=""><g><script/><path xmlns="http://www.w3.org/2000/svg" d="m256 0c-141.164062 0-256 114.835938-256 256s114.835938 256 256 256 256-114.835938 256-256-114.835938-256-256-256zm129.75 201.75-138.667969 138.664062c-4.160156 4.160157-9.621093 6.253907-15.082031 6.253907s-10.921875-2.09375-15.082031-6.253907l-69.332031-69.332031c-8.34375-8.339843-8.34375-21.824219 0-30.164062 8.339843-8.34375 21.820312-8.34375 30.164062 0l54.25 54.25 123.585938-123.582031c8.339843-8.34375 21.820312-8.34375 30.164062 0 8.339844 8.339843 8.339844 21.820312 0 30.164062zm0 0" fill="#c5c5c5" data-original="#000000" style="" class=""/></g></svg>
+        </span>
+        <span class=" text-center icon-third icon_wrapper border__right"> <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svgjs="http://svgjs.com/svgjs" version="1.1" width="25" height="25" x="0" y="0" viewBox="0 0 512 512" style="enable-background:new 0 0 512 512" xml:space="preserve" class=""><g><script/><path xmlns="http://www.w3.org/2000/svg" d="m256 0c-141.164062 0-256 114.835938-256 256s114.835938 256 256 256 256-114.835938 256-256-114.835938-256-256-256zm129.75 201.75-138.667969 138.664062c-4.160156 4.160157-9.621093 6.253907-15.082031 6.253907s-10.921875-2.09375-15.082031-6.253907l-69.332031-69.332031c-8.34375-8.339843-8.34375-21.824219 0-30.164062 8.339843-8.34375 21.820312-8.34375 30.164062 0l54.25 54.25 123.585938-123.582031c8.339843-8.34375 21.820312-8.34375 30.164062 0 8.339844 8.339843 8.339844 21.820312 0 30.164062zm0 0" fill="#c5c5c5" data-original="#000000" style="" class=""/></g></svg>
+        </span>
+        <span class=" text-center icon_wrapper mt-l" >
+            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svgjs="http://svgjs.com/svgjs" version="1.1" width="25" height="25" x="0" y="0" viewBox="0 0 511.978 511.978" style="enable-background:new 0 0 512 512" xml:space="preserve" class=""><g><script/><g xmlns="http://www.w3.org/2000/svg"><path d="m436.947 74.979c-48.335-48.351-112.601-74.979-180.958-74.979s-132.623 26.628-180.958 74.979c-48.334 48.35-74.953 112.634-74.953 181.01s26.619 132.66 74.953 181.01c48.335 48.351 112.601 74.979 180.958 74.979s132.623-26.628 180.958-74.979c48.334-48.35 74.953-112.633 74.953-181.01 0-68.376-26.619-132.66-74.953-181.01zm-21.217 340.81c-42.668 42.683-99.399 66.189-159.742 66.189s-117.073-23.506-159.742-66.189c-42.67-42.684-66.169-99.435-66.169-159.8s23.5-117.116 66.169-159.8c42.67-42.683 99.401-66.189 159.743-66.189s117.073 23.506 159.742 66.189c42.67 42.684 66.17 99.435 66.17 159.8s-23.5 117.116-66.171 159.8z" fill="#d9d9d9" data-original="#000000" style="" class=""/><path d="m366.382 135.436c-5.857-5.858-15.355-5.858-21.213 0l-121.138 121.137-56.713-56.713c-5.742-5.743-15.012-5.873-20.912-.293l-44.841 42.396c-2.944 2.783-4.637 6.639-4.693 10.689s1.527 7.952 4.392 10.816l113.051 113.052c2.929 2.929 6.768 4.394 10.606 4.394s7.678-1.464 10.606-4.394l175.363-175.363c5.858-5.858 5.858-15.355 0-21.213zm-141.46 209.264-91.536-91.536 23.033-21.777 57.006 57.006c5.857 5.858 15.355 5.858 21.213 0l121.138-121.137 23.295 23.295z" fill="#d9d9d9" data-original="#000000" style="" class=""/></g></g></svg>
+        </span>
+
+                <p class="border__left">
+                   <b> Life</b>   <br>
+                    <span class="font-style-normal">
+                        Coverage up to $500,000 <br>
+                        Covers up to 2 borrowers
+                    </span>
+
+
+
+                </p>
+                <p class="align-middle text-center icon_wrapper border__middle">$1.21 </p>
+                <span class="text-center icon-first icon_wrapper border__middle"> <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svgjs="http://svgjs.com/svgjs" version="1.1" width="25" height="25" x="0" y="0" viewBox="0 0 512 512" style="enable-background:new 0 0 512 512" xml:space="preserve" class=""><g><script/><path xmlns="http://www.w3.org/2000/svg" d="m256 0c-141.164062 0-256 114.835938-256 256s114.835938 256 256 256 256-114.835938 256-256-114.835938-256-256-256zm129.75 201.75-138.667969 138.664062c-4.160156 4.160157-9.621093 6.253907-15.082031 6.253907s-10.921875-2.09375-15.082031-6.253907l-69.332031-69.332031c-8.34375-8.339843-8.34375-21.824219 0-30.164062 8.339843-8.34375 21.820312-8.34375 30.164062 0l54.25 54.25 123.585938-123.582031c8.339843-8.34375 21.820312-8.34375 30.164062 0 8.339844 8.339843 8.339844 21.820312 0 30.164062zm0 0" fill="#c5c5c5" data-original="#000000" style="" class=""/></g></svg>
+                </span>
+                <span class="text-center icon-second icon_wrapper border__middle"> <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svgjs="http://svgjs.com/svgjs" version="1.1" width="25" height="25" x="0" y="0" viewBox="0 0 512 512" style="enable-background:new 0 0 512 512" xml:space="preserve" class=""><g><script/><path xmlns="http://www.w3.org/2000/svg" d="m256 0c-141.164062 0-256 114.835938-256 256s114.835938 256 256 256 256-114.835938 256-256-114.835938-256-256-256zm129.75 201.75-138.667969 138.664062c-4.160156 4.160157-9.621093 6.253907-15.082031 6.253907s-10.921875-2.09375-15.082031-6.253907l-69.332031-69.332031c-8.34375-8.339843-8.34375-21.824219 0-30.164062 8.339843-8.34375 21.820312-8.34375 30.164062 0l54.25 54.25 123.585938-123.582031c8.339843-8.34375 21.820312-8.34375 30.164062 0 8.339844 8.339843 8.339844 21.820312 0 30.164062zm0 0" fill="#c5c5c5" data-original="#000000" style="" class=""/></g></svg>
+                </span>
+                <span class="text-center icon-third icon_wrapper border__right "> <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svgjs="http://svgjs.com/svgjs" version="1.1" width="25" height="25" x="0" y="0" viewBox="0 0 512 512" style="enable-background:new 0 0 512 512" xml:space="preserve" class=""><g><script/><path xmlns="http://www.w3.org/2000/svg" d="m256 0c-141.164062 0-256 114.835938-256 256s114.835938 256 256 256 256-114.835938 256-256-114.835938-256-256-256zm129.75 201.75-138.667969 138.664062c-4.160156 4.160157-9.621093 6.253907-15.082031 6.253907s-10.921875-2.09375-15.082031-6.253907l-69.332031-69.332031c-8.34375-8.339843-8.34375-21.824219 0-30.164062 8.339843-8.34375 21.820312-8.34375 30.164062 0l54.25 54.25 123.585938-123.582031c8.339843-8.34375 21.820312-8.34375 30.164062 0 8.339844 8.339843 8.339844 21.820312 0 30.164062zm0 0" fill="#c5c5c5" data-original="#000000" style="" class=""/></g></svg>
+                </span>
+                <div class="text-center align-middle icon_wrapper mt-l" >
+
+                    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svgjs="http://svgjs.com/svgjs" version="1.1" width="25" height="25" x="0" y="0" viewBox="0 0 511.978 511.978" style="enable-background:new 0 0 512 512" xml:space="preserve" class=""><g><script/><g xmlns="http://www.w3.org/2000/svg"><path d="m436.947 74.979c-48.335-48.351-112.601-74.979-180.958-74.979s-132.623 26.628-180.958 74.979c-48.334 48.35-74.953 112.634-74.953 181.01s26.619 132.66 74.953 181.01c48.335 48.351 112.601 74.979 180.958 74.979s132.623-26.628 180.958-74.979c48.334-48.35 74.953-112.633 74.953-181.01 0-68.376-26.619-132.66-74.953-181.01zm-21.217 340.81c-42.668 42.683-99.399 66.189-159.742 66.189s-117.073-23.506-159.742-66.189c-42.67-42.684-66.169-99.435-66.169-159.8s23.5-117.116 66.169-159.8c42.67-42.683 99.401-66.189 159.743-66.189s117.073 23.506 159.742 66.189c42.67 42.684 66.17 99.435 66.17 159.8s-23.5 117.116-66.171 159.8z" fill="#d9d9d9" data-original="#000000" style="" class=""/><path d="m366.382 135.436c-5.857-5.858-15.355-5.858-21.213 0l-121.138 121.137-56.713-56.713c-5.742-5.743-15.012-5.873-20.912-.293l-44.841 42.396c-2.944 2.783-4.637 6.639-4.693 10.689s1.527 7.952 4.392 10.816l113.051 113.052c2.929 2.929 6.768 4.394 10.606 4.394s7.678-1.464 10.606-4.394l175.363-175.363c5.858-5.858 5.858-15.355 0-21.213zm-141.46 209.264-91.536-91.536 23.033-21.777 57.006 57.006c5.857 5.858 15.355 5.858 21.213 0l121.138-121.137 23.295 23.295z" fill="#d9d9d9" data-original="#000000" style="" class=""/></g></g></svg>
+                </div>
+
+                        <p scope="row">
+
+
+
+                        </p>
+                        <p>Total monthly <br> payment
+                        </p>
+                        <p class="align-middle text-center"> $107.19 </p>
+                        <p class="align-middle text-center"> $59.59 </p>
+                        <p class="align-middle text-center"> $23.19 </p>
+                        <p class="align-middle text-center"> - </p>
+
+
+                            <p scope="row"></p>
+                            <p class="discount--color">Discount</p>
+                            <p class="align-middle text-center discount--color"> 15% </p>
+                            <p class="align-middle text-center discount--color"> 10% </p>
+                            <p class="align-middle text-center discount--color"> 5%</p>
+                            <p class="align-middle text-center discount--color"> - </p>
+
+
+                            <p scope="row"></p>
+                            <p class="discount--total" >Discounted <br> Total </p>
+                            <p class="align-middle text-center"> $96.47 </p>
+                            <p class="align-middle text-center"> $56.61 </p>
+                            <p class="align-middle text-center">$23.19 </p>
+                            <p class="align-middle text-center"> - </p>
+
+
+                            <p scope="row"></p>
+                            <p class="discount--total" >With Mortgage <br> Payment </p>
+                            <p class="align-middle text-center"> $ 1209.59 </p>
+                            <p class="align-middle text-center"> $ 1169.73 </p>
+                            <p class="align-middle text-center">$ 1136.31 </p>
+                            <p class="align-middle text-center"> - </p>
+
+
+                            <p scope="row"></p>
+                            <p> </p>
+                            <span class="text-center"> <button class="select--btn" onclick="selectPackage(3)">select</button> </span>
+                            <span class="text-center"> <button class="select--btn" onclick="selectPackage(4)">select</button> </span>
+                            <span class="text-center"> <button class="select--btn" onclick="selectPackage(5)">select</button> </span>
+                            <span class="text-center"> <button class="select--btn" onclick="selectPackage(6)">select</button> </span>
+
+
+    </div>
+    <div class="table_hidden" >
+            <div class=""></div>
+            <div class=""></div>
+            <div class=""></div>
+            <div class=""></div>
+            <div class=""></div>
+            <div class=""></div>
+
+
+
+    </div>
+</div>
+
+
+
+            </div>
+
+
+
+
+
+            <div class="col-md-6">
+                <div class="coverage">
+                    <h3 class="coverage--title">How your coverage can help:</h3>
+                    <span class="coverage--explain">Explain this graph to me</span>
+                    <p>Based on what you told us about your finances, here’s how Mortgage Protection can help if
+                        you pass away or experience a covered critical illness resulting in a loss of income.</p>
+                </div>
+                <canvas id="myChart" width="400" height="400"></canvas>
+
+                <script>
+
+var monthlyPaymentValue = document.getElementById("monthly-payment-value");
+var impactMsg = document.getElementById("impactMsg");
+var incomeRange = document.getElementById("income-input-range");
+var incomeValue = document.getElementById("income-value");
+var incomeValueSet = document.getElementById("income-value-set");
+
+var expenseRange = document.getElementById("expense-input-range");
+var expenseValue = document.getElementById("expense-value");
+var expenseValueSet = document.getElementById("expense-value-set");
+
+var savingRange = document.getElementById("saving-input-range");
+var savingValue = document.getElementById("saving-value");
+var savingValueSet = document.getElementById("saving-value-set");
+
+const labels = ["Income", "Expense No Protection", "Expense With Protection"];
+
+var data = {
+  labels: labels,
+  datasets: [
+    {
+      label: "Income",
+      data: [incomeValue.value, 0, 0],
+      backgroundColor: "rgba(0, 0, 0, 1)"
+    },
+    {
+      label: "Non-Credit Expense",
+      data: [0, expenseValue.value, expenseValue.value],
+      backgroundColor: "rgba(176, 21, 28, 1)"
+    },
+    {
+      label: "Mortgage Expense",
+      data: [0, monthlyPaymentValue.value, 0],
+      backgroundColor: "rgba(251, 212, 3, 1)"
+    }
+  ]
+};
+
+
+const config = {
+  type: "bar",
+  data: data,
+  options: {
+    plugins: {
+      title: {
+        display: true,
+        text: "Income and Expenses"
+      }
+    },
+    responsive: true,
+    scales: {
+      x: {
+        stacked: true,
+         grid: {
+          display: true,
+          drawBorder: true,
+          drawOnChartArea: true,
+          drawTicks: true,
+           z:10
+        },
+      },
+      y: {
+        stacked: true
+      }
+    }
+  }
+};
+
+var ctx = document.getElementById("myChart");
+var myChart = new Chart(ctx, config);
+
+function changeImpactUpdate(){
+    var income = parseInt(incomeValue.value)
+    var totalExpense = parseInt(expenseValue.value) +  parseInt(monthlyPaymentValue.value)
+    if (income > totalExpense ){
+        impactMsg.innerHTML = "Your income exceeds your expenses";
+        impactMsg.className = "alert alert-success";
+    } else {
+        savingsMonths = parseInt(savingValue.value) / totalExpense
+        savingsMonths = Math.round(savingsMonths)
+        s =  "Your income is below your expenses.";
+        s = s.concat(" Without insurance your savings will be depleted in ", savingsMonths ," months.");
+        impactMsg.innerHTML =s;
+        impactMsg.className = "alert alert-danger";
+    }
+}
+
+function updateIncome(){
+    changeImpactUpdate();
+    myChart.data.datasets[0].data[0] =incomeValue.value
+    myChart.update();
+}
+
+function updateExpense(){
+    changeImpactUpdate();
+    myChart.data.datasets[1].data[1] =expenseValue.value
+    myChart.data.datasets[1].data[2] =expenseValue.value
+    myChart.update();
+}
+
+
+incomeValue.oninput = function(){
+     incomeRange.value = incomeValue.value;
+     updateIncome();
+};
+incomeRange.onchange = function(){
+    incomeValue.value =incomeRange.value;
+    updateIncome();
+};
+
+
+expenseRange.onchange = function(){
+    expenseValue.value =expenseRange.value;
+    updateExpense();
+};
+expenseValue.oninput = function(){
+     expenseRange.value = expenseValue.value
+     updateExpense();
+};
+
+savingRange.onchange = function(){
+    changeImpactUpdate();
+    savingValue.value =savingRange.value;
+};
+savingValue.oninput = function(){
+    changeImpactUpdate();
+     savingRange.value = savingValue.value
+};
+
+function catEventBtnClk(){
+    incomeValue.value = 0 ;
+    incomeRange.value = 0 ;
+    updateIncome();
+
+}
+
+function setTotalBtn(){
+      alert("setTotalBtn");
+}
+
+function resetTotaldeathBtn(){
+
+}
+
+
+</script>
+
+                <p> <b>WITHOUT MORTGAGE PROTECTION </b>you may need to use your savings of <b>${{personalize_context_object.mortgagePmtAmount}} per month </b>to cover
+                    your mortgage payments.
+                    If you had to use your savings to cover your mortgage <a class="read-more" href="#"> <b> Read
+                        more</b> </a>
+                </p>
+                 <div class="coverage-details ">
+                    <p class="coverage--title">
+                        People Like You
+                    </p>
+                    {{story_card }}
+                </div>
+                <div class="coverage-details ">
+                    <p class="coverage--title">
+                        Common Concerns
+                    </p>
+                    {{concern_card }}
+                </div>
+            </div>
+            <div class="col-md-6 no--padding-right ">
+                <div class="coverage-details ">
+                    <p class="coverage-details--text">
+
+                        More details
+
+                    </p>
+                </div>
+            </div>
+            <div class="col-md-6 no--padding-left">
+                <div class="coverage-details">
+
+                    <p class="coverage-details--text">
+
+                        What would you do without Mortgage Protection?
+
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+                <div class="mortgage--box">
+                    <p class="mortgage--box--header"> Mortgage Protection premium quote Total</p>
+                    <p class="mortgage--box--price">${{personalize_context_object.totalinsuranceCost}} <span class="mortgage--box--date">Monthly</span></p>
+                    <p class="mortgage--box--text">Applicable taxes and rate reductions included</p>
+                    <div class="icon--wrapper">
+
+                        <img class="icon--circle" src="{% static 'img/plus_circle.svg' %}">
+
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="mortgage--box second--padding">
+                    <p class="mortgage--box--header"> Mortgage payment </p>
+                    <p class="mortgage--box--price"> ${{personalize_context_object.mortgagePmtAmount}} <span class="mortgage--box--date">Monthly</span></p>
+                    <div class="icon--wrapper">
+                        <img class="icon--circle" src="{% static 'img/equal.svg' %}">
+
+                    </div>
+                </div>
+
+            </div>
+            <div class="col-md-4">
+                <div class="mortgage--box">
+                    <p class="mortgage--box--header"> Mortgage Protection premium <br> + Mortgage payment
+                    </p>
+                    <p class="mortgage--box--price"> ${{personalize_context_object.totalInsPlusMortgage}} <span class="mortgage--box--date">Monthly</span></p>
+                    <p class="mortgage--box--text"> Applicable taxes and rate reductions included</p>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+
+<!-- Optional JavaScript; choose one of the two! -->
+
+<!-- Option 1: Bootstrap Bundle with Popper -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-p34f1UUtsS3wqzfto5wAAmdvj+osOnFyQFpp4Ua3gs/ZVWx6oOypYoCJhGGScy+8" crossorigin="anonymous">
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.2.0/chart.min.js"></script>
+<script src="{% static 'js/Ins_presentment_details.js' %}"></script>
+</body>
+
+</html>

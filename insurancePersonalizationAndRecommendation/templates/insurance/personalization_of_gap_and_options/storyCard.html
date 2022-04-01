@@ -1,0 +1,28 @@
+{% load static %}
+<div class="card">
+  <div class="row g-0">
+    <div class="col-md-4">
+
+      <img src='{{img_url}}' reserveAspectRatio="xMidYMid slice" focusable="false"
+           width="150" height="150">
+      </img>
+
+    </div>
+    <div class="col-md-8">
+      <div class="card-body">
+        <h5 style="text-align: left;" class="card-title">{{storyName}}</h5>
+        <p style="text-align: left;"  class="card-text">{{summary}}</p>
+        <p style="text-align: left;" class="card-text">{{introduction}} {{middle}} {{conclusion}}</p>
+        <p style="text-align: left;" class="card-text">Key Insight:{{keyInsights}}</p>
+         <p style="text-align: left;" class="card-text">Reaction:
+            <img class="perception-icon-height "   src="{% static 'img/sad.svg' %}"    onclick="react('${i+ 1}' , '${index}', 'Sad') ">
+            <img class="perception-icon-height "   src="{% static 'img/meh.svg' %}"    onclick="react('${i+ 1}' , '${index}', 'Neutral')" >
+            <img class="perception-icon-height "   src="{% static 'img/happy.svg' %}"  onclick="react('${i+ 1}' , '${index}', 'Happy')" >
+          </p>
+      </div>
+    </div>
+      <div>
+
+     </div>
+  </div>
+</div>

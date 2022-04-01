@@ -1,0 +1,31 @@
+{% load static %}
+{% load crispy_forms_tags %}
+
+<article class="my-3" id="{{id}}">
+      <div class="bd-heading sticky-xl-top align-self-start mt-5 mb-3 mt-xl-0 mb-xl-2">
+        <h3>{{form_title}}</h3>
+
+      </div>
+
+    <div>
+        <div class="bd-example">
+        <div class="row  row-cols-1 row-cols-md-2 g-4">
+
+          <div class="col">
+            <div class="card">
+              <div class="card-body">
+                <h5 class="card-title">{{form_title}}</h5>
+                <p class="card-text">{{form_text}}</p>
+              </div>
+			    {% crispy form %}
+            </div>
+          </div>
+          <div class="col">
+            {{ story_card }}
+			{{ concern_card }}
+          </div>
+        </div>
+        </div>
+      </div>
+
+    </article>

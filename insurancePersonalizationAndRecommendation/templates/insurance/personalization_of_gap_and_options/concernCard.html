@@ -1,0 +1,30 @@
+{% load static %}
+<div class="card">
+    <div class="card-body">
+        <div class="row">
+            <div class="col-4">
+                <div class="list-group" id="list-tab" role="tablist">
+                    {% for objHndlrs in objectionsAndHandlers %}
+                    <a style="text-align: left;" class="list-group-item list-group-item-action text-left" id="list-{{ forloop.counter }}-list" data-bs-toggle="list" href="#list-{{ forloop.counter }}" role="tab" aria-controls="list-{{ forloop.counter }}">{{ objHndlrs.objection.primaryIssueOrConcern }}</a>
+                    {% endfor %}
+                </div>
+            </div>
+            <div class="col-8">
+                <div class="tab-content" id="nav-tabContent">
+                    {% for objHndlrs in objectionsAndHandlers %}
+
+                    <div class="tab-pane fade active" id="list-{{ forloop.counter }}" role="tabpanel" aria-labelledby="list-{{ forloop.counter }}-list">
+                        {% for handlers in objHndlrs.objectionHandlers %}
+                        <p style="text-align: left;"> {{handlers.buttleMessaging}} <br> <img class="perception-icon-height "   src="{% static 'img/sad.svg' %}"    onclick="react('${i+ 1}' , '${index}', 'Sad') ">
+                            <img class="perception-icon-height "   src="{% static 'img/meh.svg' %}"    onclick="react('${i+ 1}' , '${index}', 'Neutral')" >
+                            <img class="perception-icon-height "   src="{% static 'img/happy.svg' %}"  onclick="react('${i+ 1}' , '${index}', 'Happy')" >
+                        </p>
+                        {% endfor %}
+                    </div>
+                    {% endfor %}
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>

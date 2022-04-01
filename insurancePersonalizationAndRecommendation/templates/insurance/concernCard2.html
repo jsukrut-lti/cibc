@@ -1,0 +1,43 @@
+{% load static %}
+<div class="card">
+   <div class="card-body">
+    <h5 class="card-title">Common Concerns</h5>
+    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+  </div>
+    <div>
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Common Concerns </th>
+        </tr>
+      </thead>
+        {% for objHndlrs in objectionsAndHandlers %}
+            <tbody id="container_1">
+            <tr>
+              <th scope="row"> <button type="button" class="btn btn-primary btn-drop" onclick="loadData()"
+              data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false"
+              aria-controls="collapseExample" id="btn_1">{{ forloop.counter }}</button>
+             </th>
+             <td>{{ objHndlrs.objection.primaryIssueOrConcern }}</td>
+
+         </tr>
+            {% for handlers in objHndlrs.objectionHandlers %}
+            <tr>
+            <td></td>
+			    <td>
+				<img class="perception-icon-height "   src="{% static 'img/sad.svg' %}"    onclick="react('${i+ 1}' , '${index}', 'Sad') ">
+				<img class="perception-icon-height "   src="{% static 'img/meh.svg' %}"    onclick="react('${i+ 1}' , '${index}', 'Neutral')" >
+				<img class="perception-icon-height "   src="{% static 'img/happy.svg' %}"  onclick="react('${i+ 1}' , '${index}', 'Happy')" >
+				 {{handlers.buttleMessaging}}
+			    </td>
+            </tr>
+           {% endfor %}
+         {% endfor %}
+
+      </tbody>
+
+
+    </table>
+  </div>
+</div>

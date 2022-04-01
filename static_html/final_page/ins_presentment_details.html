@@ -1,0 +1,217 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<script src="https://cdn.jsdelivr.net/npm/chart.js@3.2.1/dist/chart.min.js"></script>
+	
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-wEmeIV1mKuiNpC+IOBjI7aAzPcEZeedi5yW5f2yOq55WWLwNGmvvx4Um1vskeMj0" crossorigin="anonymous">
+    <link rel="stylesheet" href="ins_presentment_details.css" media="screen, projection">
+
+    <title>Final page</title>
+</head>
+
+<body>
+    <!-- As a link -->
+    <nav class="navbar navbar-light bg-light header">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#"><img src="./assets/skp_small_logo.png" width="100" height="100"></a>
+        </div>
+    </nav>
+    <div class="text-center container-fluid">
+        <h1 class="text-center"><b> Tom Green:</b></h1>
+        <p>Mortgage Protection can help you protect your mortgage and home, which can also have a positive impact on
+            your partner, your children, your parents & other loved ones who may depend on you financially.</p>
+        <p>Mortgage Protection can pay off your outstanding mortgage balance in the event you experience the
+            following</p>
+    </div>
+    <div class="text-center container-fluid">
+
+        <div class="row">
+            <div class="col-md-6">
+                <div class="text-center insurance--box">
+                    <p class="no--margin">Mortgage Life Insurance:</p>
+                </div>
+                <p> Coverage includes death, covered terminal illnesses and accidental dismemberment</p>
+
+            </div>
+            <div class="col-md-6">
+                <div class="text-center insurance--box">
+                    <p class="no--margin">Mortgage Critical Illness Insurance:</p>
+                </div>
+                <p> Coverage includes life-threatening cancer, acute heart attack and stroke </p>
+            </div>
+
+        </div>
+    </div>
+    <section>
+        <div class="container-fluid">
+
+            <div class="finance">
+                <h1 class="finance--title">TOM GREEN’S COVERAGE AND FINANCES</h1>
+                <p class="finance--edit">Edit financial details</p>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <h2 class="finance--options"> Your coverage options : <img class="questionmark--icon" src="./assets/question-mark.svg"></h2>
+                    <p class="finance--options--text">Here’s an overview of your coverage and premium quote. </p>
+                    <div class="finance--balance">
+                        <p class="finance--balance--text">Your remaining Mortgage balance of</p>
+                        <p class="finance--balance--price">$250,000</p>
+                        <p class="finance--balance--text">Could be paid off</p>
+                    </div>
+                    <div class="finance--row">
+                        <p class="finance--row--text">Life Insurance  <img class="questionmark--icon" src="./assets/question-mark.svg"></p>
+                        <p class="finance--row--price"> $35,10</p>
+                    </div>
+                    <div class="finance--row">
+                        <p class="finance--row--text">Critical Illness Insurance</p>
+                        <p class="finance--row--price">$37,80</p>
+                    </div>
+                    <div class="finance--row">
+                        <p class="finance--row--text">Total <span class="finance-gray">(Applicable taxes and discounts
+                                <br> included)</span></p>
+                        <p class="finance--row--price">$72,90 <br> <span class="finance--row--date"> Monthly</span></p>
+                    </div>
+
+                </div>
+                <div class="col-md-6">
+                    <div class="coverage">
+                        <h3 class="coverage--title">How your coverage can help:</h3>
+                        <span class="coverage--explain">Explain this graph to me</span>
+                        <p>Based on what you told us about your finances, here’s how Mortgage Protection can help if
+                            you pass away or experience a covered critical illness resulting in a loss of income.</p>
+                    </div>
+					 <canvas id="myChart" width="400" height="400"></canvas>
+
+<script>
+var ctx = document.getElementById('myChart').getContext('2d');
+var myChart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: ['Monthly Income', 'Expenses Coverage', 'Short Fall',],
+            datasets: [{
+                label: 'Gap',
+                data: [7000, 5000, 3000,],
+                backgroundColor: [
+                    'rgba(255, 99, 132, 0.2)',
+                    'rgba(54, 162, 235, 0.2)',
+                    'rgba(255, 206, 86, 0.2)',
+                ],
+                borderColor: [
+                    'rgba(255, 99, 132, 1)',
+                    'rgba(54, 162, 235, 1)',
+                    'rgba(255, 206, 86, 1)',
+                ],
+                borderWidth: 1
+            }]
+        },
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        }
+    });
+
+</script>
+
+                    <p> <b>WITHOUT MORTGAGE PROTECTION </b>you may need to use your savings of <b>$700 </b>to cover
+                        your mortgage payments.
+                        If you had to use your savings to cover your mortgage <a class="read-more" href="#"> <b> Read
+                                more</b> </a>
+                    </p>
+                </div>
+
+            </div>
+            <div class="row">
+                <div class="col-md-6 no--padding-right ">
+                    <div class="coverage-details ">
+                        <p class="coverage--title">
+                            Coverage details
+                        </p>
+                    </div>
+                </div>
+                <div class="col-md-6 no--padding-left">
+                    <div class="coverage-details ">
+                        <p class="coverage--title">
+
+                            What would you do without Mortgage Protection?
+                        </p>
+                    </div>
+                </div>
+                <div class="col-md-6 no--padding-right ">
+                    <div class="coverage-details ">
+                        <p class="coverage-details--text">
+
+                            More details
+
+                        </p>
+                    </div>
+                </div>
+                <div class="col-md-6 no--padding-left">
+                    <div class="coverage-details">
+
+                        <p class="coverage-details--text">
+
+                            What would you do without Mortgage Protection?
+
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="mortgage--box">
+                        <p class="mortgage--box--header"> Mortgage Protection premium quote Total</p>
+                        <p class="mortgage--box--price">$72.90 <span class="mortgage--box--date">Monthly</span></p>
+                        <p class="mortgage--box--text">Applicable taxes and rate reductions included</p>
+                        <div class="icon--wrapper">
+                            <img class="icon--circle" src="./assets/plus_circle.svg">
+
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="mortgage--box second--padding">
+                        <p class="mortgage--box--header"> Mortgage payment </p>
+                        <p class="mortgage--box--price"> $2,000.00 <span class="mortgage--box--date">Monthly</span></p>
+                        <div class="icon--wrapper">
+                            <img class="icon--circle" src="./assets/equal.svg">
+
+                        </div>
+                    </div>
+
+                </div>
+                <div class="col-md-4">
+                    <div class="mortgage--box">
+                        <p class="mortgage--box--header"> Mortgage Protection premium <br> quote + Mortgage payment
+                        </p>
+                        <p class="mortgage--box--price"> $2,072.90 <span class="mortgage--box--date">Monthly</span></p>
+                        <p class="mortgage--box--text"> Applicable taxes and rate reductions included</p>
+
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+    </section>
+
+
+    <!-- Optional JavaScript; choose one of the two! -->
+
+    <!-- Option 1: Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-p34f1UUtsS3wqzfto5wAAmdvj+osOnFyQFpp4Ua3gs/ZVWx6oOypYoCJhGGScy+8" crossorigin="anonymous">
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.2.0/chart.min.js"></script>
+
+</body>
+
+</html>

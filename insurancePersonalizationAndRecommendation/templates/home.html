@@ -1,0 +1,38 @@
+<!-- templates/home.html -->
+{% extends '_base.html' %}
+{% load static %}
+
+{% block title %}Home{% endblock title %}
+
+{% block content %}
+
+<img src="{% static 'img/logo.svg' %}" alt="My image">
+  <h1>SKP Insurance</h1>
+  {% if user.is_authenticated %}
+    Hi {{ user.username }}
+
+
+<p>
+    <a href="/compass_start">1. Compass Entry Point</a>
+</p>
+<p>
+
+    <a href="/mortgage_product">2.Mortgage Product Conversation</a>
+</p>
+<p>
+    <a href="/insurance/insConvo">Start an insurance conversation</a>
+</p>
+<p>
+    <a href="/admin">Log into admin module</a>
+</p>
+
+<p>
+    <a href="/story/stories/">Stories</a>
+</p>
+<p>
+    <a href="/auth/logout">Click to log out</a>
+</p>
+  {% else %}
+    <a href="/auth/login">Click to login</a>
+  {% endif %}
+{% endblock content %}

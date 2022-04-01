@@ -1,0 +1,440 @@
+<!doctype html>
+<html lang="en">
+{% load static %}
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+	<script src=" {% static 'js/chart.js' %}"></script>
+
+       <!-- Bootstrap core CSS -->
+    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+
+    <style>
+      .bd-placeholder-img {
+        font-size: 1.125rem;
+        text-anchor: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        user-select: none;
+      }
+
+      @media (min-width: 768px) {
+        .bd-placeholder-img-lg {
+          font-size: 3.5rem;
+        }
+      }
+    </style>
+
+
+    <!-- Custom styles for this template -->
+    <link href="{% static 'css/ins_presentment_details.css' %}" rel="stylesheet">
+
+    <title>Final page</title>
+</head>
+
+<body>
+
+    <!-- As a link -->
+
+
+    <nav class="navbar navbar-light bg-light header">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#"><img src="{% static 'img/skp_small_logo.png' %}" width="100" height="100"></a>
+        </div>
+    </nav>
+    <div class="text-center container-fluid">
+        <h1 class="text-center"><b> {{personalize_context_object.primaryFirstName}} {{personalize_context_object.primaryLastName}}:</b></h1>
+        <p>Mortgage Protection can help you protect your mortgage and home, which can also have a positive impact on
+            your partner, your children, your parents & other loved ones who may depend on you financially.</p>
+        <p>Mortgage Protection can pay off your outstanding mortgage balance in the event you experience the
+            following</p>
+    </div>
+    <div class="text-center container-fluid">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="text-center insurance--box">
+                    <p class="no--margin">Mortgage Life Insurance:</p>
+                </div>
+                <p> Coverage includes death, covered terminal illnesses and accidental dismemberment</p>
+
+            </div>
+            <div class="col-md-6">
+                <div class="text-center insurance--box">
+                    <p class="no--margin">Mortgage Critical Illness Insurance:</p>
+                </div>
+                <p> Coverage includes life-threatening cancer, acute heart attack and stroke </p>
+            </div>
+
+        </div>
+    </div>
+    <section>
+        <div class="container-fluid">
+            <input id="monthly-payment-value" type="hidden"  value="{{personalize_context_object.mortgagePmtAmount}} ">
+            <div class="finance">
+                <h1 class="finance--title"> {{personalize_context_object.primaryFirstName}} {{personalize_context_object.primaryLastName}}’s coverage and finances</h1>
+                <p class="finance--edit">Edit financial details</p>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+
+                    <h2 class="finance--options"> Your coverage options : <img class="questionmark--icon" src="{% static 'img/question-mark.svg' %}"></h2>
+                    <p class="finance--options--text">Here’s an overview of your coverage and premium quote. </p>
+                    <div class="finance--balance">
+                        <p class="finance--balance--text">Your remaining Mortgage balance of</p>
+                        <p class="finance--balance--price">${{personalize_context_object.mortgageBalance}}</p>
+                        <p class="finance--balance--text">Could be paid off instead of ${{personalize_context_object.mortgagePmtAmount}} per month</p>
+                    </div>
+                    <div class="finance--row">
+                        <p class="finance--row--text">Life Insurance  <img class="questionmark--icon" src="{% static 'img/question-mark.svg' %}"></p>
+                        <p class="finance--row--price">${{personalize_context_object.lifeInsurancePremiumPerMonth}}</p>
+                    </div>
+                    <div class="finance--row">
+                        <p class="finance--row--text">Critical Illness Insurance</p>
+                        <p class="finance--row--price">${{personalize_context_object.criticalIllnessPremiumPerMonth}}</p>
+                    </div>
+                    <div class="finance--row">
+                        <p class="finance--row--text">Disability  Insurance</p>
+                        <p class="finance--row--price">${{personalize_context_object.disabilityPremiumPerMonth}}</p>
+                    </div>
+                    <div class="finance--row">
+                        <p class="finance--row--text">Total <span class="finance-gray">(Applicable taxes and discounts
+                                <br> included)</span></p>
+                        <p class="finance--row--price">${{personalize_context_object.totalinsuranceCost}}<br> <span class="finance--row--date"> Monthly</span></p>
+                    </div>
+
+                    <h2 class="finance--options"> Insurance impact and gap : <img class="questionmark--icon" src="{% static 'img/question-mark.svg' %}"></h2>
+                    <p class="finance--options--text">Understand your gap </p>
+
+                    <div class="finance--row">
+                        <p class="finance--row--text" style="padding-right: 10px;">Monthly Income
+                                <span class="finance-gray"><br>post-tax</span></p>
+
+                                <input class="form-range" type="range" id="income-input-range" min="1000" max="10000" value="{{personalize_context_object.monthlyIncomeAfterTaxes}}" step="250" style="width:75%;" />
+                                <div class="finance--row--price" style="padding-left: 30px;">
+                                  <span class="input-group-text">$
+                                  <input id="income-value" type="text"  aria-label="Amount (to the nearest dollar)" value="{{personalize_context_object.monthlyIncomeAfterTaxes}}">
+                                      </span>
+                                </div>
+                    </div>
+                    <div class="finance--row">
+                        <p class="finance--row--text">Monthly Expense</p>
+
+                                <input class="form-range" type="range" id="expense-input-range" min="1000" max="10000" value="{{personalize_context_object.totalMonthlyExpenses}}" step="250" style="width:75%" />
+                                <div class="finance--row--price" style="padding-left: 30px;">
+                                  <span class="input-group-text">$
+                                  <input id="expense-value" type="text"  aria-label="Amount (to the nearest dollar)" value="{{personalize_context_object.totalMonthlyExpenses}}">
+                                      </span>
+                                </div>
+                    </div>
+
+                    <div class="finance--row">
+                        <p class="finance--row--text" style="padding-right: 60px;">Savings</p>
+
+                                <input class="form-range" type="range" id="saving-input-range" min="1000" max="1000000" value="{{personalize_context_object.totalSavings}}" step="250" style="width:75%" />
+                                <div class="finance--row--price" style="padding-left: 30px;">
+                                  <span class="input-group-text">$
+                                  <input id="saving-value" type="text"  aria-label="Amount (to the nearest dollar)" value="{{personalize_context_object.totalSavings}}">
+                                      </span>
+                                </div>
+                    </div>
+
+
+
+
+                </div>
+
+
+
+
+                <div class="col-md-6">
+                    <div class="coverage">
+                        <h3 class="coverage--title">How your coverage can help:</h3>
+                        <span class="coverage--explain">Explain this graph to me</span>
+                        <p>Based on what you told us about your finances, here’s how Mortgage Protection can help if
+                            you pass away or experience a covered critical illness resulting in a loss of income.</p>
+                    </div>
+					 <canvas id="myChart" width="400" height="400"></canvas>
+
+<script>
+
+var monthlyPaymentValue = document.getElementById("monthly-payment-value");
+var incomeRange = document.getElementById("income-input-range");
+var incomeValue = document.getElementById("income-value");
+var expenseRange = document.getElementById("expense-input-range");
+var expenseValue = document.getElementById("expense-value");
+var savingRange = document.getElementById("saving-input-range");
+var savingValue = document.getElementById("saving-value");
+
+const labels = ["Income", "Expense No Protection", "Expense With Protection"];
+
+var data = {
+  labels: labels,
+  datasets: [
+    {
+      label: "Income",
+      data: [incomeValue.value, 0, 0],
+      backgroundColor: "rgba(0, 0, 0, 1)"
+    },
+    {
+      label: "Non-Credit Expense",
+      data: [0, expenseValue.value, expenseValue.value],
+      backgroundColor: "rgba(176, 21, 28, 1)"
+    },
+    {
+      label: "Mortgage Expense",
+      data: [0, monthlyPaymentValue.value, 0],
+      backgroundColor: "rgba(251, 212, 3, 1)"
+    }
+  ]
+};
+
+
+const config = {
+  type: "bar",
+  data: data,
+  options: {
+    plugins: {
+      title: {
+        display: true,
+        text: "Income and Expenses"
+      }
+    },
+    responsive: true,
+    scales: {
+      x: {
+        stacked: true,
+         grid: {
+          display: true,
+          drawBorder: true,
+          drawOnChartArea: true,
+          drawTicks: true,
+           z:10
+        },
+      },
+      y: {
+        stacked: true
+      }
+    }
+  }
+};
+
+var ctx = document.getElementById("myChart");
+var myChart = new Chart(ctx, config);
+
+function updateIncome(){
+    myChart.data.datasets[0].data[0] =incomeValue.value
+    myChart.update();
+}
+
+function updateExpense(){
+    myChart.data.datasets[1].data[1] =expenseValue.value
+    myChart.data.datasets[1].data[2] =expenseValue.value
+    myChart.update();
+}
+
+
+incomeValue.oninput = function(){
+     incomeRange.value = incomeValue.value;
+     updateIncome();
+};
+incomeRange.onchange = function(){
+    incomeValue.value =incomeRange.value;
+    updateIncome();
+};
+
+
+expenseRange.onchange = function(){
+    expenseValue.value =expenseRange.value;
+    updateExpense();
+};
+expenseValue.oninput = function(){
+     expenseRange.value = expenseValue.value
+     updateExpense();
+};
+
+savingRange.onchange = function(){
+    savingValue.value =savingRange.value;
+};
+savingValue.oninput = function(){
+     savingRange.value = savingValue.value
+};
+
+
+
+</script>
+
+                    <p> <b>WITHOUT MORTGAGE PROTECTION </b>you may need to use your savings of <b>${{personalize_context_object.mortgagePmtAmount}} per month </b>to cover
+                        your mortgage payments.
+                        If you had to use your savings to cover your mortgage <a class="read-more" href="#"> <b> Read
+                                more</b> </a>
+                    </p>
+                </div>
+
+            </div>
+            <div class="row">
+                <div class="col-md-6 no--padding-right ">
+                    <div class="coverage-details ">
+                        <p class="coverage--title">
+                            Common Concerns
+                        </p>
+                        <div class="card">
+   <div class="card-body">
+                        <div class="row">
+                        <div class="col-4">
+    <div class="list-group" id="list-tab" role="tablist">
+
+        <a style="text-align: left;" class="list-group-item list-group-item-action" id="list-1-list" data-bs-toggle="list" href="#list-1" role="tab" aria-controls="list-1">I use my PLC/Credit Card but I pay off my account each month.</a>
+
+        <a style="text-align: left;" class="list-group-item list-group-item-action" id="list-2-list" data-bs-toggle="list" href="#list-2" role="tab" aria-controls="list-2">I need to talk to my spouse/partner</a>
+
+     </div>
+    </div>
+                        <div class="col-8">
+    <div class="tab-content" id="nav-tabContent">
+
+
+            <div class="tab-pane fade" id="list-1" role="tabpanel" aria-labelledby="list-1-list">
+
+                <p style="text-align: left;">
+				 That&#x27;s great, and we appreciate the fact that you manage your account so well. This insurance would be your safety net should the unexpected happen and you were unable to pay off your account
+                <img class="perception-icon-height "   src="/static/img/sad.svg"    onclick="react('${i+ 1}' , '${index}', 'Sad') ">
+				<img class="perception-icon-height "   src="/static/img/meh.svg"    onclick="react('${i+ 1}' , '${index}', 'Neutral')" >
+				<img class="perception-icon-height "   src="/static/img/happy.svg"  onclick="react('${i+ 1}' , '${index}', 'Happy')" >
+                </p>
+
+                <p style="text-align: left;">	Have you considered whether your ability to make your Credit card payments or pay off your balance every month is contingent upon you working? If so how would you continue to pay off the balance if you lost your job?
+                    <img class="perception-icon-height "   src="/static/img/sad.svg"    onclick="react('${i+ 1}' , '${index}', 'Sad') ">
+				<img class="perception-icon-height "   src="/static/img/meh.svg"    onclick="react('${i+ 1}' , '${index}', 'Neutral')" >
+				<img class="perception-icon-height "   src="/static/img/happy.svg"  onclick="react('${i+ 1}' , '${index}', 'Happy')" >
+				 </p>
+
+            </div>
+
+
+            <div class="tab-pane fade" id="list-2" role="tabpanel" aria-labelledby="list-2-list">
+
+                <p style="text-align: left;">May I follow up with you in a few days to see if you have had a chance to review this with your spouse and answer any questions that you might have?
+                <img class="perception-icon-height "   src="/static/img/sad.svg"    onclick="react('${i+ 1}' , '${index}', 'Sad') ">
+				<img class="perception-icon-height "   src="/static/img/meh.svg"    onclick="react('${i+ 1}' , '${index}', 'Neutral')" >
+				<img class="perception-icon-height "   src="/static/img/happy.svg"  onclick="react('${i+ 1}' , '${index}', 'Happy')" >
+	            </p>
+
+                <p style="text-align: left;">If you start using your PLC, this insurance would automatically provide coverage and only then would you start paying premiums. If you have a balance on any day, there will be a premium payable for that day. The accumulated daily insurance premiums, plus any applicable taxes, are charged to your PLC
+                <img class="perception-icon-height "   src="/static/img/sad.svg"    onclick="react('${i+ 1}' , '${index}', 'Sad') ">
+				<img class="perception-icon-height "   src="/static/img/meh.svg"    onclick="react('${i+ 1}' , '${index}', 'Neutral')" >
+				<img class="perception-icon-height "   src="/static/img/happy.svg"  onclick="react('${i+ 1}' , '${index}', 'Happy')" ></p>
+
+            </div>
+
+    </div>
+
+  </div></div>
+                    </div>
+                </div></div></div>
+                <div class="col-md-6 no--padding-left">
+                    <div class="coverage-details ">
+                        <p class="coverage--title">
+                            People Like You
+                        </p>
+<div class="card">
+  <div class="row g-0">
+    <div class="col-md-4">
+
+      <img src='http://127.0.0.1:3006/?avatarStyle=Circle&topType=LongHairCurly&accessoriesType=Blank&hairColor=BrownDark&facialHairType=Blank&clotheType=ShirtVNeck&eyeType=Happy&eyebrowType=Default&mouthType=Smile&skinColor=DarkBrown&clotheColor=Pink' reserveAspectRatio="xMidYMid slice" focusable="false"
+           width="150" height="150">
+      </img>
+
+    </div>
+    <div class="col-md-8">
+      <div class="card-body">
+        <h5 class="card-title" style="text-align: left;">The Young Starter Family</h5>
+        <p class="card-text" style="text-align: left;">To set a solid financial foundation and protect your young family&#x27;s financial future, the purchase of a Life Insurance and Disability Insurance can cover the potential negative impact of two of the biggest unforeseen financial events.</p>
+        <p class="card-text" style="text-align: left;">. . .</p>
+        <p class="card-text" style="text-align: left;">Key Insight:.</p>
+         <p class="card-text" style="text-align: left;">Reaction:
+            <img class="perception-icon-height "   src="/static/img/sad.svg"    onclick="react('${i+ 1}' , '${index}', 'Sad') ">
+            <img class="perception-icon-height "   src="/static/img/meh.svg"    onclick="react('${i+ 1}' , '${index}', 'Neutral')" >
+            <img class="perception-icon-height "   src="/static/img/happy.svg"  onclick="react('${i+ 1}' , '${index}', 'Happy')" >
+          </p>
+      </div>
+    </div>
+      <div>
+
+     </div>
+  </div>
+</div>
+                    </div>
+                </div>
+                <div class="col-md-6 no--padding-right ">
+                    <div class="coverage-details ">
+                        <p class="coverage-details--text">
+
+                            More details
+
+                        </p>
+                    </div>
+                </div>
+                <div class="col-md-6 no--padding-left">
+                    <div class="coverage-details">
+
+                        <p class="coverage-details--text">
+
+                            What would you do without Mortgage Protection?
+
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="mortgage--box">
+                        <p class="mortgage--box--header"> Mortgage Protection premium quote Total</p>
+                        <p class="mortgage--box--price">${{personalize_context_object.totalinsuranceCost}} <span class="mortgage--box--date">Monthly</span></p>
+                        <p class="mortgage--box--text">Applicable taxes and rate reductions included</p>
+                        <div class="icon--wrapper">
+
+                            <img class="icon--circle" src="{% static 'img/plus_circle.svg' %}">
+
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="mortgage--box second--padding">
+                        <p class="mortgage--box--header"> Mortgage payment </p>
+                        <p class="mortgage--box--price"> ${{personalize_context_object.mortgagePmtAmount}} <span class="mortgage--box--date">Monthly</span></p>
+                        <div class="icon--wrapper">
+                            <img class="icon--circle" src="{% static 'img/equal.svg' %}">
+
+                        </div>
+                    </div>
+
+                </div>
+                <div class="col-md-4">
+                    <div class="mortgage--box">
+                        <p class="mortgage--box--header"> Mortgage Protection premium <br> + Mortgage payment
+                        </p>
+                        <p class="mortgage--box--price"> ${{personalize_context_object.totalInsPlusMortgage}} <span class="mortgage--box--date">Monthly</span></p>
+                        <p class="mortgage--box--text"> Applicable taxes and rate reductions included</p>
+
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+    </section>
+
+
+    <!-- Optional JavaScript; choose one of the two! -->
+
+    <!-- Option 1: Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-p34f1UUtsS3wqzfto5wAAmdvj+osOnFyQFpp4Ua3gs/ZVWx6oOypYoCJhGGScy+8" crossorigin="anonymous">
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.2.0/chart.min.js"></script>
+    <script src="{% static 'js/Ins_presentment_details.js' %}"></script>
+</body>
+
+</html>

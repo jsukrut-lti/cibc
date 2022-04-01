@@ -1,0 +1,1440 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="de-DE">
+<head>
+    <meta charset="utf-8">
+    <meta name="description" content=""/>
+    <meta name="keywords" content=""/>
+    <meta name="robots" content=""/>
+    <meta name="viewport" content="width=580"/>
+
+    <link rel="stylesheet" href="{% static 'mortgage_product/css/base.css' %}" type="text/css" media="all"/>
+    <link rel="stylesheet" href="{% static 'mortgage_product/css/ui-lightness/jquery-ui-1.8.14.custom.css' %}" type="text/css" media="all"/>
+    <link rel="stylesheet" href="{% static 'mortgage_product/css/style.css' %}" type="text/css" media="all"/>
+    <link rel="stylesheet" href="{% static 'mortgage_product/css/en-overrides.css' %}" type="text/css" media="all"/>
+
+    <script src="{% static 'mortgage_product/js/jquery-1.5.1.min.js' %}"></script>
+    <script src="{% static 'mortgage_product/js/jquery-ui-1.8.14.custom.min.js' %}"></script>
+    <script src="{% static 'mortgage_product/js/ipad.js' %}"></script>
+
+
+    <script src="{% static 'mortgage_product/config/config.js' %}"></script>
+    <script src="{% static 'mortgage_product/js/app.js' %}"></script>
+
+    <title>Home Loan Planner</title>
+</head>
+<body>
+<div id="wrapper">
+    <a id="contact" href="#" rel="Schedule an appointment"></a>
+    <ul id="lnavi">
+        <li class="l_1"></li>
+        <li class="l_2"></li>
+        <li class="l_3"></li>
+        <li class="l_4"></li>
+        <li class="l_m"></li>
+    </ul>
+    <div id="tooltipbox"></div>
+    <div id="p1" class="page">
+        <h1>Configure your home financing in 5 steps</h1>
+        <div id="p1_box1" class="p1_box">
+            <div class="status"></div>
+            <h3>Determine your <br/>financing needs</h3>
+            <h4>Borrowing amount</h4>
+            <p></p>
+        </div>
+        <div id="p1_box2" class="p1_box">
+            <div class="status"></div>
+            <h3>Calculate your possible monthly loan payments</h3>
+            <h4>Possible monthly payments</h4>
+            <p></p>
+        </div>
+        <div id="p1_box3" class="p1_box">
+            <div class="status"></div>
+            <h3>Select the right<br/>service package</h3>
+            <h4>Our recommendation:</h4>
+            <p></p>
+        </div>
+        <div id="p1_box4" class="p1_box">
+            <div class="status"></div>
+            <h3>Structure your loan</h3>
+            <h4>Our recommendation:</h4>
+            <p></p>
+        </div>
+        <ul id="p1_footer">
+            <li id="p1_f1"><a href="#">Why us?</a></li>
+            <li id="p1_f2"><a href="#">Schedule an appointment</a></li>
+            <li id="p1_f3"><a href="#">Reset</a></li>
+            <li id="p1_f4"><a href="#">Print</a></li>
+        </ul>
+        <a id="p1_mbkc" href="#"></a>
+        <div id="mbkc_status" class="status"></div>
+        <div id="machbarkeitscheck">
+            <a id="mbkc_btnclose" class="close" href="#">&times;</a>
+            <h4 class="h4_1">Potential vs. required payments</h4>
+            <h5 class="h5_1">Possible monthly loan payments <span class="tooltip"
+                                                                  rel="Highest possible payment you can afford according to your monthly income and expenses."></span>
+            </h5>
+            <div id="mbkc_i1" class="sepInputs i1">
+                <span class="curr">$</span>
+                <input id="mbkc_i1_1" type="text" value="0" maxlength="1" readonly="readonly">
+                <span class="sep">,</span>
+                <input id="mbkc_i1_2" type="text" value="0" maxlength="1" readonly="readonly">
+                <input id="mbkc_i1_3" type="text" value="0" maxlength="1" readonly="readonly">
+                <input id="mbkc_i1_4" type="text" value="0" maxlength="1" readonly="readonly">
+            </div>
+            <h5 class="h5_2">Required monthly loan payments
+                <span class="tooltip showoffline"
+                      rel="The monthly payment arises from the determined financing needs, from the selected amortization rate, and from the current conditions for a fixed interest for 10 years, respectively from an alternative financing structure selected in step 4 plus potential markups for low equity-ratios and/or low financing needs."></span>
+                <span class="tooltip showonline"
+                      rel="The required monthly loan payments are calculated from your borrowing amount, the selected amortization rate and the current interest rate for a mortgage term of 10 years and financings greater than $50,000 at a 60% loan-to-value ratio (standard exemplary data)."></span>
+            </h5>
+            <div id="mbkc_i2" class="sepInputs i2">
+                <span class="curr">$</span>
+                <input id="mbkc_i2_1" type="text" value="0" maxlength="1" readonly="readonly">
+                <span class="sep">,</span>
+                <input id="mbkc_i2_2" type="text" value="0" maxlength="1" readonly="readonly">
+                <input id="mbkc_i2_3" type="text" value="0" maxlength="1" readonly="readonly">
+                <input id="mbkc_i2_4" type="text" value="0" maxlength="1" readonly="readonly">
+            </div>
+            <h4 class="h4_2">Result liquidity check</h4>
+            <h4 class="h4_3">Design parameters</h4>
+            <h5 class="h5_3">Initial annual amortization rate <span class="tooltip"
+                                                                    rel="The lower the amortization rate, the lower the monthly payments but the longer the lent term. Commonly, the amortization rate is 2 percent. Lower amortization rates should be avoided provided that no unscheduled repayments are planned."></span>
+            </h5>
+            <div id="mbkc_slider1"></div>
+            <div id="mbkc_box-right" class="box-right">
+                <h5>Financial scope</h5>
+                <span class="value">-$1,000</span>
+            </div>
+            <div id="mbkc_tooltip" class="tooltip" rel=""></div>
+            <a id="mbkc_btntakeover" class="btn btn_r4" href="#">Apply</a>
+        </div>
+    </div>
+    <div id="p3" class="page">
+        <h2>Select the right service package for you</h2>
+        <a id="p3_btnnext" class="btn btn_r1" href="#">Start</a>
+    </div>
+    <div id="p4" class="page">
+        <h2>Select the right service package for you</h2>
+        <div id="p4_slider1"></div>
+        <div id="p4_slider2"></div>
+        <div id="p4_slider3"></div>
+        <div id="p4_risiko"></div>
+
+        <div id="p4_fvolumen">
+            <input id="p4_i1_1" type="text" value="0" name="p4_f1" maxlength="1">
+            <input id="p4_i1_2" type="text" value="0" name="p4_f2" maxlength="1">
+            <input id="p4_i1_3" type="text" value="0" name="p4_f3" maxlength="1">
+            <input id="p4_i1_4" type="text" value="0" name="p4_f4" maxlength="1">
+            <input id="p4_i1_5" type="text" value="0" name="p4_f5" maxlength="1">
+            <input id="p4_i1_6" type="text" value="0" name="p4_f6" maxlength="1">
+            <span class="curr"></span>
+            <div id="p4_fup"></div>
+            <div id="p4_fdown"></div>
+        </div>
+        <div id="p4_zsatz">
+            <input id="p4_i2_1" readonly="readonly" type="text" value="0" name="p4_z1">
+            <input id="p4_i2_2" readonly="readonly" type="text" value="0" name="p4_z2">
+            <input id="p4_i2_3" readonly="readonly" type="text" value="0" name="p4_z3">
+            <div id="p4_zup"></div>
+            <div id="p4_zdown"></div>
+        </div>
+        <div id="p4_zsatzeffektiv">
+            <input id="p4_i4_1" readonly="readonly" type="text" value="0" name="p4_ze1">
+            <input id="p4_i4_2" readonly="readonly" type="text" value="0" name="p4_ze2">
+            <input id="p4_i4_3" readonly="readonly" type="text" value="0" name="p4_ze3">
+            <div id="p4_zeup"></div>
+            <div id="p4_zedown"></div>
+        </div>
+
+        <div id="p4_fixe">
+            <input id="p4_i5_1" readonly="readonly" type="text" value="0" name="p4_ze1">
+            <input id="p4_i5_2" readonly="readonly" type="text" value="0" name="p4_ze2">
+            <input id="p4_i5_3" readonly="readonly" type="text" value="0" name="p4_ze3">
+        </div>
+
+        <div id="p4_fixn">
+            <input id="p4_i6_1" readonly="readonly" type="text" value="0" name="p4_ze1">
+            <input id="p4_i6_2" readonly="readonly" type="text" value="0" name="p4_ze2">
+            <input id="p4_i6_3" readonly="readonly" type="text" value="0" name="p4_ze3">
+        </div>
+
+        <div id="p4_vare">
+            <input id="p4_i7_1" readonly="readonly" type="text" value="0" name="p4_ze1">
+            <input id="p4_i7_2" readonly="readonly" type="text" value="0" name="p4_ze2">
+            <input id="p4_i7_3" readonly="readonly" type="text" value="0" name="p4_ze3">
+        </div>
+
+        <div id="p4_varn">
+            <input id="p4_i8_1" readonly="readonly" type="text" value="0" name="p4_ze1">
+            <input id="p4_i8_2" readonly="readonly" type="text" value="0" name="p4_ze2">
+            <input id="p4_i8_3" readonly="readonly" type="text" value="0" name="p4_ze3">
+        </div>
+
+
+        <div id="p4_tilgung">
+            <input id="p4_i3_1" readonly="readonly" type="text" value="0" name="p4_t1">
+            <input id="p4_i3_2" readonly="readonly" type="text" value="0" name="p4_t2">
+            <div id="p4_tup"></div>
+            <div id="p4_tdown"></div>
+        </div>
+        <a id="p4_btnnext" class="btn btn_r1" href="#">Continue</a>
+
+        <div id="p4_t1" class="tooltip"
+             rel="If the market interest rate rises, so will the variable interest rate of your loan thereby increasing your interest charges. This results in the interest rate risk which is dependent on the variable interest portion of your loan. The higher this portion, the higher the risk."></div>
+        <div id="p4_t2" class="tooltip"
+             rel="The interest rate is regularly adjusted to the current market level."></div>
+        <div id="p4_t3" class="tooltip" rel="The interest rate is fixed for the selected period."></div>
+        <div id="p4_t4" class="tooltip showoline"
+             rel="The interest rate depends on the selected loan structure and the length of the period of fixed interest. If both variable and fixed interest are used the initial mixed interest rate will be shown. The displayed interest cost are a result of an exemplary calculation for a financing greater than $50,000 at a 60% loan-to-value ratio. Ask your financial advisor for your individual exact interest rate."></div>
+        <div id="p4_t4" class="tooltip showoffline"
+             rel="The interest rate depends on the selected loan structure and the length of the period of fixed interest. If both variable and fixed interest is used the initial mixed interest rate will be shown."></div>
+        <div id="p4_t5" class="tooltip"
+             rel="We grant you the option of unscheduled repayment of at least 2% of the initial borrowing amount per year. The higher the variable portion of your loan, the higher the unscheduled repayment option, because variable portions of loans can be fully repaid at any time."></div>
+        <div id="p4_t6" class="tooltip"
+             rel="The effective rate of interest is a result of an exemplary calculation of monthly amortization at a 60% loan-to-value ratio and an initial amortization rate of 2 percent."></div>
+        <div id="p4_t7" class="tooltip"
+             rel="The effective rate of interest is a result of an exemplary calculation of monthly amortization at a 60% loan-to-value ratio and an initial amortization rate of 2 percent."></div>
+    </div>
+    <div id="p5" class="page">
+        <h2>Select the right service package for you</h2>
+        <div class="suggestion case_a">
+            <h3>Our recommendation</h3>
+            <h4>&ldquo;Classic fixed loan&rdquo;</h4>
+            <ul>
+                <li>You benefit from periods of fixed interest between 1 and 10 years</li>
+                <li>No service fees</li>
+                <li>No commitment interest within the first 6 months if you do not use your loan</li>
+                <li>Unscheduled repayment option of 2% p.a.</li>
+                <li>Management of loan account free of charge</li>
+                <li>Valuation of real estate and comprehensive consulting service included</li>
+            </ul>
+        </div>
+        <div class="suggestion case_b">
+            <h3>Our recommendation</h3>
+            <h4>&ldquo;Classic mixed loan&rdquo;</h4>
+            <ul>
+                <li>Combination of fixed and variable interest</li>
+                <li>Option of unscheduled repayment of variable part of loan at any time</li>
+                <li>Transformation of variable part into fixed-interest loan possible at any time</li>
+                <li>Minimum volume of $50,000 (at least $10,000 variable)</li>
+                <li>Management of loan account free of charge</li>
+                <li>Valuation of real estate and comprehensive consulting service included</li>
+            </ul>
+        </div>
+        <a id="p5_btnprev" class="btn btn_l0" href="#">Back</a>
+        <a id="p5_btnnext" class="btn btn_r2" href="#">Continue with module 2</a>
+    </div>
+    <div id="p6" class="page">
+        <h2>Select the right service package for you</h2>
+        <p>The Financing Module builds the basis. Put the Flexibility Module on top!</p>
+        <ul class="case_a">
+            <li>Option of 10% unscheduled repayment per year</li>
+            <li>Change of monthly loan payment</li>
+            <li>Suspension of amortization</li>
+            <li>Follow-up loan available</li>
+        </ul>
+        <ul class="case_b">
+            <li>Conversion from variable to fixed interest with limit service</li>
+            <li>Option of 10% unscheduled repayment per year</li>
+            <li>Change of monthly loan payment</li>
+            <li>Suspension of amortization</li>
+            <li>Follow-up loan available</li>
+        </ul>
+        <a id="p6_btnprev" class="btn btn_l0" href="#">Back</a>
+        <a id="p6_btnnext" class="btn btn_r1" href="#">Continue</a>
+    </div>
+    <div id="p7" class="page">
+        <h2>Select the right service package for you</h2>
+        <h3>Unscheduled repayments</h3>
+        <p class="case_a">
+            As the first element of our flexibility module we grant you the option of unscheduled repayments of 10% of
+            the initial borrowing amount per year.
+        </p>
+        <p class="case_b">
+            As another element of our flexibility module, we grant you the option of unscheduled repayment for the fixed
+            part of your loan each calendar year.
+        </p>
+        <h4 class="h4_1">What this means for you</h4>
+        <h5 class="h5_1">Initial borrowing amount</h5>
+        <div id="p7_i1" class="sepInputs i1">
+            <span class="curr">$</span>
+            <input id="p7_i1_1" type="text" value="0" maxlength="1" readonly="readonly">
+            <input id="p7_i1_2" type="text" value="0" maxlength="1" readonly="readonly">
+            <input id="p7_i1_3" type="text" value="0" maxlength="1" readonly="readonly">
+            <span class="sep">,</span>
+            <input id="p7_i1_4" type="text" value="0" maxlength="1" readonly="readonly">
+            <input id="p7_i1_5" type="text" value="0" maxlength="1" readonly="readonly">
+            <input id="p7_i1_6" type="text" value="0" maxlength="1" readonly="readonly">
+        </div>
+        <h5 class="h5_2">Amount of unscheduled repayments <span class="case_b">in the fixed part of the loan </span>per
+            year <span class="tooltip"
+                       rel="Unscheduled repayments can be settled several times per year. The minimum amount per settlement is $500."></span>
+        </h5>
+        <div id="p7_i2" class="sepInputs i2">
+            <span class="curr">$</span>
+            <input id="p7_i2_1" type="text" value="0" maxlength="1" readonly="readonly">
+            <input id="p7_i2_2" type="text" value="0" maxlength="1" readonly="readonly">
+            <span class="sep">,</span>
+            <input id="p7_i2_3" type="text" value="0" maxlength="1" readonly="readonly">
+            <input id="p7_i2_4" type="text" value="0" maxlength="1" readonly="readonly">
+            <input id="p7_i2_5" type="text" value="0" maxlength="1" readonly="readonly">
+        </div>
+        <h4 class="h4_2">Possible motives for unscheduled repayments</h4>
+        <ul class="reasonlist">
+            <li>Inheritance/<br/>Endowment</li>
+            <li style="margin-left:-10px">Capital gains</li>
+            <li style="margin-left: 10px">Year-end<br/>Bonus</li>
+            <li style="margin-left: -10px">Other income</li>
+        </ul>
+        <a id="p7_btnprev" class="btn btn_l0" href="#">Back</a>
+        <a id="p7_btnnext" class="btn btn_r1" href="#">Continue</a>
+    </div>
+    <div id="p8" class="page">
+        <h2>Select the right service package for you</h2>
+        <h3>Change of monthly payments</h3>
+        <p class="p1">
+            The Flexibility Module allows you to change your amortization rate (and thereby your monthly payments)
+            during the period of fixed interest. You can determine your new amortization rate within a range of 2-5% of
+            the initial financing volume.
+        </p>
+        <h4 class="h4_1">What this means for you</h4>
+        <h5 class="h5_1">Monthly loan payment (ca.)</h5>
+        <div id="p8_i1" class="sepInputs i1">
+            <span class="curr">$</span>
+            <input id="p8_i1_1" type="text" value="0" maxlength="1" readonly="readonly">
+            <input id="p8_i1_2" type="text" value="0" maxlength="1" readonly="readonly">
+            <input id="p8_i1_3" type="text" value="0" maxlength="1" readonly="readonly">
+            <input id="p8_i1_4" type="text" value="0" maxlength="1" readonly="readonly">
+            <div class="updownspacer"></div>
+        </div>
+        <h5 class="h5_2">Initial amortization rate per year <span class="tooltip"
+                                                                  rel="By varying the amortization rate you can simulate the entire span of possible payments that result from this flexibility."></span>
+        </h5>
+        <div id="p8_i2" class="sepInputs i2">
+            <input id="p8_i2_1" type="text" value="0" readonly="readonly">
+            <span class="sep">.</span>
+            <input id="p8_i2_2" type="text" value="0" readonly="readonly">
+            <span class="curr">%</span>
+            <div class="up" id="p8_i2_up"></div>
+            <div class="down" id="p8_i2_down"></div>
+        </div>
+        <h4 class="h4_2">Possible reasons for a desired change in monthly loan payments</h4>
+        <ul class="reasonlist">
+            <li style="margin-left: -10px">Higher salary</li>
+            <li>&nbsp;&nbsp;&nbsp;Children</li>
+            <li>Parental leave</li>
+            <li style="margin-left:19px;">Other</li>
+        </ul>
+        <a id="p8_btnprev" class="btn btn_l0" href="#">Back</a>
+        <a id="p8_btnnext" class="btn btn_r1" href="#">Continue</a>
+    </div>
+    <div id="p9" class="page">
+        <h2>Select the right service package for you</h2>
+        <h3>Temporary suspension</h3>
+        <p>With this element of our Flexibility Module you have the option to suspend your amortization payments at one
+            time per year for a maximum of 3 months.</p>
+        <h4 class="h4_1">What this means for you</h4>
+        <h5 class="h5_1">Monthly income <span class="tooltip"
+                                              rel="This shows the income you entered in the calculation of your possible monthly payments. Alternatively, you can manually type in another monthly income."></span>
+        </h5>
+        <div id="p9_i1" class="sepInputs i1">
+            <span class="curr">$</span>
+            <input id="p9_i1_1" type="text" value="0" maxlength="1">
+            <span class="sep">,</span>
+            <input id="p9_i1_2" type="text" value="0" maxlength="1">
+            <input id="p9_i1_3" type="text" value="0" maxlength="1">
+            <input id="p9_i1_4" type="text" value="0" maxlength="1">
+            <div class="updownspacer"></div>
+        </div>
+        <h5 class="h5_2">Monthly expenses <span class="tooltip"
+                                                rel="This shows the expenses you entered in the calculation of your possible monthly payments plus the approximate actual monthly payments."></span>
+        </h5>
+        <div id="p9_i2" class="sepInputs i2">
+            <span class="curr">$</span>
+            <input id="p9_i2_1" type="text" value="0" maxlength="1">
+            <span class="sep">,</span>
+            <input id="p9_i2_2" type="text" value="0" maxlength="1">
+            <input id="p9_i2_3" type="text" value="0" maxlength="1">
+            <input id="p9_i2_4" type="text" value="0" maxlength="1">
+            <div class="updownspacer"></div>
+        </div>
+        <h5 class="h5_3">Monthly special expenses <span class="tooltip"
+                                                        rel="Here you can enter possible special expenses in order to simulate the consequences for your financial scope of that month."></span>
+        </h5>
+        <div id="p9_i3" class="sepInputs i3">
+            <span class="curr">$</span>
+            <input id="p9_i3_1" type="text" value="0" maxlength="1">
+            <span class="sep">,</span>
+            <input id="p9_i3_2" type="text" value="0" maxlength="1">
+            <input id="p9_i3_3" type="text" value="0" maxlength="1">
+            <input id="p9_i3_4" type="text" value="0" maxlength="1">
+            <div class="up" id="p9_i3_up"></div>
+            <div class="down" id="p9_i3_down"></div>
+        </div>
+        <div class="box-right">
+            <h5>Financial scope</h5>
+            <span class="value"></span>
+        </div>
+        <h4 class="h4_2">Possible motives for a temporary suspension of amortization payments</h4>
+        <ul class="reasonlist">
+            <li>Auto maintenance/
+                <br>
+                repair
+            </li>
+            <li style="margin-left:-11px;">Broken fridge</li>
+            <li>Temporary unemployment</li>
+            <li>Other expenses</li>
+        </ul>
+        <a id="p9_btnprev" class="btn btn_l0" href="#">Back</a>
+        <a id="p9_btnnext" class="btn btn_r1" href="#">Continue</a>
+    </div>
+    <div id="p10" class="page">
+        <h2>Select the right service package for you</h2>
+        <h3>Follow-up loan</h3>
+        <p>The last element of our Flexibility Module gives you the option to simply and unbureaucratically draw $50,000
+            of your loan in case this sum has been amortized once before.</p>
+        <h4 class="h4_1">What this means for you</h4>
+        <h5 class="h5_1">Borrowing amount</h5>
+        <div id="p10_i1" class="sepInputs i1">
+            <span class="curr">$</span>
+            <input id="p10_i1_1" type="text" value="0" maxlength="1" readonly="readonly">
+            <input id="p10_i1_2" type="text" value="0" maxlength="1" readonly="readonly">
+            <input id="p10_i1_3" type="text" value="0" maxlength="1" readonly="readonly">
+            <span class="sep">,</span>
+            <input id="p10_i1_4" type="text" value="0" maxlength="1" readonly="readonly">
+            <input id="p10_i1_5" type="text" value="0" maxlength="1" readonly="readonly">
+            <input id="p10_i1_6" type="text" value="0" maxlength="1" readonly="readonly">
+        </div>
+        <h5 class="h5_2">Possible follow-up loan of up to</h5>
+        <div id="p10_i2" class="sepInputs i2">
+            <span class="curr">$</span>
+            <input id="p10_i2_1" type="text" value="0" maxlength="1" readonly="readonly">
+            <input id="p10_i2_2" type="text" value="0" maxlength="1" readonly="readonly">
+            <input id="p10_12_3" type="text" value="0" maxlength="1" readonly="readonly">
+            <span class="sep">,</span>
+            <input id="p10_i2_4" type="text" value="0" maxlength="1" readonly="readonly">
+            <input id="p10_i2_5" type="text" value="0" maxlength="1" readonly="readonly">
+            <input id="p10_i2_6" type="text" value="0" maxlength="1" readonly="readonly">
+        </div>
+        <h4 class="h4_2">Possible motives for a follow-up loan</h4>
+        <ul class="reasonlist">
+            <li>Extension of building</li>
+            <li style="margin-left:-7px">Renovation</li>
+            <li style="margin-left:-10px">Solar/Energy modernizations</li>
+            <li style="margin-left:25px">Other</li>
+        </ul>
+        <a id="p10_btnprev" class="btn btn_l0" href="#">Back</a>
+        <a id="p10_btnnext" class="btn btn_r1" href="#">Continue</a>
+    </div>
+    <div id="p11" class="page">
+        <h2>Select the right service package for you</h2>
+        <div class="suggestion case_a">
+            <h3>Our recommendation: Add-on Module &ldquo;Flexible Fixed&rdquo;</h3>
+            <ul>
+                <li>Option of 10% of unscheduled repayment per year</li>
+                <li>Option to change monthly payments</li>
+                <li>Option to suspend your amortization payments at one time per year for up to 3 months</li>
+                <li>Option of a follow-up loan after amortization</li>
+            </ul>
+        </div>
+        <div class="suggestion case_b">
+            <h3>Our recommendation: Add-on Module &ldquo;Flexible Mixed&rdquo;</h3>
+            <ul>
+                <li>Option of 10% of unscheduled repayment for the fixed part of the loan</li>
+                <li>Limit-News-Service that informs you if you go above or below your personal fixed interest rate
+                    ceiling/floor during the extension period.
+                </li>
+                <li>Option to change monthly payments</li>
+                <li>Option to suspend your amortization payments up to 3 months each year</li>
+                <li>Option of a follow-up loan after amortization</li>
+            </ul>
+        </div>
+        <p><strong>Do you want to pre-book the Flexibility Package for your loan? This will increase the nominal
+            interest rate by only 0.19 percentage points.</strong></p>
+        <a id="p11_btnprev" class="btn btn_l0" href="#">Back</a>
+        <a id="p11_btnyes" class="btn btn_r3" href="#">Yes</a>
+        <a id="p11_btnno" class="btn btn_r3" href="#">No</a>
+    </div>
+    <!-- p12 = p5b -->
+    <!-- p13 = p6 -->
+    <div id="p14" class="page">
+        <h2>Select the right service package for you</h2>
+        <h3>Conversion &amp; Limit service</h3>
+        <p>As the first element of our flexibility module we offer you the notification service in case you exceed or
+            fall below a predefined individual fixed interest ceiling or floor, which indicates that you wish a
+            conversion of the variable part of the loan into a fixed interest loan.</p>
+        <h4 class="h4_1">What this means for you</h4>
+        <div id="simulation">
+            <div id="limithider"></div>
+            <h5 class="h5_1">Variable portion of interest <span class="real">(current)</span><span class="sim"></span>
+            </h5>
+            <div id="p14_i1" class="sepInputs i1">
+                <input id="p14_i1_1" type="text" value="0" readonly="readonly">
+                <span class="sep">.</span>
+                <input id="p14_i1_2" type="text" value="0" readonly="readonly">
+                <input id="p14_i1_3" type="text" value="0" readonly="readonly">
+                <span class="curr">%</span>
+                <div class="updownspacer"></div>
+            </div>
+            <h5 class="h5_2">Fixed 10-year interest rate <span class="real">(current)</span><span class="sim"></span>
+            </h5>
+            <div id="p14_i2" class="sepInputs i2">
+                <input id="p14_i2_1" type="text" value="0" readonly="readonly">
+                <span class="sep">.</span>
+                <input id="p14_i2_2" type="text" value="0" readonly="readonly">
+                <input id="p14_i2_3" type="text" value="0" readonly="readonly">
+                <span class="curr">%</span>
+                <div class="updownspacer"></div>
+            </div>
+            <h5 class="h5_3">Interest rate threshold <span class="tooltip"
+                                                           rel="Die Zinslimite beziehen sich immer auf den Zinssatz, den Sie bei einer Umwandlung in ein Fix-Darlehen bekommen würden. Das definierte Zinslimit sichern wir Ihnen dann 14 Tage nach Benachrichtigung zu."></span>
+            </h5>
+            <div id="p14_i3" class="sepInputs i3">
+                <input id="p14_i3_1" type="text" value="0" maxlength="1" readonly="readonly">
+                <span class="sep">.</span>
+                <input id="p14_i3_2" type="text" value="0" maxlength="1" readonly="readonly">
+                <input id="p14_i3_3" type="text" value="0" maxlength="1" readonly="readonly">
+                <span class="curr">%</span>
+                <div class="up" id="p14_i3_up"></div>
+                <div class="down" id="p14_i3_down"></div>
+            </div>
+        </div>
+        <a id="p14_btnprev" class="btn btn_l0" href="#">Back</a>
+        <a id="p14_btnnext" class="btn btn_r1" href="#">Continue</a>
+    </div>
+    <!-- p15 = p7b -->
+    <!-- p16 = p8 -->
+    <!-- p17 = p9 -->
+    <!-- p18 = p10 -->
+    <!-- p19 = p11b -->
+    <div id="p20" class="page">
+        <h2>Select the right service package for you</h2>
+        <p id="p20_btna" class="p_1">Act responsibly and insure your payments to avoid repossession in dire times.</p>
+        <p id="p20_btnb" class="p_2">Protect your home from harm! Act responsibly and choose an insurance you can
+            actually rely on in case of damage!</p>
+        <a id="p20_btnprev" class="btn btn_l1" href="#">Back</a>
+    </div>
+    <div id="p21" class="page">
+        <h2>Select the right service package for you</h2>
+        <h3>Secure your rate</h3>
+        <p>Mortgage protection insurance covers you from potential financial disasters.</p>
+        <h4 class="h4_1">What this means for you</h4>
+        <h5 class="h5_1">Monthly income <span class="tooltip"
+                                              rel="This shows the income you entered in the calculation of your possible monthly payments. Alternatively, you can manually type in another monthly income."></span>
+        </h5>
+        <div id="p21_i1" class="sepInputs i1">
+            <span class="curr">$</span>
+            <input id="p21_i1_1" type="text" value="0" maxlength="1">
+            <span class="sep">,</span>
+            <input id="p21_i1_2" type="text" value="0" maxlength="1">
+            <input id="p21_i1_3" type="text" value="0" maxlength="1">
+            <input id="p21_i1_4" type="text" value="0" maxlength="1">
+            <div class="up" id="p21_i1_up"></div>
+            <div class="down" id="p21_i1_down"></div>
+        </div>
+        <h5 class="h5_2">Monthly expenses <span class="tooltip"
+                                                rel="This shows the expenses you entered in the calculation of your possible monthly payments. Alternatively, you can manually type in another monthly income."></span>
+        </h5>
+        <div id="p21_i2" class="sepInputs i2">
+            <span class="curr">$</span>
+            <input id="p21_i2_1" type="text" value="0" maxlength="1">
+            <span class="sep">,</span>
+            <input id="p21_i2_2" type="text" value="0" maxlength="1">
+            <input id="p21_i2_3" type="text" value="0" maxlength="1">
+            <input id="p21_i2_4" type="text" value="0" maxlength="1">
+            <div class="up" id="p21_i2_up"></div>
+            <div class="down" id="p21_i2_down"></div>
+        </div>
+        <h5 class="h5_3">Monthly loan payments</h5>
+        <div id="p21_i3" class="sepInputs i3">
+            <span class="curr">$</span>
+            <input id="p21_i3_1" type="text" value="0" maxlength="1">
+            <span class="sep">,</span>
+            <input id="p21_i3_2" type="text" value="0" maxlength="1">
+            <input id="p21_i3_3" type="text" value="0" maxlength="1">
+            <input id="p21_i3_4" type="text" value="0" maxlength="1">
+            <div class="updownspacer"></div>
+        </div>
+        <h5 class="h5_4">Loss of income in %</span></h5>
+        <div id="p21_i4" class="sepInputs i4">
+            <input id="p21_i4_1" type="text" value="0" maxlength="1">
+            <input id="p21_i4_2" type="text" value="0" maxlength="1">
+            <input id="p21_i4_3" type="text" value="0" maxlength="1">
+            <span class="curr">%</span>
+            <div class="up" id="p21_i4_up"></div>
+            <div class="down" id="p21_i4_down"></div>
+        </div>
+        <div class="box-right">
+            <h5>Financial scope</h5>
+            <span class="value"></span>
+        </div>
+        <h4 class="h4_2">Disabled</h4>
+        <ul class="reasonlist">
+            <li style="margin-left:10px;">Death</li>
+            <li style="margin-left:-30px;">Unemployability</li>
+            <li style="margin-left:15px">Unemployed</li>
+        </ul>
+        <a id="p21_btnprev" class="btn btn_l1" href="#">Back</a>
+        <a id="p21_btnnext" class="btn btn_r1" href="#">Continue</a>
+    </div>
+    <div id="p22" class="page">
+        <h2>Select the right service package for you</h2>
+        <h3>Our recommendation</h3>
+        <p>Do you want to purchase any of the following Security Modules for your mortgage?</p>
+        <h4 class="h4_1">Add-on Module &ldquo;A&rdquo;</h4>
+        <div id="p22_i1" class="inpRadio">
+            <label id="p22_l1_1" for="p22_i1_1">Yes</label><input id="p22_i1_1" type="radio" value="1" name="p22_i1">
+            <label id="p22_l1_2" for="p22_i1_2">No</label><input id="p22_i1_2" type="radio" value="0" checked="checked"
+                                                                 name="p22_i1">
+        </div>
+        <ul class="ul_1">
+            <li>Take-over of monthly payments in case of unemployment</li>
+            <li>Take-over of monthly payments in case of job loss</li>
+            <li>Continue living in the house despite loss of income</li>
+        </ul>
+        <h4 class="h4_2">Add-on Module &ldquo;B&rdquo;</h4>
+        <div id="p22_i2" class="inpRadio">
+            <label id="p22_l2_1" for="p22_i2_1">Yes</label><input id="p22_i2_1" type="radio" value="1" name="p22_i2">
+            <label id="p22_l2_2" for="p22_i2_2">No</label><input id="p22_i2_2" type="radio" value="0" checked="checked"
+                                                                 name="p22_i2">
+        </div>
+        <ul class="ul_2">
+            <li>Take-over of residual debt in case of death</li>
+            <li>The family can continue living in the house and gains ownership of it</li>
+        </ul>
+        <div class="bundle"><h5>$100 loyalty bonus</h5>
+            <p>You will be awarded a $100 loyalty bonus if you acquire both<br/>the mortgage and the “A”.</p></div>
+        <a id="p22_btnprev" class="btn btn_l1" href="#">Back</a>
+        <a id="p22_btnnext" class="btn btn_r1" href="#">Continue</a>
+    </div>
+    <div id="p23" class="page">
+        <h2>Select the right service package for you</h2>
+        <h3>Real estate insurance</h3>
+        <img src="images/p23_fotos.jpg" alt="Hagelschaden"/>
+        <p>Do you remember the heavy hail of summer 2011? Many houses and apartments were damaged.</p>
+        <a id="p23_btnprev" class="btn btn_l1" href="#">Back</a>
+        <a id="p23_btnnext" class="btn btn_r1" href="#">Continue</a>
+    </div>
+    <div id="p24" class="page">
+        <h2>Select the right service package for you</h2>
+        <h3>Real estate insurance</h3>
+        <img src="images/p24_fotos.jpg" alt="Hagelschaden"/>
+        <p>We reacted immediately, documented the damages 7 days a week (even on the weekend) and handled the damage
+            claims fast and unbureaucratically.</p>
+        <a id="p24_btnprev" class="btn btn_l1" href="#">Back</a>
+        <a id="p24_btnnext" class="btn btn_r1" href="#">Continue</a>
+    </div>
+    <div id="p25" class="page">
+        <h2>Select the right service package for you</h2>
+        <h3>Our recommendation</h3>
+        <p>Are you looking for a property insurance for your real estate you can (actually) rely on in case of damage?
+            We recommend you to pre-book the following modules.</p>
+        <h4 class="h4_1">Add-on Module &ldquo;C&rdquo;</h4>
+        <div id="p25_i1" class="inpRadio">
+            <label id="p25_l1_1" for="p25_i1_1">Yes</label><input id="p25_i1_1" type="radio" value="1" name="p25_i1">
+            <label id="p25_l1_2" for="p25_i1_2">No</label><input id="p25_i1_2" type="radio" value="0" checked="checked"
+                                                                 name="p25_i1">
+        </div>
+        <ul class="ul_1">
+            <li>&ldquo;C&rdquo; replaces the other common insurance policies for residential buildings.<span
+                    class="tooltip"
+                    rel="ProHaus contains powerful insurance policies for contents, furniture and fixture, glass as well as private liability, liability arising from water pollution and liability arising from dog ownership."></span>
+            </li>
+            <li>Advantages: instead of numerous insurance policies you only need one. You solely have one contact person
+                who caters to your needs.
+            </li>
+            <li>This offers strong benefits at a low price and is convenient to handle.</li>
+        </ul>
+        <h4 class="h4_2">Add-on Module &ldquo;D&rdquo;</h4>
+        <div id="p25_i2" class="inpRadio">
+            <label id="p25_l2_1" for="p25_i2_1">Yes</label><input id="p25_i2_1" type="radio" value="1" name="p25_i2">
+            <label id="p25_l2_2" for="p25_i2_2">No</label><input id="p25_i2_2" type="radio" value="0" checked="checked"
+                                                                 name="p25_i2">
+        </div>
+        <ul class="ul_2">
+            <li>Choose 3 separate insurance policies from our broad range of property in&shy;su&shy;rance
+                policies(several insurance policies for residential buildings as well as an owner’s protective liability
+                and a legal expenses insurance are available)
+            </li>
+        </ul>
+        <div class="bundle"><h5>$50 loyalty bonus</h5>
+            <p>You will be awarded a $50 loyalty bonus if you acquire both the mortgage and one of the two Add-on
+                Modules from this page.</p></div>
+        <a id="p25_btnprev" class="btn btn_l1" href="#">Back</a>
+        <a id="p25_btnnext" class="btn btn_r1" href="#">Continue</a>
+    </div>
+    <div id="p26" class="page">
+        <h2>Select the right service package for you</h2>
+        <h3>Advantages of the premium status</h3>
+        <ul>
+            <li>50% savings on forward rates during the extension period <span class="tooltip"
+                                                                               rel="The forward rates will be incurred in case of early lock-in of the interest level for the follow-up financing which will be available 2 years prior to the end of the old fixed interest rate arrangement."></span>
+            </li>
+            <li>Limit-News-Service that informs you if you go above or below your personal fixed interest rate
+                ceiling/floor during the extension period.
+            </li>
+            <li>Comprehensive financial security-check on the subject “Home financing as a part of retirement
+                planning”
+            </li>
+            <li>Grant of an additional $100 loyalty bonus in case you also close a provision contract.</li>
+        </ul>
+        <p class="case_a">
+            As you have selected both the Flexibility Module and the Security Module, you have reached Premium Status.
+            You will receive attractive special benefits which will complement the service package.
+        </p>
+        <p class="case_b">
+            If you select both the Flexibility Module and the Security Module, you will reach Premium Status. Thus, you
+            will receive attractive special benefits which will complement the service package.
+        </p>
+        <p class="case_c">
+            If you select both the Flexibility Module and the Security Module you will reach Premium Status. Thereby,
+            you will receive attractive special benefits which will complement the service package.
+        </p>
+        <a id="p26_btnprev" class="btn btn_l1 case_a" href="#">Back</a>
+        <a id="p26_btnp2" class="btn btn_l4 case_c" href="#">Back to Module 2</a>
+        <a id="p26_btnp3" class="btn btn_l4 case_b" href="#">Back to Module 3</a>
+        <a id="p26_btnnext" class="btn btn_r4" href="#">Overview Menu</a>
+    </div>
+    <div id="p29" class="page">
+        <h2>Select the right service package for you</h2>
+        <p class="p_1">You have only selected the Basic Module.</p>
+        <p class="p_2">Do you want to return to the configuration of the Add-on Module?</p>
+        <a id="p29_btnyes" class="btn btn_r3" href="#">Yes</a>
+        <a id="p29_btnprev" class="btn btn_l2" href="#">Back</a>
+        <a id="p29_btnnext" class="btn btn_r4" href="#">Overview Menu</a>
+    </div>
+    <div id="p30" class="page">
+        <h2>Determine your financing needs</h2>
+        <div id="p30_box1" class="p30_box">
+            <h3>Buy</h3>
+        </div>
+        <div id="p30_box2" class="p30_box">
+            <h3>Build</h3>
+        </div>
+        <div id="p30_box3" class="p30_box">
+            <h3>Refinance</h3>
+        </div>
+        <div id="p30_box4" class="p30_box">
+            <h3>Renovate</h3>
+        </div>
+        <a id="p30_btnprev" class="btn btn_l1" href="#">Back</a>
+    </div>
+    <div id="p31" class="page">
+        <h2>Determine your financing needs</h2>
+        <div id="fsumme_kaufen_header" class="fsumme_header">
+            <div class="field field_1">
+                <h3>Purchase Price + Additional Expenses</h3>
+                <span class="mpe"></span>
+                <span class="value"></span>
+                <span class="curr">$</span>
+            </div>
+            <div class="field field_2">
+                <h3>Additional Expenses</h3>
+                <span class="mpe">+</span>
+                <span class="value"></span>
+                <span class="curr">$</span>
+            </div>
+            <div class="field field_3">
+                <h3>Available Resources</h3>
+                <span class="mpe">-</span>
+                <span class="value"></span>
+                <span class="curr">$</span>
+            </div>
+            <div class="field field_4">
+                <h3>Financing<br/>need</h3>
+                <span class="mpe">=</span>
+                <span class="value"></span>
+                <span class="curr">$</span>
+            </div>
+        </div>
+        <div class="fsumme_fieldset fieldset_1">
+            <h4>What purchase price and closing costs do you expect?</h4>
+            <ul class="fieldlist_1">
+                <li><h5>Purchase price</h5> <span class="curr">$</span><input id="kaufen_1_1" type="text"/></li>
+                <li><span class="mpe">+</span><h5>Closing fees</h5> <span class="curr">$</span><input id="kaufen_1_2"
+                                                                                                      type="text"/></li>
+                <li class="sepInputs"><h5>Broker</h5>
+                    <input id="p31_i1_1" type="text" value="0" maxlength="1">
+                    <span class="sep">.</span>
+                    <input id="p31_i1_2" type="text" value="0" maxlength="1">
+                    <input id="p31_i1_3" type="text" value="0" maxlength="1">
+                    <span class="curr">%</span>
+                    <div class="up" id="p31_i1_up"></div>
+                    <div class="down" id="p31_i1_down"></div>
+                </li>
+                <li class="sepInputs"><h5>Notary fees</h5>
+                    <input id="p31_i2_1" type="text" value="0" maxlength="1">
+                    <span class="sep">.</span>
+                    <input id="p31_i2_2" type="text" value="0" maxlength="1">
+                    <input id="p31_i2_3" type="text" value="0" maxlength="1">
+                    <span class="curr">%</span>
+                    <div class="up" id="p31_i2_up"></div>
+                    <div class="down" id="p31_i2_down"></div>
+                </li>
+                <li class="sepInputs"><h5>Real estate transfer tax</h5>
+                    <input id="p31_i3_1" type="text" value="0">
+                    <span class="sep">.</span>
+                    <input id="p31_i3_2" type="text" value="0">
+                    <input id="p31_i3_3" type="text" value="0">
+                    <span class="curr">%</span>
+                    <div class="up" id="p31_i3_up"></div>
+                    <div class="down" id="p31_i3_down"></div>
+                </li>
+                <li><span class="mpe">=</span><h5>Total cost</h5> <span class="curr">$</span><input id="kaufen_1_sum"
+                                                                                                    type="text"
+                                                                                                    readonly="readonly"/>
+                </li>
+            </ul>
+        </div>
+        <div class="fsumme_fieldset fieldset_2">
+            <h4>What additional expenses do you expect in the upcoming weeks and months?</h4>
+            <ul class="fieldlist_1">
+                <li><h5>Bathrooms</h5> <span class="curr">$</span><input id="kaufen_2_1" type="text"/></li>
+                <li><h5>Kitchen</h5> <span class="curr">$</span><input id="kaufen_2_2" type="text"/></li>
+                <li><h5>Painting costs</h5> <span class="curr">$</span><input id="kaufen_2_3" type="text"/></li>
+                <li><h5>Heating</h5> <span class="curr">$</span><input id="kaufen_2_4" type="text"/></li>
+                <li><h5>Insulation</h5> <span class="curr">$</span><input id="kaufen_2_5" type="text"/></li>
+            </ul>
+            <ul class="fieldlist_2">
+                <li><h5>Solar panels</h5> <span class="curr">$</span><input id="kaufen_2_6" type="text"/></li>
+                <li><h5>Rooftop</h5> <span class="curr">$</span><input id="kaufen_2_7" type="text"/></li>
+                <li><h5>Electrician</h5> <span class="curr">$</span><input id="kaufen_2_8" type="text"/></li>
+                <li><h5>Outdoor facilities</h5> <span class="curr">$</span><input id="kaufen_2_9" type="text"/></li>
+                <li><h5>Other</h5> <span class="curr">$</span><input id="kaufen_2_10" type="text"/></li>
+            </ul>
+            <ul class="fieldlist_3">
+                <li><h5>Sum of additional expenses</h5> <span class="curr">$</span><input id="kaufen_2_sum"
+                                                                                          type="text"/></li>
+            </ul>
+            <ul class="fieldlist_kommentar">
+                <li><h5>Comments</h5> <input class="comment" id="kaufen_2_kommentar" type="text"/></li>
+            </ul>
+        </div>
+        <div class="fsumme_fieldset fieldset_3">
+            <h4>How much capital do you have available?</h4>
+            <ul class="fieldlist_1">
+                <li><h5>Cash</h5> <span class="curr">$</span><input id="kaufen_3_1" type="text"/></li>
+                <li><h5>Savings</h5> <span class="curr">$</span><input id="kaufen_3_2" type="text"/></li>
+                <li><h5>Securities</h5> <span class="curr">$</span><input id="kaufen_3_3" type="text"/></li>
+                <li><h5>Life insurance</h5> <span class="curr">$</span><input id="kaufen_3_4" type="text"/></li>
+            </ul>
+            <ul class="fieldlist_2">
+                <li><h5>Land and property</h5> <span class="curr">$</span><input id="kaufen_3_6" type="text"/></li>
+                <li><h5>Personal contributions</h5> <span class="curr">$</span><input id="kaufen_3_7" type="text"/></li>
+                <li><h5>Other</h5> <span class="curr">$</span><input id="kaufen_3_8" type="text"/></li>
+            </ul>
+            <ul class="fieldlist_3">
+                <li><h5>Sum of total resources</h5> <span class="curr">$</span><input id="kaufen_3_sum" type="text"
+                                                                                      readonly="readonly"/></li>
+            </ul>
+            <h4 class="h4_2">What part of your resources do you want to set aside for your home loan?</h4>
+            <ul class="fieldlist_4">
+                <li><h5>Sum of total resources</h5> <span class="curr">$</span><input id="kaufen_3_used" type="text"/>
+                </li>
+            </ul>
+            <ul class="fieldlist_kommentar">
+                <li><h5>Comments</h5> <input class="comment" id="kaufen_3_kommentar" type="text"/></li>
+            </ul>
+        </div>
+        <a id="p31_btnprev" class="btn btn_l3" href="#">Back</a>
+        <a id="p31_btnnext" class="btn btn_r5" href="#">Continue</a>
+        <a id="p31_btnabort" class="btn btn_l2" href="#">Cancel</a>
+        <a id="p31_btntakeover" class="btn btn_r4" href="#">Apply</a>
+    </div>
+    <div id="p37" class="page">
+        <h2>Determine your financing needs</h2>
+        <div id="fsumme_bauen_header" class="fsumme_header">
+            <div class="field field_1">
+                <h3>Purchase Price + Additional Expenses</h3>
+                <span class="mpe"></span>
+                <span class="value"></span>
+                <span class="curr">$</span>
+            </div>
+            <div class="field field_2">
+                <h3>Additional Expenses</h3>
+                <span class="mpe">+</span>
+                <span class="value"></span>
+                <span class="curr">$</span>
+            </div>
+            <div class="field field_3">
+                <h3>Available Resources</h3>
+                <span class="mpe">-</span>
+                <span class="value"></span>
+                <span class="curr">$</span>
+            </div>
+            <div class="field field_4">
+                <h3>Financing<br/>need</h3>
+                <span class="mpe">=</span>
+                <span class="value"></span>
+                <span class="curr">$</span>
+            </div>
+        </div>
+        <div class="fsumme_fieldset fieldset_1">
+            <h4>What purchase price and closing costs do you expect?</h4>
+            <ul class="fieldlist_1">
+                <li><h5>Land price</h5> <span class="curr">$</span><input id="bauen_1_1" type="text"/></li>
+                <li><span class="mpe">+</span><h5>Closing fees</h5> <span class="curr">$</span><input id="bauen_1_2"
+                                                                                                      type="text"/></li>
+                <li class="sepInputs"><h5>Broker</h5>
+                    <input id="p37_i1_1" type="text" value="0" maxlength="1">
+                    <span class="sep">.</span>
+                    <input id="p37_i1_2" type="text" value="0" maxlength="1">
+                    <input id="p37_i1_3" type="text" value="0" maxlength="1">
+                    <span class="curr">%</span>
+                    <div class="up" id="p37_i1_up"></div>
+                    <div class="down" id="p37_i1_down"></div>
+                </li>
+                <li class="sepInputs"><h5>Notary fees</h5>
+                    <input id="p37_i2_1" type="text" value="0" maxlength="1">
+                    <span class="sep">.</span>
+                    <input id="p37_i2_2" type="text" value="0" maxlength="1">
+                    <input id="p37_i2_3" type="text" value="0" maxlength="1">
+                    <span class="curr">%</span>
+                    <div class="up" id="p37_i2_up"></div>
+                    <div class="down" id="p37_i2_down"></div>
+                </li>
+                <li class="sepInputs"><h5>Real estate transfer tax</h5>
+                    <input id="p37_i3_1" type="text" value="0">
+                    <span class="sep">.</span>
+                    <input id="p37_i3_2" type="text" value="0">
+                    <input id="p37_i3_3" type="text" value="0">
+                    <span class="curr">%</span>
+                    <div class="up" id="p37_i3_up"></div>
+                    <div class="down" id="p37_i3_down"></div>
+                </li>
+                <li><span class="mpe">=</span><h5>Total cost</h5> <span class="curr">$</span><input id="bauen_1_sum"
+                                                                                                    type="text"
+                                                                                                    readonly="readonly"/>
+                </li>
+            </ul>
+        </div>
+        <div class="fsumme_fieldset fieldset_2">
+            <h4>What construction and other additional expenses do you expect?</h4>
+            <ul class="fieldlist_1">
+                <li class="firstrow"><h5>Total construction cost</h5> <span class="curr">$</span><input id="bauen_2_10"
+                                                                                                        type="text"/>
+                </li>
+
+                <li><h5>Site development</h5> <span class="curr">$</span><input id="bauen_2_1" type="text"/></li>
+                <li><h5>Architectural planning</h5> <span class="curr">$</span><input id="bauen_2_2" type="text"/></li>
+                <li><h5>Foundation</h5> <span class="curr">$</span><input id="bauen_2_3" type="text"/></li>
+                <li><h5>House frame</h5> <span class="curr">$</span><input id="bauen_2_4" type="text"/></li>
+                <li><h5>Roofing</h5> <span class="curr">$</span><input id="bauen_2_5" type="text"/></li>
+            </ul>
+            <ul class="fieldlist_2">
+                <li class="firstrow"><h5>Additional construction expenses</h5> <span class="curr">$</span><input
+                        id="bauen_2_11" type="text"/></li>
+
+                <li><h5>Interior work</h5> <span class="curr">$</span><input id="bauen_2_6" type="text"/></li>
+                <li><h5>Garage</h5> <span class="curr">$</span><input id="bauen_2_7" type="text"/></li>
+                <li><h5>Outdoor facilities</h5> <span class="curr">$</span><input id="bauen_2_8" type="text"/></li>
+                <li><h5>Other</h5> <span class="curr">$</span><input id="bauen_2_9" type="text"/></li>
+            </ul>
+            <ul class="fieldlist_3">
+                <li><h5>Sum of additional expenses</h5> <span class="curr">$</span><input id="bauen_2_sum" type="text"/>
+                </li>
+            </ul>
+            <ul class="fieldlist_kommentar">
+                <li><h5>Comments</h5> <input class="comment" id="bauen_2_kommentar" type="text"/></li>
+            </ul>
+        </div>
+        <div class="fsumme_fieldset fieldset_3">
+            <h4>How much capital do you have available?</h4>
+            <ul class="fieldlist_1">
+                <li><h5>Cash</h5> <span class="curr">$</span><input id="bauen_3_1" type="text"/></li>
+                <li><h5>Savings</h5> <span class="curr">$</span><input id="bauen_3_2" type="text"/></li>
+                <li><h5>Securities</h5> <span class="curr">$</span><input id="bauen_3_3" type="text"/></li>
+                <li><h5>Life insurance</h5> <span class="curr">$</span><input id="bauen_3_4" type="text"/></li>
+            </ul>
+            <ul class="fieldlist_2">
+                <li><h5>Other Savings Accounts</h5> <span class="curr">$</span><input id="bauen_3_5" type="text"/></li>
+                <li><h5>Land and property</h5> <span class="curr">$</span><input id="bauen_3_6" type="text"/></li>
+                <li><h5>Personal contributions</h5> <span class="curr">$</span><input id="bauen_3_7" type="text"/></li>
+                <li><h5>Other</h5> <span class="curr">$</span><input id="bauen_3_8" type="text"/></li>
+            </ul>
+            <ul class="fieldlist_3">
+                <li><h5>Sum of total resources</h5> <span class="curr">$</span><input id="bauen_3_sum" type="text"
+                                                                                      readonly="readonly"/></li>
+            </ul>
+            <h4 class="h4_2">What part of your resources do you want to set aside for your home loan?</h4>
+            <ul class="fieldlist_4">
+                <li><h5>Sum of total resources</h5> <span class="curr">$</span><input id="bauen_3_used" type="text"/>
+                </li>
+            </ul>
+            <ul class="fieldlist_kommentar">
+                <li><h5>Comments</h5> <input class="comment" id="bauen_3_kommentar" type="text"/></li>
+            </ul>
+        </div>
+        <a id="p37_btnprev" class="btn btn_l3" href="#">Back</a>
+        <a id="p37_btnnext" class="btn btn_r5" href="#">Continue</a>
+        <a id="p37_btnabort" class="btn btn_l2" href="#">Cancel</a>
+        <a id="p37_btntakeover" class="btn btn_r4" href="#">Apply</a>
+    </div>
+    <div id="p42" class="page">
+        <h2>Determine your financing needs</h2>
+        <div id="fsumme_modernisieren_header" class="fsumme_header">
+            <div class="field field_1">
+                <h3>Costs/<br/>Expenses</h3>
+                <span class="mpe"></span>
+                <span class="value"></span>
+                <span class="curr">$</span>
+            </div>
+            <div class="field field_2">
+                <h3>Available Resources</h3>
+                <span class="mpe">-</span>
+                <span class="value"></span>
+                <span class="curr">$</span>
+            </div>
+            <div class="field field_3">
+                <h3>Financial<br/>need</h3>
+                <span class="mpe">=</span>
+                <span class="value"></span>
+                <span class="curr">$</span>
+            </div>
+        </div>
+        <div class="fsumme_fieldset fieldset_1">
+            <h4>What expenses do you expect?</h4>
+            <ul class="fieldlist_1">
+                <li><h5>Solar panels</h5> <span class="curr">$</span><input id="modernisieren_1_1" type="text"/></li>
+                <li><h5>Sustainable energy solutions</h5> <span class="curr">$</span><input id="modernisieren_1_2"
+                                                                                            type="text"/></li>
+                <li><h5>Rooftop renovation</h5> <span class="curr">$</span><input id="modernisieren_1_3" type="text"/>
+                </li>
+                <li><h5>Heating/Sanitary facilities</h5> <span class="curr">$</span><input id="modernisieren_1_4"
+                                                                                           type="text"/></li>
+            </ul>
+            <ul class="fieldlist_2">
+                <li><h5>Kitchen/Bathrooms</h5> <span class="curr">$</span><input id="modernisieren_1_5" type="text"/>
+                </li>
+                <li><h5>Living spaces</h5> <span class="curr">$</span><input id="modernisieren_1_6" type="text"/></li>
+                <li><h5>Other</h5> <span class="curr">$</span><input id="modernisieren_1_7" type="text"/></li>
+            </ul>
+            <ul class="fieldlist_3">
+                <li><h5>Sum of total cost</h5> <span class="curr">$</span><input id="modernisieren_1_sum" type="text"/>
+                </li>
+            </ul>
+            <ul class="fieldlist_kommentar">
+                <li><h5>Comments</h5> <input class="comment" id="modernisieren_1_kommentar" type="text"/></li>
+            </ul>
+        </div>
+        <div class="fsumme_fieldset fieldset_2">
+            <h4>How much capital do you have available?</h4>
+            <ul class="fieldlist_1">
+                <li><h5>Cash</h5> <span class="curr">$</span><input id="modernisieren_2_1" type="text"/></li>
+                <li><h5>Savings</h5> <span class="curr">$</span><input id="modernisieren_2_2" type="text"/></li>
+                <li><h5>Securities</h5> <span class="curr">$</span><input id="modernisieren_2_3" type="text"/></li>
+                <li><h5>Life insurance</h5> <span class="curr">$</span><input id="modernisieren_2_4" type="text"/></li>
+            </ul>
+            <ul class="fieldlist_2">
+                <li><h5>Other Savings Accounts</h5> <span class="curr">$</span><input id="modernisieren_2_5"
+                                                                                      type="text"/></li>
+                <li><h5>Land and property</h5> <span class="curr">$</span><input id="modernisieren_2_6" type="text"/>
+                </li>
+                <li><h5>Personal contributions</h5> <span class="curr">$</span><input id="modernisieren_2_7"
+                                                                                      type="text"/></li>
+                <li><h5>Other</h5> <span class="curr">$</span><input id="modernisieren_2_8" type="text"/></li>
+            </ul>
+            <ul class="fieldlist_3">
+                <li><h5>Sum of total resources</h5> <span class="curr">$</span><input id="modernisieren_2_sum"
+                                                                                      type="text" readonly="readonly"/>
+                </li>
+            </ul>
+            <h4 class="h4_2">What part of your resources do you want to set aside for your home loan?</h4>
+            <ul class="fieldlist_4">
+                <li><h5>Sum of total resources</h5> <span class="curr">$</span><input id="modernisieren_2_used"
+                                                                                      type="text"/></li>
+            </ul>
+            <ul class="fieldlist_kommentar">
+                <li><h5>Comments</h5> <input class="comment" id="modernisieren_2_kommentar" type="text"/></li>
+            </ul>
+        </div>
+        <a id="p42_btnprev" class="btn btn_l3" href="#">Back</a>
+        <a id="p42_btnnext" class="btn btn_r5" href="#">Continue</a>
+        <a id="p42_btnabort" class="btn btn_l2" href="#">Cancel</a>
+        <a id="p42_btntakeover" class="btn btn_r4" href="#">Apply</a>
+    </div>
+    <div id="p46" class="page">
+        <h2>Determine your financing needs</h2>
+        <div id="fsumme_anschluss_header" class="fsumme_header">
+            <div class="field field_1">
+                <h3>Remaining debt</h3>
+                <span class="mpe"></span>
+                <span class="value"></span>
+                <span class="curr">$</span>
+            </div>
+            <div class="field field_2">
+                <h3>Additional Expenses</h3>
+                <span class="mpe">+</span>
+                <span class="value"></span>
+                <span class="curr">$</span>
+            </div>
+            <div class="field field_3">
+                <h3>Available Resources</h3>
+                <span class="mpe">-</span>
+                <span class="value"></span>
+                <span class="curr">$</span>
+            </div>
+            <div class="field field_4">
+                <h3>Financing need</h3>
+                <span class="mpe">=</span>
+                <span class="value"></span>
+                <span class="curr">$</span>
+            </div>
+        </div>
+        <div class="fsumme_fieldset fieldset_1">
+            <h4>How much remaining debt remains from existing loans?</h4>
+            <ul class="fieldlist_1">
+                <li><h5>Remaining debt</h5> <span class="curr">$</span><input id="anschluss_1_1" type="text"/></li>
+            </ul>
+            <h4 class="h4_2">Calculate your remaining debt now</h4>
+            <ul class="fieldlist_2">
+                <li><h5>Initial borrowing amount
+                    <span class="tooltip"
+                          rel="Please insert your initial borrowing amount of your old loan contract here. Which amount did you borrow then?"></span>
+                </h5> <span class="curr">$</span><input id="anschluss_fs" type="text"/></li>
+                <li><h5>Monthly loan payments </h5> <span class="curr">$</span><input id="anschluss_dr" type="text"/>
+                </li>
+                <li class="sepInputs"><h5>Interest rate</h5>
+                    <input id="p46_i1_1" type="text" value="0" maxlength="1">
+                    <span class="sep">.</span>
+                    <input id="p46_i1_2" type="text" value="0" maxlength="1">
+                    <input id="p46_i1_3" type="text" value="0" maxlength="1">
+                    <span class="curr">%</span>
+                    <div class="up" id="p46_i1_up"></div>
+                    <div class="down" id="p46_i1_down"></div>
+                </li>
+                <li class="sepInputs zb"><h5>Period of fixed interest in years</h5>
+                    <input id="p46_i2_1" type="text" value="0" maxlength="1">
+                    <input id="p46_i2_2" type="text" value="0" maxlength="1">
+                    <span class="curr"></span>
+                    <div class="up" id="p46_i2_up"></div>
+                    <div class="down" id="p46_i2_down"></div>
+                </li>
+            </ul>
+        </div>
+        <div class="fsumme_fieldset fieldset_2">
+            <h4>Do you need any additional money for refurbishment/building extensions?</h4>
+            <ul class="fieldlist_1">
+                <li><h5>Bathrooms</h5> <span class="curr">$</span><input id="anschluss_2_1" type="text"/></li>
+                <li><h5>Kitchen</h5> <span class="curr">$</span><input id="anschluss_2_2" type="text"/></li>
+                <li><h5>Painting costs</h5> <span class="curr">$</span><input id="anschluss_2_3" type="text"/></li>
+                <li><h5>Heating</h5> <span class="curr">$</span><input id="anschluss_2_4" type="text"/></li>
+                <li><h5>Insulation</h5> <span class="curr">$</span><input id="anschluss_2_5" type="text"/></li>
+            </ul>
+            <ul class="fieldlist_2">
+                <li><h5>Solar panels</h5> <span class="curr">$</span><input id="anschluss_2_6" type="text"/></li>
+                <li><h5>Rooftop</h5> <span class="curr">$</span><input id="anschluss_2_7" type="text"/></li>
+                <li><h5>Electrician</h5> <span class="curr">$</span><input id="anschluss_2_8" type="text"/></li>
+                <li><h5>Outdoor facilities</h5> <span class="curr">$</span><input id="anschluss_2_9" type="text"/></li>
+                <li><h5>Other</h5> <span class="curr">$</span><input id="anschluss_2_10" type="text"/></li>
+            </ul>
+            <ul class="fieldlist_3">
+                <li><h5>Sum of additional expenses</h5> <span class="curr">$</span><input id="anschluss_2_sum"
+                                                                                          type="text"/></li>
+            </ul>
+            <ul class="fieldlist_kommentar">
+                <li><h5>Comments</h5> <input class="comment" id="anschluss_2_kommentar" type="text"/></li>
+            </ul>
+        </div>
+        <div class="fsumme_fieldset fieldset_3">
+            <h4>How much capital do you have available?</h4>
+            <ul class="fieldlist_1">
+                <li><h5>Cash</h5> <span class="curr">$</span><input id="anschluss_3_1" type="text"/></li>
+                <li><h5>Savings</h5> <span class="curr">$</span><input id="anschluss_3_2" type="text"/></li>
+                <li><h5>Securities</h5> <span class="curr">$</span><input id="anschluss_3_3" type="text"/></li>
+            </ul>
+            <ul class="fieldlist_2">
+                <li><h5>Other Savings Accounts</h5> <span class="curr">$</span><input id="anschluss_3_4" type="text"/>
+                </li>
+                <li><h5>Life insurance</h5> <span class="curr">$</span><input id="anschluss_3_5" type="text"/></li>
+                <li><h5>Other</h5> <span class="curr">$</span><input id="anschluss_3_6" type="text"/></li>
+            </ul>
+            <ul class="fieldlist_3">
+                <li><h5>Sum of total resources</h5> <span class="curr">$</span><input id="anschluss_3_sum" type="text"
+                                                                                      readonly="readonly"/></li>
+            </ul>
+            <h4 class="h4_2">What part of your resources do you want to set aside for your home loan?</h4>
+            <ul class="fieldlist_4">
+                <li><h5>Sum of total resources</h5> <span class="curr">$</span><input id="anschluss_3_used"
+                                                                                      type="text"/></li>
+            </ul>
+            <ul class="fieldlist_kommentar">
+                <li><h5>Comments</h5> <input class="comment" id="anschluss_3_kommentar" type="text"/></li>
+            </ul>
+        </div>
+        <a id="p46_btnprev" class="btn btn_l3" href="#">Back</a>
+        <a id="p46_btnnext" class="btn btn_r5" href="#">Continue</a>
+        <a id="p46_btnabort" class="btn btn_l2" href="#">Cancel</a>
+        <a id="p46_btntakeover" class="btn btn_r4" href="#">Apply</a>
+    </div>
+    <div id="p48" class="page">
+        <h2>Structure the components of your mortgage</h2>
+        <h3 class="h3_1">Our loans</h3>
+        <p>Being a high-quality supplier we offer you the possibility of combined mortgages as a result of a
+            comprehensive consulting service with our real estate specialists:</p>
+        <h3 class="h3_2">Elements for combined financing</h3>
+        <div id="p48_cb_1" class="checkbox"></div>
+        <div id="p48_cb_2" class="checkbox"></div>
+        <div id="p48_cb_3" class="checkbox"></div>
+        <div id="p48_cb_4" class="checkbox"></div>
+        <div id="p48_cb_5" class="checkbox"></div>
+        <h4 id="p48_btnlbs" class="h4_2">Building-Savings-Loan</h4>
+        <h4 id="p48_btnkfw" class="h4_3">Gov. subsidies</h4>
+        <h4 id="p48_btnhand" class="h4_4"></h4>
+        <input id="p48_i1_1" type="text"/>
+        <a id="p48_btnprev" class="btn btn_l2" href="#">Back</a>
+        <a id="p48_btntakeover" class="btn btn_r4" href="#">Apply</a>
+        <div id="p48_popup_hand" class="p48_popup">
+            <a id="p48_hand_btnclose" class="close" href="#">&times;</a>
+            <h3 class="h3_1">The 5 characteristics of the &ldquo;Handshake&rdquo;-Loan</h3>
+            <div class="p48_phasen">
+                <div class="p48_pwrap">
+                    <div class="p48_phase_1">
+                        <h4>Easy</h4>
+                        <p>The &ldquo;Handshake&rdquo;-Loan is our standard product for residential loans between
+                            $10,000 and $50,000.</p>
+                    </div>
+                    <div class="p48_phase_2">
+                        <h4>Convenient</h4>
+                        <p>
+                            You will receive the loan “in blank”: this means you won’t have to infer an additional
+                            property charge or get a notary to register the real estate. Thereby, you save a lot of time
+                            otherwise used for paper work, documents, certificates and running back and forth between
+                            the notary and other officials.
+                        </p>
+                    </div>
+                    <div class="p48_phase_3">
+                        <h4>Inexpensive</h4>
+                        <p>
+                            For smaller loans the expenses for the registration of the parcel of land and the notary
+                            fees are disproportionate to your financial project.<br/>
+                            With the &ldquo;Handshake&rdquo;-Loan you save these expenses.
+                        </p>
+                    </div>
+                    <div class="p48_phase_4">
+                        <h4>Fast</h4>
+                        <p>You will receive the decision and the provision of your loan on the spot. Basically, you can
+                            directly take the money with you saving you about 4 weeks!</p>
+                    </div>
+                    <div class="p48_phase_5">
+                        <h4>Familiar</h4>
+                        <p>Every customer we know and trust can receive the &ldquo;Handshake&rdquo;-Loan. Basic
+                            prerequisite is an existing checking account at &ldquo;Sparkasse Mittelmosel&rdquo; and
+                            existing residential property.</p>
+                    </div>
+                </div>
+            </div>
+            <a class="p48_pleft" href="#"></a>
+            <a class="p48_pright" href="#"></a>
+            <ul class="reasonlist">
+                <li>Easy</li>
+                <li>Convenient</li>
+                <li>Inexpensive</li>
+                <li>Fast</li>
+                <li>Familiar</li>
+            </ul>
+        </div>
+
+        <div id="p48_popup_lbs" class="p48_popup">
+            <a id="p48_lbs_btnclose" class="close" href="#">&times;</a>
+            <h3 class="h3_1">This type of combined financing consists of 3 phases:</h3>
+            <div class="p48_phasen">
+                <div class="p48_pwrap">
+                    <div class="p48_phase_1">
+                        <h4>Phase 1</h4>
+                        <p>You acquire a preliminary financing mortgage (e.g. 10 years fixed interest rate) with which
+                            you finance the acquisition/construction of your home. At the same time, you pay into a
+                            building savings contract of LBS. This contract gives you the right to obtain a future
+                            mortgage (say, in 10 years). Its interest rate will also already be fixed and guaranteed
+                            today. Due to the community of investors the interest rate will be very low.</p>
+                    </div>
+                    <div class="p48_phase_2">
+                        <h4>Phase 2</h4>
+                        <p>After a certain time (e.g. 10 years) of accumulating savings for the building-savings-account
+                            the building-savings-loan is ready to be granted. <br/>
+                            Its loan amount will be used to amortize the preliminary financing mortgage.</p>
+                    </div>
+                    <div class="p48_phase_3">
+                        <h4>Phase 3</h4>
+                        <p>You amortize the new building-savings-loan month after month and pay a guaranteed fixed
+                            interest rate until complete amortization.<br/>
+                            In Germany, you can additionally benefit from government support (&ldquo;Riester-Förderung&rdquo;).
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <a class="p48_pleft" href="#"></a>
+            <a class="p48_pright" href="#"></a>
+            <h3 class="h3_2">Possible motives for the use of an LBS Building-Savings-loan</h3>
+            <ul class="reasonlist">
+                <li class="li_1">Fixed interest rate for the entire loan duration</li>
+                <li>Affordable rates</li>
+                <li>Government support</li>
+            </ul>
+        </div>
+        <div id="p48_popup_kfw" class="p48_popup">
+            <a id="p48_kfw_btnclose" class="close" href="#">&times;</a>
+            <h3 class="h3_1">Government subsidies</h3>
+            <p>As part of our consulting process we check if you are eligible for any low interest funds. If so, we
+                support you by filing the necessary applications. </p>
+            <h3 class="h3_2">Promotional Programs</h3>
+            <ul class="reasonlist">
+                <li>Energy-efficient Refurbishment</li>
+                <li>Use of <br/>renewable <br/>energy</li>
+                <li>Senior-friendly Conversion</li>
+            </ul>
+        </div>
+    </div>
+    <div id="p50" class="page">
+        <h2>Calculate your possible monthly loan payments</h2>
+        <div id="fsumme_raten_header" class="fsumme_header">
+            <div class="field field_1">
+                <h3>Monthly income</h3>
+                <span class="mpe"></span>
+                <span class="curr">$</span>
+                <span class="value"></span>
+            </div>
+            <div class="field field_2">
+                <h3>Monthly expenses</h3>
+                <span class="mpe">-</span>
+                <span class="curr">$</span>
+                <span class="value"></span>
+            </div>
+            <div class="field field_3">
+                <h3>Safety net</h3>
+                <span class="mpe">-</span>
+                <span class="curr">$</span>
+                <span class="value"></span>
+            </div>
+            <div class="field field_4">
+                <h3>Monthly potential</h3>
+                <span class="mpe">=</span>
+                <span class="curr">$</span>
+                <span class="value"></span>
+            </div>
+        </div>
+        <div class="fsumme_fieldset fieldset_1">
+            <h4>What is your monthly income?</h4>
+            <ul class="fieldlist_1">
+                <li><h5>Income from salary</h5> <span class="curr">$</span><input id="raten_1_1" type="text"/></li>
+                <li><h5>Income from partner´s salary</h5> <span class="curr">$</span><input id="raten_1_2" type="text"/>
+                </li>
+                <li><h5>Income from investments and savings</h5> <span class="curr">$</span><input id="raten_1_3"
+                                                                                                   type="text"/></li>
+                <li><h5>Other income</h5> <span class="curr">$</span><input id="raten_1_4" type="text"/></li>
+            </ul>
+            <ul class="fieldlist_3">
+                <li><h5>Sum of monthly income</h5> <span class="curr">$</span><input id="raten_1_sum" type="text"/></li>
+            </ul>
+            <ul class="fieldlist_kommentar">
+                <li><h5>Comments</h5> <input class="comment" id="raten_1_kommentar" type="text"/></li>
+            </ul>
+        </div>
+        <div class="fsumme_fieldset fieldset_2">
+            <h4>What are your monthly expenses?</h4>
+            <ul class="fieldlist_1">
+                <li><h5>Cost of living</h5> <span class="curr">$</span><input id="raten_2_1" type="text"/></li>
+                <li><h5>Car related expenses</h5> <span class="curr">$</span><input id="raten_2_2" type="text"/></li>
+                <li><h5>Future utilities of new real estate</h5> <span class="curr">$</span><input id="raten_2_3"
+                                                                                                   type="text"/></li>
+                <li><h5>Insurance/savings/retirement provisions</h5> <span class="curr">$</span><input id="raten_2_4"
+                                                                                                       type="text"/>
+                </li>
+                <li><h5>Existing loans</h5> <span class="curr">$</span><input id="raten_2_5" type="text"/></li>
+                <li><h5>Other expenses</h5> <span class="curr">$</span><input id="raten_2_6" type="text"/></li>
+            </ul>
+            <ul class="fieldlist_3">
+                <li><h5>Total sum of expenses </h5> <span class="curr">$</span><input id="raten_2_sum" type="text"/>
+                </li>
+            </ul>
+            <ul class="fieldlist_4">
+                <li class="sepInputs"><h5>Number of people</h5>
+                    <input id="p50_i1_1" type="text" value="0" maxlength="1">
+                    <div class="up" id="p50_i1_up"></div>
+                    <div class="down" id="p50_i1_down"></div>
+                </li>
+                <li class="sepInputs"><h5>Number of cars</h5>
+                    <input id="p50_i2_1" type="text" value="0" maxlength="1">
+                    <div class="up" id="p50_i2_up"></div>
+                    <div class="down" id="p50_i2_down"></div>
+                </li>
+            </ul>
+        </div>
+        <div class="fsumme_fieldset fieldset_3">
+            <h4>How much do you want to contribute to your safety net?</h4>
+            <ul class="fieldlist_1">
+                <li><h5>Monthly contribution</h5> <span class="curr">$</span><input id="raten_3_1" type="text"/></li>
+            </ul>
+        </div>
+        <a id="p50_btnprev" class="btn btn_l3" href="#">Back</a>
+        <a id="p50_btnnext" class="btn btn_r5" href="#">Continue</a>
+        <a id="p50_btnabort" class="btn btn_l2" href="#">Cancel</a>
+        <a id="p50_btntakeover" class="btn btn_r4" href="#">Apply</a>
+    </div>
+    <div id="p51" class="page">
+        <h2>The 6 elements of our guarantee of trust</h2>
+
+        <a rel="el1" class="ela el1 current" href="#"><span>•</span> Reliable</a>
+        <a rel="el6" class="ela el6" href="#"><span>•</span> Connected</a>
+        <a rel="el5" class="ela el5" href="#"><span>•</span> Customized</a>
+        <a rel="el2" class="ela el2" href="#"><span>•</span> Local</a>
+        <a rel="el3" class="ela el3" href="#"><span>•</span> Experienced</a>
+        <a rel="el4" class="ela el4" href="#"><span>•</span> Competent</a>
+        <div class="el current" id="el1">
+            <h3><span>•</span>&nbsp;Reliable</h3>
+            <p>
+                Life does not always go as planned. Thus, problems with your home financing may arise. We are a reliable
+                partner. We won’t let you down. You can always come and talk to us. We will find a solution.
+            </p>
+        </div>
+
+        <div class="el" id="el6">
+            <h3><span>•</span>&nbsp;Connected</h3>
+            <p>
+                Our mission statement is: &ldquo;We simply know each other.&rdquo; With us you are not just another
+                customer among many - We want to know you and understand your needs. Because we want to know you, we are
+                also more dedicated and motivated to support you with the financing of your property.
+            </p>
+        </div>
+
+        <div class="el" id="el5">
+            <h3><span>•</span>&nbsp;Customized</h3>
+            <p>
+                Do not accept standardized solutions for your home loan. It must be as individual as you and your
+                project. We take our time to examine each individual case, balance pros and cons, and find the ideal
+                solution that fits your needs.
+            </p>
+        </div>
+
+        <div class="el" id="el2">
+            <h3><span>•</span>&nbsp;Close</h3>
+            <p>
+                As a regional player, we are always reliable and present when you need us. Our presence has four
+                dimensions: 1) We are there for you on a daily basis in over 50 branches. 2) We are at your disposal
+                even outside of business hours. 3) We offer home visits for personal consulting. 4) We will stay at your
+                side as a reliable partner throughout the entire term of the mortgage.
+            </p>
+        </div>
+
+        <div class="el" id="el3">
+            <h3><span>•</span>&nbsp;Experienced</h3>
+            <p>
+                Everyone knows: The more often you do something, the better you get at it. We have provided mortgages
+                for more than 150 years in this region - we are the market leader in this region.
+            </p>
+        </div>
+
+        <div class="el" id="el4">
+            <h3><span>•</span>&nbsp;Competent</h3>
+            <p>
+                Our consultants in the Real Estate Department know what they are doing. We strive daily to improve our
+                value proposition by offering you the latest government sponsored programs together with our in house
+                insurance solutions to make your mortgage financial solution as easy and secure as possible.
+            </p>
+        </div>
+        <a id="p51_btnprev" class="btn btn_l1" href="#">Back</a>
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,14 @@
+{% extends 'insurance/base.html' %}
+
+{% load crispy_forms_tags %}
+
+{% block content %}
+<p>
+  Progress %:0
+</p>
+  <form method="post">
+    {% csrf_token %}
+    {{ form | crispy }}
+    <button type="submit">Next</button>
+  </form>
+{% endblock %}

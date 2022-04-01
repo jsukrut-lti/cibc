@@ -1,0 +1,9 @@
+.objection-handler-hide-me {
+    display : none
+}
+
+.perception-icon-height {
+    height: 25px;
+    display: inline-block;
+    cursor: pointer;
+}

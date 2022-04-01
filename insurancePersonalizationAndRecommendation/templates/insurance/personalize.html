@@ -1,0 +1,208 @@
+<!doctype html>
+{% load static %}
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <title>{{title}}</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+
+    <style>
+      .bd-placeholder-img {
+        font-size: 1.125rem;
+        text-anchor: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        user-select: none;
+      }
+
+      @media (min-width: 768px) {
+        .bd-placeholder-img-lg {
+          font-size: 3.5rem;
+        }
+      }
+    </style>
+
+
+    <!-- Custom styles for this template -->
+    <link href="{% static 'css/personalize.css' %}" rel="stylesheet">
+
+    <title>Personalization</title>
+</head>
+
+<body>
+
+
+    <!-- As a link -->
+    <nav class="navbar navbar-light bg-light header">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#"><img src="{% static 'img/skp_small_logo.png' %}" height="100" width="100"></a>
+        </div>
+    </nav>
+    <div class="container-fluid">
+        <div class="header-btns">
+            <a class="header--back">Back</a>
+            <a class="header--start">Start over</a>
+        </div>
+
+        
+        <section>
+            <h1 class="page--title">Tell us about yourself and financially dependent loved ones?</h1>
+            <p class="page--options">(Optional)</p>
+            <div class="text--wrapper">
+                <p> <b> Whether you're single, have a partner or a family to care for, </b> planning ahead with
+                    Mortgage Protection can have a <b>positive impact on you and those who depend on you financially.
+                    </b>
+                </p>
+                <p>Your response is optional and <b> does not impact your eligibility for coverage or affect your
+                        premium quote </b> however, it can help you think about loved ones that may rely on your
+                    financial decisions.</p>
+
+                <p>Select all that apply</p>
+            </div>
+
+
+            <div class="row">
+                <div class="col-md-2 offset-md-1">
+                    <div class="options--box-selected">
+
+                        <img class="options--boxIcon" src="{% static 'img/person.png' %}">
+                        <p class="options--boxText">Myself</p>
+                    </div>
+            <div id="myself_card" class="card collapse show">
+		    <div class="input-group mb-3">
+		      <input type="text" class="form-control" placeholder="First Name" aria-label="First Name" aria-describedby="basic-addon2" value="{{personalize_context_object.primaryFirstName}}">
+		    </div>
+            <div class="input-group mb-3">
+		      <input type="text" class="form-control" placeholder="Last Name" aria-label="Last Name" aria-describedby="basic-addon2" value="{{ personalize_context_object.primaryLastName}}">
+		    </div>
+		    <div class="input-group mb-3">
+		      <input type="text" class="form-control" placeholder="Age" aria-label="Age" aria-describedby="basic-addon2"  value="{{ personalize_context_object.primaryAge}}">
+		      <span class="input-group-text" id="basic-addon2">#</span>
+		    </div>
+		    <div class="input-group mb-3">  
+		      <select class="form-select form-select-lg mb-3" aria-label="Gender" aria-describedby="basic-addon2">
+			<option >Gender</option>
+			<option value="1">Male</option>
+			<option selected value="2">Female</option>
+			<option value="3">Other</option>
+		      </select>
+		    </div>
+            </div>
+                    </div>
+                <div class="col-md-2">
+                    <div id="partner_box" class="options--box">
+                        <img class="options--boxIcon" src="{% static 'img/wedding-ring.png' %}">
+                        <p class="options--boxText">My partner</p>
+                    </div>
+            <div id="partner_card" class="card collapse"  >
+		    <div class="input-group mb-3">
+		      <input type="text" class="form-control" placeholder="First Name" aria-label="Name" aria-describedby="basic-addon2">
+		    </div>
+                <div class="input-group mb-3">
+		      <input type="text" class="form-control" placeholder="Last Name" aria-label="Name" aria-describedby="basic-addon2">
+		    </div>
+		    <div class="input-group mb-3">
+		      <input type="text" class="form-control" placeholder="Age" aria-label="Age" aria-describedby="basic-addon2">
+		      <span class="input-group-text" id="basic-addon2">#</span>
+		    </div>
+		    <div class="input-group mb-3">  
+		      <select class="form-select form-select-lg mb-3" aria-label="Gender" aria-describedby="basic-addon2">
+			<option selected>Gender</option>
+			<option value="1">Male</option>
+			<option value="2">Female</option>
+			<option value="3">Other</option>
+		      </select>
+		    </div>
+            </div>
+                </div>
+                <div class="col-md-2">
+                    <div id="children_box" class="options--box">
+                        <img class="options--boxIcon" src="{% static 'img/family.svg' %}">
+                        <p class="options--boxText">My children</p>
+                    </div>
+            <div id="children_card" class="card collapse">
+		    <div class="input-group mb-3">  
+		      <select class="form-select form-select-lg mb-3" aria-label="Number of Children" aria-describedby="basic-addon2">
+			<option selected>0</option>
+			<option value="1">1</option>
+			<option value="2">2</option>
+			<option value="3">3</option>
+			<option value="4">4 or more</option>			
+		      </select>
+		    </div>
+            </div>
+                </div>
+                <div class="col-md-2">
+                    <div id="older_box"  class="options--box">
+                        <img class="options--boxIcon" src="{% static 'img/couple.svg' %}">
+                        <p class="options--boxText">Older relatives</p>
+                    </div>
+            <div id="older_card" class="card collapse">
+		    <div class="form-check form-switch">
+		      <input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked" unchecked>
+		      <label class="form-check-label" for="flexSwitchCheckChecked">Older relatives</label>
+		    </div>
+                </div>
+                </div>
+                <div class="col-md-2">
+                    <div id="otherLoved_box"  class="options--box">
+                        <img class="options--boxIcon" src="{% static 'img/heart.svg' %}">
+                        <p class="options--boxText">Other loved ones</p>
+                    </div>
+                <div id="otherLoved_card" class="card collapse">
+		    <div class="form-check form-switch">
+		      <input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked" unchecked>
+		      <label class="form-check-label" for="flexSwitchCheckChecked">Other loved ones</label>
+		    </div>
+                </div>
+                    </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4 offset-md-2">
+                    <a href="/insurance/insConvo/{{personalize_context_object.pk}}"><button class="btn--skip">Skip</button></a>
+                </div>
+                <div class="col-md-4 ">
+                    <a href="/insurance/insConvo/{{personalize_context_object.pk}}"><button class="btn--next">Next</button></a>
+                </div>
+            </div>
+            <br>
+            
+            <p></p>
+
+        </section>
+    </div>
+    <footer class="footer">
+        <ul class="footer--list">
+            <li class="footer--item"><a class="footer--link"
+                    href="#"
+                    target="_blank'">Privacy &amp; Security</a></li>
+            <li class="footer--item"><a class="footer--link" href="#""
+                    target="_blank">Legal</a></li>
+            <li class="footer--item"><a class="footer--link"
+                    href="#"
+                    target="_blank">Accessibility</a></li>
+            <li class="footer--item"><a class="footer--link"
+                    href="#" target="_blank">Ad
+                    Choices &amp; Personalization</a></li>
+        </ul>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-p34f1UUtsS3wqzfto5wAAmdvj+osOnFyQFpp4Ua3gs/ZVWx6oOypYoCJhGGScy+8" crossorigin="anonymous">
+    </script>
+    <script src="{% static 'js/personalize.js' %}"></script>
+
+
+</body>
+
+</html>

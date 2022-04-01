@@ -1,0 +1,15 @@
+{% extends "_base.html" %}
+
+{% block content %}
+    <h2>Stories</h2>
+
+
+    <a href="/story/story/create/">Add a story</a>
+    <ul>
+        {% for story in object_list %}
+            <li><a href="/story/story/{{ story.id }}/">{{ story.storyName }}</a>
+                <a href="/story/story/{{ story.id }}/delete">delete</a>
+            </li>
+        {% endfor %}
+    </ul>
+{% endblock %}

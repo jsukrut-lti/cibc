@@ -1,0 +1,92 @@
+{% extends "insurance/base_insConvo.html" %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% block head %}
+    {% include 'insurance/head_insConvo.html' %}
+{% endblock head %}
+
+{% block header %}
+    {% include 'insurance/header_insConvo.html' %}
+{% endblock header %}
+
+
+{% block content %}
+<body>
+<header class="bd-header bg-light py-3 d-flex align-items-stretch ">
+  <div class="container-fluid d-flex align-items-center">
+    <h1 class="d-flex align-items-center fs-4 mb-0">
+      <img src="{% static 'img/skp_small_logo.png' %}" width="40" height="40" class="me-3" >
+      Insurance Discussion Sheet
+    </h1>
+    <a href="/insurance/dashbaord" class="ms-auto link-light" hreflang="ar">Insurance Dashboard</a>
+  </div>
+</header>
+<aside class="bd-aside sticky-xl-top text-muted align-self-start mb-3 mb-xl-5 px-2">
+  <h2 class="h6 pt-4 pb-3 mb-4 border-bottom">Quick Nav</h2>
+  <nav class="small" id="toc">
+    <ul class="list-unstyled">
+      <li class="my-2">
+        <button class="btn d-inline-flex align-items-center collapsed" data-bs-toggle="collapse" aria-expanded="false" data-bs-target="#borrower-collapse" aria-controls="borrower-collapse">Borrower</button>
+        <ul class="list-unstyled ps-3 collapse" id="borrower-collapse">
+          <li><a class="d-inline-flex align-items-center rounded" href="#primary">Primary</a></li>
+          <li><a class="d-inline-flex align-items-center rounded" href="#co_borrow">Co-borrower</a></li>
+          <li><a class="d-inline-flex align-items-center rounded" href="#loved_ones">Financially dependent loved ones</a></li>
+        </ul>
+      </li>
+      <li class="my-2">
+        <button class="btn d-inline-flex align-items-center collapsed" data-bs-toggle="collapse" aria-expanded="false" data-bs-target="#financials-collapse" aria-controls="financials-collapse">Financials</button>
+        <ul class="list-unstyled ps-3 collapse" id="financials-collapse">
+          <li><a class="d-inline-flex align-items-center rounded" href="#creditProduct">Credit product</a></li>
+          <li><a class="d-inline-flex align-items-center rounded" href="#incomeExpenseSavingsTotals">Income, expense and savings totals</a></li>
+          <li><a class="d-inline-flex align-items-center rounded" href="#incomeEstimation">Income Estimations</a></li>
+          <li><a class="d-inline-flex align-items-center rounded" href="#expenseEstimation">Expense Estimations</a></li>
+          <li><a class="d-inline-flex align-items-center rounded" href="#savingsEstimation">Savings Estimations</a></li>
+        </ul>
+      </li>
+	  <li><a class="d-inline-flex align-items-center rounded" href="#insurance">Other Insurance</a></li>
+      <li><a class="d-inline-flex align-items-center rounded" href="/insurance/presentOptions_GBB/{{InsuranceDiscussion.pk}}/">Personalized gap and protection</a></li>
+    </ul>
+  </nav>
+</aside>
+
+
+<div class="bd-cheatsheet container-fluid bg-body">
+  <section id="borrower">
+	  <h2 class="sticky-xl-top fw-bold pt-3 pt-xl-5 pb-2 pb-xl-3">Client</h2>
+
+
+
+    {% for article in borrower_articles %}
+       {{article}}
+    {% endfor %}
+
+  </section>
+
+
+   <section id="financials">
+    <h2 class="sticky-xl-top fw-bold pt-3 pt-xl-5 pb-2 pb-xl-3">Financials</h2>
+
+     {% for article in financial_articles %}
+       {{article}}
+     {% endfor %}
+
+  </section>
+
+
+   <section id="insurance">
+    <h2 class="sticky-xl-top fw-bold pt-3 pt-xl-5 pb-2 pb-xl-3">Current Insurance</h2>
+
+     {% for article in insurance_articles %}
+       {{article}}
+     {% endfor %}
+
+  </section>
+
+
+</div>
+
+
+    <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+    <script src="{% static 'js/cheatsheet.js' %}"></script>
+{% endblock %}

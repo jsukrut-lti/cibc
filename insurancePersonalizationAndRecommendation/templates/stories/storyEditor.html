@@ -1,0 +1,25 @@
+<!-- templates/home.html -->
+{% extends 'stories/base.html' %}
+{% load static %}
+
+{% block title %}Home{% endblock title %}
+
+{% block content %}
+
+<img src="{% static 'img/logo.svg' %}" alt="My image">
+  <h1>SKP Insurance</h1>
+  {% if user.is_authenticated %}
+    Hi {{ user.username }}
+<p>
+    <a href="/insurance/InsuranceConversationAlbum">Start an insurance conversation</a>
+  </p>
+<p>
+    <a href="/admin">Log into admin module</a>
+</p>
+<p>
+    <a href="/auth/logout">Click to log out</a>
+</p>
+  {% else %}
+    <a href="/auth/login">Click to login</a>
+  {% endif %}
+{% endblock content %}
