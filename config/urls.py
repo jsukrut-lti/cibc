@@ -30,5 +30,5 @@ urlpatterns = [
     path('about/', TemplateView.as_view(template_name="about.html")),
     path('compass_start/', TemplateView.as_view(template_name="compass_start.html"), name='compass_start'),
     path('mortgage_product/', TemplateView.as_view(template_name="mortgage_product/mortgage.html"), name='mortgage'),
-
+    path('insurance_api/',include('insurancePersonalizationAndRecommendation.insuranceProducts.urls'))
 ]
