@@ -287,7 +287,7 @@ class InsuranceDiscussionCreate(APIView):
         serilalizer = InsuranceDiscussionSerializers(data=request.data)
         if serilalizer.is_valid():
             serilalizer.save()
-            return Response({"result": "success", "data": serilalizer.data,
+            return Response({"result": "success", "data": serilalizer.validated_data,
                              "status": status.HTTP_200_OK})
         else:
             return Response({"result": "error", "data": serilalizer.errors,
@@ -297,11 +297,11 @@ class InsuranceDiscussionCreate(APIView):
 class InsuranceDiscussionList(APIView):
 
     def get(self, request):
-        insurance_discussions = InsuranceDiscussion.objects.all()
+        insurance_discussions = InsuranceDiscussion.objects.all().values()
         serializer = InsuranceDiscussionSerializers(insurance_discussions, many=True)
         if insurance_discussions:
             return Response({"result": "success",
-                             "data": list(serializer.data),
+                             "data": insurance_discussions,
                              "status": status.HTTP_200_OK})
         else:
             return Response({"result": "Data Not founded"})
@@ -310,11 +310,11 @@ class InsuranceDiscussionList(APIView):
 class InsuranceDiscussionGet(APIView):
 
     def get(self, request):
-        insurance_discussion = InsuranceDiscussion.objects.filter(id=request.GET['id'])
+        insurance_discussion = InsuranceDiscussion.objects.filter(id=request.GET['id']).values()
         serializer = InsuranceDiscussionSerializers(insurance_discussion, many=True)
         if insurance_discussion:
             return Response({"result": "success",
-                             "data": list(serializer.data),
+                             "data": insurance_discussion,
                              "status": status.HTTP_200_OK})
         else:
             return Response({"result": "Data Not founded"})
@@ -322,11 +322,25 @@ class InsuranceDiscussionGet(APIView):
 
 class InsuranceDiscussionDelete(APIView):
 
-    def get(self, request):
+    def delete(self, request):
         insurance_discussion = InsuranceDiscussion.objects.filter(id=request.GET['id'])
         if insurance_discussion:
+            insurance_discussion.delete()
             return Response({"result": "success",
-                             "data": list(serializer.data),
+                             "status": status.HTTP_200_OK})
+        else:
+            return Response({"result": "Data Not founded"})
+
+
+class InsuranceDiscussionUpdate(APIView):
+
+    def put(self, request):
+        dis = InsuranceDiscussion.objects.get(id=request.GET['id'])
+        serializer = InsuranceDiscussionSerializers(instance=dis, data=request.data, partial=False)
+        if serializer.is_valid(raise_exception=True):
+            serializer.save()
+            return Response({"result": "updated",
+                             "data": serializer.validated_data,
                              "status": status.HTTP_200_OK})
         else:
             return Response({"result": "Data Not founded"})
