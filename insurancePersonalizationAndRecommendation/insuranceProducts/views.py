@@ -277,21 +277,21 @@ class InsuranceDiscussionAPI(APIView):
                              "data": list(serializer.data),
                              "status": status.HTTP_200_OK})
         else:
-            return Response({"result": "Data Not founded"})
+            return Response({"result": "No data found"})
 
 
 class InsuranceDiscussionCreate(APIView):
 
     def post(self, request):
         print("----",request.data)
-        serilalizer = InsuranceDiscussionSerializers(data=request.data)
-        if serilalizer.is_valid():
-            serilalizer.save()
-            return Response({"result": "success", "data": serilalizer.validated_data,
-                             "status": status.HTTP_200_OK})
+        serializer = InsuranceDiscussionSerializers(data=request.data)
+        if serializer.is_valid():
+            save_rec = serializer.save()
+            return Response(data={"result": "success", "record_id": save_rec.id},
+                            status=status.HTTP_200_OK)
         else:
-            return Response({"result": "error", "data": serilalizer.errors,
-                             "status": status.HTTP_400_BAD_REQUEST})
+            return Response(data={"result": "error", "data": serializer.errors},
+                            status=status.HTTP_400_BAD_REQUEST)
 
 
 class InsuranceDiscussionList(APIView):
@@ -300,11 +300,11 @@ class InsuranceDiscussionList(APIView):
         insurance_discussions = InsuranceDiscussion.objects.all().values()
         serializer = InsuranceDiscussionSerializers(insurance_discussions, many=True)
         if insurance_discussions:
-            return Response({"result": "success",
-                             "data": insurance_discussions,
-                             "status": status.HTTP_200_OK})
+            return Response(data={"result": "success", "data": insurance_discussions},
+                            status=status.HTTP_200_OK)
         else:
-            return Response({"result": "Data Not founded"})
+            return Response(data={"result": "No data found"},
+                            status=status.HTTP_400_BAD_REQUEST)
 
 
 class InsuranceDiscussionGet(APIView):
@@ -313,11 +313,11 @@ class InsuranceDiscussionGet(APIView):
         insurance_discussion = InsuranceDiscussion.objects.filter(id=request.GET['id']).values()
         serializer = InsuranceDiscussionSerializers(insurance_discussion, many=True)
         if insurance_discussion:
-            return Response({"result": "success",
-                             "data": insurance_discussion,
-                             "status": status.HTTP_200_OK})
+            return Response(data={"result": "success", "data": insurance_discussion},
+                            status=status.HTTP_200_OK)
         else:
-            return Response({"result": "Data Not founded"})
+            return Response(data={"result": "No data found"},
+                            status=status.HTTP_400_BAD_REQUEST)
 
 
 class InsuranceDiscussionDelete(APIView):
@@ -326,10 +326,11 @@ class InsuranceDiscussionDelete(APIView):
         insurance_discussion = InsuranceDiscussion.objects.filter(id=request.GET['id'])
         if insurance_discussion:
             insurance_discussion.delete()
-            return Response({"result": "success",
-                             "status": status.HTTP_200_OK})
+            return Response(data={"result": "success"},
+                            status=status.HTTP_200_OK)
         else:
-            return Response({"result": "Data Not founded"})
+            return Response(data={"result": "No data found"},
+                            status=status.HTTP_400_BAD_REQUEST)
 
 
 class InsuranceDiscussionUpdate(APIView):
@@ -339,8 +340,8 @@ class InsuranceDiscussionUpdate(APIView):
         serializer = InsuranceDiscussionSerializers(instance=dis, data=request.data, partial=False)
         if serializer.is_valid(raise_exception=True):
             serializer.save()
-            return Response({"result": "updated",
-                             "data": serializer.validated_data,
-                             "status": status.HTTP_200_OK})
+            return Response(data={"result": "success", "data": serializer.validated_data},
+                            status=status.HTTP_200_OK)
         else:
-            return Response({"result": "Data Not founded"})
+            return Response(data={"result": "No data found"},
+                            status=status.HTTP_400_BAD_REQUEST)
