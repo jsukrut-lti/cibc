@@ -14,10 +14,25 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, re_path
 from django.conf.urls import include
 from django.views.generic import TemplateView
+from rest_framework import permissions
+from drf_yasg.views import get_schema_view
+from drf_yasg import openapi
 
+schema_view = get_schema_view(
+   openapi.Info(
+      title="CIBC API",
+      default_version='v1',
+      description="Test description",
+      terms_of_service="127.0.0.1:8000",
+      contact=openapi.Contact(email="test@test.com"),
+      license=openapi.License(name="BSD License"),
+   ),
+   public=True,
+   permission_classes=[permissions.AllowAny],
+)
 
 urlpatterns = [
     path('grappelli/', include('grappelli.urls')),  # grappelli URLS
@@ -30,5 +45,8 @@ urlpatterns = [
     path('about/', TemplateView.as_view(template_name="about.html")),
     path('compass_start/', TemplateView.as_view(template_name="compass_start.html"), name='compass_start'),
     path('mortgage_product/', TemplateView.as_view(template_name="mortgage_product/mortgage.html"), name='mortgage'),
-    path('insurance_api/',include('insurancePersonalizationAndRecommendation.insuranceProducts.urls'))
+    path('insurance_api/',include('insurancePersonalizationAndRecommendation.insuranceProducts.urls')),
+    re_path(r'^swagger(?P<format>\.json|\.yaml)$', schema_view.without_ui(cache_timeout=0), name='schema-json'),
+    re_path(r'^swagger/$', schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui'),
+    re_path(r'^redoc/$', schema_view.with_ui('redoc', cache_timeout=0), name='schema-redoc'),
 ]

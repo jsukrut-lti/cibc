@@ -17,5 +17,6 @@ urlpatterns = [
     path('ins_dis_list/',InsuranceDiscussionList.as_view()),
     path('ins_dis_get/',InsuranceDiscussionGet.as_view()),
     path("ins_dis_del/",InsuranceDiscussionDelete.as_view()),
-    path("ins_dis_update/",InsuranceDiscussionUpdate.as_view())
+    path("ins_dis_update/",InsuranceDiscussionUpdate.as_view()),
+
 ]
