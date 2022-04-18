@@ -2,7 +2,8 @@ from django.urls import path
 from .views import InsuranceConvoView,PersionalizeCreateView,PersionalizeUpdateView,\
     InsuranceConvoUpdateView,PresentmentUpdateView,PresentmentUpdateViewGBB,\
     InsuranceDiscussionCreate,InsuranceDiscussionList,InsuranceDiscussionGet,\
-    InsuranceDiscussionDelete, InsuranceDiscussionUpdate
+    InsuranceDiscussionDelete, InsuranceDiscussionUpdate,InsuranceWelcomeView,\
+    InsuranceTermConditionView, InsuranceCallback
 from django.views.generic import TemplateView
 
 urlpatterns = [
@@ -18,5 +19,8 @@ urlpatterns = [
     path('ins_dis_get/',InsuranceDiscussionGet.as_view()),
     path("ins_dis_del/",InsuranceDiscussionDelete.as_view()),
     path("ins_dis_update/",InsuranceDiscussionUpdate.as_view()),
+    path('welcome/', InsuranceWelcomeView.as_view(), name='ins-convo-welcome'),
+    path('termCondition/', InsuranceTermConditionView.as_view(), name='ins-convo-tc'),
+    path('callback/', InsuranceCallback.as_view(), name='ins-callback'),
 
 ]

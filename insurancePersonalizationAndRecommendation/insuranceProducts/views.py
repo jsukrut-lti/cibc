@@ -13,6 +13,7 @@ from rest_framework.response import Response
 from rest_framework import status, permissions, serializers
 from .serializers import InsuranceDiscussionSerializers, InsuranceProductSerializers
 from drf_yasg.utils import swagger_auto_schema
+import sys
 
 # Get an instance of a logger
 logger = logging.getLogger(__name__)
@@ -257,16 +258,75 @@ class InsuranceConvoView(View):
         return render(request, template_name=self.template_name, context=self.context)
         # return self.getImpl(request)
 
+
 class InsuranceConvoUpdateView(SingleObjectMixin, InsuranceConvoView):
     queryset = InsuranceDiscussion.objects.all()
 
     def get(self, request, *args, **kwargs):
         # Look up the object we're interested in.
+
+        print(request)
+        print(args,kwargs)
+
+        self.object = self.get_object()
+        return super().getImpl(request, instance=self.object)
+
+    def str_to_class(self,classname):
+        return getattr(sys.modules[__name__], classname)
+
+    def post(self, request, *args, **kwargs):
+
+        submit_from = request.POST.get("submit").split()[1]
+        fields = []
+
+        if submit_from == "Personalize":
+            fields = ["primaryFirstName","primaryLastName","primaryAge","primaryGender","coFirstName","coLastName","coAge","coGender"]
+        else:
+            form_dict = {'primary':'PrimaryInsuranceDiscussionForm','co_borrow':'CoBorrowerInsuranceDiscussionForm',
+                        'loved_ones':'LovedOnesInsuranceDiscussionForm','creditProduct':'CreditProductInsuranceDiscussionForm',
+                        'incomeExpenseSavingsTotals':'IncomeExpenseSvgTotalsInsuranceDiscussionForm',
+                        'expenseEstimation':'ExpensesEstInsuranceDiscussionForm',
+                        'savingsEstimation':'SavingsEstOnesInsuranceDiscussionForm',
+                        'otherInsurance':'OtherInsuranceInsuranceDiscussionForm'}
+
+            formfield_val = form_dict[submit_from]
+
+            class_name = self.str_to_class(formfield_val)
+
+            fields = class_name.Meta.fields
+
+        parent_data = {}
+        for col in fields:
+            parent_data[col] = request.POST.get(col,False)
+
+        insuranceUpdate = InsuranceDiscussion.objects.filter(pk=int(kwargs.get("pk"))).update(**parent_data)
+
+        queryset = InsuranceDiscussion.objects.all()
         self.object = self.get_object()
         return super().getImpl(request, instance=self.object)
 
 
+class InsuranceWelcomeView(View):
+    template_name = 'ci_tool/welcome-EL.html'
 
+    def get(self, request, *args, **kwargs):
+        return render(request, template_name=self.template_name)
+
+
+class InsuranceTermConditionView(View):
+    template_name = 'ci_tool/TermsAndConditions.html'
+
+    def get(self, request, *args, **kwargs):
+        return render(request, template_name=self.template_name)
+
+
+class InsuranceCallback(View):
+
+    def get(self, request, *args, **kwargs):
+        print(kwargs)
+
+    def post(self, request, *args, **kwargs):
+        print("request")
 
 
 class InsuranceDiscussionAPI(APIView):
