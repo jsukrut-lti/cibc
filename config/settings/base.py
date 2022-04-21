@@ -30,7 +30,7 @@ SECRET_KEY = 'z_l0dnkacydps)ust146uysxr#3i3&8j)u%y$(ma7^w7=&+7v*'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*',]
 
 AVATARS_SERVER_URL = 'http://127.0.0.1:3000'
 
@@ -54,6 +54,8 @@ INSTALLED_APPS = [
     'drf_yasg',
     'rest_framework.authtoken',
     'rest_framework_swagger',
+    'sslserver',
+    'django_extensions',
 ]
 
 MIDDLEWARE = [
