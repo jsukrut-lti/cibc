@@ -58,6 +58,7 @@ INSTALLED_APPS = [
     'allauth.socialaccount',
     'allauth.socialaccount.providers.google',
     'django.contrib.sites',
+    'river'
 ]
 
 MIDDLEWARE = [

@@ -5,6 +5,60 @@ from .models import *
 from django.urls import reverse
 from django.utils.html import format_html
 from django.conf import settings
+from django.utils.translation import gettext, gettext_lazy as _
+
+ADDITION = 1
+CHANGE = 2
+DELETION = 3
+
+ACTION_FLAG_CHOICES = (
+    (ADDITION, _('Addition')),
+    (CHANGE, _('Change')),
+    (DELETION, _('Deletion')),
+)
+
+from django.contrib.admin.models import LogEntry
+from django.contrib.admin.options import get_content_type_for_model
+from django.contrib.admin.utils import flatten_fieldsets
+
+class ModelAdmin(admin.ModelAdmin):
+    # form = None
+    # def save_model(self, request, obj, form, change):
+    #     """
+    #     Given a model instance save it to the database.
+    #     """
+    #     obj.save()
+    def get_changed_content(self):
+
+        # col_name = [i['changed']['fields'][0] for i in message]
+        up_content_keys = str()
+        ff = self.form.instance
+        f = self.form.changed_data
+        for col in f:
+            # format_col = ''.join([s.title() for s in col.split()])
+            # format_col = format_col[0].lower() + format_col[1:-1]
+            up_content_keys += col
+            up_content_keys += ':' + getattr(object, col)
+        return up_content_keys
+
+
+    def log_change(self, request, object, message):
+        """
+        Log that an object has been successfully added.
+
+        The default implementation creates an admin LogEntry object.
+        """
+        print(object)
+        LogEntry.objects.log_action(
+            user_id=request.user.pk,
+            content_type_id=get_content_type_for_model(object).pk,
+            object_id=object.pk,
+            object_repr=self.get_changed_content(),
+            action_flag=CHANGE,
+            change_message=message,
+        )
+        super(ModelAdmin, self).log_change(request, object, message)
+
 
 @admin.register(Character)
 class CharactersModelAdmin(admin.ModelAdmin):
@@ -57,8 +111,14 @@ class StoryCharactersModelAdmin(admin.ModelAdmin):
 
 
 @admin.register(Objection)
-class StoryCharactersModelAdmin(admin.ModelAdmin):
-    list_display = ['objectionName','primaryIssueOrConcern', 'created', 'modified']
+class StoryCharactersModelAdmin(ModelAdmin):
+    list_display = ['objectionName','primaryIssueOrConcern', 'created', 'modified', 'get_status']
+
+    def get_status(self, obj):
+        return obj.my_state_field.label if obj.my_state_field else 0
+
+    get_status.label = 'status'
+
 
 @admin.register(ObjectionHandle)
 class StoryCharactersModelAdmin(admin.ModelAdmin):
