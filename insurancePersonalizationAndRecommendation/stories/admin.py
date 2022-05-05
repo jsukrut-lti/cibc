@@ -6,7 +6,7 @@ from django.urls import reverse
 from django.utils.html import format_html
 from django.conf import settings
 
-git @admin.register(Character)
+@admin.register(Character)
 class CharactersModelAdmin(admin.ModelAdmin):
     list_display = ['characterName', 'backstory', 'characterImage','created', 'modified']
     #fields = [Character._meta.get_fields()]
