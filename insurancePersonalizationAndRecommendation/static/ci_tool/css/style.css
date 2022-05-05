@@ -1,0 +1,822 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap");
+* {
+  margin: 0;
+  padding: 0;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  font-family: 'Roboto', sans-serif;
+}
+
+body {
+  background-color: #F2F3F2;
+}
+
+a {
+  text-decoration: none;
+}
+
+.btnCIBC.CIBC_blue, .btnCIBC.btnDefault.active {
+  background-color: #0F67A1;
+  color: #FFFFFF;
+  -webkit-box-shadow: inset 0 0 0 0 #006B92;
+          box-shadow: inset 0 0 0 0 #006B92;
+}
+
+.btnCIBC.CIBC_blue:hover, .btnCIBC.btnDefault.active:hover {
+  -webkit-box-shadow: inset 0 0 0 50px #006B92;
+          box-shadow: inset 0 0 0 50px #006B92;
+}
+
+.btnCIBC {
+  border-radius: 20px;
+  height: 36px;
+  padding: 5px 55px;
+  -webkit-transition: 0.3s ease;
+  transition: 0.3s ease;
+}
+
+.btnCIBC.launchBtn {
+  background-color: #18A0FB;
+  color: #FFFFFF;
+  -webkit-box-shadow: inset 0 0 0 0 #2494df;
+          box-shadow: inset 0 0 0 0 #2494df;
+}
+
+.btnCIBC.launchBtn:hover {
+  -webkit-box-shadow: inset 0 0 0 50px #2494df;
+          box-shadow: inset 0 0 0 50px #2494df;
+}
+
+.btnCIBC.btnDefault {
+  background-color: #C4C4C4;
+  font-size: 12px;
+  font-weight: bold;
+}
+
+/*CSS for Welcome, Thanks, Exit Survey, T&C Start*/
+.welcomeScreen {
+  background-image: url(/images/welcomeBG.svg);
+  background-repeat: no-repeat;
+  background-size: 100%;
+  background-position: bottom;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  background-color: #FFFFFF;
+  height: 100vh;
+}
+
+.welcomeScreen .content {
+  max-width: 750px;
+  width: 100%;
+  margin-top: 30px;
+}
+
+.welcomeScreen .content h1 {
+  font-size: 96px;
+  color: #18A0FB;
+  font-weight: 300;
+}
+
+.welcomeScreen .content .btn {
+  margin-top: 80px;
+}
+
+.welcomeScreen .content .contactSec p {
+  font-size: 32px;
+  font-weight: 300;
+  color: #18A0FB;
+}
+
+.welcomeScreen .content .contactSec .contactDetails {
+  margin-top: 25px;
+  display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-flow: column;
+          flex-flow: column;
+}
+
+.welcomeScreen .content .contactSec .contactDetails .mail,
+.welcomeScreen .content .contactSec .contactDetails .call {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  gap: 15px;
+}
+
+.welcomeScreen .content .contactSec .contactDetails .mail span, .welcomeScreen .content .contactSec .contactDetails .mail a,
+.welcomeScreen .content .contactSec .contactDetails .call span,
+.welcomeScreen .content .contactSec .contactDetails .call a {
+  font-size: 24px;
+  color: #18A0FB;
+  font-weight: 400;
+}
+
+.welcomeScreen .content .contactSec .contactDetails .mail a:hover,
+.welcomeScreen .content .contactSec .contactDetails .call a:hover {
+  text-decoration: underline;
+}
+
+.header {
+  position: relative;
+}
+
+.header .fixHeader {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  background: #FFFFFF;
+  height: 60px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-shadow: 0px 2px 5px #B7B3B3;
+          box-shadow: 0px 2px 5px #B7B3B3;
+}
+
+.header .fixHeader .logo {
+  padding-left: 30px;
+}
+
+.thankYouPage .content {
+  max-width: 1200px;
+}
+
+.thankYouPage .content .customBorder {
+  border-right: 1px solid #B7B3B3;
+}
+
+.thankYouPage .content .feedbackContent p {
+  font-size: 24px;
+  color: #18A0FB;
+  font-weight: 500;
+}
+
+.thankYouPage .content .feedbackContent .form-check input {
+  margin-right: 15px;
+  cursor: pointer;
+}
+
+.thankYouPage .content .feedbackContent .form-check label {
+  margin-left: 3px;
+  color: #18A0FB;
+  cursor: pointer;
+}
+
+.thankYouPage .content .feedbackContent .form-check .happyFace {
+  margin-left: 9px;
+}
+
+.thankYouPage .content .feedbackContent .form-check .happyFace label {
+  margin-left: 8px;
+}
+
+.thankYouPage .content .launchBtn {
+  margin-top: 15px;
+}
+
+.thankYouPage .content .contactSec .contactDetails {
+  margin-top: 0px;
+}
+
+.TCPage {
+  background-image: none;
+}
+
+.TCPage .content h4 {
+  color: #18A0FB;
+  font-weight: 400;
+  margin-bottom: 0;
+}
+
+.TCPage .content p {
+  font-size: 14px;
+  font-weight: 300;
+  color: #848383;
+}
+
+.TCPage .content .TC-Content {
+  height: 300px;
+  overflow-y: scroll;
+  background-color: #F2F2F2;
+  padding: 15px;
+}
+
+.TCPage .content .TC-Content p {
+  font-weight: 400;
+  color: #6A6969;
+}
+
+.TCPage .content .TC-Content::-webkit-scrollbar {
+  width: 10px;
+}
+
+.TCPage .content .TC-Content::-webkit-scrollbar-thumb {
+  background-color: #18A0FB;
+}
+
+.TCPage .content .btnContainer .btn {
+  margin-top: 30px;
+  font-weight: 500;
+  -webkit-transition: 0.3s linear;
+  transition: 0.3s linear;
+}
+
+.TCPage .content .btnContainer .btn.btnDisagree {
+  background-color: #C4C4C4;
+  background-image: url("../images/disagree.png");
+  background-repeat: no-repeat;
+  background-position: left calc(0.375em + 0.355rem) center;
+}
+
+.TCPage .content .btnContainer .btn.btnAgree {
+  background-color: #18A0FB;
+  color: #FFFFFF;
+  background-image: url("../images/agree.png");
+  background-repeat: no-repeat;
+  background-position: left calc(0.375em + 0.355rem) center;
+}
+
+.TCPage .content .btnContainer .btn:hover {
+  -webkit-transform: translateY(-5px);
+          transform: translateY(-5px);
+}
+
+/*CSS for Welcome, Thanks, Exit Survey and T&C End*/
+/*CSS for Login, Account Creation and Forgot Password Start*/
+.accountScreen {
+  height: 100vh;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.accountScreen .content {
+  background-color: #FFFFFF;
+  border-radius: 8px;
+  padding: 30px 60px 45px;
+  max-width: 750px;
+  width: 100%;
+}
+
+.accountScreen .content h3 {
+  font-size: 48px;
+  font-weight: 300;
+  color: #18A0FB;
+}
+
+.accountScreen .content h3 span {
+  font-size: 32px;
+}
+
+.accountScreen .content form input {
+  border: none;
+  border-bottom: 1px solid #B7B3B3;
+  border-radius: unset;
+  padding: .375rem 0;
+  color: #42526E;
+}
+
+.accountScreen .content form input.form-control:focus {
+  -webkit-box-shadow: unset;
+          box-shadow: unset;
+  border-bottom: 2px solid #18A0FB;
+}
+
+.accountScreen .content form input::-webkit-input-placeholder {
+  color: #B7B3B3;
+}
+
+.accountScreen .content form input:-ms-input-placeholder {
+  color: #B7B3B3;
+}
+
+.accountScreen .content form input::-ms-input-placeholder {
+  color: #B7B3B3;
+}
+
+.accountScreen .content form input::placeholder {
+  color: #B7B3B3;
+}
+
+.accountScreen .content form input.valid {
+  border-bottom: 2px solid #55AD11;
+  background-image: url(/images/check.png);
+  background-repeat: no-repeat;
+  background-position: right calc(0.375em + 0.1875rem) center;
+}
+
+.accountScreen .content form input.invalid {
+  border-bottom: 2px solid #C41F3E;
+  background-image: url(/images/cross.png);
+  background-repeat: no-repeat;
+  background-position: right calc(0.375em + 0.1875rem) center;
+}
+
+.accountScreen .content form input#userPassword {
+  background-image: url(/images/openEye.png);
+  cursor: pointer;
+  background-repeat: no-repeat;
+  background-position: right calc(0.375em + 0.1875rem) center;
+}
+
+.accountScreen .content form input#userPassword.invalid {
+  background-image: url(/images/cross.png);
+  background-repeat: no-repeat;
+  background-position: right calc(0.375em + 0.1875rem) center;
+}
+
+.accountScreen .content form input#userPassword.valid {
+  background-image: url(/images/check.png);
+  background-repeat: no-repeat;
+  background-position: right calc(0.375em + 0.1875rem) center;
+}
+
+.accountScreen .content form input#userConfirmPassword {
+  background-image: url(/images/closeEye.png);
+  cursor: pointer;
+  background-repeat: no-repeat;
+  background-position: right calc(0.375em + 0.1875rem) center;
+}
+
+.accountScreen .content form label.form-label {
+  font-size: 12px;
+  font-weight: bold;
+  text-transform: uppercase;
+  color: #18A0FB;
+  margin-bottom: 0;
+}
+
+.accountScreen .content form .userImg {
+  margin-bottom: 5px;
+}
+
+.accountScreen .content form .redirectLink {
+  font-size: 12px;
+  color: #42526E;
+  margin-top: 26px;
+}
+
+.accountScreen .content form .redirectLink a {
+  font-weight: 300;
+  color: #18A0FB;
+  position: relative;
+}
+
+.accountScreen .content form .redirectLink a::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0%;
+  height: 2px;
+  background-color: #18A0FB;
+  -webkit-transition: 0.2s linear;
+  transition: 0.2s linear;
+}
+
+.accountScreen .content form .redirectLink a:hover::after {
+  width: 100%;
+}
+
+.accountScreen .content form .loginBtn {
+  margin-top: 45px;
+}
+
+.accountScreen .content form .loginBtn .btn {
+  font-size: 12px;
+  font-weight: bold;
+}
+
+/*CSS for Login, Account Creation and Forgot Password End*/
+/*CSS for User & Client Details Start*/
+.incomeDetails {
+  height: inherit;
+  background-color: #FFFFFF;
+}
+
+.incomeDetails .content {
+  max-width: unset;
+  border-radius: unset;
+}
+
+.incomeDetails .content h4 {
+  color: #18A0FB;
+  font-weight: 400;
+}
+
+.incomeDetails .content .estimateValue {
+  font-size: 12px;
+  font-weight: 300;
+}
+
+.incomeDetails .content textarea {
+  height: 100px;
+}
+
+.incomeDetails .content textarea::-webkit-input-placeholder {
+  color: #B7B3B3;
+}
+
+.incomeDetails .content textarea:-ms-input-placeholder {
+  color: #B7B3B3;
+}
+
+.incomeDetails .content textarea::-ms-input-placeholder {
+  color: #B7B3B3;
+}
+
+.incomeDetails .content textarea::placeholder {
+  color: #B7B3B3;
+}
+
+.incomeDetails .content .otherIncomeDetails,
+.incomeDetails .content .verifyDetails {
+  font-weight: 400;
+  font-size: 12px;
+  color: #18A0FB;
+  margin-bottom: 0;
+}
+
+.incomeDetails .content .verifyDetails + button {
+  margin-left: 15px;
+}
+
+.incomeDetails .content .input-group .input-group-text {
+  border-radius: unset;
+  background-color: transparent;
+  padding: 0 0.75rem 0 0;
+}
+
+.incomeDetails .content .addBorrower img {
+  padding: 0 0.55rem 0 0;
+}
+
+.incomeDetails .content .addBorrower button {
+  font-size: 12px;
+  font-weight: bold;
+  text-transform: uppercase;
+  color: #18A0FB;
+  border: none;
+  background: transparent;
+}
+
+.incomeDetails .content .disclaimer,
+.incomeDetails .content .disclaimerDesc {
+  font-size: 12px;
+  font-weight: 500;
+  color: #0F67A1;
+}
+
+.incomeDetails .content .disclaimerDesc {
+  font-weight: 300;
+  color: #18A0FB;
+}
+
+.incomeDetails .content .insurancePlans p,
+.incomeDetails .content .insurancePlans .form-check .form-check-label {
+  font-size: 12px;
+  font-weight: bold;
+  text-transform: uppercase;
+  color: #18A0FB;
+  margin-bottom: 0;
+}
+
+.incomeDetails .content .insurancePlans .form-check .form-check-input {
+  border-radius: 50%;
+  background-color: #E3E1E1;
+  border-bottom: unset;
+}
+
+.incomeDetails .content .insurancePlans .form-check .form-check-input:checked {
+  background-color: #18A0FB;
+}
+
+/*CSS for User & Client Details End*/
+.breadcrumbSec {
+  padding: 15px 30px;
+}
+
+.breadcrumbSec .breadcrumb {
+  margin-bottom: 0;
+}
+
+.breadcrumbSec .breadcrumb .breadcrumb-item a {
+  color: #0F67A1;
+}
+
+/*CSS for dashboard Start*/
+.mainContainer {
+  position: relative;
+  width: 100%;
+}
+
+.mainContainer .navigation {
+  position: fixed;
+  width: 240px;
+  height: 100%;
+  background-color: #FFFFFF;
+  -webkit-transition: 0.3s;
+  transition: 0.3s;
+  overflow: hidden;
+  border-right: 2px solid #F2F3F2;
+}
+
+.mainContainer .navigation.active {
+  width: 51px;
+}
+
+.mainContainer .navigation.active .openNav {
+  display: none;
+}
+
+.mainContainer .navigation.active .closeNav {
+  display: block !important;
+}
+
+.mainContainer .navigation.active ul li {
+  width: 100%;
+}
+
+.mainContainer .navigation ul {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  margin-bottom: 0;
+}
+
+.mainContainer .navigation ul li {
+  position: relative;
+  width: 90%;
+  margin: auto;
+}
+
+.mainContainer .navigation ul li:hover {
+  background-color: #BDE4E5;
+  border-radius: 5px;
+}
+
+.mainContainer .navigation ul li:hover a {
+  color: #FFFFFF;
+}
+
+.mainContainer .navigation ul li.active {
+  background-color: #BDE4E5;
+  border-radius: 5px;
+}
+
+.mainContainer .navigation ul li.active a {
+  color: #FFFFFF;
+}
+
+.mainContainer .navigation ul li:nth-child(1) {
+  margin-bottom: 10px;
+  margin-top: 10px;
+  pointer-events: none;
+}
+
+.mainContainer .navigation ul li:nth-child(1) .closeNav {
+  display: none;
+}
+
+.mainContainer .navigation ul li:nth-child(1) a {
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.mainContainer .navigation ul li a {
+  position: relative;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  width: 100%;
+  color: #42526E;
+}
+
+.mainContainer .navigation ul li a .icon {
+  position: relative;
+  min-width: 50px;
+  height: 50px;
+  line-height: 50px;
+  text-align: center;
+}
+
+.mainContainer .navigation ul li a .title {
+  position: relative;
+  display: block;
+  height: 50px;
+  line-height: 50px;
+  text-align: start;
+  white-space: nowrap;
+  padding: 0 10px 0 0;
+}
+
+.mainContainer .main {
+  position: absolute;
+  width: calc(100% - 240px);
+  left: 240px;
+  min-height: 100vh;
+  -webkit-transition: 0.3s;
+  transition: 0.3s;
+}
+
+.mainContainer .main.active {
+  width: calc(100% - 51px);
+  left: 51px;
+}
+
+.mainContainer .main .topBar {
+  height: 70px;
+  padding: 0 15px;
+  background-color: #FFFFFF;
+}
+
+.mainContainer .main .topBar .toggle {
+  position: relative;
+  width: 60px;
+  height: 60px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  font-size: 2.5rem;
+  cursor: pointer;
+}
+
+.mainContainer .main .topBar .toggle .bi.bi-list {
+  color: #BA1750;
+}
+
+.mainContainer .main .topBar .rightSec {
+  gap: 20px;
+}
+
+.mainContainer .main .topBar .rightSec .switchBtn label[for="toggle-client"] {
+  border-top-left-radius: 8px;
+  border-bottom-left-radius: 8px;
+}
+
+.mainContainer .main .topBar .rightSec .switchBtn label[for="toggle-rep"] {
+  border-top-right-radius: 8px;
+  border-bottom-right-radius: 8px;
+}
+
+.mainContainer .main .topBar .rightSec .switchBtn .btnToggle {
+  border: 2px solid #B7B3B3;
+  display: inline-block;
+  padding: 6px;
+  position: relative;
+  text-align: center;
+  -webkit-transition: background 600ms ease, color 600ms ease;
+  transition: background 600ms ease, color 600ms ease;
+}
+
+.mainContainer .main .topBar .rightSec .switchBtn input[type="radio"].toggleBtn {
+  display: none;
+}
+
+.mainContainer .main .topBar .rightSec .switchBtn input[type="radio"].toggleBtn + label {
+  cursor: pointer;
+  min-width: 60px;
+}
+
+.mainContainer .main .topBar .rightSec .switchBtn input[type="radio"].toggleBtn + label:hover {
+  background: none;
+}
+
+.mainContainer .main .topBar .rightSec .switchBtn input[type="radio"].toggleBtn + label:after {
+  background: #F2F3F2;
+  color: white;
+  content: "";
+  height: 100%;
+  position: absolute;
+  top: 0;
+  -webkit-transition: left 200ms cubic-bezier(0.77, 0, 0.175, 1);
+  transition: left 200ms cubic-bezier(0.77, 0, 0.175, 1);
+  width: 100%;
+  z-index: -1;
+}
+
+.mainContainer .main .topBar .rightSec .switchBtn input[type="radio"].toggleBtn.toggle-left + label {
+  border-right: 0;
+}
+
+.mainContainer .main .topBar .rightSec .switchBtn input[type="radio"].toggleBtn.toggle-left + label:after {
+  left: 100%;
+}
+
+.mainContainer .main .topBar .rightSec .switchBtn input[type="radio"].toggleBtn.toggle-right + label {
+  margin-left: -5px;
+}
+
+.mainContainer .main .topBar .rightSec .switchBtn input[type="radio"].toggleBtn.toggle-right + label:after {
+  left: -101%;
+}
+
+.mainContainer .main .topBar .rightSec .switchBtn input[type="radio"].toggleBtn.activeBtn + label {
+  cursor: default;
+  -webkit-transition: color 200ms;
+  transition: color 200ms;
+  background-color: #F2F3F2;
+}
+
+.mainContainer .main .topBar .rightSec .switchBtn input[type="radio"].toggleBtn.activeBtn + label:after {
+  left: 0;
+}
+
+.mainContainer .main .topBar .rightSec .user {
+  height: 40px;
+  width: 40px;
+  background-color: #18A0FB;
+  border-radius: 50%;
+  position: relative;
+  cursor: pointer;
+}
+
+.mainContainer .main .topBar .rightSec .user .userImg {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  color: #FFFFFF;
+}
+
+.mainContainer .main .topBar .search {
+  position: relative;
+  width: 400px;
+}
+
+.mainContainer .main .topBar .search label {
+  position: relative;
+  width: 100%;
+}
+
+.mainContainer .main .topBar .search label input {
+  width: 100%;
+  height: 40px;
+  border-radius: 8px;
+  outline: none;
+  padding: 5px 20px;
+  padding-left: 40px;
+  border: 1px solid #B7B3B3;
+}
+
+.mainContainer .main .topBar .search label input::-webkit-input-placeholder {
+  color: #B7B3B3;
+}
+
+.mainContainer .main .topBar .search label input:-ms-input-placeholder {
+  color: #B7B3B3;
+}
+
+.mainContainer .main .topBar .search label input::-ms-input-placeholder {
+  color: #B7B3B3;
+}
+
+.mainContainer .main .topBar .search label input::placeholder {
+  color: #B7B3B3;
+}
+
+.mainContainer .main .topBar .search label img {
+  position: absolute;
+  top: 50%;
+  left: 15px;
+  -webkit-transform: translateY(-50%);
+          transform: translateY(-50%);
+  cursor: pointer;
+}
+/*# sourceMappingURL=style.css.map */

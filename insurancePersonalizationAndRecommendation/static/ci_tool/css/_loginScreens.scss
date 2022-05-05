@@ -1,0 +1,129 @@
+/*CSS for Login, Account Creation and Forgot Password Start*/
+
+.accountScreen {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    .content {
+        background-color: $white;
+        border-radius: 8px;
+        padding: 30px 60px 45px;
+        max-width: 750px;
+        width: 100%;
+
+        h3 {
+            font-size: 48px;
+            font-weight: 300;
+            color: $CIBC_accent_blue;
+
+            span {
+                font-size: 32px;
+            }
+        }
+
+        form {
+            input {
+                border: none;
+                border-bottom: 1px solid #B7B3B3;
+                border-radius: unset;
+                padding: .375rem 0;
+                color: $textColor;
+
+                &.form-control {
+                    &:focus {
+                        box-shadow: unset;
+                        border-bottom: 2px solid $CIBC_accent_blue;
+                    }
+                }
+
+                &::placeholder {
+                    color: $Gray_text;
+                }
+
+                &.valid {
+                    border-bottom: 2px solid #55AD11;
+                    @include valid;
+                }
+
+                &.invalid {
+                    border-bottom: 2px solid #C41F3E;
+                    @include invalid;
+                }
+
+                &#userPassword {
+                    background-image: url(/images/openEye.png);
+                    cursor: pointer;
+                    background-repeat: no-repeat;
+                    background-position: right calc(0.375em + 0.1875rem) center;
+
+                    &.invalid {
+                        @include invalid;
+                    }
+
+                    &.valid {
+                        @include valid;
+                    }
+                }
+
+                &#userConfirmPassword {
+                    background-image: url(/images/closeEye.png);
+                    cursor: pointer;
+                    background-repeat: no-repeat;
+                    background-position: right calc(0.375em + 0.1875rem) center;
+                }
+            }
+
+            label.form-label {
+                font-size: 12px;
+                font-weight: bold;
+                text-transform: uppercase;
+                color: $CIBC_accent_blue;
+                margin-bottom: 0;
+            }
+
+            .userImg {
+                margin-bottom: 5px;
+            }
+
+            .redirectLink {
+                font-size: 12px;
+                color: $textColor;
+                margin-top: 26px;
+
+                a {
+                    font-weight: 300;
+                    color: $CIBC_accent_blue;
+                    position: relative;
+
+                    &::after {
+                        content: '';
+                        position: absolute;
+                        bottom: -2px;
+                        left: 0;
+                        width: 0%;
+                        height: 2px;
+                        background-color: $CIBC_accent_blue;
+                        transition: 0.2s linear;
+                    }
+
+                    &:hover::after {
+                        width: 100%;
+                    }
+                }
+            }
+
+            .loginBtn {
+                margin-top: 45px;
+
+                .btn {
+                    font-size: 12px;
+                    font-weight: bold;
+                }
+            }
+        }
+    }
+}
+
+/*CSS for Login, Account Creation and Forgot Password End*/

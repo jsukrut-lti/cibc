@@ -1,0 +1,99 @@
+/*CSS for User & Client Details Start*/
+
+.incomeDetails {
+    height: inherit;
+    background-color: $white;
+
+    .content {
+        max-width: unset;
+        border-radius: unset;
+
+        h4 {
+            color: $CIBC_accent_blue;
+            font-weight: 400;
+        }
+
+        .estimateValue {
+            font-size: 12px;
+            font-weight: 300;
+        }
+
+        textarea {
+            height: 100px;
+
+            &::placeholder {
+                color: $Gray_text;
+            }
+        }
+
+        .otherIncomeDetails,
+        .verifyDetails {
+            font-weight: 400;
+            font-size: 12px;
+            color: $CIBC_accent_blue;
+            margin-bottom: 0;
+        }
+        
+        .verifyDetails + button {
+            margin-left: 15px;
+        }
+
+        .input-group {
+            .input-group-text {
+                border-radius: unset;
+                background-color: transparent;
+                padding: 0 0.75rem 0 0;
+            }
+        }
+
+        .addBorrower {
+            img {
+                padding: 0 0.55rem 0 0;
+            }
+
+            button {
+                font-size: 12px;
+                font-weight: bold;
+                text-transform: uppercase;
+                color: $CIBC_accent_blue;
+                border: none;
+                background: transparent;
+            }
+        }
+
+        .disclaimer,
+        .disclaimerDesc {
+            font-size: 12px;
+            font-weight: 500;
+            color: $CIBC_blue;
+        }
+
+        .disclaimerDesc {
+            font-weight: 300;
+            color: $CIBC_accent_blue;
+        }
+
+        .insurancePlans {
+            p,
+            .form-check .form-check-label {
+                font-size: 12px;
+                font-weight: bold;
+                text-transform: uppercase;
+                color: $CIBC_accent_blue;
+                margin-bottom: 0;
+            }
+
+            .form-check .form-check-input {
+                border-radius: 50%;
+                background-color: #E3E1E1;
+                border-bottom: unset;
+
+                &:checked {
+                    background-color: $CIBC_accent_blue;
+                }
+            }
+        }
+    }
+}
+
+/*CSS for User & Client Details End*/
