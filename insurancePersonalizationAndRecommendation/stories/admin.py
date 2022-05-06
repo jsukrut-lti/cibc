@@ -28,17 +28,15 @@ class ModelAdmin(admin.ModelAdmin):
     #     Given a model instance save it to the database.
     #     """
     #     obj.save()
-    def get_changed_content(self):
+    def get_changed_content(self, message, object):
 
-        # col_name = [i['changed']['fields'][0] for i in message]
         up_content_keys = str()
-        ff = self.form.instance
-        f = self.form.changed_data
-        for col in f:
-            # format_col = ''.join([s.title() for s in col.split()])
-            # format_col = format_col[0].lower() + format_col[1:-1]
-            up_content_keys += col
-            up_content_keys += ':' + getattr(object, col)
+        verbose_name = [i['changed']['fields'][0] for i in message][0]
+        for field in self.model._meta.fields:
+            if verbose_name == str(field.verbose_name):
+                up_content_keys += verbose_name
+                up_content_keys += ' : ' + getattr(object, field.name)
+
         return up_content_keys
 
 
@@ -48,12 +46,11 @@ class ModelAdmin(admin.ModelAdmin):
 
         The default implementation creates an admin LogEntry object.
         """
-        print(object)
         LogEntry.objects.log_action(
             user_id=request.user.pk,
             content_type_id=get_content_type_for_model(object).pk,
             object_id=object.pk,
-            object_repr=self.get_changed_content(),
+            object_repr=self.get_changed_content(message, object),
             action_flag=CHANGE,
             change_message=message,
         )
