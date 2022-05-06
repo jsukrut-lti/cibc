@@ -306,8 +306,26 @@ class InsuranceConvoUpdateView(SingleObjectMixin, InsuranceConvoView):
         return super().getImpl(request, instance=self.object)
 
 
+class InsuranceCiPreApplicationView(View):
+    template_name = 'ci_tool/ci_pre_application.html'
+    context_object_name = 'welcome'
+
+    def getTemplateName(self):
+        return self.template_name
+
+    def get(self, request, *args, **kwargs):
+        context = {'phase' : self.context_object_name}
+        return render(request, template_name=self.getTemplateName(), context=context)
+
+
 class InsuranceWelcomeView(View):
-    template_name = 'ci_tool/welcome-EL.html'
+    template_name = 'ci_tool/welcome.html'
+
+    def get(self, request, *args, **kwargs):
+        return render(request, template_name=self.template_name)
+
+class InsuranceQuestionnaireView(View):
+    template_name = 'ci_tool/questionnaire.html'
 
     def get(self, request, *args, **kwargs):
         return render(request, template_name=self.template_name)
@@ -319,6 +337,12 @@ class InsuranceTermConditionView(View):
     def get(self, request, *args, **kwargs):
         return render(request, template_name=self.template_name)
 
+
+class InsuranceApplicantSelectionView(View):
+    template_name = 'ci_tool/applicantSelection.html'
+
+    def get(self, request, *args, **kwargs):
+        return render(request, template_name=self.template_name)
 
 class InsuranceCallback(View):
 

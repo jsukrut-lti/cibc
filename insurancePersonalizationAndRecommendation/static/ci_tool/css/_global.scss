@@ -13,6 +13,10 @@ a {
     text-decoration: none;
 }
 
+.hidden {
+    overflow-y: hidden;
+}
+
 %CIBC_blue {
     background-color: $CIBC_blue;
     color: $white;
@@ -52,4 +56,49 @@ a {
             @extend %CIBC_blue;
         }
     }
+}
+
+.exitPoint {
+    font-size: 12px;
+    font-weight: 300;
+    color: #9B9595;
+
+    a {
+        color: $CIBC_accent_blue;
+        text-decoration: underline;
+
+        &:hover {
+            color: $CIBC_accent_blue;
+        }
+    }
+}
+
+.closeIcon {
+    position: absolute;
+    right: 12px;
+    top: 11px;
+    cursor: pointer;
+    color: $CIBC_nav;
+}
+
+.contactSec {
+    .contactDetails {
+        gap: 30px;
+
+        img {
+            margin-right: 7px;
+        }
+
+        span, a {
+            font-size: 14px;
+            font-weight: 500;
+            color: #86888A;
+        }
+    }
+}
+
+.btn.commonBtn {
+    background-color: $CIBC_nav;
+    color: $white;
+    min-width: 169px;
 }

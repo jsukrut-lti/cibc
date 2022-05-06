@@ -1,152 +1,335 @@
-/*CSS for dashboard Start*/
+.sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 240px;
+    background-color: $white;
+    z-index: 100;
+    border-right: 2px solid $CIBC_background;
+    transition: all 0.3s ease;
 
-.mainContainer {
-    position: relative;
-    width: 100%;
+    .icon.closeNav {
+        display: none;
+    }
 
-    .navigation {
-        position: fixed;
-        width: 240px;
-        height: 100%;
-        background-color: $white;
-        // border-left: 10px solid $white;
-        transition: 0.3s;
-        overflow: hidden;
-        border-right: 2px solid $CIBC_background;
+    .icon.openNav {
+        display: block;
+    }
 
-        &.active {
-            width: 51px;
+    &.close {
+        width: 50px;
 
-            .openNav {
-                display: none;
-            }
+        .icon.openNav {
+            display: none;
+        }
 
-            .closeNav {
-                display: block !important;
-            }
+        .icon.closeNav {
+            display: block;
+        }
 
-            ul li {
-                width: 100%;
-            }
+        &~.home-section {
+            left: 50px;
+            width: calc(100% - 50px);
+        }
 
-            ul li.active::before {
-                // width: 100%;
+        .logo-details {
+            .logo_name {
+                transition-delay: 0s;
+                opacity: 0;
+                pointer-events: none;
             }
         }
 
-        ul {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            margin-bottom: 0;
+        .nav-links {
+            overflow: visible;
 
             li {
-                position: relative;
-                width: 90%;
-                margin: auto;
-                // border-top-left-radius: 30px;
-                // border-bottom-left-radius: 30px;
-
                 &:hover {
-                    background-color: $CIBC_nav;
-                    border-radius: 5px;
-
-                    a {
-                        color: $white;
+                    .sub-menu {
+                        top: 0;
+                        opacity: 1;
+                        pointer-events: auto;
+                        transition: all 0.4s ease;
+                        background-color: $CIBC_nav;
                     }
                 }
 
-                &.active {
-                    background-color: $CIBC_nav;
-                    border-radius: 5px;
-                    
-                    a {
-                        color: $white;
-                    }
-                    // &::before {
-                    //     content: '';
-                    //     position: absolute;  
-                    //     height: 100%;
-                    //     width: 6px;
-                    //     background-color: $CIBC_nav;
-                    // }
+                i.arrow {
+                    display: none;
                 }
 
-                &:nth-child(1) {
-                    margin-bottom: 10px;
-                    margin-top: 10px;
-                    pointer-events: none;
-
-                    .closeNav {
-                        display: none;
-                    }
-                    
-                    a {
-                        justify-content: center;
-                        align-items: center;
-                    }
+                .iocn-link {
+                    display: block;
                 }
 
                 a {
-                    position: relative;
-                    display: flex;
-                    width: 100%;
-                    color: $textColor;
+                    .link_name {
+                        opacity: 0;
+                        pointer-events: none;
+                        display: none;
+                    }
+                }
 
-                    .icon {
-                        position: relative;
-                        min-width: 50px;
-                        height: 50px;
-                        line-height: 50px;
-                        text-align: center;
+                .sub-menu {
+                    position: absolute;
+                    left: 100%;
+                    top: -10px;
+                    margin-top: 0;
+                    padding: 10px 20px;
+                    border-radius: 0 6px 6px 0;
+                    opacity: 0;
+                    display: block;
+                    pointer-events: none;
+                    transition: 0s;
+
+                    .link_name {
+                        font-size: 18px;
+                        opacity: 1;
+                        display: block;
+                        color: $white;
                     }
 
-                    .title {
-                        position: relative;
-                        display: block;
-                        height: 50px;
-                        line-height: 50px;
-                        text-align: start;
-                        white-space: nowrap;
-                        padding: 0 10px 0 0;
+                    a {
+                        padding: 5px 0 1px;
+                        color: $white;
+                    }
+                }
+            }
+        }
+
+        .subMenu:hover {
+            .sub-menu {
+                li {
+                    a {
+                        color: $white;
                     }
                 }
             }
         }
     }
 
-    .main {
-        position: absolute;
-        width: calc(100% - 240px);
-        left: 240px;
-        min-height: 100vh;
-        transition: 0.3s;
+    ul.sub-menu {
+        li {
+            a {
+                &:hover {
+                    color: $white;
+                }
+            }
+        }
+    }
 
-        &.active {
-            width: calc(100% - 51px);
-            left: 51px;
+    .logo-details {
+        height: 60px;
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        i {
+            font-size: 30px;
+            color: $white;
+            height: 50px;
+            min-width: 50px;
+            text-align: center;
+            line-height: 50px;
         }
 
-        .topBar {
-            height: 70px;
-            padding: 0 15px;
-            background-color: $white;
+        .logo_name {
+            font-size: 22px;
+            color: $white;
+            font-weight: 600;
+            transition: 0.3s ease;
+            transition-delay: 0.1s;
+        }
 
-            .toggle {
-                position: relative;
-                width: 60px;
-                height: 60px;
+
+    }
+
+    .nav-links {
+        height: calc(100% - 60px);
+        padding: 30px 0 0 0;
+        overflow: auto;
+
+        &::-webkit-scrollbar {
+            display: none;
+        }
+
+        li {
+            position: relative;
+            list-style: none;
+            transition: all 0.4s ease;
+
+            &.active {
+                background-color: $CIBC_nav;
+
+                a {
+                    i, span {
+                        color: $white;
+                    }
+                }
+            }
+
+            &.subMenu.active {
+                background-color: unset;
+                
+                a {
+                    i, span {
+                        color: $textColor;
+                    }
+                }
+            }
+
+            &:hover {
+                background-color: $CIBC_nav;
+
+                a {
+                    i, span {
+                        color: $white;
+                    }
+                }
+
+                .sub-menu {
+                    li:hover {
+                        a {
+                            color: $white;
+                        }
+                    }
+                }
+
+                .sub-menu.blank {
+                    top: 50%;
+                    transform: translateY(-50%);
+                }
+            }
+
+            .iocn-link {
                 display: flex;
                 align-items: center;
-                justify-content: center;
-                font-size: 2.5rem;
-                cursor: pointer;
+                justify-content: space-between;
+            }
 
-                .bi.bi-list {
-                    color: #BA1750;
+            i {
+                height: 50px;
+                min-width: 50px;
+                text-align: center;
+                line-height: 50px;
+                color: $textColor;
+                font-size: 20px;
+                cursor: pointer;
+                transition: all 0.3s ease;
+
+                &.arrow {
+                    min-width: 50px;
                 }
+            }
+
+            &.showMenu {
+                i.arrow {
+                    transform: rotate(-180deg);
+                }
+            }
+
+            a {
+                display: flex;
+                align-items: center;
+                text-decoration: none;
+
+                .link_name {
+                    font-size: 16px;
+                    font-weight: 400;
+                    color: $textColor;
+                    transition: all 0.4s ease;
+                }
+            }
+
+            .sub-menu {
+                //   padding: 6px 6px 14px 80px;
+                padding-left: 0;
+                margin-top: -10px;
+                display: none;
+
+                &.blank {
+                    opacity: 1;
+                    pointer-events: auto;
+                    padding: 3px 20px 6px 16px;
+                    opacity: 0;
+                    pointer-events: none;
+                }
+
+                a {
+                    color: $textColor;
+                    font-size: 15px;
+                    padding: 10px 10px 10px 80px;
+                    white-space: nowrap;
+                    opacity: 1;
+                    transition: all 0.3s ease;
+
+                    &:hover {
+                        opacity: 1;
+                    }
+                }
+
+                .link_name {
+                    display: none;
+                }
+            }
+
+            &.showMenu .sub-menu {
+                display: block;
+            }
+        }
+
+        i.arrow {
+            display: block;
+        }
+
+        .productLinks {
+            margin-bottom: 30px;
+
+            li {
+                i {
+                    height: 42px;
+                    min-width: 50px;
+                    line-height: 42px;
+                }
+
+                a {
+                    font-weight: 500;
+                    
+                    span {
+                        font-size: 14px;
+                        text-decoration: underline;
+                        color: $CIBC_nav;
+                    }
+                }
+
+                &:hover {
+                    a, i, span {
+                        color: $white;
+                    }
+                }
+            }
+        }
+    }
+}
+
+.home-section {
+    position: relative;
+    // height: 100vh;
+    left: 240px;
+    width: calc(100% - 240px);
+    transition: all 0.3s ease;
+
+    .main {
+        .topBar {
+            height: 70px;            padding: 0 20px;
+            background-color: $white;
+
+            .bx.bx-menu {
+                color: #11101d;
+                font-size: 35px;
+                cursor: pointer;
             }
 
             .rightSec {
@@ -173,21 +356,21 @@
                         text-align: center;
                         transition: background 600ms ease, color 600ms ease;
                     }
-    
+
                     input[type="radio"].toggleBtn {
                         display: none;
-    
-                        & + label{
+
+                        &+label {
                             cursor: pointer;
                             min-width: 60px;
-    
-                            &:hover{
+
+                            &:hover {
                                 background: none;
                             }
-    
-                            &:after{
-                                background: $CIBC_background;
-                                color: white;
+
+                            &:after {
+                                background-color: $CIBC_background;
+                                color: $white;
                                 content: "";
                                 height: 100%;
                                 position: absolute;
@@ -197,29 +380,29 @@
                                 z-index: -1;
                             }
                         }
-    
-                        &.toggle-left + label {
+
+                        &.toggle-left+label {
                             border-right: 0;
-    
-                            &:after{
+
+                            &:after {
                                 left: 100%
                             }
                         }
-    
-                        &.toggle-right + label{
+
+                        &.toggle-right+label {
                             margin-left: -5px;
-    
-                            &:after{
+
+                            &:after {
                                 left: -101%;
                             }
                         }
-    
-                        &.activeBtn + label {
+
+                        &.activeBtn+label {
                             cursor: default;
                             transition: color 200ms;
                             background-color: $CIBC_background;
-    
-                            &:after{
+
+                            &:after {
                                 left: 0;
                             }
                         }
@@ -275,6 +458,49 @@
                     }
                 }
             }
+        }
+
+        .bx-menu {
+            // margin: 0 15px;
+            cursor: pointer;
+        }
+
+        .text {
+            font-size: 26px;
+            font-weight: 600;
+        }
+    }
+}
+
+// SideBar Navigation for Mobile
+
+#sidebarMob {
+    &.overlay {
+        height: 100%;
+        width: 0;
+        position: fixed;
+        z-index: 1;
+        top: 0;
+        left: 0;
+        background-color: rgb(0,0,0);
+        background-color: rgba(0,0,0, 0.9);
+        overflow-x: hidden;
+        transition: 0.3s;
+
+        .closebtnMob {
+            position: absolute;
+            top: 20px;
+            right: 45px;
+            font-size: 45px;
+            color: $white;
+        }
+
+        .overlayContent {
+            position: relative;
+            top: 25%;
+            width: 100%;
+            text-align: center;
+            margin-top: 30px;
         }
     }
 }

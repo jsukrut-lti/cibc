@@ -1,80 +1,15 @@
 /*CSS for Welcome, Thanks, Exit Survey, T&C Start*/
 
 .welcomeScreen {
-    background-image: url(/images/welcomeBG.svg);
-    background-repeat: no-repeat;
-    background-size: 100%;
-    background-position: bottom;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-color: $white;
-    height: 100vh;
-
     .content {
-        max-width: 750px;
-        width: 100%;
         margin-top: 30px;
 
         h1 {
-            font-size: 96px;
-            color: $CIBC_accent_blue;
             font-weight: 300;
-        }
-
-        .btn {
-            margin-top: 80px;
-        }
-
-        .contactSec {
-            p {
-                font-size: 32px;
-                font-weight: 300;
-                color: $CIBC_accent_blue;
+            
+            span {
+                border-bottom: 1px solid;
             }
-
-            .contactDetails {
-                margin-top: 25px;
-                display: inline-flex;
-                flex-flow: column;
-
-                .mail,
-                .call {
-                    display: flex;
-                    align-items: center;
-                    gap: 15px;
-
-                    span,a {
-                        font-size: 24px;
-                        color: $CIBC_accent_blue;
-                        font-weight: 400;
-                    }
-
-                    a:hover {
-                        text-decoration: underline;
-                    }
-                }
-            }
-        }
-    }
-}
-
-.header {
-    position: relative;
-
-    .fixHeader {
-        position: fixed;
-        top: 0;
-        left: 0;
-        right: 0;
-        background: $white;
-        height: 60px;
-        display: flex;
-        align-items: center;
-        box-shadow: 0px 2px 5px $Gray_text;
-
-        .logo {
-            padding-left: 30px;
         }
     }
 }
@@ -127,12 +62,11 @@
 }
 
 .TCPage {
-    background-image: none;
     .content {
         h4 {
-            color: $CIBC_accent_blue;
+            color: $CIBC_nav;
             font-weight: 400;
-            margin-bottom: 0;
+            margin-bottom: 0 !important;
         }
 
         p {
@@ -156,40 +90,13 @@
                 width: 10px;
             }
 
-            // &::-webkit-scrollbar-track {
-            //     background-color: rgb(192, 189, 189);
-            // }
-
             &::-webkit-scrollbar-thumb {
-                background-color: $CIBC_accent_blue; 
+                background-color: $CIBC_nav; 
             }
         }
 
         .btnContainer {
-            .btn {
-                margin-top: 30px;
-                font-weight: 500;
-                transition: 0.3s linear;
-
-                &.btnDisagree {
-                    background-color: #C4C4C4;
-                    background-image: url('../images/disagree.png');
-                    background-repeat: no-repeat;
-                    background-position: left calc(0.375em + 0.355rem) center;
-                }
-
-                &.btnAgree {
-                    background-color: $CIBC_accent_blue;
-                    color: $white;
-                    background-image: url('../images/agree.png');
-                    background-repeat: no-repeat;
-                    background-position: left calc(0.375em + 0.355rem) center;
-                }
-
-                &:hover {
-                    transform: translateY(-5px);
-                }
-            }
+            gap: 15px;
         }
     }
 }

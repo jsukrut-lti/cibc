@@ -1,0 +1,86 @@
+/*Not Eligible Page CSS*/
+
+.notEligible {
+    height: inherit;
+    background-color: $white;
+    position: relative;
+
+    .content {
+        h4 {
+            font-weight: 400;
+            margin-bottom: 14px;
+        }
+
+        form {
+            .userImg {
+                margin-bottom: 11px;
+            }
+        }
+
+        .estimateValue {
+            font-size: 16px;
+            color: #9B9595;
+        }
+
+        .notEligibleMsg {
+            font-size: 20px;
+            color: #6A6969;
+        }
+    }
+}
+
+/*Exit Assessment Page CSS*/
+
+.exitPage {
+    .content {
+        max-width: unset;
+
+        h4 {
+            font-size: 36px;
+            font-weight: 500;
+        }
+
+        .exitReason {
+            max-width: 750px;
+            width: 100%;
+            margin: auto;
+
+            h4 {
+                font-size: 24px;
+                font-weight: 500 !important;
+            }
+
+            .form-check {
+                margin-bottom: 8px;
+            }
+
+            .obejctionData {
+                display: none;
+            }
+        }
+
+        form {
+            input {
+                border: 1px solid rgba(0,0,0,.25);
+                border-radius: 50%;
+
+                &:checked {
+                    border-color: #000000;
+                    background-color: #000000;
+                    box-shadow: none;
+                }
+            }
+        }
+
+        .closePage {
+            .returnToCI {
+                margin-top: 9px;
+
+                a {
+                    color: #212529;
+                    text-decoration: underline;
+                }
+            }
+        }
+    }
+}
