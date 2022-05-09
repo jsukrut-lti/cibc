@@ -58,8 +58,6 @@ INSTALLED_APPS = [
     'allauth.socialaccount',
     'allauth.socialaccount.providers.google',
     'django.contrib.sites',
-    'rest_framework_swagger',
-    'sslserver',
     'django_extensions',
 ]
 

@@ -322,27 +322,60 @@ class InsuranceWelcomeView(View):
     template_name = 'ci_tool/welcome.html'
 
     def get(self, request, *args, **kwargs):
-        return render(request, template_name=self.template_name)
+        context = {
+            'id': kwargs['pk']
+        }
+        return render(request, template_name=self.template_name, context=context)
 
 class InsuranceQuestionnaireView(View):
     template_name = 'ci_tool/questionnaire.html'
 
     def get(self, request, *args, **kwargs):
-        return render(request, template_name=self.template_name)
+        queryset = InsuranceDiscussion.objects.filter(id=kwargs['pk'])
+        context = {
+            'id': kwargs['pk'],
+            'mortgagePmtAmount': queryset[0].mortgagePmtAmount
+        }
+        return render(request, template_name=self.template_name, context=context)
 
 
 class InsuranceTermConditionView(View):
     template_name = 'ci_tool/TermsAndConditions.html'
 
     def get(self, request, *args, **kwargs):
-        return render(request, template_name=self.template_name)
+        context = {
+            'id': kwargs['pk']
+        }
+        return render(request, template_name=self.template_name, context=context)
 
 
 class InsuranceApplicantSelectionView(View):
     template_name = 'ci_tool/applicantSelection.html'
 
     def get(self, request, *args, **kwargs):
-        return render(request, template_name=self.template_name)
+        queryset = InsuranceDiscussion.objects.filter(id=kwargs['pk'])
+        context = {
+            'id': kwargs['pk'],
+            'coFirstName': queryset[0].coFirstName,
+            'coLastName': queryset[0].coLastName,
+            'primaryFirstName': queryset[0].primaryFirstName,
+            'primaryLastName': queryset[0].primaryLastName,
+        }
+        return render(request, template_name=self.template_name, context=context)
+
+    def post(self, request, *args, **kwargs):
+        form = request.POST.form()
+        return render(request, template_name=self.template_name, context=context)
+
+
+class InsuranceClient(View):
+    template_name = 'ci_tool/client.html'
+
+    def get(self, request, *args, **kwargs):
+        context = {
+            'id': kwargs['pk']
+        }
+        return render(request, template_name=self.template_name, context=context)
 
 class InsuranceCallback(View):
 

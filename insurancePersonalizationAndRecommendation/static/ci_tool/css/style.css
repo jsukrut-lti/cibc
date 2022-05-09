@@ -190,6 +190,12 @@ a {
   gap: 15px;
 }
 
+.TCPage .content .btnContainer .btnDisagree {
+  background-color: transparent;
+  color: #000000;
+  border: 1px solid #000000;
+}
+
 /*CSS for Welcome, Thanks, Exit Survey and T&C End*/
 /*CSS for Login, Account Creation and Forgot Password Start*/
 .accountScreen {
@@ -474,6 +480,12 @@ a {
   transition: all 0.3s ease;
 }
 
+.sidebar ul.nav-links {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
 .sidebar .icon.closeNav {
   display: none;
 }
@@ -552,6 +564,7 @@ a {
   opacity: 1;
   display: block;
   color: #FFFFFF;
+  white-space: nowrap;
 }
 
 .sidebar.close .nav-links li .sub-menu a {
@@ -623,6 +636,10 @@ a {
 
 .sidebar .nav-links li.active a i, .sidebar .nav-links li.active a span {
   color: #FFFFFF;
+}
+
+.sidebar .nav-links li.subMenu {
+  cursor: pointer;
 }
 
 .sidebar .nav-links li.subMenu.active {
@@ -720,7 +737,6 @@ a {
   color: #42526E;
   font-size: 15px;
   padding: 10px 10px 10px 80px;
-  white-space: nowrap;
   opacity: 1;
   -webkit-transition: all 0.3s ease;
   transition: all 0.3s ease;
@@ -1251,10 +1267,78 @@ a {
 .questionnaireContainer .questionnaireSection .questionnaireSectionObjection {
   display: none;
   font-weight: 500;
+  position: relative;
+  margin-left: 10px;
+}
+
+.questionnaireContainer .questionnaireSection .questionnaireSectionObjection:before {
+  content: '';
+  position: absolute;
+  height: 100%;
+  left: -10px;
+  bottom: 0;
+  width: 5px;
+  background: #C41F3E;
 }
 
 .questionnaireContainer .leftSec .applicantMsg {
   font-size: 18px;
+}
+
+/* Client Page CSS Start */
+.commonLayout .content .leftSec form .jointApplicantDemographic {
+  height: 38px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  gap: 20px;
+}
+
+.commonLayout .content .leftSec form .jointApplicantDemographic .form-check .form-check-input:checked {
+  border-color: #000000;
+  background-color: #000000;
+  -webkit-box-shadow: none;
+          box-shadow: none;
+}
+
+.condition {
+  font-weight: 300;
+  font-size: 14px;
+}
+
+.totalDebtInfo {
+  font-size: 14px;
+  color: #9B9595;
+}
+
+.tabContent {
+  display: none;
+}
+
+/* Save Summary Page CSS Start */
+.saveSummary .saveFormat p {
+  font-size: 20px;
+}
+
+.saveSummary .saveFormat img {
+  width: 100px;
+}
+
+.saveSummary .saveFormat .btn.commonBtn {
+  min-width: 100px;
+}
+
+.saveSummary .commonBtnContainer {
+  gap: 30px;
+}
+
+.saveSummary .commonBtnContainer .selectApplicant {
+  background-color: transparent;
+  color: #000000;
+  border: 1px solid #000000;
 }
 
 @media screen and (max-width: 991px) {
@@ -1262,6 +1346,13 @@ a {
   .sidebar.close ~ .home-section {
     left: 0;
     width: 100%;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .commonLayout .content .leftSec,
+  .commonLayout .content .rightsec {
+    min-height: inherit;
   }
 }
 
@@ -1275,6 +1366,13 @@ a {
         -ms-flex-flow: column;
             flex-flow: column;
     gap: 15px;
+  }
+  .commonBtnContainer {
+    -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+    -webkit-box-pack: center !important;
+        -ms-flex-pack: center !important;
+            justify-content: center !important;
   }
 }
 /*# sourceMappingURL=style.css.map */

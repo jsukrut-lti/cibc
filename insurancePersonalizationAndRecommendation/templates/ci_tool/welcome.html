@@ -17,7 +17,7 @@
                         <div class="closeIcon">
                             <i class="bi bi-x-lg"></i>
                         </div>
-                        <form action="/insurance/questionnaire/" method="post" class="form">
+                        <form action="/insurance/questionnaire/{{ id }}" method="get" class="form">
                             {% csrf_token %}
                             <div class="mb-3">
                                 <h1 class="display-1 text-center mb-3"><span>Welcome</span></h1>

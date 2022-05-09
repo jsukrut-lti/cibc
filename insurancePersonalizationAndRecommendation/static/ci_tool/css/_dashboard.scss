@@ -9,6 +9,10 @@
     border-right: 2px solid $CIBC_background;
     transition: all 0.3s ease;
 
+    ul.nav-links {
+        display: flex;
+    }
+
     .icon.closeNav {
         display: none;
     }
@@ -88,6 +92,7 @@
                         opacity: 1;
                         display: block;
                         color: $white;
+                        white-space: nowrap;
                     }
 
                     a {
@@ -170,12 +175,16 @@
                 }
             }
 
-            &.subMenu.active {
-                background-color: unset;
-                
-                a {
-                    i, span {
-                        color: $textColor;
+            &.subMenu {
+                cursor: pointer;
+
+                &.active {
+                    background-color: unset;                    
+                    
+                    a {
+                        i, span {
+                            color: $textColor;
+                        }
                     }
                 }
             }
@@ -261,7 +270,7 @@
                     color: $textColor;
                     font-size: 15px;
                     padding: 10px 10px 10px 80px;
-                    white-space: nowrap;
+                    // white-space: nowrap;
                     opacity: 1;
                     transition: all 0.3s ease;
 
