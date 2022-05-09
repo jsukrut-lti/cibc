@@ -307,7 +307,7 @@ class InsuranceConvoUpdateView(SingleObjectMixin, InsuranceConvoView):
 
 
 class InsuranceCiPreApplicationView(View):
-    template_name = 'ci_tool/ci_pre_application.html'
+    template_name = 'creditInsurance/ci_pre_application.html'
     context_object_name = 'welcome'
 
     def getTemplateName(self):
@@ -319,33 +319,33 @@ class InsuranceCiPreApplicationView(View):
 
 
 class InsuranceWelcomeView(View):
-    template_name = 'ci_tool/welcome.html'
+    template_name = 'creditInsurance/welcome.html'
 
     def get(self, request, *args, **kwargs):
         return render(request, template_name=self.template_name)
 
 class InsuranceQuestionnaireView(View):
-    template_name = 'ci_tool/questionnaire.html'
+    template_name = 'creditInsurance/questionnaire.html'
 
     def get(self, request, *args, **kwargs):
         return render(request, template_name=self.template_name)
 
 
 class InsuranceTermConditionView(View):
-    template_name = 'ci_tool/TermsAndConditions.html'
+    template_name = 'creditInsurance/TermsAndConditions.html'
 
     def get(self, request, *args, **kwargs):
         return render(request, template_name=self.template_name)
 
 
 class InsuranceApplicantSelectionView(View):
-    template_name = 'ci_tool/applicantSelection.html'
+    template_name = 'creditInsurance/applicantSelection.html'
 
     def get(self, request, *args, **kwargs):
         return render(request, template_name=self.template_name)
 
 class InsuranceClientInformationView(View):
-    template_name = 'ci_tool/clientInformation.html'
+    template_name = 'creditInsurance/clientInformation.html'
 
     def get(self, request, *args, **kwargs):
         return render(request, template_name=self.template_name)
