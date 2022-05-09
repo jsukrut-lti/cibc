@@ -1,0 +1,856 @@
+{% extends 'base.html' %}
+{% block content %}
+{% load static %}
+
+
+
+
+        <div class="main">
+            <div class="d-flex justify-content-between align-items-center topBar">
+                <div class="toggle d-lg-block d-none">
+                    <i class='bx bx-menu'></i>
+                </div>
+                <div class="toggle d-block d-lg-none">
+                    <i class='bx bx-menu mobileMenu' onclick="openNavMob()"></i>
+                </div>
+            </div>
+
+            <div class="container-lg px-4">
+                <div class="commonLayout my-4">
+                    <div class="content">
+                        <div class="row tabContent active" id="demographics">
+                            <div class="col-md-8 mb-3 mb-md-0">
+                                <div class="leftSec">
+                                    <div class="closeIcon">
+                                        <i class="bi bi-x-lg"></i>
+                                    </div>
+
+                                    <form>
+                                        <h4 class="mb-4">Let's begin with a few questions about yourself</h4>
+                                        
+                                        <div class="row">
+                                            <div class="col-md-6 col-12">
+                                                <div class="mb-3">
+                                                    <label for="firstName" class="form-label mb-1">First Name</label>
+                                                    <input type="text" class="form-control rounded-0" id="firstName" placeholder="Enter first name...">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6 col-12">
+                                                <div class="mb-3">
+                                                    <label for="lastName" class="form-label mb-1">Last Name</label>
+                                                    <input type="text" class="form-control rounded-0" id="lastName" placeholder="Enter last name...">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6 col-12">
+                                                <div class="mb-3">
+                                                    <label for="middleName" class="form-label mb-1">Middle Initial</label>
+                                                    <input type="text" class="form-control rounded-0" id="middleName" placeholder="Enter middle initial...">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6 col-12">
+                                                <div class="mb-3">
+                                                    <label for="preferredName" class="form-label mb-1">Preferred Name</label>
+                                                    <input type="text" class="form-control rounded-0" id="preferredName" placeholder="Enter name...">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6 col-12">
+                                                <div class="mb-3">
+                                                    <label for="gender" class="form-label mb-1">Gender</label>
+                                                    <input type="text" class="form-control rounded-0" id="gender" placeholder="Gender">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6 col-12">
+                                                <div class="mb-3">
+                                                    <label for="province" class="form-label mb-1">Province</label>
+                                                    <input type="text" class="form-control rounded-0" id="province" placeholder="Enter province code...">
+                                                </div>
+                                            </div>
+                                            <div class="col-12">
+                                                <div class="mb-3">
+                                                    <label for="email" class="form-label mb-1">Email</label>
+                                                    <input type="email" class="form-control rounded-0" id="email" placeholder="Enter email id..." autocomplete="off">
+                                                </div>
+                                            </div>
+                                            
+                                            <div class="row">
+                                                <div class="col-md-3 col-12 mb-3">
+                                                    <p class="mb-1">Joint Application</p>
+                                                    <div class="jointApplicantDemographic">
+                                                        <div class="form-check form-check-inline">
+                                                            <input class="form-check-input" type="radio" name="jointApplicantDemographic" id="yes" value="yes">
+                                                            <label class="form-check-label" for="yes">Yes</label>
+                                                        </div>
+                                                        <div class="form-check form-check-inline">
+                                                            <input class="form-check-input" type="radio" name="jointApplicantDemographic" id="no" value="no">
+                                                            <label class="form-check-label" for="no">No</label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-7 col-12">
+                                                    <div class="mb-3">
+                                                        <label for="applicant" class="form-label mb-1">Applicant</label>
+                                                        <input type="text" class="form-control rounded-0" id="applicant" placeholder="Applicant Name...">
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-2 col-12">
+                                                    <div class="mb-3">
+                                                        <label for="age" class="form-label mb-1">Age</label>
+                                                        <input type="text" class="form-control rounded-0" id="age" placeholder="Age...">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="mt-5 d-flex align-items-center justify-content-end commonBtnContainer">
+                                            <button type="button" id="nextBtn" class="btn commonBtn"  onclick="nextPrev(1)">Next</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="rightsec">
+                                    <p>Common questions & answers</p>
+                                    <div class="faqSectionByPage">
+                                        <div class="accordion" id="faqRightSec1">
+                                            <div class="accordion-item">
+                                                <h2 class="accordion-header" id="demographicFaqOne">
+                                                    <button class="accordion-button collapsed" type="button"
+                                                        data-bs-toggle="collapse" data-bs-target="#collapseOne"
+                                                        aria-expanded="false" aria-controls="collapseOne">
+                                                        <i class='bx bx-plus'></i>
+                                                        <span>Question 001</span>
+                                                    </button>
+                                                </h2>
+                                                <div id="collapseOne" class="accordion-collapse collapse"
+                                                    aria-labelledby="demographicFaqOne" data-bs-parent="#faqRightSec1">
+                                                    <div class="accordion-body">
+                                                        <strong>This is the first item's accordion body.</strong> It is
+                                                        shown by default, until the collapse plugin adds the appropriate
+                                                        classes that we use to style each element.
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="accordion-item">
+                                                <h2 class="accordion-header" id="demographicFaqTwo">
+                                                    <button class="accordion-button collapsed" type="button"
+                                                        data-bs-toggle="collapse" data-bs-target="#collapseTwo"
+                                                        aria-expanded="false" aria-controls="collapseTwo">
+                                                        <i class='bx bx-plus'></i>
+                                                        <span>Question 002</span>
+                                                    </button>
+                                                </h2>
+                                                <div id="collapseTwo" class="accordion-collapse collapse"
+                                                    aria-labelledby="demographicFaqTwo" data-bs-parent="#faqRightSec1">
+                                                    <div class="accordion-body">
+                                                        <strong>This is the second item's accordion body.</strong> It is
+                                                        hidden by default, until the collapse plugin adds the
+                                                        appropriate classes that we use to style each element.
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="accordion-item">
+                                                <h2 class="accordion-header" id="demographicFaqThree">
+                                                    <button class="accordion-button collapsed" type="button"
+                                                        data-bs-toggle="collapse" data-bs-target="#collapseThree"
+                                                        aria-expanded="false" aria-controls="collapseThree">
+                                                        <i class='bx bx-plus'></i>
+                                                        <span>Question 003</span>
+                                                    </button>
+                                                </h2>
+                                                <div id="collapseThree" class="accordion-collapse collapse"
+                                                    aria-labelledby="demographicFaqThree" data-bs-parent="#faqRightSec1">
+                                                    <div class="accordion-body">
+                                                        <strong>This is the third item's accordion body.</strong> It is
+                                                        hidden by default, until the collapse plugin adds the
+                                                        appropriate classes that we use to style each element.
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row tabContent" id="financials">
+                            <div class="col-md-8 mb-3 mb-md-0">
+                                <div class="leftSec">
+                                    <div class="closeIcon">
+                                        <i class="bi bi-x-lg"></i>
+                                    </div>
+
+                                    <form>
+                                        <h4 class="mb-4">This section will address your net income</h4>
+                                        
+                                        <div class="row">
+                                            <div class="col-md-8 col-12">
+                                                <p id="applicantName">Applicant name</p>
+                                                <div class="mb-3">
+                                                    <label for="approximateNetIncome" class="form-label mb-1">Approximate Net Income</label>
+                                                    <input type="text" class="form-control rounded-0" id="approximateNetIncome" placeholder="Ex: salary, bonus, support, investment, pension...">
+                                                </div>
+                                            </div>
+                                            <p class="condition">*Please note - Net income represents 60% gross annual income </p>
+                                        </div>
+
+                                        <div class="mt-5 d-flex align-items-center justify-content-end commonBtnContainer">
+                                            <button type="button" id="nextBtn" class="btn commonBtn"  onclick="nextPrev(1)">Next</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="rightsec">
+                                    <p>Common questions & answers</p>
+                                    <div class="faqSectionByPage">
+                                        <div class="accordion" id="faqRightSec2">
+                                            <div class="accordion-item">
+                                                <h2 class="accordion-header" id="financialsFaqOne">
+                                                    <button class="accordion-button collapsed" type="button"
+                                                        data-bs-toggle="collapse" data-bs-target="#collapseOne"
+                                                        aria-expanded="false" aria-controls="collapseOne">
+                                                        <i class='bx bx-plus'></i>
+                                                        <span>Question 001</span>
+                                                    </button>
+                                                </h2>
+                                                <div id="collapseOne" class="accordion-collapse collapse"
+                                                    aria-labelledby="financialsFaqOne" data-bs-parent="#faqRightSec2">
+                                                    <div class="accordion-body">
+                                                        <strong>This is the first item's accordion body.</strong> It is
+                                                        shown by default, until the collapse plugin adds the appropriate
+                                                        classes that we use to style each element.
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="accordion-item">
+                                                <h2 class="accordion-header" id="financialsFaqTwo">
+                                                    <button class="accordion-button collapsed" type="button"
+                                                        data-bs-toggle="collapse" data-bs-target="#collapseTwo"
+                                                        aria-expanded="false" aria-controls="collapseTwo">
+                                                        <i class='bx bx-plus'></i>
+                                                        <span>Question 002</span>
+                                                    </button>
+                                                </h2>
+                                                <div id="collapseTwo" class="accordion-collapse collapse"
+                                                    aria-labelledby="financialsFaqTwo" data-bs-parent="#faqRightSec2">
+                                                    <div class="accordion-body">
+                                                        <strong>This is the second item's accordion body.</strong> It is
+                                                        hidden by default, until the collapse plugin adds the
+                                                        appropriate classes that we use to style each element.
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="accordion-item">
+                                                <h2 class="accordion-header" id="financialsFaqThree">
+                                                    <button class="accordion-button collapsed" type="button"
+                                                        data-bs-toggle="collapse" data-bs-target="#collapseThree"
+                                                        aria-expanded="false" aria-controls="collapseThree">
+                                                        <i class='bx bx-plus'></i>
+                                                        <span>Question 003</span>
+                                                    </button>
+                                                </h2>
+                                                <div id="collapseThree" class="accordion-collapse collapse"
+                                                    aria-labelledby="financialsFaqThree" data-bs-parent="#faqRightSec2">
+                                                    <div class="accordion-body">
+                                                        <strong>This is the third item's accordion body.</strong> It is
+                                                        hidden by default, until the collapse plugin adds the
+                                                        appropriate classes that we use to style each element.
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row tabContent" id="life">
+                            <div class="col-md-8 mb-3 mb-md-0">
+                                <div class="leftSec">
+                                    <div class="closeIcon">
+                                        <i class="bi bi-x-lg"></i>
+                                    </div>
+
+                                    <form>
+                                        <h4 class="mb-2">Life application details</h4>
+                                        <p class="mb-4 totalDebtInfo">Information is from your CIBC account</p>
+                                        <div class="row">
+                                            <div class="col-md-8 col-12">
+                                                <div class="mb-3">
+                                                    <label for="lifeApproximateIncome" class="form-label mb-1">Approximate net income</label>
+                                                    <input type="text" class="form-control rounded-0" id="lifeApproximateIncome" placeholder="Increment amount rounded to the nearest $1,000">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-8 col-12">
+                                                <div class="mb-3">
+                                                    <label for="lifeCreditCard" class="form-label mb-1">Credit card(s)</label>
+                                                    <input type="text" class="form-control rounded-0" id="lifeCreditCard" placeholder="All currently holding...">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-8 col-12">
+                                                <div class="mb-3">
+                                                    <label for="lifeMonthlyExpenses" class="form-label mb-1">Monthly expenses</label>
+                                                    <input type="text" class="form-control rounded-0" id="lifeMonthlyExpenses" placeholder="All currently holding...">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-8 col-12">
+                                                <div class="mb-3">
+                                                    <label for="lifeSecuredAmount" class="form-label mb-1">Secured amount</label>
+                                                    <input type="text" class="form-control rounded-0" id="lifeSecuredAmount" placeholder="All currently holding...">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-8 col-12">
+                                                <div class="mb-3">
+                                                    <label for="lifeUnsecuredAmount" class="form-label mb-1">Unsecured amount</label>
+                                                    <input type="text" class="form-control rounded-0" id="lifeUnsecuredAmount" placeholder="All currently holding...">
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="mt-5 d-flex align-items-center justify-content-end commonBtnContainer">
+                                            <button type="button" id="nextBtn" class="btn commonBtn"  onclick="nextPrev(1)">Next</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="rightsec">
+                                    <p>Common questions & answers</p>
+                                    <div class="faqSectionByPage">
+                                        <div class="accordion" id="faqRightSec3">
+                                            <div class="accordion-item">
+                                                <h2 class="accordion-header" id="lifeFaqOne">
+                                                    <button class="accordion-button collapsed" type="button"
+                                                        data-bs-toggle="collapse" data-bs-target="#collapseOne"
+                                                        aria-expanded="false" aria-controls="collapseOne">
+                                                        <i class='bx bx-plus'></i>
+                                                        <span>Question 001</span>
+                                                    </button>
+                                                </h2>
+                                                <div id="collapseOne" class="accordion-collapse collapse"
+                                                    aria-labelledby="lifeFaqOne" data-bs-parent="#faqRightSec3">
+                                                    <div class="accordion-body">
+                                                        <strong>This is the first item's accordion body.</strong> It is
+                                                        shown by default, until the collapse plugin adds the appropriate
+                                                        classes that we use to style each element.
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="accordion-item">
+                                                <h2 class="accordion-header" id="lifeFaqTwo">
+                                                    <button class="accordion-button collapsed" type="button"
+                                                        data-bs-toggle="collapse" data-bs-target="#collapseTwo"
+                                                        aria-expanded="false" aria-controls="collapseTwo">
+                                                        <i class='bx bx-plus'></i>
+                                                        <span>Question 002</span>
+                                                    </button>
+                                                </h2>
+                                                <div id="collapseTwo" class="accordion-collapse collapse"
+                                                    aria-labelledby="lifeFaqTwo" data-bs-parent="#faqRightSec3">
+                                                    <div class="accordion-body">
+                                                        <strong>This is the second item's accordion body.</strong> It is
+                                                        hidden by default, until the collapse plugin adds the
+                                                        appropriate classes that we use to style each element.
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="accordion-item">
+                                                <h2 class="accordion-header" id="lifeFaqThree">
+                                                    <button class="accordion-button collapsed" type="button"
+                                                        data-bs-toggle="collapse" data-bs-target="#collapseThree"
+                                                        aria-expanded="false" aria-controls="collapseThree">
+                                                        <i class='bx bx-plus'></i>
+                                                        <span>Question 003</span>
+                                                    </button>
+                                                </h2>
+                                                <div id="collapseThree" class="accordion-collapse collapse"
+                                                    aria-labelledby="lifeFaqThree" data-bs-parent="#faqRightSec3">
+                                                    <div class="accordion-body">
+                                                        <strong>This is the third item's accordion body.</strong> It is
+                                                        hidden by default, until the collapse plugin adds the
+                                                        appropriate classes that we use to style each element.
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row tabContent" id="totaldebt">
+                            <div class="col-md-8 mb-3 mb-md-0">
+                                <div class="leftSec">
+                                    <div class="closeIcon">
+                                        <i class="bi bi-x-lg"></i>
+                                    </div>
+
+                                    <form>
+                                        <h4 class="mb-2">Your total existing debt</h4>
+                                        <p class="mb-4 totalDebtInfo">Based on the credit application, your outstanding credit balances are approximately <strong>$x</strong>. Would you like me to base our analysis off of this?
+                                        </p>
+                                        <div class="row">
+                                            <div class="col-md-8 col-12">
+                                                <div class="mb-3">
+                                                    <label for="totalExistingDebt" class="form-label mb-1">Total existing debt</label>
+                                                    <input type="text" class="form-control rounded-0" id="totalExistingDebt" placeholder="Enter total existing debt">
+                                                </div>
+                                            </div>
+                                            <p class="condition">*All credit balances reflect credit cards, loans, PLC balances & motgages which have been validated through the credit application process</p>
+                                        </div>
+
+                                        <div class="mt-5 d-flex align-items-center justify-content-end commonBtnContainer">
+                                            <button type="button" id="nextBtn" class="btn commonBtn"  onclick="nextPrev(1)">Next</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="rightsec">
+                                    <p>Common questions & answers</p>
+                                    <div class="faqSectionByPage">
+                                        <div class="accordion" id="faqRightSec4">
+                                            <div class="accordion-item">
+                                                <h2 class="accordion-header" id="totalDebtFaqOne">
+                                                    <button class="accordion-button collapsed" type="button"
+                                                        data-bs-toggle="collapse" data-bs-target="#collapseOne"
+                                                        aria-expanded="false" aria-controls="collapseOne">
+                                                        <i class='bx bx-plus'></i>
+                                                        <span>Question 001</span>
+                                                    </button>
+                                                </h2>
+                                                <div id="collapseOne" class="accordion-collapse collapse"
+                                                    aria-labelledby="totalDebtFaqOne" data-bs-parent="#faqRightSec4">
+                                                    <div class="accordion-body">
+                                                        <strong>This is the first item's accordion body.</strong> It is
+                                                        shown by default, until the collapse plugin adds the appropriate
+                                                        classes that we use to style each element.
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="accordion-item">
+                                                <h2 class="accordion-header" id="totalDebtFaqTwo">
+                                                    <button class="accordion-button collapsed" type="button"
+                                                        data-bs-toggle="collapse" data-bs-target="#collapseTwo"
+                                                        aria-expanded="false" aria-controls="collapseTwo">
+                                                        <i class='bx bx-plus'></i>
+                                                        <span>Question 002</span>
+                                                    </button>
+                                                </h2>
+                                                <div id="collapseTwo" class="accordion-collapse collapse"
+                                                    aria-labelledby="totalDebtFaqTwo" data-bs-parent="#faqRightSec4">
+                                                    <div class="accordion-body">
+                                                        <strong>This is the second item's accordion body.</strong> It is
+                                                        hidden by default, until the collapse plugin adds the
+                                                        appropriate classes that we use to style each element.
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="accordion-item">
+                                                <h2 class="accordion-header" id="totalDebtFaqThree">
+                                                    <button class="accordion-button collapsed" type="button"
+                                                        data-bs-toggle="collapse" data-bs-target="#collapseThree"
+                                                        aria-expanded="false" aria-controls="collapseThree">
+                                                        <i class='bx bx-plus'></i>
+                                                        <span>Question 003</span>
+                                                    </button>
+                                                </h2>
+                                                <div id="collapseThree" class="accordion-collapse collapse"
+                                                    aria-labelledby="totalDebtFaqThree" data-bs-parent="#faqRightSec4">
+                                                    <div class="accordion-body">
+                                                        <strong>This is the third item's accordion body.</strong> It is
+                                                        hidden by default, until the collapse plugin adds the
+                                                        appropriate classes that we use to style each element.
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row tabContent" id="disability">
+                            <div class="col-md-8 mb-3 mb-md-0">
+                                <div class="leftSec">
+                                    <div class="closeIcon">
+                                        <i class="bi bi-x-lg"></i>
+                                    </div>
+
+                                    <form>
+                                        <h4 class="mb-2">Current application payments</h4>
+                                        <p class="mb-4 totalDebtInfo">Information will is from your CIBC account
+                                        </p>
+                                        <div class="row">
+                                            <div class="col-md-8 col-12">
+                                                <div class="mb-3">
+                                                    <label for="disability" class="form-label mb-1">Approximate</label>
+                                                    <input type="text" class="form-control rounded-0" id="disability" placeholder="Increment amount rounded to the nearest $100">
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="mt-5 d-flex align-items-center justify-content-end commonBtnContainer">
+                                            <button type="button" id="nextBtn" class="btn commonBtn"  onclick="nextPrev(1)">Next</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="rightsec">
+                                    <p>Common questions & answers</p>
+                                    <div class="faqSectionByPage">
+                                        <div class="accordion" id="faqRightSec5">
+                                            <div class="accordion-item">
+                                                <h2 class="accordion-header" id="disabilityFaqOne">
+                                                    <button class="accordion-button collapsed" type="button"
+                                                        data-bs-toggle="collapse" data-bs-target="#collapseOne"
+                                                        aria-expanded="false" aria-controls="collapseOne">
+                                                        <i class='bx bx-plus'></i>
+                                                        <span>Question 001</span>
+                                                    </button>
+                                                </h2>
+                                                <div id="collapseOne" class="accordion-collapse collapse"
+                                                    aria-labelledby="disabilityFaqOne" data-bs-parent="#faqRightSec5">
+                                                    <div class="accordion-body">
+                                                        <strong>This is the first item's accordion body.</strong> It is
+                                                        shown by default, until the collapse plugin adds the appropriate
+                                                        classes that we use to style each element.
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="accordion-item">
+                                                <h2 class="accordion-header" id="disabilityFaqTwo">
+                                                    <button class="accordion-button collapsed" type="button"
+                                                        data-bs-toggle="collapse" data-bs-target="#collapseTwo"
+                                                        aria-expanded="false" aria-controls="collapseTwo">
+                                                        <i class='bx bx-plus'></i>
+                                                        <span>Question 002</span>
+                                                    </button>
+                                                </h2>
+                                                <div id="collapseTwo" class="accordion-collapse collapse"
+                                                    aria-labelledby="disabilityFaqTwo" data-bs-parent="#faqRightSec5">
+                                                    <div class="accordion-body">
+                                                        <strong>This is the second item's accordion body.</strong> It is
+                                                        hidden by default, until the collapse plugin adds the
+                                                        appropriate classes that we use to style each element.
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="accordion-item">
+                                                <h2 class="accordion-header" id="disabilityFaqThree">
+                                                    <button class="accordion-button collapsed" type="button"
+                                                        data-bs-toggle="collapse" data-bs-target="#collapseThree"
+                                                        aria-expanded="false" aria-controls="collapseThree">
+                                                        <i class='bx bx-plus'></i>
+                                                        <span>Question 003</span>
+                                                    </button>
+                                                </h2>
+                                                <div id="collapseThree" class="accordion-collapse collapse"
+                                                    aria-labelledby="disabilityFaqThree" data-bs-parent="#faqRightSec5">
+                                                    <div class="accordion-body">
+                                                        <strong>This is the third item's accordion body.</strong> It is
+                                                        hidden by default, until the collapse plugin adds the
+                                                        appropriate classes that we use to style each element.
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row tabContent" id="monthlypayment">
+                            <div class="col-md-8 mb-3 mb-md-0">
+                                <div class="leftSec">
+                                    <div class="closeIcon">
+                                        <i class="bi bi-x-lg"></i>
+                                    </div>
+
+                                    <form>
+                                        <h4 class="mb-2">Your monthly payments</h4>
+                                        <p class="mb-4 totalDebtInfo">Based on the credit application, your outstanding CIBC monthly payments are approximatley <strong>$x</strong> and your non-CIBC payments of approximately <strong>$b</strong>. Would you like me to base our analysis off of this?
+                                        </p>
+                                        <div class="row">
+                                            <div class="col-md-8 col-12">
+                                                <div class="mb-3">
+                                                    <label for="monthlyPayments" class="form-label mb-1">Approximate</label>
+                                                    <input type="text" class="form-control rounded-0" id="monthlyPayments" placeholder="Increment amount rounded to the nearest $1,000">
+                                                </div>
+                                            </div>
+                                            <p class="condition">*All credit balances reflect credit cards, loans, PLC balances & motgages which have been validated through the credit application process</p>
+                                        </div>
+
+                                        <div class="mt-5 d-flex align-items-center justify-content-end commonBtnContainer">
+                                            <button type="button" id="nextBtn" class="btn commonBtn"  onclick="nextPrev(1)">Next</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="rightsec">
+                                    <p>Common questions & answers</p>
+                                    <div class="faqSectionByPage">
+                                        <div class="accordion" id="faqRightSec6">
+                                            <div class="accordion-item">
+                                                <h2 class="accordion-header" id="monthlyPaymentFaqOne">
+                                                    <button class="accordion-button collapsed" type="button"
+                                                        data-bs-toggle="collapse" data-bs-target="#collapseOne"
+                                                        aria-expanded="false" aria-controls="collapseOne">
+                                                        <i class='bx bx-plus'></i>
+                                                        <span>Question 001</span>
+                                                    </button>
+                                                </h2>
+                                                <div id="collapseOne" class="accordion-collapse collapse"
+                                                    aria-labelledby="monthlyPaymentFaqOne" data-bs-parent="#faqRightSec6">
+                                                    <div class="accordion-body">
+                                                        <strong>This is the first item's accordion body.</strong> It is
+                                                        shown by default, until the collapse plugin adds the appropriate
+                                                        classes that we use to style each element.
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="accordion-item">
+                                                <h2 class="accordion-header" id="monthlyPaymentFaqTwo">
+                                                    <button class="accordion-button collapsed" type="button"
+                                                        data-bs-toggle="collapse" data-bs-target="#collapseTwo"
+                                                        aria-expanded="false" aria-controls="collapseTwo">
+                                                        <i class='bx bx-plus'></i>
+                                                        <span>Question 002</span>
+                                                    </button>
+                                                </h2>
+                                                <div id="collapseTwo" class="accordion-collapse collapse"
+                                                    aria-labelledby="monthlyPaymentFaqTwo" data-bs-parent="#faqRightSec6">
+                                                    <div class="accordion-body">
+                                                        <strong>This is the second item's accordion body.</strong> It is
+                                                        hidden by default, until the collapse plugin adds the
+                                                        appropriate classes that we use to style each element.
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="accordion-item">
+                                                <h2 class="accordion-header" id="monthlyPaymentFaqThree">
+                                                    <button class="accordion-button collapsed" type="button"
+                                                        data-bs-toggle="collapse" data-bs-target="#collapseThree"
+                                                        aria-expanded="false" aria-controls="collapseThree">
+                                                        <i class='bx bx-plus'></i>
+                                                        <span>Question 003</span>
+                                                    </button>
+                                                </h2>
+                                                <div id="collapseThree" class="accordion-collapse collapse"
+                                                    aria-labelledby="monthlyPaymentFaqThree" data-bs-parent="#faqRightSec6">
+                                                    <div class="accordion-body">
+                                                        <strong>This is the third item's accordion body.</strong> It is
+                                                        hidden by default, until the collapse plugin adds the
+                                                        appropriate classes that we use to style each element.
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row tabContent" id="savingsfund">
+                            <div class="col-md-8 mb-3 mb-md-0">
+                                <div class="leftSec">
+                                    <div class="closeIcon">
+                                        <i class="bi bi-x-lg"></i>
+                                    </div>
+
+                                    <form>
+                                        <h4 class="mb-2">Your savings and emergency funds</h4>
+                                        <p class="mb-4 totalDebtInfo">Do you have any other savings you draw on to support your family's immediate and long term needs should your income be reduced or eliminated?
+                                        </p>
+                                        <div class="row">
+                                            <div class="col-md-8 col-12">
+                                                <div class="mb-3">
+                                                    <label for="savingEmergencyFund" class="form-label mb-1">Approximate</label>
+                                                    <input type="text" class="form-control rounded-0" id="savingEmergencyFund" placeholder="Current value of 0...">
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="mt-5 d-flex align-items-center justify-content-end commonBtnContainer">
+                                            <button type="button" id="nextBtn" class="btn commonBtn"  onclick="nextPrev(1)">Next</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="rightsec">
+                                    <p>Common questions & answers</p>
+                                    <div class="faqSectionByPage">
+                                        <div class="accordion" id="faqRightSec7">
+                                            <div class="accordion-item">
+                                                <h2 class="accordion-header" id="savingFaqOne">
+                                                    <button class="accordion-button collapsed" type="button"
+                                                        data-bs-toggle="collapse" data-bs-target="#collapseOne"
+                                                        aria-expanded="false" aria-controls="collapseOne">
+                                                        <i class='bx bx-plus'></i>
+                                                        <span>Question 001</span>
+                                                    </button>
+                                                </h2>
+                                                <div id="collapseOne" class="accordion-collapse collapse"
+                                                    aria-labelledby="savingFaqOne" data-bs-parent="#faqRightSec7">
+                                                    <div class="accordion-body">
+                                                        <strong>This is the first item's accordion body.</strong> It is
+                                                        shown by default, until the collapse plugin adds the appropriate
+                                                        classes that we use to style each element.
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="accordion-item">
+                                                <h2 class="accordion-header" id="savingFaqTwo">
+                                                    <button class="accordion-button collapsed" type="button"
+                                                        data-bs-toggle="collapse" data-bs-target="#collapseTwo"
+                                                        aria-expanded="false" aria-controls="collapseTwo">
+                                                        <i class='bx bx-plus'></i>
+                                                        <span>Question 002</span>
+                                                    </button>
+                                                </h2>
+                                                <div id="collapseTwo" class="accordion-collapse collapse"
+                                                    aria-labelledby="savingFaqTwo" data-bs-parent="#faqRightSec7">
+                                                    <div class="accordion-body">
+                                                        <strong>This is the second item's accordion body.</strong> It is
+                                                        hidden by default, until the collapse plugin adds the
+                                                        appropriate classes that we use to style each element.
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="accordion-item">
+                                                <h2 class="accordion-header" id="savingFaqThree">
+                                                    <button class="accordion-button collapsed" type="button"
+                                                        data-bs-toggle="collapse" data-bs-target="#collapseThree"
+                                                        aria-expanded="false" aria-controls="collapseThree">
+                                                        <i class='bx bx-plus'></i>
+                                                        <span>Question 003</span>
+                                                    </button>
+                                                </h2>
+                                                <div id="collapseThree" class="accordion-collapse collapse"
+                                                    aria-labelledby="savingFaqThree" data-bs-parent="#faqRightSec7">
+                                                    <div class="accordion-body">
+                                                        <strong>This is the third item's accordion body.</strong> It is
+                                                        hidden by default, until the collapse plugin adds the
+                                                        appropriate classes that we use to style each element.
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row tabContent" id="currentcoverage">
+                            <div class="col-md-8 mb-3 mb-md-0">
+                                <div class="leftSec">
+                                    <div class="closeIcon">
+                                        <i class="bi bi-x-lg"></i>
+                                    </div>
+
+                                    <form>
+                                        <h4 class="mb-2">Your current insurance coverage</h4>
+                                        <p class="mb-4 totalDebtInfo">Are you aware of what your current coverage is (sources of coverage include work, external policy, creditor protection)?</p>
+                                        <div class="row">
+                                            <div class="col-md-6 col-12">
+                                                <div class="mb-3">
+                                                    <label for="lifeInsurance" class="form-label mb-1">Life Insurance</label>
+                                                    <input type="text" class="form-control rounded-0" id="lifeInsurance" placeholder="Enter value here...">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6 col-12">
+                                                <div class="mb-3">
+                                                    <label for="criticalIllness" class="form-label mb-1">Critical Illness</label>
+                                                    <input type="text" class="form-control rounded-0" id="criticalIllness" placeholder="Enter value here...">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6 col-12">
+                                                <div class="mb-2">
+                                                    <label for="disability" class="form-label mb-1">Disability</label>
+                                                    <input type="text" class="form-control rounded-0" id="disability" placeholder="Enter value here...">
+                                                </div>
+                                                <p class="condition">*Coverage tied to current employment
+                                                    records</p>
+                                            </div>
+                                            <div class="col-md-6 col-12">
+                                                <div class="mb-2">
+                                                    <label for="disabilityPercentage" class="form-label mb-1">Disability Percentage Of Income</label>
+                                                    <input type="text" class="form-control rounded-0" id="disabilityPercentage" placeholder="Enter value here...">
+                                                </div>
+                                                <p class="condition">*n= % value within input field (disability %)</p>
+                                            </div>
+                                            
+                                        </div>
+
+                                        <div class="mt-5 d-flex align-items-center justify-content-end commonBtnContainer">
+                                            <button type="button" id="nextBtn" class="btn commonBtn"  onclick="nextPrev(1)">Next</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="rightsec">
+                                    <p>Common questions & answers</p>
+                                    <div class="faqSectionByPage">
+                                        <div class="accordion" id="faqRightSec8">
+                                            <div class="accordion-item">
+                                                <h2 class="accordion-header" id="coverageFaqOne">
+                                                    <button class="accordion-button collapsed" type="button"
+                                                        data-bs-toggle="collapse" data-bs-target="#collapseOne"
+                                                        aria-expanded="false" aria-controls="collapseOne">
+                                                        <i class='bx bx-plus'></i>
+                                                        <span>Question 001</span>
+                                                    </button>
+                                                </h2>
+                                                <div id="collapseOne" class="accordion-collapse collapse"
+                                                    aria-labelledby="coverageFaqOne" data-bs-parent="#faqRightSec8">
+                                                    <div class="accordion-body">
+                                                        <strong>This is the first item's accordion body.</strong> It is
+                                                        shown by default, until the collapse plugin adds the appropriate
+                                                        classes that we use to style each element.
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="accordion-item">
+                                                <h2 class="accordion-header" id="coverageFaqTwo">
+                                                    <button class="accordion-button collapsed" type="button"
+                                                        data-bs-toggle="collapse" data-bs-target="#collapseTwo"
+                                                        aria-expanded="false" aria-controls="collapseTwo">
+                                                        <i class='bx bx-plus'></i>
+                                                        <span>Question 002</span>
+                                                    </button>
+                                                </h2>
+                                                <div id="collapseTwo" class="accordion-collapse collapse"
+                                                    aria-labelledby="coverageFaqTwo" data-bs-parent="#faqRightSec8">
+                                                    <div class="accordion-body">
+                                                        <strong>This is the second item's accordion body.</strong> It is
+                                                        hidden by default, until the collapse plugin adds the
+                                                        appropriate classes that we use to style each element.
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="accordion-item">
+                                                <h2 class="accordion-header" id="coverageFaqThree">
+                                                    <button class="accordion-button collapsed" type="button"
+                                                        data-bs-toggle="collapse" data-bs-target="#collapseThree"
+                                                        aria-expanded="false" aria-controls="collapseThree">
+                                                        <i class='bx bx-plus'></i>
+                                                        <span>Question 003</span>
+                                                    </button>
+                                                </h2>
+                                                <div id="collapseThree" class="accordion-collapse collapse"
+                                                    aria-labelledby="coverageFaqThree" data-bs-parent="#faqRightSec8">
+                                                    <div class="accordion-body">
+                                                        <strong>This is the third item's accordion body.</strong> It is
+                                                        hidden by default, until the collapse plugin adds the
+                                                        appropriate classes that we use to style each element.
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+{% endblock %}

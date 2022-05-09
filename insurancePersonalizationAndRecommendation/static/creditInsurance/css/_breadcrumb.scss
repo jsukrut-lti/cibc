@@ -6,7 +6,11 @@
 
         .breadcrumb-item {
             a {
-                color: $CIBC_blue;
+                color: $textColor;
+            }
+
+            &.active {
+                color: $CIBC_nav;
             }
         }
     }

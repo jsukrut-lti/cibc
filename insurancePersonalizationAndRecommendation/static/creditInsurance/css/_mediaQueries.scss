@@ -41,4 +41,16 @@
         flex-wrap: wrap;
         justify-content: center !important;
     }
+
+    .exitPlatform {
+        .content {
+            h4 {
+    
+                &::before {
+                    display: none;
+                }
+    
+            }
+        }
+    }
 }

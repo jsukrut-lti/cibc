@@ -464,7 +464,11 @@ a {
 }
 
 .breadcrumbSec .breadcrumb .breadcrumb-item a {
-  color: #0F67A1;
+  color: #42526E;
+}
+
+.breadcrumbSec .breadcrumb .breadcrumb-item.active {
+  color: #C41F3E;
 }
 
 .sidebar {
@@ -817,9 +821,9 @@ a {
 }
 
 .home-section .main .topBar .rightSec .switchBtn .btnToggle {
-  border: 2px solid #B7B3B3;
+  border: 1px solid #B7B3B3;
   display: inline-block;
-  padding: 6px;
+  padding: 7px;
   position: relative;
   text-align: center;
   -webkit-transition: background 600ms ease, color 600ms ease;
@@ -981,6 +985,21 @@ a {
   margin-top: 30px;
 }
 
+.dashboardContent .leftContent h1 {
+  font-size: 36px;
+  font-weight: 300;
+  border-radius: 8px;
+  background-color: #FFFFFF;
+}
+
+.dashboardContent .leftContent h1 span {
+  font-weight: 500;
+}
+
+.dashboardContent .rightContent {
+  background-color: #FFFFFF;
+}
+
 /*Not Eligible Page CSS*/
 .notEligible {
   height: inherit;
@@ -1055,6 +1074,23 @@ a {
 .exitPage .content .closePage .returnToCI a {
   color: #212529;
   text-decoration: underline;
+}
+
+.exitPlatform .content h4 {
+  font-weight: 300;
+  position: relative;
+}
+
+.exitPlatform .content h4::before {
+  content: '';
+  position: absolute;
+  height: 2px;
+  width: 90%;
+  margin: auto;
+  left: 0;
+  right: 0;
+  bottom: 4px;
+  background-color: #B7B3B3;
 }
 
 .commonLayout .content .leftSec {
@@ -1318,6 +1354,12 @@ a {
   display: none;
 }
 
+.tabContent.active {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
 /* Save Summary Page CSS Start */
 .saveSummary .saveFormat p {
   font-size: 20px;
@@ -1373,6 +1415,9 @@ a {
     -webkit-box-pack: center !important;
         -ms-flex-pack: center !important;
             justify-content: center !important;
+  }
+  .exitPlatform .content h4::before {
+    display: none;
   }
 }
 /*# sourceMappingURL=style.css.map */

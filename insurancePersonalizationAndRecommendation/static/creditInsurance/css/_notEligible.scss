@@ -84,3 +84,27 @@
         }
     }
 }
+
+// Exit Platform Page
+
+.exitPlatform {
+    .content {
+        h4 {
+            font-weight: 300;
+            position: relative;
+
+            &::before {
+                content: '';
+                position: absolute;
+                height: 2px;
+                width: 90%;
+                margin: auto;
+                left: 0;
+                right: 0;
+                bottom: 4px;
+                background-color: $Gray_text;
+            }
+
+        }
+    }
+}
