@@ -4,7 +4,7 @@ from .views import InsuranceConvoView,PersionalizeCreateView,PersionalizeUpdateV
     InsuranceDiscussionCreate,InsuranceDiscussionList,InsuranceDiscussionGet,\
     InsuranceDiscussionDelete, InsuranceDiscussionUpdate,InsuranceWelcomeView,\
     InsuranceTermConditionView, InsuranceCallback,InsuranceQuestionnaireView,InsuranceApplicantSelectionView,\
-    InsuranceCiPreApplicationView
+    InsuranceCiPreApplicationView, InsuranceClientInformationView
 from django.views.generic import TemplateView
 
 urlpatterns = [
@@ -25,6 +25,7 @@ urlpatterns = [
     path('questionnaire/', InsuranceQuestionnaireView.as_view(), name='ins-convo-questionnaire'),
     path('termCondition/', InsuranceTermConditionView.as_view(), name='ins-convo-tc'),
     path('applicantSelection/', InsuranceApplicantSelectionView.as_view(), name='ins-convo-tc'),
+    path('clientInformation/', InsuranceClientInformationView.as_view(), name='ins-convo-clientInfo'),
     path('callback/', InsuranceCallback.as_view(), name='ins-callback'),
 
 ]

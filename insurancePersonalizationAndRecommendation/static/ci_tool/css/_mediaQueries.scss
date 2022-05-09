@@ -6,6 +6,21 @@
     }
 }
 
+@media screen and (max-width: 768px) {
+    .commonLayout {
+        .content {
+            .leftSec,
+            .rightsec {
+                min-height: inherit;
+            }
+
+            // .leftSec .commonBtnContainer {
+            //     position: unset;
+            // }
+        }
+    }
+}
+
 @media screen and (max-width: 500px) {
     .notEligible {
         .content {
@@ -18,6 +33,23 @@
                         gap: 15px;
                     }
                 }
+            }
+        }
+    }
+
+    .commonBtnContainer {
+        flex-wrap: wrap;
+        justify-content: center !important;
+    }
+
+    .exitPlatform {
+        .content {
+            h4 {
+    
+                &::before {
+                    display: none;
+                }
+    
             }
         }
     }

@@ -1,0 +1,71 @@
+/* Client Page CSS Start */
+
+.commonLayout {
+    .content {
+        .leftSec {
+            form {
+                .jointApplicantDemographic {
+                    height: 38px;
+                    display: flex;
+                    align-items: center;
+                    gap: 20px;
+
+                    .form-check {
+                        .form-check-input {
+                            &:checked {
+                                border-color: #000000;
+                                background-color: #000000;
+                                box-shadow: none;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+.condition {
+    font-weight: 300;
+    font-size: 14px;
+}
+
+.totalDebtInfo {
+    font-size: 14px;
+    color: #9B9595;
+}
+
+.tabContent {
+    display: none;
+}
+
+.tabContent.active {
+    display: flex;
+}
+
+/* Save Summary Page CSS Start */
+.saveSummary {
+    .saveFormat {
+        p {
+            font-size: 20px;
+        }
+
+        img {
+            width: 100px;
+        }
+
+        .btn.commonBtn {
+            min-width: 100px;
+        }
+    }
+
+    .commonBtnContainer {
+        gap: 30px;
+
+        .selectApplicant {
+            background-color: transparent;
+            color: #000000;
+            border: 1px solid #000000;
+        }
+    }
+}

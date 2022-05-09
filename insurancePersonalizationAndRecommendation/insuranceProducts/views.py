@@ -344,6 +344,12 @@ class InsuranceApplicantSelectionView(View):
     def get(self, request, *args, **kwargs):
         return render(request, template_name=self.template_name)
 
+class InsuranceClientInformationView(View):
+    template_name = 'ci_tool/clientInformation.html'
+
+    def get(self, request, *args, **kwargs):
+        return render(request, template_name=self.template_name)
+
 class InsuranceCallback(View):
 
     def get(self, request, *args, **kwargs):

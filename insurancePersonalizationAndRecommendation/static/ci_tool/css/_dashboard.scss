@@ -9,6 +9,10 @@
     border-right: 2px solid $CIBC_background;
     transition: all 0.3s ease;
 
+    ul.nav-links {
+        display: flex;
+    }
+
     .icon.closeNav {
         display: none;
     }
@@ -88,6 +92,7 @@
                         opacity: 1;
                         display: block;
                         color: $white;
+                        white-space: nowrap;
                     }
 
                     a {
@@ -170,12 +175,16 @@
                 }
             }
 
-            &.subMenu.active {
-                background-color: unset;
-                
-                a {
-                    i, span {
-                        color: $textColor;
+            &.subMenu {
+                cursor: pointer;
+
+                &.active {
+                    background-color: unset;                    
+                    
+                    a {
+                        i, span {
+                            color: $textColor;
+                        }
                     }
                 }
             }
@@ -261,7 +270,7 @@
                     color: $textColor;
                     font-size: 15px;
                     padding: 10px 10px 10px 80px;
-                    white-space: nowrap;
+                    // white-space: nowrap;
                     opacity: 1;
                     transition: all 0.3s ease;
 
@@ -323,7 +332,8 @@
 
     .main {
         .topBar {
-            height: 70px;            padding: 0 20px;
+            height: 70px;            
+            padding: 0 20px;
             background-color: $white;
 
             .bx.bx-menu {
@@ -349,9 +359,9 @@
                     }
 
                     .btnToggle {
-                        border: 2px solid $Gray_text;
+                        border: 1px solid $Gray_text;
                         display: inline-block;
-                        padding: 6px;
+                        padding: 7px;
                         position: relative;
                         text-align: center;
                         transition: background 600ms ease, color 600ms ease;
@@ -502,5 +512,26 @@
             text-align: center;
             margin-top: 30px;
         }
+    }
+}
+
+// Dashboard CSS Start
+.dashboardContent {
+    .leftContent {
+
+        h1 {
+            font-size: 36px;
+            font-weight: 300;
+            border-radius: 8px;
+            background-color: $white;
+
+            span {
+                font-weight: 500;
+            }
+        }
+    }
+
+    .rightContent {
+        background-color: $white;
     }
 }

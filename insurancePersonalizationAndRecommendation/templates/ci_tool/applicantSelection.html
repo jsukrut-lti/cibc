@@ -21,7 +21,8 @@
                                         <i class="bi bi-x-lg"></i>
                                     </div>
 
-                                    <form>
+                                    <form action="/insurance/clientInformation/" method="post" class="form">
+                                        {% csrf_token %}
                                         <div class="userImg">
                                             <img src="{% static 'ci_tool/images/applicantSelection.png' %}" alt="Applicant Selection icon">
                                         </div>
@@ -70,7 +71,7 @@
                                         </div>
 
                                         <div class="mt-5 d-flex align-items-center justify-content-end">
-                                            <button type="button" class="btn commonBtn">Proceed</button>
+                                            <button type="submit" class="btn commonBtn">Proceed</button>
                                         </div>
                                     </form>
                                 </div>

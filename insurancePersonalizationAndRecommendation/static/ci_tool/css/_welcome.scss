@@ -97,6 +97,12 @@
 
         .btnContainer {
             gap: 15px;
+
+            .btnDisagree {
+                background-color: transparent;
+                color: #000000;
+                border: 1px solid #000000;
+            }
         }
     }
 }
