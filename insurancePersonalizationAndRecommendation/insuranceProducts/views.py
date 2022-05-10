@@ -359,13 +359,20 @@ class InsuranceClientInformationView(View):
     template_name = 'creditInsurance/clientInformation.html'
 
     def get(self, request, *args, **kwargs):
-        queryset = InsuranceDiscussion.objects.filter(id=kwargs['pk'])
+        queryset = InsuranceDiscussion.objects.filter(id=kwargs['pk']).values()[0]
+        if queryset['primaryGender'] == 'm':
+            queryset['primaryGender'] = 'Male'
+        elif queryset['primaryGender'] == 'f':
+            queryset['primaryGender'] = 'Female'
+        else:
+            queryset['primaryGender'] = 'Other'
+
+        if queryset['canada_provence'] == 'on':
+            queryset['canada_provence'] = 'Canada'
+
         context = {
             'id': kwargs['pk'],
-            'coFirstName': queryset[0].coFirstName,
-            'coLastName': queryset[0].coLastName,
-            'primaryFirstName': queryset[0].primaryFirstName,
-            'primaryLastName': queryset[0].primaryLastName,
+            'discussion': queryset
         }
         return render(request, template_name=self.template_name, context=context)
 

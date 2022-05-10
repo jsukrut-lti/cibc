@@ -32,19 +32,19 @@
                                             <div class="col-md-6 col-12">
                                                 <div class="mb-3">
                                                     <label for="firstName" class="form-label mb-1">First Name</label>
-                                                    <input type="text" class="form-control rounded-0" id="firstName" placeholder="Enter first name...">
+                                                    <input type="text" class="form-control rounded-0" id="firstName" placeholder="Enter first name..." value="{{ discussion.primaryFirstName }}">
                                                 </div>
                                             </div>
                                             <div class="col-md-6 col-12">
                                                 <div class="mb-3">
                                                     <label for="lastName" class="form-label mb-1">Last Name</label>
-                                                    <input type="text" class="form-control rounded-0" id="lastName" placeholder="Enter last name...">
+                                                    <input type="text" class="form-control rounded-0" id="lastName" placeholder="Enter last name..." value="{{ discussion.primaryLastName }}">
                                                 </div>
                                             </div>
                                             <div class="col-md-6 col-12">
                                                 <div class="mb-3">
                                                     <label for="middleName" class="form-label mb-1">Middle Initial</label>
-                                                    <input type="text" class="form-control rounded-0" id="middleName" placeholder="Enter middle initial...">
+                                                    <input type="text" class="form-control rounded-0" id="middleName" placeholder="Enter middle initial..." value="{{ discussion.primaryMiddleName }}">
                                                 </div>
                                             </div>
                                             <div class="col-md-6 col-12">
@@ -56,13 +56,13 @@
                                             <div class="col-md-6 col-12">
                                                 <div class="mb-3">
                                                     <label for="gender" class="form-label mb-1">Gender</label>
-                                                    <input type="text" class="form-control rounded-0" id="gender" placeholder="Gender">
+                                                    <input type="text" class="form-control rounded-0" id="gender" placeholder="Gender" value="{{ discussion.primaryGender }}">
                                                 </div>
                                             </div>
                                             <div class="col-md-6 col-12">
                                                 <div class="mb-3">
                                                     <label for="province" class="form-label mb-1">Province</label>
-                                                    <input type="text" class="form-control rounded-0" id="province" placeholder="Enter province code...">
+                                                    <input type="text" class="form-control rounded-0" id="province" placeholder="Enter province code..." value="{{ discussion.canada_provence }}">
                                                 </div>
                                             </div>
                                             <div class="col-12">
@@ -183,10 +183,10 @@
                                         
                                         <div class="row">
                                             <div class="col-md-8 col-12">
-                                                <p id="applicantName">Applicant name</p>
+                                                <p id="applicantName">{{ discussion.primaryFirstName }} {{ discussion.primaryLastName }}</p>
                                                 <div class="mb-3">
                                                     <label for="approximateNetIncome" class="form-label mb-1">Approximate Net Income</label>
-                                                    <input type="text" class="form-control rounded-0" id="approximateNetIncome" placeholder="Ex: salary, bonus, support, investment, pension...">
+                                                    <input type="text" class="form-control rounded-0" id="approximateNetIncome" placeholder="Ex: salary, bonus, support, investment, pension..." value="{{ discussion.approxNetIncome | floatformat:'0' }}">
                                                 </div>
                                             </div>
                                             <p class="condition">*Please note - Net income represents 60% gross annual income </p>
@@ -276,31 +276,31 @@
                                             <div class="col-md-8 col-12">
                                                 <div class="mb-3">
                                                     <label for="lifeApproximateIncome" class="form-label mb-1">Approximate net income</label>
-                                                    <input type="text" class="form-control rounded-0" id="lifeApproximateIncome" placeholder="Increment amount rounded to the nearest $1,000">
+                                                    <input type="text" class="form-control rounded-0" id="lifeApproximateIncome" placeholder="Increment amount rounded to the nearest $1,000" value="{{ discussion.approxNetIncome | floatformat:'0' }}">
                                                 </div>
                                             </div>
                                             <div class="col-md-8 col-12">
                                                 <div class="mb-3">
                                                     <label for="lifeCreditCard" class="form-label mb-1">Credit card(s)</label>
-                                                    <input type="text" class="form-control rounded-0" id="lifeCreditCard" placeholder="All currently holding...">
+                                                    <input type="text" class="form-control rounded-0" id="lifeCreditCard" placeholder="All currently holding..." value="{{ discussion.creditCardBalance | floatformat:'0' }}">
                                                 </div>
                                             </div>
                                             <div class="col-md-8 col-12">
                                                 <div class="mb-3">
                                                     <label for="lifeMonthlyExpenses" class="form-label mb-1">Monthly expenses</label>
-                                                    <input type="text" class="form-control rounded-0" id="lifeMonthlyExpenses" placeholder="All currently holding...">
+                                                    <input type="text" class="form-control rounded-0" id="lifeMonthlyExpenses" placeholder="All currently holding..." value="{{ discussion.totalMonthlyExpenses | floatformat:'0' }}">
                                                 </div>
                                             </div>
                                             <div class="col-md-8 col-12">
                                                 <div class="mb-3">
                                                     <label for="lifeSecuredAmount" class="form-label mb-1">Secured amount</label>
-                                                    <input type="text" class="form-control rounded-0" id="lifeSecuredAmount" placeholder="All currently holding...">
+                                                    <input type="text" class="form-control rounded-0" id="lifeSecuredAmount" placeholder="All currently holding..." value="{{ discussion.totalUnsecuredAmt | floatformat:'0' }}">
                                                 </div>
                                             </div>
                                             <div class="col-md-8 col-12">
                                                 <div class="mb-3">
                                                     <label for="lifeUnsecuredAmount" class="form-label mb-1">Unsecured amount</label>
-                                                    <input type="text" class="form-control rounded-0" id="lifeUnsecuredAmount" placeholder="All currently holding...">
+                                                    <input type="text" class="form-control rounded-0" id="lifeUnsecuredAmount" placeholder="All currently holding..." value="{{ discussion.totalSecuredAmt | floatformat:'0' }}">
                                                 </div>
                                             </div>
                                         </div>
@@ -390,7 +390,7 @@
                                             <div class="col-md-8 col-12">
                                                 <div class="mb-3">
                                                     <label for="totalExistingDebt" class="form-label mb-1">Total existing debt</label>
-                                                    <input type="text" class="form-control rounded-0" id="totalExistingDebt" placeholder="Enter total existing debt">
+                                                    <input type="text" class="form-control rounded-0" id="totalExistingDebt" placeholder="Enter total existing debt" value="{{ discussion.totalExistingDebt | floatformat:'0' }}">
                                                 </div>
                                             </div>
                                             <p class="condition">*All credit balances reflect credit cards, loans, PLC balances & motgages which have been validated through the credit application process</p>
@@ -481,7 +481,7 @@
                                             <div class="col-md-8 col-12">
                                                 <div class="mb-3">
                                                     <label for="disability" class="form-label mb-1">Approximate</label>
-                                                    <input type="text" class="form-control rounded-0" id="disability" placeholder="Increment amount rounded to the nearest $100">
+                                                    <input type="text" class="form-control rounded-0" id="disability" placeholder="Increment amount rounded to the nearest $100" value="{{ discussion.currentApplicationPmt | floatformat:'0' }}">
                                                 </div>
                                             </div>
                                         </div>
@@ -571,7 +571,7 @@
                                             <div class="col-md-8 col-12">
                                                 <div class="mb-3">
                                                     <label for="monthlyPayments" class="form-label mb-1">Approximate</label>
-                                                    <input type="text" class="form-control rounded-0" id="monthlyPayments" placeholder="Increment amount rounded to the nearest $1,000">
+                                                    <input type="text" class="form-control rounded-0" id="monthlyPayments" placeholder="Increment amount rounded to the nearest $1,000" value="{{ discussion.totalMonthlyPmt | floatformat:'0' }}">
                                                 </div>
                                             </div>
                                             <p class="condition">*All credit balances reflect credit cards, loans, PLC balances & motgages which have been validated through the credit application process</p>
@@ -662,7 +662,7 @@
                                             <div class="col-md-8 col-12">
                                                 <div class="mb-3">
                                                     <label for="savingEmergencyFund" class="form-label mb-1">Approximate</label>
-                                                    <input type="text" class="form-control rounded-0" id="savingEmergencyFund" placeholder="Current value of 0...">
+                                                    <input type="text" class="form-control rounded-0" id="savingEmergencyFund" placeholder="Current value of 0..." value="{{ discussion.savingsEmergencyFund | floatformat:'0' }}">
                                                 </div>
                                             </div>
                                         </div>
@@ -751,19 +751,19 @@
                                             <div class="col-md-6 col-12">
                                                 <div class="mb-3">
                                                     <label for="lifeInsurance" class="form-label mb-1">Life Insurance</label>
-                                                    <input type="text" class="form-control rounded-0" id="lifeInsurance" placeholder="Enter value here...">
+                                                    <input type="text" class="form-control rounded-0" id="lifeInsurance" placeholder="Enter value here..." value="{{ discussion.lifeInsuranceLimit | floatformat:'0' }}">
                                                 </div>
                                             </div>
                                             <div class="col-md-6 col-12">
                                                 <div class="mb-3">
                                                     <label for="criticalIllness" class="form-label mb-1">Critical Illness</label>
-                                                    <input type="text" class="form-control rounded-0" id="criticalIllness" placeholder="Enter value here...">
+                                                    <input type="text" class="form-control rounded-0" id="criticalIllness" placeholder="Enter value here..." value="{{ discussion.criticalIllnessLimit | floatformat:'0' }}">
                                                 </div>
                                             </div>
                                             <div class="col-md-6 col-12">
                                                 <div class="mb-2">
                                                     <label for="disability" class="form-label mb-1">Disability</label>
-                                                    <input type="text" class="form-control rounded-0" id="disability" placeholder="Enter value here...">
+                                                    <input type="text" class="form-control rounded-0" id="disability" placeholder="Enter value here..." value="{{ discussion.disabilityInsuranceMonthlyBenefit | floatformat:'0' }}">
                                                 </div>
                                                 <p class="condition">*Coverage tied to current employment
                                                     records</p>
@@ -771,7 +771,7 @@
                                             <div class="col-md-6 col-12">
                                                 <div class="mb-2">
                                                     <label for="disabilityPercentage" class="form-label mb-1">Disability Percentage Of Income</label>
-                                                    <input type="text" class="form-control rounded-0" id="disabilityPercentage" placeholder="Enter value here...">
+                                                    <input type="text" class="form-control rounded-0" id="disabilityPercentage" placeholder="Enter value here..." value="{{ discussion.disabilityInsurancePercentCoveredByEmployer }}">
                                                 </div>
                                                 <p class="condition">*n= % value within input field (disability %)</p>
                                             </div>
