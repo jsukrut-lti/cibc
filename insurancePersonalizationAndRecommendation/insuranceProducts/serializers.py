@@ -137,6 +137,13 @@ class InsuranceDiscussionSerializers(serializers.ModelSerializer):
             agentOverallPerceptionOfCustomerResp = validated_data['agentOverallPerceptionOfCustomerResp'],
             isRelatedToFinalizedSoldProduct = validated_data['isRelatedToFinalizedSoldProduct'],
             currentSection = validated_data['currentSection'],
+            approxNetIncome = validated_data['approxNetIncome'],
+            totalUnsecuredAmt = validated_data['totalUnsecuredAmt'],
+            totalSecuredAmt = validated_data['totalSecuredAmt'],
+            totalExistingDebt = validated_data['totalExistingDebt'],
+            currentApplicationPmt = validated_data['currentApplicationPmt'],
+            totalMonthlyPmt = validated_data['totalMonthlyPmt'],
+            savingsEmergencyFund = validated_data['savingsEmergencyFund'],
         )
         return insuranceDiscussion_obj
 
@@ -197,6 +204,13 @@ class InsuranceDiscussionSerializers(serializers.ModelSerializer):
         instance.agentOverallPerceptionOfCustomerResp = validated_data['agentOverallPerceptionOfCustomerResp']
         instance.isRelatedToFinalizedSoldProduct = validated_data['isRelatedToFinalizedSoldProduct']
         instance.currentSection = validated_data['currentSection']
+        instance.approxNetIncome = validated_data['approxNetIncome'],
+        instance.totalUnsecuredAmt = validated_data['totalUnsecuredAmt'],
+        instance.totalSecuredAmt = validated_data['totalSecuredAmt'],
+        instance.totalExistingDebt = validated_data['totalExistingDebt'],
+        instance.currentApplicationPmt = validated_data['currentApplicationPmt'],
+        instance.totalMonthlyPmt = validated_data['totalMonthlyPmt'],
+        instance.savingsEmergencyFund = validated_data['savingsEmergencyFund'],
         instance.save()
         return instance
 

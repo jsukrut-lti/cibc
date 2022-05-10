@@ -145,6 +145,15 @@ class InsuranceDiscussion(TimeStampedModel):
     discussionOutcomes = models.CharField(_("Outcome of discussion"),  choices=[x.value for x in DISCUSSION_OUTCOME_TYPE], null=True, blank=True, max_length=20)
     currentSection = models.CharField(_("Discussion Section"), choices=[x.value for x in DISCUSSION_SECTION_TYPE],null=True, blank=True, max_length=40)
 
+    # additional fields
+    approxNetIncome = models.DecimalField(_("Approximate Net Income"), max_digits=8, decimal_places=2, null=True, blank=True)
+    totalUnsecuredAmt = models.DecimalField(_("Total Unsecured Amount"), max_digits=8, decimal_places=2, null=True, blank=True)
+    totalSecuredAmt = models.DecimalField(_("Total Secured Amount"), max_digits=8, decimal_places=2, null=True, blank=True)
+    totalExistingDebt = models.DecimalField(_("Total Existing Debt"), max_digits=8, decimal_places=2, null=True, blank=True)
+    currentApplicationPmt = models.DecimalField(_("Current Application Payment"), max_digits=8, decimal_places=2, null=True, blank=True)
+    totalMonthlyPmt = models.DecimalField(_("Total Monthly Payment"), max_digits=8, decimal_places=2, null=True, blank=True)
+    savingsEmergencyFund = models.DecimalField(_("Saving & Emergency Fund"), max_digits=8, decimal_places=2, null=True, blank=True)
+
     def __str__(self):
         return '{}'.format(self.insProduct)
 
