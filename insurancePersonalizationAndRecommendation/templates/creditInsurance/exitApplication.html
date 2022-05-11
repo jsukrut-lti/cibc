@@ -1,6 +1,8 @@
 {% extends 'base.html' %}
 {% block content %}
 {% load static %}
+
+
         <div class="main">
             <div class="d-flex justify-content-between align-items-center topBar">
                 <div class="toggle d-lg-block d-none">
@@ -12,20 +14,16 @@
             </div>
 
             <div class="container-lg px-4">
-                <div class="accountScreen notEligible welcomeScreen my-4">
+                <div class="accountScreen notEligible exitPlatform my-4">
                     <div class="content">
-                        <div class="closeIcon">
-                            <i class="bi bi-x-lg" onclick="exitApplication()"></i>
-                        </div>
-                        <form action="/insurance/questionnaire/" method="post" class="form">
-                            {% csrf_token %}
-                            <div class="mb-3">
-                                <h1 class="display-1 text-center mb-3"><span>Welcome</span></h1>
-                                <p class="notEligibleMsg mb-5 text-center">Now that we understand your credit needs, my job is to help you understand your protection needs.</p>
+                        <form>
+                            <div class="mb-3 text-center">
+                                <h4 class="display-2 d-inline">Exit Platform</h4>
+                                <p class="notEligibleMsg mb-5 mt-3">You are now exiting the tool, all existing changes have been updated and saved. You will now be redirected to the CIBC insurance page.</p>
                             </div>
                             <div class="closePage text-center">
-                                <button type="submit" class="btn commonBtn mb-5">Continue</button>
-                                <div class="contactSec mt-4">
+                                <button type="button" class="btn commonBtn mb-3">Exit</button>
+                                <div class="contactSec mt-4 mb-2">
                                     <div class="contactDetails d-flex justify-content-center">
                                         <div class="mail mb-2">
                                             <img src="{% static 'creditInsurance/images/mail.png' %}" alt="mail icon">
