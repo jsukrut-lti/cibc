@@ -21,8 +21,7 @@
                                         <i class="bi bi-x-lg" onclick="exitApplication()"></i>
                                     </div>
 
-                                    <form action="/insurance/clientInformation/" method="post" class="form">
-                                        {% csrf_token %}
+                                    <form action="/insurance/applicantSelection/{{ id }}" method="post" class="form">
                                         <div class="userImg">
                                             <img src="{% static 'creditInsurance/images/applicantSelection.png' %}" alt="Applicant Selection icon">
                                         </div>
@@ -38,16 +37,14 @@
                                             <p class="text-uppercase mb-1">APPLICANT</p>
                                             <div class="selectBox">
                                                 <select class="form-select" id="checkSelect" aria-label="Select Applicant">
-                                                    <option value="1">One</option>
-                                                    <option value="2">Two</option>
-                                                    <option value="3">Three</option>
+                                                    <option value="1">{{ primaryFirstName }} {{ primaryLastName }}</option>
+                                                    <option value="2">{{ coFirstName }} {{ coLastName }}</option>
                                                 </select>
                                             </div>
                                             <div class="selectBoxMultiple">
                                                 <select class="form-select" id="checkSelectMultiple" aria-label="Select Applicant" multiple>
-                                                    <option value="1">One</option>
-                                                    <option value="2">Two</option>
-                                                    <option value="3">Three</option>
+                                                    <option value="1">{{ primaryFirstName }} {{ primaryLastName }}</option>
+                                                    <option value="2">{{ coFirstName }} {{ coLastName }}</option>
                                                 </select>
                                             </div>
                                         </div>
