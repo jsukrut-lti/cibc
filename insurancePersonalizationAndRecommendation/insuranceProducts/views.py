@@ -322,31 +322,23 @@ class InsuranceWelcomeView(View):
     template_name = 'creditInsurance/welcome.html'
 
     def get(self, request, *args, **kwargs):
-        context = {
-            'id': kwargs['pk']
-        }
-        return render(request, template_name=self.template_name, context=context)
+
+        return render(request, template_name=self.template_name)
 
 class InsuranceQuestionnaireView(View):
     template_name = 'creditInsurance/questionnaire.html'
 
     def get(self, request, *args, **kwargs):
-        queryset = InsuranceDiscussion.objects.filter(id=kwargs['pk'])
-        context = {
-            'id': kwargs['pk'],
-            'mortgagePmtAmount': queryset[0].mortgagePmtAmount
-        }
-        return render(request, template_name=self.template_name, context=context)
+
+        return render(request, template_name=self.template_name)
 
 
 class InsuranceTermConditionView(View):
     template_name = 'creditInsurance/TermsAndConditions.html'
 
     def get(self, request, *args, **kwargs):
-        context = {
-            'id': kwargs['pk']
-        }
-        return render(request, template_name=self.template_name, context=context)
+
+        return render(request, template_name=self.template_name)
 
 
 class InsuranceApplicantSelectionView(View):

@@ -3,6 +3,7 @@ from core.models import TimeStampedModel,CANADA_PROVENCES,YES_NO, PAYMENT_FREQUE
 from django.utils.translation import ugettext_lazy as _
 from ..accounts.models import CustomUser
 from enum import Enum
+import uuid
 
 class InsuranceProduct(TimeStampedModel):
     productCode = models.CharField(max_length=50)
@@ -64,6 +65,7 @@ class SCENARIO_TYPE(Enum):
 class InsuranceDiscussion(TimeStampedModel):
     insProduct = models.ForeignKey(InsuranceProduct, on_delete=models.CASCADE,null=False,blank=False)
     agent = models.ForeignKey(CustomUser, related_name='agent', on_delete=models.CASCADE,null=False,blank=False)
+    # unique = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
 
 
     # Primary Demographics
