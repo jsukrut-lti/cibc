@@ -15,7 +15,7 @@
                 <div class="accountScreen notEligible welcomeScreen my-4">
                     <div class="content">
                         <div class="closeIcon">
-                            <i class="bi bi-x-lg"></i>
+                            <i class="bi bi-x-lg" onclick="exitApplication()"></i>
                         </div>
                         <form action="/insurance/questionnaire/" method="get" class="form">
                             {% csrf_token %}

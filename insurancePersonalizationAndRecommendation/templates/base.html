@@ -26,15 +26,8 @@
         </div>
         <ul class="nav-links d-flex flex-column justify-content-between">
             <div class="mainLinks">
-                <li>
-                    <a href="/insurance/welcome/">
-                        <i class='bx bx-exit'></i>
-                        <span class="link_name">Welcome</span>
-                    </a>
-                    <ul class="sub-menu blank">
-                        <li><a class="link_name" href="/insurance/welcome/">Welcome</a></li>
-                    </ul>
-                </li>
+
+                {% if menu_name == 'Client' %}
                 <li class="subMenu">
                     <div class="iocn-link">
                         <a href="#">
@@ -55,6 +48,15 @@
                         <li><a>Current Coverage</a></li>
                     </ul>
                 </li>
+                {% else %}
+                <li>
+                    <a href="{{ request.path }}">
+                        <i class='bx bx-exit'></i>
+                        <span class="link_name">{{ menu_name }}</span>
+                    </a>
+
+                </li>
+                {% endif %}
             </div>
 
             <div class="productLinks">
