@@ -4,6 +4,18 @@
         left: 0;
         width: 100%;
     }
+
+    #sidebarMob .overlayContent {
+        a {
+            font-size: 18px;
+            color: $white;
+            display: block;
+        }
+    }
+
+    .home-section .main .topBar {
+        padding: 0 24px;
+    }
 }
 
 @media screen and (max-width: 768px) {
@@ -17,6 +29,23 @@
             // .leftSec .commonBtnContainer {
             //     position: unset;
             // }
+        }
+    }
+
+    .home-section {
+        .main {
+            .topBar {
+                .rightSec {
+                    .switchBtn {
+                        display: none;
+                    }
+
+                    .search {
+                        width: 100%;
+                        margin-left: 15px;
+                    }
+                }
+            }
         }
     }
 }

@@ -61,6 +61,13 @@
 
     .commonBtnContainer {
         gap: 30px;
+        position: absolute;
+        bottom: 30px;
+        right: 30px;
+
+        .commonBtn {
+            position: static !important;
+        }
 
         .selectApplicant {
             background-color: transparent;
