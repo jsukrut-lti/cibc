@@ -1,0 +1,349 @@
+{% extends 'base.html' %}
+{% block content %}
+{% load static %}
+        <div class="main">
+            <div class="d-flex justify-content-between align-items-center topBar">
+                <div class="toggle">
+                    <i class='bx bx-menu' onclick="openNavMob()"></i>
+                </div>
+
+                <div class="rightSec d-flex align-items-center justify-content-center">
+                    <!-- Switch Button -->
+                   <div class="switchBtn">
+                        <input id="toggle-client" class="toggleBtn toggle-left activeBtn" name="toggle" value="false" type="radio">
+                        <label for="toggle-client" class="btnToggle">Client</label>
+
+                        <input id="toggle-rep" class="toggleBtn toggle-right" name="toggle" value="true" type="radio">
+                        <label for="toggle-rep" class="btnToggle">Rep</label>
+                   </div>
+
+                    <!-- Search -->
+                    <div class="search">
+                        <label>
+                            <input type="text" placeholder="Search">
+                            <img src="{% static 'creditInsurance/images/search.png' %}" alt="Search icon">
+                        </label>
+                    </div>
+
+                    <!-- User Profile -->
+                    <!-- <div class="user">
+                        <span class="userImg">AJ</span>
+                    </div> -->
+                </div>
+            </div>
+
+            <!-- <div class="breadcrumbSec">
+                <nav style="--bs-breadcrumb-divider: url(&#34;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8'%3E%3Cpath d='M2.5 0L1 1.5 3.5 4 1 6.5 2.5 8l4-4-4-4z' fill='currentColor'/%3E%3C/svg%3E&#34;);" aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                      <li class="breadcrumb-item"><a href="#">Home</a></li>
+                      <li class="breadcrumb-item active" aria-current="page">FAQ</li>
+                    </ol>
+                  </nav>
+            </div> -->
+
+            <div class="container-lg px-4">
+                <div class="dashboardContent my-4">
+                    <div class="row">
+                        <div class="col-md-9">
+                            <div class="leftContent mb-3">
+                                <h1 class="p-3 mb-3">Hi, <span>Valued Customer</span></h1>
+
+                                <div class="pricingTable mb-3">
+                                    <p class="suggestion p-3 mb-2">What We Suggest</p>
+                                    <div class="pricingTableSection">
+                                        <div class="accordion row" id="pricingTablesAccordion">
+                                            <div class="col-lg-4 col-md-6 col-12">
+                                                <div class="accordion-item">
+                                                    <h2 class="accordion-header" id="pricingTablesBasic">
+                                                    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="false" aria-controls="panelsStayOpen-collapseOne">
+                                                        <div>
+                                                            <span class="packageType text-uppercase">Basic</span>
+                                                            <span class="package"><sup>$</sup>23.19</span>
+                                                            <span class="packagePeriod">/month</span>
+                                                        </div>
+                                                    </button>
+                                                    </h2>
+                                                    <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse" aria-labelledby="pricingTablesBasic">
+                                                    <div class="accordion-body">
+                                                        <div class="pricingDetails">
+                                                            <div class="pricingDetailsContent pb-2 mb-2">
+                                                                <div class="pricingDetailsContentLeft">
+                                                                    <h6 class="mb-1">Disability</h6>
+                                                                    <p class="m-0">Lorem ipsum dolor sit amet consectetur</p>
+                                                                </div>
+                                                                <div class="pricingDetailsContentRight">
+                                                                    <p class="m-0"><span>$0.97</span> /day</p>
+                                                                </div>
+                                                            </div>
+                                                            <div class="pricingDetailsContent pb-2 mb-2">
+                                                                <div class="pricingDetailsContentLeft">
+                                                                    <h6 class="mb-1">Disability</h6>
+                                                                    <p class="m-0">Lorem ipsum dolor sit amet consectetur</p>
+                                                                </div>
+                                                                <div class="pricingDetailsContentRight">
+                                                                    <p class="m-0"><span>$0.97</span> /day</p>
+                                                                </div>
+                                                            </div>
+                                                            <div class="pricingDetailsContent pb-2 mb-2">
+                                                                <div class="pricingDetailsContentLeft">
+                                                                    <h6 class="mb-1">Disability</h6>
+                                                                    <p class="m-0">Lorem ipsum dolor sit amet consectetur</p>
+                                                                </div>
+                                                                <div class="pricingDetailsContentRight">
+                                                                    <p class="m-0"><span>$0.97</span> /day</p>
+                                                                </div>
+                                                            </div>
+                                                            <div class="pricingDetailsContent pb-2 mb-2">
+                                                                <div class="pricingDetailsContentLeft">
+                                                                    <h6 class="mb-1">Disability</h6>
+                                                                    <p class="m-0">Lorem ipsum dolor sit amet consectetur</p>
+                                                                </div>
+                                                                <div class="pricingDetailsContentRight">
+                                                                    <p class="m-0"><span>$0.97</span> /day</p>
+                                                                </div>
+                                                            </div>
+                                                            <div class="text-center mt-3">
+                                                                <a href="/insurance/termCondition2/{{ id }}" >
+                                                                    <button class="btn commonBtn" >Select</button>
+                                                                </a>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-lg-4 col-md-6 col-12">
+                                                <div class="accordion-item">
+                                                    <h2 class="accordion-header" id="pricingTablesEnhanced">
+                                                    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseTwo" aria-expanded="false" aria-controls="panelsStayOpen-collapseTwo">
+                                                        <div>
+                                                            <span class="packageType text-uppercase">Enhanced</span>
+                                                            <span class="package"><sup>$</sup>23.19</span>
+                                                            <span class="packagePeriod">/month</span>
+                                                        </div>
+                                                    </button>
+                                                    </h2>
+                                                    <div id="panelsStayOpen-collapseTwo" class="accordion-collapse collapse" aria-labelledby="pricingTablesEnhanced">
+                                                    <div class="accordion-body">
+                                                        <div class="pricingDetails">
+                                                            <div class="pricingDetailsContent pb-2 mb-2">
+                                                                <div class="pricingDetailsContentLeft">
+                                                                    <h6 class="mb-1">Disability</h6>
+                                                                    <p class="m-0">Lorem ipsum dolor sit amet consectetur</p>
+                                                                </div>
+                                                                <div class="pricingDetailsContentRight">
+                                                                    <p class="m-0"><span>$0.97</span> /day</p>
+                                                                </div>
+                                                            </div>
+                                                            <div class="pricingDetailsContent pb-2 mb-2">
+                                                                <div class="pricingDetailsContentLeft">
+                                                                    <h6 class="mb-1">Disability</h6>
+                                                                    <p class="m-0">Lorem ipsum dolor sit amet consectetur</p>
+                                                                </div>
+                                                                <div class="pricingDetailsContentRight">
+                                                                    <p class="m-0"><span>$0.97</span> /day</p>
+                                                                </div>
+                                                            </div>
+                                                            <div class="pricingDetailsContent pb-2 mb-2">
+                                                                <div class="pricingDetailsContentLeft">
+                                                                    <h6 class="mb-1">Disability</h6>
+                                                                    <p class="m-0">Lorem ipsum dolor sit amet consectetur</p>
+                                                                </div>
+                                                                <div class="pricingDetailsContentRight">
+                                                                    <p class="m-0"><span>$0.97</span> /day</p>
+                                                                </div>
+                                                            </div>
+                                                            <div class="pricingDetailsContent pb-2 mb-2">
+                                                                <div class="pricingDetailsContentLeft">
+                                                                    <h6 class="mb-1">Disability</h6>
+                                                                    <p class="m-0">Lorem ipsum dolor sit amet consectetur</p>
+                                                                </div>
+                                                                <div class="pricingDetailsContentRight">
+                                                                    <p class="m-0"><span>$0.97</span> /day</p>
+                                                                </div>
+                                                            </div>
+                                                            <div class="text-center mt-3">
+                                                                <a href="/insurance/termCondition2/{{ id }}" >
+                                                                    <button class="btn commonBtn" >Select</button>
+                                                                </a>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-lg-4 col-md-6 col-12">
+                                                <div class="accordion-item">
+                                                    <h2 class="accordion-header" id="pricingTablesComplete">
+                                                    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseThree" aria-expanded="false" aria-controls="panelsStayOpen-collapseThree">
+                                                        <div>
+                                                            <span class="packageType text-uppercase">Complete</span>
+                                                            <span class="package"><sup>$</sup>23.19</span>
+                                                            <span class="packagePeriod">/month</span>
+                                                        </div>
+                                                    </button>
+                                                    </h2>
+                                                    <div id="panelsStayOpen-collapseThree" class="accordion-collapse collapse" aria-labelledby="pricingTablesComplete">
+                                                    <div class="accordion-body">
+                                                        <div class="pricingDetails">
+                                                            <div class="pricingDetailsContent pb-2 mb-2">
+                                                                <div class="pricingDetailsContentLeft">
+                                                                    <h6 class="mb-1">Disability</h6>
+                                                                    <p class="m-0">Lorem ipsum dolor sit amet consectetur</p>
+                                                                </div>
+                                                                <div class="pricingDetailsContentRight">
+                                                                    <p class="m-0"><span>$0.97</span> /day</p>
+                                                                </div>
+                                                            </div>
+                                                            <div class="pricingDetailsContent pb-2 mb-2">
+                                                                <div class="pricingDetailsContentLeft">
+                                                                    <h6 class="mb-1">Disability</h6>
+                                                                    <p class="m-0">Lorem ipsum dolor sit amet consectetur</p>
+                                                                </div>
+                                                                <div class="pricingDetailsContentRight">
+                                                                    <p class="m-0"><span>$0.97</span> /day</p>
+                                                                </div>
+                                                            </div>
+                                                            <div class="pricingDetailsContent pb-2 mb-2">
+                                                                <div class="pricingDetailsContentLeft">
+                                                                    <h6 class="mb-1">Disability</h6>
+                                                                    <p class="m-0">Lorem ipsum dolor sit amet consectetur</p>
+                                                                </div>
+                                                                <div class="pricingDetailsContentRight">
+                                                                    <p class="m-0"><span>$0.97</span> /day</p>
+                                                                </div>
+                                                            </div>
+                                                            <div class="pricingDetailsContent pb-2 mb-2">
+                                                                <div class="pricingDetailsContentLeft">
+                                                                    <h6 class="mb-1">Disability</h6>
+                                                                    <p class="m-0">Lorem ipsum dolor sit amet consectetur</p>
+                                                                </div>
+                                                                <div class="pricingDetailsContentRight">
+                                                                    <p class="m-0"><span>$0.97</span> /day</p>
+                                                                </div>
+                                                            </div>
+                                                            <div class="text-center mt-3">
+                                                                <a href="/insurance/termCondition2/{{ id }}" >
+                                                                    <button class="btn commonBtn" >Select</button>
+                                                                </a>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="chartSection">
+                                    <div class="col-12">
+                                        <img class="img-fluid" src="{% static 'creditInsurance/images/chart.png' %}" alt="">
+                                    </div>
+                                </div>
+
+                                <div class="dashboardFaqSection">
+                                    <p class="suggestion p-3 mb-1 text-uppercase">faq</p>
+                                    <div class="dashboardFaqContent">
+                                        <div class="accordion" id="dashboardFaqAccordion">
+                                            <div class="accordion-item">
+                                              <h2 class="accordion-header" id="headingOne">
+                                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+                                                  Question 1
+                                                </button>
+                                              </h2>
+                                              <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#dashboardFaqAccordion">
+                                                <div class="accordion-body">
+                                                  <strong>This is the first item's accordion body.</strong> It is shown by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
+                                                </div>
+                                              </div>
+                                            </div>
+                                            <div class="accordion-item">
+                                              <h2 class="accordion-header" id="headingTwo">
+                                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                                    Question 2
+                                                </button>
+                                              </h2>
+                                              <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#dashboardFaqAccordion">
+                                                <div class="accordion-body">
+                                                  <strong>This is the second item's accordion body.</strong> It is hidden by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
+                                                </div>
+                                              </div>
+                                            </div>
+                                            <div class="accordion-item">
+                                              <h2 class="accordion-header" id="headingThree">
+                                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                                                    Question 3
+                                                </button>
+                                              </h2>
+                                              <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#dashboardFaqAccordion">
+                                                <div class="accordion-body">
+                                                  <strong>This is the third item's accordion body.</strong> It is hidden by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
+                                                </div>
+                                              </div>
+                                            </div>
+                                          </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                        </div>                         
+                        <div class="col-md-3">
+                            <div class="rightContent mb-3">
+                                <div class="aboutYou">
+                                    <p class="aboutTitle">About You</p>
+                                    <p class="aboutContent" id="name"><span>Name: </span>Georgie Smith</p>
+                                    <p class="aboutContent" id="annualIncome"><span>Annual Income: </span>$$$$$.$$$$</p>
+                                    <p class="aboutContent" id="monthlyIncome"><span>Monthly Income: </span>$$$$$.$$$$</p>
+                                    <p class="aboutContent" id="monthlyExpenses"><span>Monthly Expenses: </span>$$$$$.$$$$</p>
+                                    <div class="row p-3 circularProgress">
+                                        <div class="col-md-6 col-12">
+                                            <img class="img-fluid" src="{% static 'creditInsurance/images/circular1.png' %}" alt="">
+                                        </div>
+                                        <div class="col-md-6 col-12">
+                                            <img class="img-fluid" src="{% static 'creditInsurance/images/circular2.png' %}" alt="">
+                                        </div>
+                                    </div>
+                                    <div class="mortgageBalance">
+                                        <p class="" id="mortgageBal"><span>Mortgage Balance: </span>$$$$$.$$$$</p>
+                                        <div class="progress">
+                                            <div class="progress-bar" role="progressbar" style="width: 60%" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100"></div>
+                                        </div>
+                                        <div class="progressLabels mt-2">
+                                            <div class="paid">
+                                                <span>Paid</span>
+                                                <span>$$$$$.$$$$</span>
+                                            </div>
+                                            <div class="remaining">
+                                                <span>Remaining</span>
+                                                <span>$$$$$</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="loanBalance">
+                                        <p class="" id="loanBal"><span>Loan Balance: </span>$$$$$.$$$$</p>
+                                        <div class="progress">
+                                            <div class="progress-bar" role="progressbar" style="width: 40%" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100"></div>
+                                        </div>
+                                        <div class="progressLabels mt-2">
+                                            <div class="paid">
+                                                <span>Paid</span>
+                                                <span>$$$$$.$$$$</span>
+                                            </div>
+                                            <div class="remaining">
+                                                <span>Remaining</span>
+                                                <span>$$$$$</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>                       
+                    </div>
+                </div>
+            </div>
+        </div>
+
+{% endblock %}

@@ -543,3 +543,40 @@ class InsuranceDiscussionUpdate(APIView):
         else:
             return Response(data={"result": "No data found"},
                             status=status.HTTP_400_BAD_REQUEST)
+
+
+class DashbboardView(View):
+    template_name = 'creditInsurance/dashboard.html'
+
+    def get(self, request, *args, **kwargs):
+        context = {
+            'id': kwargs['pk'],
+        }
+        return render(request, template_name=self.template_name, context=context)
+
+class InsuranceTermCondition2View(View):
+    template_name = 'creditInsurance/TermsAndConditions2.html'
+
+    def get(self, request, *args, **kwargs):
+        context = {
+            'id': kwargs['pk'],
+        }
+        return render(request, template_name=self.template_name, context=context)
+
+class SummaryView(View):
+    template_name = 'creditInsurance/saveSummary.html'
+
+    def get(self, request, *args, **kwargs):
+        context = {
+            'id': kwargs['pk'],
+        }
+        return render(request, template_name=self.template_name, context=context)
+
+class ExitView(View):
+    template_name = 'creditInsurance/clientExitSurvey.html'
+
+    def get(self, request, *args, **kwargs):
+        context = {
+            'id': kwargs['pk'],
+        }
+        return render(request, template_name=self.template_name, context=context)
