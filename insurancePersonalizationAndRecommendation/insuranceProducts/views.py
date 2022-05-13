@@ -308,46 +308,54 @@ class InsuranceConvoUpdateView(SingleObjectMixin, InsuranceConvoView):
 
 class InsuranceCiPreApplicationView(View):
     template_name = 'creditInsurance/ci_pre_application.html'
-    context_object_name = 'welcome'
+    context_object_name = 'Welcome'
 
     def getTemplateName(self):
         return self.template_name
 
     def get(self, request, *args, **kwargs):
-        context = {'phase' : self.context_object_name}
+        context = {'menu_name' : self.context_object_name}
         return render(request, template_name=self.getTemplateName(), context=context)
 
 
 class InsuranceWelcomeView(View):
     template_name = 'creditInsurance/welcome.html'
+    context_object_name = 'Welcome'
 
     def get(self, request, *args, **kwargs):
-
-        return render(request, template_name=self.template_name)
+        context = {'menu_name': self.context_object_name}
+        return render(request, template_name=self.template_name, context=context)
 
 class InsuranceQuestionnaireView(View):
     template_name = 'creditInsurance/questionnaire.html'
+    context_object_name = 'Questionnaire'
 
     def get(self, request, *args, **kwargs):
-
-        return render(request, template_name=self.template_name)
+        context = {'menu_name': self.context_object_name}
+        return render(request, template_name=self.template_name, context=context)
 
 
 class InsuranceTermConditionView(View):
     template_name = 'creditInsurance/TermsAndConditions.html'
+    context_object_name = 'Term & Condition'
 
     def get(self, request, *args, **kwargs):
-        return render(request, template_name=self.template_name)
+        context = {'menu_name': self.context_object_name}
+        return render(request, template_name=self.template_name, context=context)
 
 
 class InsuranceApplicantSelectionView(View):
     template_name = 'creditInsurance/applicantSelection.html'
+    context_object_name = 'Applicant Selection'
 
     def get(self, request, *args, **kwargs):
-        return render(request, template_name=self.template_name)
+        context = {'menu_name': self.context_object_name}
+        return render(request, template_name=self.template_name, context=context)
+
 
 class InsuranceClientInformationView(View):
     template_name = 'creditInsurance/clientInformation.html'
+    context_object_name = 'Client'
 
     def get(self, request, *args, **kwargs):
         queryset = InsuranceDiscussion.objects.filter(id=kwargs['pk']).values()[0]
@@ -363,7 +371,8 @@ class InsuranceClientInformationView(View):
 
         context = {
             'id': kwargs['pk'],
-            'discussion': queryset
+            'discussion': queryset,
+            'menu_name': self.context_object_name
         }
         return render(request, template_name=self.template_name, context=context)
 
@@ -380,6 +389,25 @@ class InsuranceClient(View):
             'id': kwargs['pk']
         }
         return render(request, template_name=self.template_name, context=context)
+
+
+class InsuranceExitApplicationView(View):
+    template_name = 'creditInsurance/exitApplication.html'
+    context_object_name = 'Exit'
+
+    def get(self, request, *args, **kwargs):
+        context = {'menu_name': self.context_object_name}
+        return render(request, template_name=self.template_name, context=context)
+
+
+class InsuranceNonEligibleView(View):
+    template_name = 'creditInsurance/notEligible.html'
+    context_object_name = 'Not Eligible'
+
+    def get(self, request, *args, **kwargs):
+        context = {'menu_name': self.context_object_name}
+        return render(request, template_name=self.template_name, context=context)
+
 
 class InsuranceCallback(View):
 

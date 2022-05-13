@@ -2,6 +2,7 @@
 {% block content %}
 {% load static %}
 
+
         <div class="main">
             <div class="d-flex justify-content-between align-items-center topBar">
                 <div class="toggle d-lg-block d-none">
@@ -13,22 +14,16 @@
             </div>
 
             <div class="container-lg px-4">
-                <div class="accountScreen notEligible my-4">
+                <div class="accountScreen notEligible exitPlatform my-4">
                     <div class="content">
-
                         <form>
-                            <div class="userImg">
-                                <img src="{% static 'creditInsurance/images/notEligible.png' %}" alt="Not Eligible icon">
-                            </div>
-                            <div class="mb-3">
-                                <h4 class="display-6">Let's stay in touch!</h4>
-                                <p class="estimateValue mb-5">We appreciate your business as a CIBC valued customer</p>
-                                <p class="notEligibleMsg mb-5">We are unable to offer you creditor insurance on this product, however we do advise that this may be an opportunity for you to review your existing plan with a licensed professional.</p>
+                            <div class="mb-3 text-center">
+                                <h4 class="display-2 d-inline">Exit Platform</h4>
+                                <p class="notEligibleMsg mb-5 mt-3">You are now exiting the tool, all existing changes have been updated and saved. You will now be redirected to the CIBC insurance page.</p>
                             </div>
                             <div class="closePage text-center">
-                                <button type="button" class="btn commonBtn"><i class="bi bi-x-lg"></i> CLOSE</button>
-                                <div class="contactSec">
-                                    <p class="mt-4 mb-2 text-capitalize">Feel free to contact us with any questions</p>
+                                <button type="button" class="btn commonBtn mb-3">Exit</button>
+                                <div class="contactSec mt-4 mb-2">
                                     <div class="contactDetails d-flex justify-content-center">
                                         <div class="mail mb-2">
                                             <img src="{% static 'creditInsurance/images/mail.png' %}" alt="mail icon">
@@ -46,4 +41,5 @@
                 </div>
             </div>
         </div>
-   {% endblock %}
+
+{% endblock %}

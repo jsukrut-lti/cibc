@@ -18,10 +18,11 @@
                             <div class="col-md-8 mb-3 mb-md-0">
                                 <div class="leftSec">
                                     <div class="closeIcon">
-                                        <i class="bi bi-x-lg"></i>
+                                        <i class="bi bi-x-lg" onclick="exitApplication()"></i>
                                     </div>
 
-                                    <form action="/insurance/applicantSelection/{{ id }}" method="post" class="form">
+                                    <form action="/insurance/clientInformation/56" method="get" class="form">
+                                        {% csrf_token %}
                                         <div class="userImg">
                                             <img src="{% static 'creditInsurance/images/applicantSelection.png' %}" alt="Applicant Selection icon">
                                         </div>
