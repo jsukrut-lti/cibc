@@ -3,6 +3,8 @@ from core.models import TimeStampedModel,CANADA_PROVENCES,YES_NO, PAYMENT_FREQUE
 from django.utils.translation import ugettext_lazy as _
 from ..accounts.models import CustomUser
 from enum import Enum
+from django.contrib.postgres.fields import JSONField
+
 import uuid
 
 class InsuranceProduct(TimeStampedModel):
@@ -166,3 +168,13 @@ class InsuranceDiscussion(TimeStampedModel):
 
     def totalinsuranceCost(self):
         return self.lifeInsurancePremiumPerMonth + self.criticalIllnessPremiumPerMonth + self.disabilityPremiumPerMonth
+
+
+class dumpData(TimeStampedModel):
+    STATUS_CHOICES =(
+        ('draft', 'DRAFT'),
+        ('active', 'ACTIVE'),
+        ('deactivate', 'DEACTIVATE'),
+    )
+    status = models.CharField(max_length=10, choices=STATUS_CHOICES, default='draft')
+    data = models.JSONField()

@@ -1,7 +1,7 @@
 from django.contrib import admin
 
 # Register your models here.
-from .models import InsuranceProduct, InsuranceDiscussion
+from .models import InsuranceProduct, InsuranceDiscussion,dumpData
 
 @admin.register(InsuranceProduct)
 class InsuranceProductModelAdmin(admin.ModelAdmin):
@@ -16,3 +16,6 @@ class InsuranceDiscussionModelAdmin(admin.ModelAdmin):
 
         return '{} {} age {}'.format(obj.primaryFirstName,obj.primaryLastName,obj.primaryAge)
 
+@admin.register(dumpData)
+class dumpDataModelAdmin(admin.ModelAdmin):
+    list_display = ['status','created','modified']
