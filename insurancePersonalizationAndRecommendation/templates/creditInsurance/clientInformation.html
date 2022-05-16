@@ -22,7 +22,7 @@
                             <div class="col-md-8 mb-3 mb-md-0">
                                 <div class="leftSec">
                                     <div class="closeIcon">
-                                        <i class="bi bi-x-lg"></i>
+                                        <i class="bi bi-x-lg" onclick="exitApplication()"></i>
                                     </div>
 
                                     <form>
@@ -744,7 +744,7 @@
                                         <i class="bi bi-x-lg"></i>
                                     </div>
 
-                                    <form>
+                                    <form action="/insurance/dashboard/{{ id }}">
                                         <h4 class="mb-2">Your current insurance coverage</h4>
                                         <p class="mb-4 totalDebtInfo">Are you aware of what your current coverage is (sources of coverage include work, external policy, creditor protection)?</p>
                                         <div class="row">
@@ -779,7 +779,7 @@
                                         </div>
 
                                         <div class="mt-5 d-flex align-items-center justify-content-end commonBtnContainer">
-                                            <button type="button" id="nextBtn" class="btn commonBtn"  onclick="nextPrev(1)">Next</button>
+                                            <button type="submit" class="btn commonBtn" >Next</button>
                                         </div>
                                     </form>
                                 </div>

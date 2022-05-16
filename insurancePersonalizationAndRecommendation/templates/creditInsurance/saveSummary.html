@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% block content %}
 {% load static %}
-        <div class="main">
+    <div class="main">
             <div class="d-flex justify-content-between align-items-center topBar">
                 <div class="toggle d-lg-block d-none">
                     <i class='bx bx-menu'></i>
@@ -12,66 +12,45 @@
             </div>
 
             <div class="container-lg px-4">
-                <div class="commonLayout applicantSelection my-4">
+                <div class="commonLayout saveSummary my-4">
                     <div class="content">
                         <div class="row">
                             <div class="col-md-8 mb-3 mb-md-0">
                                 <div class="leftSec">
                                     <div class="closeIcon">
-                                        <i class="bi bi-x-lg" onclick="exitApplication()"></i>
+                                        <i class="bi bi-x-lg"></i>
                                     </div>
 
-                                    <form action="/insurance/clientInformation/56" method="get" class="form">
-                                        {% csrf_token %}
-                                        <div class="userImg">
-                                            <img src="{% static 'creditInsurance/images/applicantSelection.png' %}" alt="Applicant Selection icon">
-                                        </div>
-                                        <h4 class="mb-3">Applicant selection for assessment report scenarios.</h4>
-                                        <div class="mb-3">
-                                            <p class="applicantMsg mb-4">This application is joint, would you like to
-                                                proceed
-                                                with completing the analysis together?
-                                            </p>
-                                        </div>
+                                    <div class="userImg">
+                                        <img src="{% static 'creditInsurance/images/saveSummary.png' %}" alt="Save Summary icon">
+                                    </div>
+                                    <h4 class="mb-2">Thanks for completing the assessment.</h4>
+                                    <div class="mb-3">
+                                        <p class="applicantMsg mb-4">How would you like to save your records?</p>
+                                    </div>
 
-                                        <div class="applicantList mb-5">
-                                            <p class="text-uppercase mb-1">APPLICANT</p>
-                                            <div class="selectBox">
-                                                <select class="form-select" id="checkSelect" aria-label="Select Applicant">
-                                                    <option value="1">{{ primaryFirstName }} {{ primaryLastName }}</option>
-                                                    <option value="2">{{ coFirstName }} {{ coLastName }}</option>
-                                                </select>
-                                            </div>
-                                            <div class="selectBoxMultiple">
-                                                <select class="form-select" id="checkSelectMultiple" aria-label="Select Applicant" multiple>
-                                                    <option value="1">{{ primaryFirstName }} {{ primaryLastName }}</option>
-                                                    <option value="2">{{ coFirstName }} {{ coLastName }}</option>
-                                                </select>
+                                    <div class="saveFormat">
+                                        <div class="col-8 m-auto">
+                                            <div class="row text-center">
+                                                <div class="col-sm-6 col-12 mb-4 mb-sm-0">
+                                                    <img src="{% static 'creditInsurance/images/email.svg' %}" alt="Email Icon">
+                                                    <p class="mb-1"><strong>Email</strong></p>
+                                                    <button type="button" class="btn commonBtn">Send</button>
+                                                </div>
+                                                <div class="col-sm-6 col-12">
+                                                    <img src="{% static 'creditInsurance/images/print.svg' %}" alt="Print Icon">
+                                                    <p class="mb-1"><strong>Print (PDF)</strong></p>
+                                                </div>
                                             </div>
                                         </div>
+                                    </div>
 
-                                        <div class="jointApplicantDetails">
-                                            <p class="mb-2">Joint applicant on file?</p>
-                                            <div class="form-check">
-                                                <input class="form-check-input" type="radio" name="jointApplicant"
-                                                    id="yes" value="Yes" checked>
-                                                <label class="form-check-label" for="yes">
-                                                    Yes
-                                                </label>
-                                            </div>
-                                            <div class="form-check">
-                                                <input class="form-check-input" type="radio" name="jointApplicant"
-                                                    id="no" value="No">
-                                                <label class="form-check-label" for="no">
-                                                    No
-                                                </label>
-                                            </div>
-                                        </div>
-
-                                        <div class="mt-5 d-flex align-items-center justify-content-end">
-                                            <button type="submit" class="btn commonBtn">Proceed</button>
-                                        </div>
-                                    </form>
+                                    <div class="mt-5 d-flex align-items-center justify-content-end commonBtnContainer">
+                                        <button type="button" class="btn commonBtn selectApplicant">Select applicant </button>
+                                        <a href="/insurance/exit/{{ id }}">
+                                        <button type="button" class="btn commonBtn">Next</button>
+                                        </a>
+                                    </div>
                                 </div>
                             </div>
                             <div class="col-md-4">
@@ -142,6 +121,4 @@
                 </div>
             </div>
         </div>
-
-
 {% endblock %}

@@ -15,7 +15,7 @@
                 <div class="accountScreen notEligible TCPage my-4">
                     <div class="content">
                         <div class="closeIcon">
-                            <i class="bi bi-x-lg" onclick="exitApplication()"></i>
+                            <i class="bi bi-x-lg"></i>
                         </div>
                         <div class="document">
                             <img src="{% static 'creditInsurance/images/documents.png' %}" alt="document icon">
@@ -51,7 +51,7 @@
 
                         <div class="btnContainer d-flex align-items-center justify-content-end mt-4">
                             <button type="button" class="btn commonBtn btnDisagree">Decline</button>
-                            <a type="button" class="btn commonBtn btnAgree" href="/insurance/applicantSelection/{{ id }}">Agree</a>
+                            <a type="button" class="btn commonBtn btnAgree" href="/insurance/summary/{{ id }}">Agree</a>
                         </div>
                     </div>
                 </div>

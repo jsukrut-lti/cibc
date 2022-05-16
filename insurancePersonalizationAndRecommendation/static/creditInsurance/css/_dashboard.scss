@@ -410,7 +410,8 @@
                         &.activeBtn+label {
                             cursor: default;
                             transition: color 200ms;
-                            background-color: $CIBC_background;
+                            background-color: $CIBC_nav;
+                            color: $white;                            
 
                             &:after {
                                 left: 0;
@@ -513,6 +514,11 @@
             margin-top: 30px;
         }
     }
+
+    .logoMobile {
+        margin-top: 41px;
+        margin-left: 30px;
+    }
 }
 
 // Dashboard CSS Start
@@ -520,7 +526,7 @@
     .leftContent {
 
         h1 {
-            font-size: 36px;
+            font-size: 32px;
             font-weight: 300;
             border-radius: 8px;
             background-color: $white;
@@ -529,9 +535,204 @@
                 font-weight: 500;
             }
         }
+
+        .pricingTable {
+            .suggestion {
+                background-color: $white;
+                font-weight: 700;
+                border-top-left-radius: 8px;
+                border-top-right-radius: 8px;
+            }
+
+            .pricingTableSection {
+                .accordion-item {
+                    border-radius: 8px;
+
+                    .accordion-button {
+                        background-color: $CIBC_nav;
+                        color: $white;
+                        border-radius: 8px;
+                        padding: 16px 14px;
+
+                        &::after {
+                            background-image: url('/images/downloadPricing.svg');
+                            width: 0.8rem;
+                            height: 0.8rem;
+                            background-size: 0.8rem;
+                            transform: rotate(0deg);
+                        }
+
+                        &[aria-expanded="true"]::after {
+                            transform: rotate(180deg);
+                        }
+
+                        .package {
+                            font-size: 18px;
+                            font-weight: 700;
+
+                            sup {
+                                font-weight: 300;
+                                font-size: 12px;
+                                margin-right: 1px;
+                            }
+                        }
+
+                        .packagePeriod {
+                            font-weight: 300;
+                        }
+                    }
+
+                    .accordion-body {
+                        padding: 16px 14px;
+
+                        .pricingDetails {
+                            .pricingDetailsContent {
+                                font-size: 12px; 
+                                display: flex;
+                                align-items: center;
+                                justify-content: space-between;
+                                border-bottom: 1px solid $CIBC_background;
+
+                                &:last-child {
+                                    border-bottom: none;
+                                }
+
+                                .pricingDetailsContentLeft {
+                                    width: 60%;
+
+                                    h6 {
+                                        font-size: 12px;
+                                        text-transform: uppercase;
+                                        font-weight: 700;
+                                    }
+
+                                    p {
+                                        font-weight: 300;
+                                    }
+                                }
+
+                                .pricingDetailsContentRight {
+                                    width: 40%;
+
+                                    p {
+                                        font-weight: 300;
+
+                                        span {
+                                            font-size: 21px;
+                                            color: $CIBC_nav;
+                                            font-weight: 400;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        .dashboardFaqSection {
+            .suggestion {
+                background-color: $white;
+                border-top-left-radius: 8px;
+                border-top-right-radius: 8px;
+                font-weight: 700;
+            }
+
+            .dashboardFaqContent {
+                .accordion-button {
+                    background-color: $white;
+                    color: #212529;
+                    
+                    &::after {
+                        background-image: url('/images/download.svg');
+                    }
+                }
+            }
+        }
     }
 
     .rightContent {
         background-color: $white;
+        border-radius: 8px;
+        padding: 10px 0px;
+
+        .aboutYou {
+            font-size: 15px;
+            
+            p {
+                margin-bottom: 0;
+                padding: 10px 16px;
+
+                &.aboutTitle {
+                    padding-top: 0;
+                    font-size: 21px;
+                }
+            }
+
+            .aboutTitle {
+                font-weight: 700;
+                border-bottom: 2px solid $CIBC_background;
+            }
+
+            .aboutContent {
+                border-bottom: 1px solid $CIBC_background;
+
+                span {
+                    font-weight: 700;
+                }
+            }
+
+            .mortgageBalance,
+            .loanBalance {
+                padding: 10px 16px;
+                border-bottom: 1px solid $CIBC_background;
+
+                p#mortgageBal,
+                p#loanBal {
+                    padding-left: 0;
+                    padding-top: 0;
+
+                    span {
+                        font-weight: 700;
+                    }
+                }
+
+                .progress {
+                    height: 18px;
+                    border-radius: 50px;
+
+                    .progress-bar {
+                        background-color: $CIBC_nav;
+                    }
+                }
+                
+                .progressLabels {
+                    display: flex;
+                    justify-content: space-between;
+
+                    .paid,
+                    .remaining {
+                        display: flex;
+                        flex-flow: column;
+
+                        span {
+                            &:nth-child(1) {
+                                font-weight: 700;
+                            }
+                        }
+                    }
+                }
+            }
+
+            .loanBalance {
+                border-bottom: unset;
+                padding-bottom: 0;
+            }
+
+            .circularProgress {
+                border-bottom: 1px solid $CIBC_background;
+            }
+        }
     }
 }

@@ -876,7 +876,8 @@ a {
   cursor: default;
   -webkit-transition: color 200ms;
   transition: color 200ms;
-  background-color: #F2F3F2;
+  background-color: #C41F3E;
+  color: #FFFFFF;
 }
 
 .home-section .main .topBar .rightSec .switchBtn input[type="radio"].toggleBtn.activeBtn + label:after {
@@ -985,8 +986,13 @@ a {
   margin-top: 30px;
 }
 
+#sidebarMob .logoMobile {
+  margin-top: 41px;
+  margin-left: 30px;
+}
+
 .dashboardContent .leftContent h1 {
-  font-size: 36px;
+  font-size: 32px;
   font-weight: 300;
   border-radius: 8px;
   background-color: #FFFFFF;
@@ -996,8 +1002,221 @@ a {
   font-weight: 500;
 }
 
+.dashboardContent .leftContent .pricingTable .suggestion {
+  background-color: #FFFFFF;
+  font-weight: 700;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+}
+
+.dashboardContent .leftContent .pricingTable .pricingTableSection .accordion-item {
+  border-radius: 8px;
+}
+
+.dashboardContent .leftContent .pricingTable .pricingTableSection .accordion-item .accordion-button {
+  background-color: #C41F3E;
+  color: #FFFFFF;
+  border-radius: 8px;
+  padding: 16px 14px;
+}
+
+.dashboardContent .leftContent .pricingTable .pricingTableSection .accordion-item .accordion-button::after {
+  background-image: url("/images/downloadPricing.svg");
+  width: 0.8rem;
+  height: 0.8rem;
+  background-size: 0.8rem;
+  -webkit-transform: rotate(0deg);
+          transform: rotate(0deg);
+}
+
+.dashboardContent .leftContent .pricingTable .pricingTableSection .accordion-item .accordion-button[aria-expanded="true"]::after {
+  -webkit-transform: rotate(180deg);
+          transform: rotate(180deg);
+}
+
+.dashboardContent .leftContent .pricingTable .pricingTableSection .accordion-item .accordion-button .package {
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.dashboardContent .leftContent .pricingTable .pricingTableSection .accordion-item .accordion-button .package sup {
+  font-weight: 300;
+  font-size: 12px;
+  margin-right: 1px;
+}
+
+.dashboardContent .leftContent .pricingTable .pricingTableSection .accordion-item .accordion-button .packagePeriod {
+  font-weight: 300;
+}
+
+.dashboardContent .leftContent .pricingTable .pricingTableSection .accordion-item .accordion-body {
+  padding: 16px 14px;
+}
+
+.dashboardContent .leftContent .pricingTable .pricingTableSection .accordion-item .accordion-body .pricingDetails .pricingDetailsContent {
+  font-size: 12px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  border-bottom: 1px solid #F2F3F2;
+}
+
+.dashboardContent .leftContent .pricingTable .pricingTableSection .accordion-item .accordion-body .pricingDetails .pricingDetailsContent:last-child {
+  border-bottom: none;
+}
+
+.dashboardContent .leftContent .pricingTable .pricingTableSection .accordion-item .accordion-body .pricingDetails .pricingDetailsContent .pricingDetailsContentLeft {
+  width: 60%;
+}
+
+.dashboardContent .leftContent .pricingTable .pricingTableSection .accordion-item .accordion-body .pricingDetails .pricingDetailsContent .pricingDetailsContentLeft h6 {
+  font-size: 12px;
+  text-transform: uppercase;
+  font-weight: 700;
+}
+
+.dashboardContent .leftContent .pricingTable .pricingTableSection .accordion-item .accordion-body .pricingDetails .pricingDetailsContent .pricingDetailsContentLeft p {
+  font-weight: 300;
+}
+
+.dashboardContent .leftContent .pricingTable .pricingTableSection .accordion-item .accordion-body .pricingDetails .pricingDetailsContent .pricingDetailsContentRight {
+  width: 40%;
+}
+
+.dashboardContent .leftContent .pricingTable .pricingTableSection .accordion-item .accordion-body .pricingDetails .pricingDetailsContent .pricingDetailsContentRight p {
+  font-weight: 300;
+}
+
+.dashboardContent .leftContent .pricingTable .pricingTableSection .accordion-item .accordion-body .pricingDetails .pricingDetailsContent .pricingDetailsContentRight p span {
+  font-size: 21px;
+  color: #C41F3E;
+  font-weight: 400;
+}
+
+.dashboardContent .leftContent .dashboardFaqSection .suggestion {
+  background-color: #FFFFFF;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+  font-weight: 700;
+}
+
+.dashboardContent .leftContent .dashboardFaqSection .dashboardFaqContent .accordion-button {
+  background-color: #FFFFFF;
+  color: #212529;
+}
+
+.dashboardContent .leftContent .dashboardFaqSection .dashboardFaqContent .accordion-button::after {
+  background-image: url("/images/download.svg");
+}
+
 .dashboardContent .rightContent {
   background-color: #FFFFFF;
+  border-radius: 8px;
+  padding: 10px 0px;
+}
+
+.dashboardContent .rightContent .aboutYou {
+  font-size: 15px;
+}
+
+.dashboardContent .rightContent .aboutYou p {
+  margin-bottom: 0;
+  padding: 10px 16px;
+}
+
+.dashboardContent .rightContent .aboutYou p.aboutTitle {
+  padding-top: 0;
+  font-size: 21px;
+}
+
+.dashboardContent .rightContent .aboutYou .aboutTitle {
+  font-weight: 700;
+  border-bottom: 2px solid #F2F3F2;
+}
+
+.dashboardContent .rightContent .aboutYou .aboutContent {
+  border-bottom: 1px solid #F2F3F2;
+}
+
+.dashboardContent .rightContent .aboutYou .aboutContent span {
+  font-weight: 700;
+}
+
+.dashboardContent .rightContent .aboutYou .mortgageBalance,
+.dashboardContent .rightContent .aboutYou .loanBalance {
+  padding: 10px 16px;
+  border-bottom: 1px solid #F2F3F2;
+}
+
+.dashboardContent .rightContent .aboutYou .mortgageBalance p#mortgageBal,
+.dashboardContent .rightContent .aboutYou .mortgageBalance p#loanBal,
+.dashboardContent .rightContent .aboutYou .loanBalance p#mortgageBal,
+.dashboardContent .rightContent .aboutYou .loanBalance p#loanBal {
+  padding-left: 0;
+  padding-top: 0;
+}
+
+.dashboardContent .rightContent .aboutYou .mortgageBalance p#mortgageBal span,
+.dashboardContent .rightContent .aboutYou .mortgageBalance p#loanBal span,
+.dashboardContent .rightContent .aboutYou .loanBalance p#mortgageBal span,
+.dashboardContent .rightContent .aboutYou .loanBalance p#loanBal span {
+  font-weight: 700;
+}
+
+.dashboardContent .rightContent .aboutYou .mortgageBalance .progress,
+.dashboardContent .rightContent .aboutYou .loanBalance .progress {
+  height: 18px;
+  border-radius: 50px;
+}
+
+.dashboardContent .rightContent .aboutYou .mortgageBalance .progress .progress-bar,
+.dashboardContent .rightContent .aboutYou .loanBalance .progress .progress-bar {
+  background-color: #C41F3E;
+}
+
+.dashboardContent .rightContent .aboutYou .mortgageBalance .progressLabels,
+.dashboardContent .rightContent .aboutYou .loanBalance .progressLabels {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.dashboardContent .rightContent .aboutYou .mortgageBalance .progressLabels .paid,
+.dashboardContent .rightContent .aboutYou .mortgageBalance .progressLabels .remaining,
+.dashboardContent .rightContent .aboutYou .loanBalance .progressLabels .paid,
+.dashboardContent .rightContent .aboutYou .loanBalance .progressLabels .remaining {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-flow: column;
+          flex-flow: column;
+}
+
+.dashboardContent .rightContent .aboutYou .mortgageBalance .progressLabels .paid span:nth-child(1),
+.dashboardContent .rightContent .aboutYou .mortgageBalance .progressLabels .remaining span:nth-child(1),
+.dashboardContent .rightContent .aboutYou .loanBalance .progressLabels .paid span:nth-child(1),
+.dashboardContent .rightContent .aboutYou .loanBalance .progressLabels .remaining span:nth-child(1) {
+  font-weight: 700;
+}
+
+.dashboardContent .rightContent .aboutYou .loanBalance {
+  border-bottom: unset;
+  padding-bottom: 0;
+}
+
+.dashboardContent .rightContent .aboutYou .circularProgress {
+  border-bottom: 1px solid #F2F3F2;
 }
 
 /*Not Eligible Page CSS*/
@@ -1100,6 +1319,7 @@ a {
   -webkit-box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.25);
           box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.25);
   min-height: 480px;
+  position: relative;
 }
 
 .commonLayout .content .leftSec h4 {
@@ -1120,6 +1340,12 @@ a {
   background-color: #000000;
   -webkit-box-shadow: none;
           box-shadow: none;
+}
+
+.commonLayout .content .leftSec .commonBtnContainer .commonBtn {
+  position: absolute;
+  bottom: 30px;
+  right: 30px;
 }
 
 .commonLayout .content .rightsec {
@@ -1375,6 +1601,13 @@ a {
 
 .saveSummary .commonBtnContainer {
   gap: 30px;
+  position: absolute;
+  bottom: 30px;
+  right: 30px;
+}
+
+.saveSummary .commonBtnContainer .commonBtn {
+  position: static !important;
 }
 
 .saveSummary .commonBtnContainer .selectApplicant {
@@ -1389,12 +1622,27 @@ a {
     left: 0;
     width: 100%;
   }
+  #sidebarMob .overlayContent a {
+    font-size: 18px;
+    color: #FFFFFF;
+    display: block;
+  }
+  .home-section .main .topBar {
+    padding: 0 24px;
+  }
 }
 
 @media screen and (max-width: 768px) {
   .commonLayout .content .leftSec,
   .commonLayout .content .rightsec {
     min-height: inherit;
+  }
+  .home-section .main .topBar .rightSec .switchBtn {
+    display: none;
+  }
+  .home-section .main .topBar .rightSec .search {
+    width: 100%;
+    margin-left: 15px;
   }
 }
 
