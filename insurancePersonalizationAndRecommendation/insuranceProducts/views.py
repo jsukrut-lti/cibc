@@ -310,12 +310,10 @@ class InsuranceCiPreApplicationView(View):
     template_name = 'creditInsurance/ci_pre_application.html'
     context_object_name = 'Welcome'
 
-    def getTemplateName(self):
-        return self.template_name
-
     def get(self, request, *args, **kwargs):
         context = {'menu_name' : self.context_object_name}
-        return render(request, template_name=self.getTemplateName(), context=context)
+
+        return render(request, template_name=self.template_name, context=context)
 
 
 class InsuranceWelcomeView(View):
@@ -349,7 +347,10 @@ class InsuranceApplicantSelectionView(View):
     context_object_name = 'Applicant Selection'
 
     def get(self, request, *args, **kwargs):
-        context = {'menu_name': self.context_object_name}
+        queryset = InsuranceDiscussion.objects.filter(id=kwargs['pk']).values()[0]
+        raw_data = queryset['data']
+        appl_details = raw_data.get('applicants', list())
+        context = {'menu_name': self.context_object_name, 'applicant_details': appl_details}
         return render(request, template_name=self.template_name, context=context)
 
 
