@@ -38,14 +38,16 @@
                                             <p class="text-uppercase mb-1">APPLICANT</p>
                                             <div class="selectBox">
                                                 <select class="form-select" id="checkSelect" aria-label="Select Applicant">
-                                                    <option value="1">{{ primaryFirstName }} {{ primaryLastName }}</option>
-                                                    <option value="2">{{ coFirstName }} {{ coLastName }}</option>
+                                                    {% for appl in applicant_details %}
+                                                        <option value="{{ appl.applicantId }}">{{ appl.FirstName }} {{ appl.LastName }}</option>
+                                                    {% endfor %}
                                                 </select>
                                             </div>
                                             <div class="selectBoxMultiple">
                                                 <select class="form-select" id="checkSelectMultiple" aria-label="Select Applicant" multiple>
-                                                    <option value="1">{{ primaryFirstName }} {{ primaryLastName }}</option>
-                                                    <option value="2">{{ coFirstName }} {{ coLastName }}</option>
+                                                    {% for appl in applicant_details %}
+                                                        <option value="{{ appl.applicantId }}">{{ appl.FirstName }} {{ appl.LastName }}</option>
+                                                    {% endfor %}
                                                 </select>
                                             </div>
                                         </div>

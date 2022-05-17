@@ -7,10 +7,10 @@ EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'cibc1',
+        'NAME': 'cibc',
         'HOST': 'localhost',
         'USER': 'postgres',
-        'PASSWORD': 'jayesh123',
+        'PASSWORD': 'root',
         'PORT': '5432',
     }
 }

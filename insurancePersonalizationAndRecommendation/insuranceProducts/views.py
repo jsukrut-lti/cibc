@@ -5,7 +5,7 @@ from django.views import View
 from django.template.loader import render_to_string
 from django.conf import settings
 from ..stories.models import Character, Story, StoryCharacter, Objection, ObjectionHandle
-from .models import InsuranceDiscussion, InsuranceProduct
+from .models import InsuranceDiscussion, InsuranceProduct, dumpData
 from django.views.generic.detail import SingleObjectMixin
 import logging
 from rest_framework.views import APIView
@@ -347,11 +347,20 @@ class InsuranceApplicantSelectionView(View):
     context_object_name = 'Applicant Selection'
 
     def get(self, request, *args, **kwargs):
-        queryset = InsuranceDiscussion.objects.filter(id=kwargs['pk']).values()[0]
+        queryset = dumpData.objects.filter(id=kwargs['pk']).values()[0]
         raw_data = queryset['data']
         appl_details = raw_data.get('applicants', list())
         context = {'menu_name': self.context_object_name, 'applicant_details': appl_details}
         return render(request, template_name=self.template_name, context=context)
+
+    def post(self, request, *args, **kwargs):
+        template_name = 'creditInsurance/clientInformation.html'
+        payload = request.POST
+        queryset = dumpData.objects.filter(id=kwargs['pk']).values()[0]
+        raw_data = queryset['data']
+        appl_details = raw_data.get('applicants', list())
+        context = {'menu_name': self.context_object_name, 'applicant_details': appl_details}
+        return render(request, template_name=template_name, context=context)
 
 
 class InsuranceClientInformationView(View):
