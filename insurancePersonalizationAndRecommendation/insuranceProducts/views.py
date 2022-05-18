@@ -350,7 +350,7 @@ class InsuranceApplicantSelectionView(View):
         queryset = dumpData.objects.filter(id=kwargs['pk']).values()[0]
         raw_data = queryset['data']
         appl_details = raw_data.get('applicants', list())
-        context = {'menu_name': self.context_object_name, 'applicant_details': appl_details}
+        context = {'menu_name': self.context_object_name, 'applicant_details': appl_details, 'id': kwargs['pk']}
         return render(request, template_name=self.template_name, context=context)
 
     def post(self, request, *args, **kwargs):
