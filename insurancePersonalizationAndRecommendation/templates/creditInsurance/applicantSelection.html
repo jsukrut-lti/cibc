@@ -21,7 +21,7 @@
                                         <i class="bi bi-x-lg" onclick="exitApplication()"></i>
                                     </div>
 
-                                    <form action="/insurance/clientInformation/56" method="get" class="form">
+                                    <form action="/insurance/applicantSelection/{{ id }}" method="post" class="form">
                                         {% csrf_token %}
                                         <div class="userImg">
                                             <img src="{% static 'creditInsurance/images/applicantSelection.png' %}" alt="Applicant Selection icon">
@@ -37,15 +37,17 @@
                                         <div class="applicantList mb-5">
                                             <p class="text-uppercase mb-1">APPLICANT</p>
                                             <div class="selectBox">
-                                                <select class="form-select" id="checkSelect" aria-label="Select Applicant">
-                                                    <option value="1">{{ primaryFirstName }} {{ primaryLastName }}</option>
-                                                    <option value="2">{{ coFirstName }} {{ coLastName }}</option>
+                                                <select class="form-select" id="checkSelect" aria-label="Select Applicant" name="singleSelect">
+                                                    {% for appl in applicant_details %}
+                                                        <option value="{{ appl.applicantId }}">{{ appl.FirstName }} {{ appl.LastName }}</option>
+                                                    {% endfor %}
                                                 </select>
                                             </div>
                                             <div class="selectBoxMultiple">
-                                                <select class="form-select" id="checkSelectMultiple" aria-label="Select Applicant" multiple>
-                                                    <option value="1">{{ primaryFirstName }} {{ primaryLastName }}</option>
-                                                    <option value="2">{{ coFirstName }} {{ coLastName }}</option>
+                                                <select class="form-select" id="checkSelectMultiple" aria-label="Select Applicant" multiple="multiple" name="multiSelect">
+                                                    {% for appl in applicant_details %}
+                                                        <option value="{{ appl.applicantId }}">{{ appl.FirstName }} {{ appl.LastName }}</option>
+                                                    {% endfor %}
                                                 </select>
                                             </div>
                                         </div>
