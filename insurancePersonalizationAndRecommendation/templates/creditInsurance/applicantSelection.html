@@ -44,7 +44,7 @@
                                                 </select>
                                             </div>
                                             <div class="selectBoxMultiple">
-                                                <select class="form-select" id="checkSelectMultiple" aria-label="Select Applicant" multiple name="multiSelect">
+                                                <select class="form-select" id="checkSelectMultiple" aria-label="Select Applicant" multiple="multiple" name="multiSelect">
                                                     {% for appl in applicant_details %}
                                                         <option value="{{ appl.applicantId }}">{{ appl.FirstName }} {{ appl.LastName }}</option>
                                                     {% endfor %}

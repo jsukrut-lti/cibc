@@ -14,6 +14,7 @@ from rest_framework import status, permissions, serializers
 from .serializers import InsuranceDiscussionSerializers, InsuranceProductSerializers
 from drf_yasg.utils import swagger_auto_schema
 import sys
+from django.http import HttpResponseRedirect
 
 # Get an instance of a logger
 logger = logging.getLogger(__name__)
@@ -356,11 +357,19 @@ class InsuranceApplicantSelectionView(View):
     def post(self, request, *args, **kwargs):
         template_name = 'creditInsurance/clientInformation.html'
         payload = request.POST
+        single_select = payload.getlist('singleSelect')
+        multi_select = payload.getlist('multiSelect')
+        joint_applicant = payload.get('jointApplicant')
+        select = multi_select if joint_applicant == 'Yes' else single_select
+
         queryset = dumpData.objects.filter(id=kwargs['pk']).values()[0]
-        raw_data = queryset['data']
-        appl_details = raw_data.get('applicants', list())
-        context = {'menu_name': self.context_object_name, 'applicant_details': appl_details}
-        return render(request, template_name=template_name, context=context)
+        filter_data = format_raw_data_for_insdisc(queryset, select)
+        a = InsuranceDiscussion.objects.create(**filter_data)
+        a.save()
+        # raw_data = queryset['data']
+        # appl_details = raw_data.get('applicants', list())
+        # context = {'menu_name': self.context_object_name, 'applicant_details': appl_details}
+        return HttpResponseRedirect('/insurance/clientInformation/{}'.format(a.id))
 
 
 class InsuranceClientInformationView(View):
@@ -590,3 +599,53 @@ class ExitView(View):
             'id': kwargs['pk'],
         }
         return render(request, template_name=self.template_name, context=context)
+
+
+def format_raw_data_for_insdisc(queryset, select):
+    raw_data = queryset['data']
+    appl_details = raw_data.get('applicants', list())
+    d = dict()
+    d['insProduct_id'] = get_ins_product_id(raw_data['insProduct'])
+    d['agent_id'] = get_agent_id()
+    d['canada_provence'] = raw_data['canada_province']
+    d['currentApplicationPmt'] = raw_data['currentApplicationPmt']
+    for index, appl in enumerate(appl_details):
+        if appl['applicantId'] in select:
+            if index == 0:
+                d['primaryFirstName'] = appl['FirstName']
+                d['primaryMiddleName'] = appl['MiddleName']
+                d['primaryLastName'] = appl['LastName']
+                d['primaryAge'] = appl['Age']
+                d['primaryGender'] = appl['Gender']
+                d['approxNetIncome'] = appl['monthlyGrossIncome']
+                d['totalUnsecuredAmt'] = appl['existingDebts']['cibcUnsecured']
+                d['totalSecuredAmt'] = appl['existingDebts']['cibcSecured']
+                d['totalExistingDebt'] = appl['existingDebts']['cibcSecured'] + appl['existingDebts']['cibcUnsecured']
+                d['totalMonthlyPmt'] = appl['monthlyIncomeAfterTaxes']
+                d['savingsEmergencyFund'] = appl['savingsEmergencyFund']
+                d['creditCardBalance'] = appl['creditCard']['balance']
+                d['totalMonthlyExpenses'] = appl['expenses']['totalMonthlyExpenses']
+            if index == 1:
+                d['coFirstName'] = appl['FirstName']
+                d['coMiddleName'] = appl['MiddleName']
+                d['coLastName'] = appl['LastName']
+                d['coAge'] = appl['Age']
+                d['coGender'] = appl['Gender']
+                d['approxNetIncome'] += appl['monthlyGrossIncome']
+                d['totalUnsecuredAmt'] += appl['existingDebts']['cibcUnsecured']
+                d['totalSecuredAmt'] += appl['existingDebts']['cibcSecured']
+                d['totalExistingDebt'] += appl['existingDebts']['cibcSecured'] + appl['existingDebts']['cibcUnsecured']
+                d['totalMonthlyPmt'] += appl['monthlyIncomeAfterTaxes']
+                d['savingsEmergencyFund'] += appl['savingsEmergencyFund']
+                d['creditCardBalance'] += appl['creditCard']['balance']
+                d['totalMonthlyExpenses'] += appl['expenses']['totalMonthlyExpenses']
+
+    return d
+
+def get_agent_id():
+    return 1
+
+
+def get_ins_product_id(prod_name):
+    p = InsuranceProduct.objects.filter(title=prod_name)
+    return p[0].id
