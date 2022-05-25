@@ -31,7 +31,7 @@ class InsuranceDiscussionForm(ModelForm):
         # Setup Helper Info
         self.helper.form_id = 'id-{}'.format(self.formID)
         self.helper.form_method = 'post'
-        self.helper.form_action = '/insurance/insConvo/'
+        self.helper.form_action = '/insurance/insConvo/{}/'.format(kwargs.get("instance").id)
         self.helper.add_input(Submit('submit', 'Submit {}'.format(self.formID.value), css_class='btn-primary'))
 
         super(InsuranceDiscussionForm, self).__init__(*args, **kwargs)

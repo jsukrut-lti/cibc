@@ -1,8 +1,5 @@
 from django.urls import path
-from .views import InsuranceConvoView,PersionalizeCreateView,PersionalizeUpdateView,\
-    InsuranceConvoUpdateView,PresentmentUpdateView,PresentmentUpdateViewGBB,\
-    InsuranceDiscussionCreate,InsuranceDiscussionList,InsuranceDiscussionGet,\
-    InsuranceDiscussionDelete, InsuranceDiscussionUpdate
+from .views import *
 from django.views.generic import TemplateView
 
 urlpatterns = [
@@ -18,5 +15,16 @@ urlpatterns = [
     path('ins_dis_get/',InsuranceDiscussionGet.as_view()),
     path("ins_dis_del/",InsuranceDiscussionDelete.as_view()),
     path("ins_dis_update/",InsuranceDiscussionUpdate.as_view()),
+    path('ci_pre_application/', InsuranceCiPreApplicationView.as_view(), name='ins-convo-ci-pre-application'),
+    path('welcome/', InsuranceWelcomeView.as_view(), name='ins-convo-welcome'),
+    path('questionnaire/', InsuranceQuestionnaireView.as_view(), name='ins-convo-questionnaire'),
+    path('termCondition/', InsuranceTermConditionView.as_view(), name='ins-convo-tc'),
+    path('applicantSelection/<int:pk>', InsuranceApplicantSelectionView.as_view(), name='ins-convo-tc'),
+    path('callback/', InsuranceCallback.as_view(), name='ins-callback'),
+    path('clientInformation/<int:pk>', InsuranceClientInformationView.as_view(), name='ins-convo-clientInfo'),
+    path('dashboard/<int:pk>', DashbboardView.as_view(), name='ins-dashboard'),
+    path('termCondition2/<int:pk>', InsuranceTermCondition2View.as_view(), name='ins-convo-tc'),
+    path('summary/<int:pk>', SummaryView.as_view(), name='ins-summary'),
+    path('exit/<int:pk>', ExitView.as_view(), name='ins-exit'),
 
 ]

@@ -1,7 +1,5 @@
-{% load socialaccount %}
 {% load static %}
 {% load bootstrap5 %}
-{% load socialaccount %}
 <html>
 
   <link href="{% static 'css/signin.css' %}" rel="stylesheet">
@@ -24,8 +22,8 @@
           {% bootstrap_messages %}
         {% else %}
           <button class="btn btn-primary" style="margin:20px">
-            <a href="{% provider_login_url 'google' %}" style="color:white;text-decoration:none;">
-              Login with Google
+            <a href="{% url 'django_auth_adfs:login' %}" style="color:white;text-decoration:none;">
+              Login with Azure SSO
             </a>
           </button>
         {% endif %}

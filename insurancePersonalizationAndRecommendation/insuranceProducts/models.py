@@ -3,6 +3,9 @@ from core.models import TimeStampedModel,CANADA_PROVENCES,YES_NO, PAYMENT_FREQUE
 from django.utils.translation import ugettext_lazy as _
 from ..accounts.models import CustomUser
 from enum import Enum
+from django.contrib.postgres.fields import JSONField
+
+import uuid
 
 class InsuranceProduct(TimeStampedModel):
     productCode = models.CharField(max_length=50)
@@ -64,6 +67,7 @@ class SCENARIO_TYPE(Enum):
 class InsuranceDiscussion(TimeStampedModel):
     insProduct = models.ForeignKey(InsuranceProduct, on_delete=models.CASCADE,null=False,blank=False)
     agent = models.ForeignKey(CustomUser, related_name='agent', on_delete=models.CASCADE,null=False,blank=False)
+    # unique = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
 
 
     # Primary Demographics
@@ -145,6 +149,17 @@ class InsuranceDiscussion(TimeStampedModel):
     discussionOutcomes = models.CharField(_("Outcome of discussion"),  choices=[x.value for x in DISCUSSION_OUTCOME_TYPE], null=True, blank=True, max_length=20)
     currentSection = models.CharField(_("Discussion Section"), choices=[x.value for x in DISCUSSION_SECTION_TYPE],null=True, blank=True, max_length=40)
 
+    # additional fields
+    approxNetIncome = models.DecimalField(_("Approximate Net Income"), max_digits=8, decimal_places=2, null=True, blank=True)
+    totalUnsecuredAmt = models.DecimalField(_("Total Unsecured Amount"), max_digits=8, decimal_places=2, null=True, blank=True)
+    totalSecuredAmt = models.DecimalField(_("Total Secured Amount"), max_digits=8, decimal_places=2, null=True, blank=True)
+    totalExistingDebt = models.DecimalField(_("Total Existing Debt"), max_digits=8, decimal_places=2, null=True, blank=True)
+    currentApplicationPmt = models.DecimalField(_("Current Application Payment"), max_digits=8, decimal_places=2, null=True, blank=True)
+    totalMonthlyPmt = models.DecimalField(_("Total Monthly Payment"), max_digits=8, decimal_places=2, null=True, blank=True)
+    savingsEmergencyFund = models.DecimalField(_("Saving & Emergency Fund"), max_digits=8, decimal_places=2, null=True, blank=True)
+
+    sssavingsEmergencyFund = models.DecimalField(_("Saving & Emergency Fund"), max_digits=8, decimal_places=2, null=True, blank=True)
+
     def __str__(self):
         return '{}'.format(self.insProduct)
 
@@ -153,3 +168,13 @@ class InsuranceDiscussion(TimeStampedModel):
 
     def totalinsuranceCost(self):
         return self.lifeInsurancePremiumPerMonth + self.criticalIllnessPremiumPerMonth + self.disabilityPremiumPerMonth
+
+
+class dumpData(TimeStampedModel):
+    STATUS_CHOICES =(
+        ('draft', 'DRAFT'),
+        ('active', 'ACTIVE'),
+        ('deactivate', 'DEACTIVATE'),
+    )
+    status = models.CharField(max_length=10, choices=STATUS_CHOICES, default='draft')
+    data = models.JSONField()

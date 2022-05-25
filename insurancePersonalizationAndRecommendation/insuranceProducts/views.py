@@ -5,7 +5,7 @@ from django.views import View
 from django.template.loader import render_to_string
 from django.conf import settings
 from ..stories.models import Character, Story, StoryCharacter, Objection, ObjectionHandle
-from .models import InsuranceDiscussion, InsuranceProduct
+from .models import InsuranceDiscussion, InsuranceProduct, dumpData
 from django.views.generic.detail import SingleObjectMixin
 import logging
 from rest_framework.views import APIView
@@ -13,6 +13,8 @@ from rest_framework.response import Response
 from rest_framework import status, permissions, serializers
 from .serializers import InsuranceDiscussionSerializers, InsuranceProductSerializers
 from drf_yasg.utils import swagger_auto_schema
+import sys
+from django.http import HttpResponseRedirect
 
 # Get an instance of a logger
 logger = logging.getLogger(__name__)
@@ -257,16 +259,182 @@ class InsuranceConvoView(View):
         return render(request, template_name=self.template_name, context=self.context)
         # return self.getImpl(request)
 
+
 class InsuranceConvoUpdateView(SingleObjectMixin, InsuranceConvoView):
     queryset = InsuranceDiscussion.objects.all()
 
     def get(self, request, *args, **kwargs):
         # Look up the object we're interested in.
+
+        print(request)
+        print(args,kwargs)
+
+        self.object = self.get_object()
+        return super().getImpl(request, instance=self.object)
+
+    def str_to_class(self,classname):
+        return getattr(sys.modules[__name__], classname)
+
+    def post(self, request, *args, **kwargs):
+
+        submit_from = request.POST.get("submit").split()[1]
+        fields = []
+
+        if submit_from == "Personalize":
+            fields = ["primaryFirstName","primaryLastName","primaryAge","primaryGender","coFirstName","coLastName","coAge","coGender"]
+        else:
+            form_dict = {'primary':'PrimaryInsuranceDiscussionForm','co_borrow':'CoBorrowerInsuranceDiscussionForm',
+                        'loved_ones':'LovedOnesInsuranceDiscussionForm','creditProduct':'CreditProductInsuranceDiscussionForm',
+                        'incomeExpenseSavingsTotals':'IncomeExpenseSvgTotalsInsuranceDiscussionForm',
+                        'expenseEstimation':'ExpensesEstInsuranceDiscussionForm',
+                        'savingsEstimation':'SavingsEstOnesInsuranceDiscussionForm',
+                        'otherInsurance':'OtherInsuranceInsuranceDiscussionForm'}
+
+            formfield_val = form_dict[submit_from]
+
+            class_name = self.str_to_class(formfield_val)
+
+            fields = class_name.Meta.fields
+
+        parent_data = {}
+        for col in fields:
+            parent_data[col] = request.POST.get(col,False)
+
+        insuranceUpdate = InsuranceDiscussion.objects.filter(pk=int(kwargs.get("pk"))).update(**parent_data)
+
+        queryset = InsuranceDiscussion.objects.all()
         self.object = self.get_object()
         return super().getImpl(request, instance=self.object)
 
 
+class InsuranceCiPreApplicationView(View):
+    template_name = 'creditInsurance/ci_pre_application.html'
+    context_object_name = 'Welcome'
 
+    def get(self, request, *args, **kwargs):
+        context = {'menu_name' : self.context_object_name}
+
+        return render(request, template_name=self.template_name, context=context)
+
+
+class InsuranceWelcomeView(View):
+    template_name = 'creditInsurance/welcome.html'
+    context_object_name = 'Welcome'
+
+    def get(self, request, *args, **kwargs):
+        context = {'menu_name': self.context_object_name}
+        return render(request, template_name=self.template_name, context=context)
+
+class InsuranceQuestionnaireView(View):
+    template_name = 'creditInsurance/questionnaire.html'
+    context_object_name = 'Questionnaire'
+
+    def get(self, request, *args, **kwargs):
+        context = {'menu_name': self.context_object_name}
+        return render(request, template_name=self.template_name, context=context)
+
+
+class InsuranceTermConditionView(View):
+    template_name = 'creditInsurance/TermsAndConditions.html'
+    context_object_name = 'Term & Condition'
+
+    def get(self, request, *args, **kwargs):
+        context = {'menu_name': self.context_object_name}
+        return render(request, template_name=self.template_name, context=context)
+
+
+class InsuranceApplicantSelectionView(View):
+    template_name = 'creditInsurance/applicantSelection.html'
+    context_object_name = 'Applicant Selection'
+
+    def get(self, request, *args, **kwargs):
+        queryset = dumpData.objects.filter(id=kwargs['pk']).values()[0]
+        raw_data = queryset['data']
+        appl_details = raw_data.get('applicants', list())
+        context = {'menu_name': self.context_object_name, 'applicant_details': appl_details, 'id': kwargs['pk']}
+        return render(request, template_name=self.template_name, context=context)
+
+    def post(self, request, *args, **kwargs):
+        template_name = 'creditInsurance/clientInformation.html'
+        payload = request.POST
+        single_select = payload.getlist('singleSelect')
+        multi_select = payload.getlist('multiSelect')
+        joint_applicant = payload.get('jointApplicant')
+        select = multi_select if joint_applicant == 'Yes' else single_select
+
+        queryset = dumpData.objects.filter(id=kwargs['pk']).values()[0]
+        filter_data = format_raw_data_for_insdisc(queryset, select)
+        a = InsuranceDiscussion.objects.create(**filter_data)
+        a.save()
+        # raw_data = queryset['data']
+        # appl_details = raw_data.get('applicants', list())
+        # context = {'menu_name': self.context_object_name, 'applicant_details': appl_details}
+        return HttpResponseRedirect('/insurance/clientInformation/{}'.format(a.id))
+
+
+class InsuranceClientInformationView(View):
+    template_name = 'creditInsurance/clientInformation.html'
+    context_object_name = 'Client'
+
+    def get(self, request, *args, **kwargs):
+        queryset = InsuranceDiscussion.objects.filter(id=kwargs['pk']).values()[0]
+        if queryset['primaryGender'] == 'm':
+            queryset['primaryGender'] = 'Male'
+        elif queryset['primaryGender'] == 'f':
+            queryset['primaryGender'] = 'Female'
+        else:
+            queryset['primaryGender'] = 'Other'
+
+        if queryset['canada_provence'] == 'on':
+            queryset['canada_provence'] = 'Canada'
+
+        context = {
+            'id': kwargs['pk'],
+            'discussion': queryset,
+            'menu_name': self.context_object_name
+        }
+        return render(request, template_name=self.template_name, context=context)
+
+    def post(self, request, *args, **kwargs):
+        form = request.POST.form()
+        return render(request, template_name=self.template_name, context=context)
+
+
+class InsuranceClient(View):
+    template_name = 'ci_tool/client.html'
+
+    def get(self, request, *args, **kwargs):
+        context = {
+            'id': kwargs['pk']
+        }
+        return render(request, template_name=self.template_name, context=context)
+
+
+class InsuranceExitApplicationView(View):
+    template_name = 'creditInsurance/exitApplication.html'
+    context_object_name = 'Exit'
+
+    def get(self, request, *args, **kwargs):
+        context = {'menu_name': self.context_object_name}
+        return render(request, template_name=self.template_name, context=context)
+
+
+class InsuranceNonEligibleView(View):
+    template_name = 'creditInsurance/notEligible.html'
+    context_object_name = 'Not Eligible'
+
+    def get(self, request, *args, **kwargs):
+        context = {'menu_name': self.context_object_name}
+        return render(request, template_name=self.template_name, context=context)
+
+
+class InsuranceCallback(View):
+
+    def get(self, request, *args, **kwargs):
+        print(kwargs)
+
+    def post(self, request, *args, **kwargs):
+        print("request")
 
 
 class InsuranceDiscussionAPI(APIView):
@@ -394,3 +562,90 @@ class InsuranceDiscussionUpdate(APIView):
         else:
             return Response(data={"result": "No data found"},
                             status=status.HTTP_400_BAD_REQUEST)
+
+
+class DashbboardView(View):
+    template_name = 'creditInsurance/dashboard.html'
+
+    def get(self, request, *args, **kwargs):
+        context = {
+            'id': kwargs['pk'],
+        }
+        return render(request, template_name=self.template_name, context=context)
+
+class InsuranceTermCondition2View(View):
+    template_name = 'creditInsurance/TermsAndConditions2.html'
+
+    def get(self, request, *args, **kwargs):
+        context = {
+            'id': kwargs['pk'],
+        }
+        return render(request, template_name=self.template_name, context=context)
+
+class SummaryView(View):
+    template_name = 'creditInsurance/saveSummary.html'
+
+    def get(self, request, *args, **kwargs):
+        context = {
+            'id': kwargs['pk'],
+        }
+        return render(request, template_name=self.template_name, context=context)
+
+class ExitView(View):
+    template_name = 'creditInsurance/clientExitSurvey.html'
+
+    def get(self, request, *args, **kwargs):
+        context = {
+            'id': kwargs['pk'],
+        }
+        return render(request, template_name=self.template_name, context=context)
+
+
+def format_raw_data_for_insdisc(queryset, select):
+    raw_data = queryset['data']
+    appl_details = raw_data.get('applicants', list())
+    d = dict()
+    d['insProduct_id'] = get_ins_product_id(raw_data['insProduct'])
+    d['agent_id'] = get_agent_id()
+    d['canada_provence'] = raw_data['canada_province']
+    d['currentApplicationPmt'] = raw_data['currentApplicationPmt']
+    for index, appl in enumerate(appl_details):
+        if appl['applicantId'] in select:
+            if index == 0:
+                d['primaryFirstName'] = appl['FirstName']
+                d['primaryMiddleName'] = appl['MiddleName']
+                d['primaryLastName'] = appl['LastName']
+                d['primaryAge'] = appl['Age']
+                d['primaryGender'] = appl['Gender']
+                d['approxNetIncome'] = appl['monthlyGrossIncome']
+                d['totalUnsecuredAmt'] = appl['existingDebts']['cibcUnsecured']
+                d['totalSecuredAmt'] = appl['existingDebts']['cibcSecured']
+                d['totalExistingDebt'] = appl['existingDebts']['cibcSecured'] + appl['existingDebts']['cibcUnsecured']
+                d['totalMonthlyPmt'] = appl['monthlyIncomeAfterTaxes']
+                d['savingsEmergencyFund'] = appl['savingsEmergencyFund']
+                d['creditCardBalance'] = appl['creditCard']['balance']
+                d['totalMonthlyExpenses'] = appl['expenses']['totalMonthlyExpenses']
+            if index == 1:
+                d['coFirstName'] = appl['FirstName']
+                d['coMiddleName'] = appl['MiddleName']
+                d['coLastName'] = appl['LastName']
+                d['coAge'] = appl['Age']
+                d['coGender'] = appl['Gender']
+                d['approxNetIncome'] += appl['monthlyGrossIncome']
+                d['totalUnsecuredAmt'] += appl['existingDebts']['cibcUnsecured']
+                d['totalSecuredAmt'] += appl['existingDebts']['cibcSecured']
+                d['totalExistingDebt'] += appl['existingDebts']['cibcSecured'] + appl['existingDebts']['cibcUnsecured']
+                d['totalMonthlyPmt'] += appl['monthlyIncomeAfterTaxes']
+                d['savingsEmergencyFund'] += appl['savingsEmergencyFund']
+                d['creditCardBalance'] += appl['creditCard']['balance']
+                d['totalMonthlyExpenses'] += appl['expenses']['totalMonthlyExpenses']
+
+    return d
+
+def get_agent_id():
+    return 1
+
+
+def get_ins_product_id(prod_name):
+    p = InsuranceProduct.objects.filter(title=prod_name)
+    return p[0].id

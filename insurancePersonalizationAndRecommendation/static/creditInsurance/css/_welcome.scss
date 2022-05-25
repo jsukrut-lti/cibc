@@ -1,0 +1,110 @@
+/*CSS for Welcome, Thanks, Exit Survey, T&C Start*/
+
+.welcomeScreen {
+    .content {
+        margin-top: 30px;
+
+        h1 {
+            font-weight: 300;
+            
+            span {
+                border-bottom: 1px solid;
+            }
+        }
+    }
+}
+
+.thankYouPage {
+    .content {
+        max-width: 1200px;
+
+        .customBorder {
+            border-right: 1px solid $Gray_text;
+        }
+
+        .feedbackContent {
+            p {
+                font-size: 24px;
+                color: $CIBC_accent_blue;
+                font-weight: 500;
+            }
+
+            .form-check {
+                input {
+                    margin-right: 15px;
+                    cursor: pointer;
+                }
+
+                label {
+                    margin-left: 3px;
+                    color: $CIBC_accent_blue;
+                    cursor: pointer;
+                }
+
+                .happyFace {
+                    margin-left: 9px;
+
+                    label {
+                        margin-left: 8px;
+                    }
+                }
+            }
+        }
+
+        .launchBtn {
+            margin-top: 15px;
+        }
+
+        .contactSec .contactDetails {
+            margin-top: 0px;
+        }
+    }
+}
+
+.TCPage {
+    .content {
+        h4 {
+            color: $CIBC_nav;
+            font-weight: 400;
+            margin-bottom: 0 !important;
+        }
+
+        p {
+            font-size: 14px;
+            font-weight: 300;
+            color: #848383;
+        }
+
+        .TC-Content {
+            height: 300px;
+            overflow-y: scroll;
+            background-color: #F2F2F2;
+            padding: 15px;
+
+            p {
+                font-weight: 400;
+                color: #6A6969;
+            }
+
+            &::-webkit-scrollbar {
+                width: 10px;
+            }
+
+            &::-webkit-scrollbar-thumb {
+                background-color: $CIBC_nav; 
+            }
+        }
+
+        .btnContainer {
+            gap: 15px;
+
+            .btnDisagree {
+                background-color: transparent;
+                color: #000000;
+                border: 1px solid #000000;
+            }
+        }
+    }
+}
+
+/*CSS for Welcome, Thanks, Exit Survey and T&C End*/

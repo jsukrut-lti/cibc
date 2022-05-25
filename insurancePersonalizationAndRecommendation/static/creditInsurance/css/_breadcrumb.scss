@@ -1,0 +1,17 @@
+.breadcrumbSec {
+    padding: 15px 30px;
+
+    .breadcrumb {
+        margin-bottom: 0;
+
+        .breadcrumb-item {
+            a {
+                color: $textColor;
+            }
+
+            &.active {
+                color: $CIBC_nav;
+            }
+        }
+    }
+}
