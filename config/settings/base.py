@@ -55,7 +55,7 @@ INSTALLED_APPS = [
     'rest_framework.authtoken',
     'django.contrib.sites',
     'django_extensions',
-    'django_auth_adfs'
+    'django_auth_adfs',
     'river'
 ]
 
