@@ -1,4 +1,5 @@
 from django.contrib import admin
+from ..stories.admin import ModelAdmin
 
 # Register your models here.
 from .models import InsuranceProduct, InsuranceDiscussion,dumpData
@@ -9,7 +10,7 @@ class InsuranceProductModelAdmin(admin.ModelAdmin):
 
 
 @admin.register(InsuranceDiscussion)
-class InsuranceDiscussionModelAdmin(admin.ModelAdmin):
+class InsuranceDiscussionModelAdmin(ModelAdmin):
     list_display = ['name','pk','insProduct','agent', 'created', 'modified']
 
     def name(self, obj):

@@ -34,17 +34,15 @@ class ModelAdmin(admin.ModelAdmin):
         verbose_name = [i['changed']['fields'][0] for i in message][0]
         for field in self.model._meta.fields:
             if verbose_name == str(field.verbose_name):
-                up_content_keys += verbose_name
-                up_content_keys += ' : ' + getattr(object, field.name)
+                # up_content_keys += verbose_name
+                up_content_keys = getattr(object, field.name)
+                break
 
         return up_content_keys
 
-
     def log_change(self, request, object, message):
         """
-        Log that an object has been successfully added.
-
-        The default implementation creates an admin LogEntry object.
+        overriding this method for getting updated content for respective field
         """
         LogEntry.objects.log_action(
             user_id=request.user.pk,
@@ -54,11 +52,27 @@ class ModelAdmin(admin.ModelAdmin):
             action_flag=CHANGE,
             change_message=message,
         )
-        super(ModelAdmin, self).log_change(request, object, message)
+
+    def log_addition(self, request, object, message):
+        """
+        overriding this method for getting adding content for respective field
+        """
+        for field in self.model._meta.fields:
+            if str(field.verbose_name) not in ['ID', 'created', 'modified']:
+                custom_message = 'Added ' + str(field.verbose_name)
+                object_repr = getattr(object, field.name)
+                LogEntry.objects.log_action(
+                    user_id=request.user.pk,
+                    content_type_id=get_content_type_for_model(object).pk,
+                    object_id=object.pk,
+                    object_repr=str(object_repr),
+                    action_flag=ADDITION,
+                    change_message=custom_message,
+                )
 
 
 @admin.register(Character)
-class CharactersModelAdmin(admin.ModelAdmin):
+class CharactersModelAdmin(ModelAdmin):
     list_display = ['characterName', 'backstory', 'characterImage','created', 'modified']
     #fields = [Character._meta.get_fields()]
 
@@ -87,23 +101,23 @@ class CharactersModelAdmin(admin.ModelAdmin):
 
 
 @admin.register(Story)
-class StoryModelAdmin(admin.ModelAdmin):
+class StoryModelAdmin(ModelAdmin):
     list_display = ['storyName', 'summary', 'created', 'modified']
 
 @admin.register(StoryCharacter)
-class StoryCharactersModelAdmin(admin.ModelAdmin):
+class StoryCharactersModelAdmin(ModelAdmin):
     list_display = ['story','priorityOrder','character', 'created', 'modified']
 
 @admin.register(StoryStatsTracker)
-class StoryCharactersModelAdmin(admin.ModelAdmin):
+class StoryCharactersModelAdmin(ModelAdmin):
     list_display = ['story','agent','insuranceDiscussion', 'created', 'modified']
 
 @admin.register(ObjectionHandleStatsTracker)
-class StoryCharactersModelAdmin(admin.ModelAdmin):
+class StoryCharactersModelAdmin(ModelAdmin):
     list_display = ['objectionHandle','agent','insuranceDiscussion', 'created', 'modified']
 
 @admin.register(ObjectioonStatsTracker)
-class StoryCharactersModelAdmin(admin.ModelAdmin):
+class StoryCharactersModelAdmin(ModelAdmin):
     list_display = ['objection','agent','insuranceDiscussion', 'created', 'modified']
 
 
@@ -118,6 +132,6 @@ class StoryCharactersModelAdmin(ModelAdmin):
 
 
 @admin.register(ObjectionHandle)
-class StoryCharactersModelAdmin(admin.ModelAdmin):
+class StoryCharactersModelAdmin(ModelAdmin):
     list_display = ['buttleName','buttleMessaging','buttleType','objection', 'created', 'modified']
 
