@@ -22,36 +22,25 @@ from django.contrib.admin.options import get_content_type_for_model
 from django.contrib.admin.utils import flatten_fieldsets
 
 class ModelAdmin(admin.ModelAdmin):
-    # form = None
-    # def save_model(self, request, obj, form, change):
-    #     """
-    #     Given a model instance save it to the database.
-    #     """
-    #     obj.save()
-    def get_changed_content(self, message, object):
 
-        up_content_keys = str()
-        verbose_name = [i['changed']['fields'][0] for i in message][0]
-        for field in self.model._meta.fields:
-            if verbose_name == str(field.verbose_name):
-                # up_content_keys += verbose_name
-                up_content_keys = getattr(object, field.name)
-                break
-
-        return up_content_keys
 
     def log_change(self, request, object, message):
         """
         overriding this method for getting updated content for respective field
         """
-        LogEntry.objects.log_action(
-            user_id=request.user.pk,
-            content_type_id=get_content_type_for_model(object).pk,
-            object_id=object.pk,
-            object_repr=self.get_changed_content(message, object),
-            action_flag=CHANGE,
-            change_message=message,
-        )
+        verbose_names = [i['changed']['fields'] for i in message][0]
+        for name in verbose_names:
+            for field in self.model._meta.fields:
+                if name.lower() == str(field.verbose_name).lower():
+                    up_content_str = str(getattr(object, field.name))
+                    LogEntry.objects.log_action(
+                        user_id=request.user.pk,
+                        content_type_id=get_content_type_for_model(object).pk,
+                        object_id=object.pk,
+                        object_repr=up_content_str,
+                        action_flag=CHANGE,
+                        change_message= 'Changed ' + name,
+                    )
 
     def log_addition(self, request, object, message):
         """
