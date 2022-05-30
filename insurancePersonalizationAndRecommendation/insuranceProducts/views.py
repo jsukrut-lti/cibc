@@ -1,13 +1,17 @@
 from django.shortcuts import render
 from .forms import *
+from .api import *
+from .creditInsurance import *
 from django.utils.translation import ugettext_lazy as _
 from django.views import View
 from django.template.loader import render_to_string
 from django.conf import settings
 from ..stories.models import Character, Story, StoryCharacter, Objection, ObjectionHandle
-from .models import InsuranceDiscussion, InsuranceProduct, dumpData
+from .models import InsuranceDiscussion, InsuranceProduct,InsuranceNonEligibleContent, dumpData
 from django.views.generic.detail import SingleObjectMixin
 import logging
+from django.http import JsonResponse
+import json
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status, permissions, serializers
@@ -16,6 +20,9 @@ from drf_yasg.utils import swagger_auto_schema
 import sys
 from django.http import HttpResponseRedirect
 
+sys.path.append('../../')
+from django.contrib.auth.decorators import login_required
+from django.utils.decorators import method_decorator
 # Get an instance of a logger
 logger = logging.getLogger(__name__)
 
@@ -307,24 +314,80 @@ class InsuranceConvoUpdateView(SingleObjectMixin, InsuranceConvoView):
         return super().getImpl(request, instance=self.object)
 
 
+@method_decorator(login_required, name='dispatch')
 class InsuranceCiPreApplicationView(View):
-    template_name = 'creditInsurance/ci_pre_application.html'
-    context_object_name = 'Welcome'
 
     def get(self, request, *args, **kwargs):
-        context = {'menu_name' : self.context_object_name}
+        eligibility_check_instance = InsuranceEligibilityCheckView()
+        return eligibility_check_instance.get(request)
 
+
+@method_decorator(login_required, name='dispatch')
+class InsuranceNonEligibleView(View):
+
+    def __init__(self):
+        self.template_name = 'creditInsurance/notEligible.html'
+        self.context_object_name = 'Not Eligible'
+
+    def get_template(self, request, *args, **kwargs):
+
+        content_rec = InsuranceNonEligibleContent.objects.filter(effective_start_date__lte=datetime.datetime.now().date(),
+                                                                     effective_end_date__gte=datetime.datetime.now().date(),
+                                                                     active=True).values('content')
+        content_rec = content_rec and list(content_rec) or []
+        if content_rec:
+            occupation_rec = content_rec and content_rec[0] or {}
+            content = occupation_rec.get('content', False)
+
+        context = {'menu_name': self.context_object_name,'content': content}
         return render(request, template_name=self.template_name, context=context)
 
 
+@method_decorator(login_required, name='dispatch')
 class InsuranceWelcomeView(View):
-    template_name = 'creditInsurance/welcome.html'
-    context_object_name = 'Welcome'
 
-    def get(self, request, *args, **kwargs):
+    def __init__(self):
+        self.template_name = 'creditInsurance/welcome.html'
+        self.context_object_name = 'Welcome'
+
+    def get_template(self, request, *args, **kwargs):
+
         context = {'menu_name': self.context_object_name}
         return render(request, template_name=self.template_name, context=context)
 
+
+class InsuranceEligibilityCheckView(object):
+
+    def __init__(self):
+        self.insurance_json_data = CreditInsurance.api_data()
+
+    def get(self, request, *args, **kwargs):
+        if request.user.is_authenticated:
+            insurance_data = self.insurance_json_data
+
+            # new logic will be build based upon Json Format
+            input_data = {}
+
+            input_data['credit_product'] = insurance_data["sourceApplication"]
+            input_data['insurance_product_details'] = insurance_data["insProducts_details"]
+            input_data['birth_date'] = insurance_data["birth_date"]
+            input_data['occupation_code'] = insurance_data["occupation_code"]
+            input_data['province'] = insurance_data["province_residence"]
+
+            eligibility_instance = EligibilityCheck()
+            get_response = eligibility_instance.get_eligibility(request,**input_data)
+
+            if get_response == True:            #if eligible
+
+                # json data stored into DB
+                CreditInsurance.initial_data_storage(**input_data)
+
+                return InsuranceWelcomeView().get_template(request)
+            else:
+                return InsuranceNonEligibleView().get_template(request)
+
+
+@method_decorator(login_required, name='dispatch')
 class InsuranceQuestionnaireView(View):
     template_name = 'creditInsurance/questionnaire.html'
     context_object_name = 'Questionnaire'
