@@ -12,12 +12,14 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 
 from pathlib import Path
 from django.utils.translation import ugettext_lazy as _
-
+import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 STATIC_ROOT =  Path(__file__).resolve().parent.parent.parent/'static'
+
+DATA_FILE_DIR = Path(__file__).resolve().parent.parent.parent/'data'
 
 GRAPPELLI_ADMIN_TITLE ='Insurance Personalization and Recommendations'
 
@@ -59,6 +61,7 @@ INSTALLED_APPS = [
     'allauth.socialaccount.providers.google',
     'django.contrib.sites',
     'django_extensions',
+    "debug_toolbar",
 ]
 
 MIDDLEWARE = [
@@ -69,7 +72,11 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    "debug_toolbar.middleware.DebugToolbarMiddleware",
 ]
+
+if os.environ.get('SQL_DEBUG', False):
+    MIDDLEWARE += ('sql_middleware.SqlPrintingMiddleware',)
 
 ROOT_URLCONF = 'config.urls'
 
@@ -91,6 +98,7 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'config.wsgi.application'
 
+LOGIN_URL = '/'
 LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = '/'
 
@@ -250,3 +258,28 @@ SOCIALACCOUNT_PROVIDERS = {
         }
     }
 }
+
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'handlers': {
+        'file': {
+            'level': 'DEBUG',
+            'class': 'logging.FileHandler',
+            'filename': 'sql.log',
+        },
+    },
+    'loggers': {
+        'django.db.backends': {
+            'sql_middleware': {
+                'handlers': ['file'],
+                'level': 'DEBUG',
+                'propagate': True,
+            },
+        },
+    },
+}
+
+INTERNAL_IPS = [
+    "127.0.0.1",
+]

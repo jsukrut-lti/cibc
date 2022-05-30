@@ -1,20 +1,26 @@
 from django.shortcuts import render
 from .forms import *
+from .api import *
+from .creditInsurance import *
 from django.utils.translation import ugettext_lazy as _
 from django.views import View
 from django.template.loader import render_to_string
 from django.conf import settings
 from ..stories.models import Character, Story, StoryCharacter, Objection, ObjectionHandle
-from .models import InsuranceDiscussion, InsuranceProduct
+from .models import InsuranceDiscussion, InsuranceProduct,InsuranceNonEligibleContent
 from django.views.generic.detail import SingleObjectMixin
 import logging
+from django.http import JsonResponse
+import json
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status, permissions, serializers
 from .serializers import InsuranceDiscussionSerializers, InsuranceProductSerializers
 from drf_yasg.utils import swagger_auto_schema
 import sys
-
+sys.path.append('../../')
+from django.contrib.auth.decorators import login_required
+from django.utils.decorators import method_decorator
 # Get an instance of a logger
 logger = logging.getLogger(__name__)
 
@@ -306,26 +312,80 @@ class InsuranceConvoUpdateView(SingleObjectMixin, InsuranceConvoView):
         return super().getImpl(request, instance=self.object)
 
 
+@method_decorator(login_required, name='dispatch')
 class InsuranceCiPreApplicationView(View):
-    template_name = 'creditInsurance/ci_pre_application.html'
-    context_object_name = 'Welcome'
-
-    def getTemplateName(self):
-        return self.template_name
 
     def get(self, request, *args, **kwargs):
-        context = {'menu_name' : self.context_object_name}
-        return render(request, template_name=self.getTemplateName(), context=context)
+        eligibility_check_instance = InsuranceEligibilityCheckView()
+        return eligibility_check_instance.get(request)
 
 
+@method_decorator(login_required, name='dispatch')
+class InsuranceNonEligibleView(View):
+
+    def __init__(self):
+        self.template_name = 'creditInsurance/notEligible.html'
+        self.context_object_name = 'Not Eligible'
+
+    def get_template(self, request, *args, **kwargs):
+
+        content_rec = InsuranceNonEligibleContent.objects.filter(effective_start_date__lte=datetime.datetime.now().date(),
+                                                                     effective_end_date__gte=datetime.datetime.now().date(),
+                                                                     active=True).values('content')
+        content_rec = content_rec and list(content_rec) or []
+        if content_rec:
+            occupation_rec = content_rec and content_rec[0] or {}
+            content = occupation_rec.get('content', False)
+
+        context = {'menu_name': self.context_object_name,'content': content}
+        return render(request, template_name=self.template_name, context=context)
+
+
+@method_decorator(login_required, name='dispatch')
 class InsuranceWelcomeView(View):
-    template_name = 'creditInsurance/welcome.html'
-    context_object_name = 'Welcome'
 
-    def get(self, request, *args, **kwargs):
+    def __init__(self):
+        self.template_name = 'creditInsurance/welcome.html'
+        self.context_object_name = 'Welcome'
+
+    def get_template(self, request, *args, **kwargs):
+
         context = {'menu_name': self.context_object_name}
         return render(request, template_name=self.template_name, context=context)
 
+
+class InsuranceEligibilityCheckView(object):
+
+    def __init__(self):
+        self.insurance_json_data = CreditInsurance.api_data()
+
+    def get(self, request, *args, **kwargs):
+        if request.user.is_authenticated:
+            insurance_data = self.insurance_json_data
+
+            # new logic will be build based upon Json Format
+            input_data = {}
+
+            input_data['credit_product'] = insurance_data["sourceApplication"]
+            input_data['insurance_product_details'] = insurance_data["insProducts_details"]
+            input_data['birth_date'] = insurance_data["birth_date"]
+            input_data['occupation_code'] = insurance_data["occupation_code"]
+            input_data['province'] = insurance_data["province_residence"]
+
+            eligibility_instance = EligibilityCheck()
+            get_response = eligibility_instance.get_eligibility(request,**input_data)
+
+            if get_response == True:            #if eligible
+
+                # json data stored into DB
+                CreditInsurance.initial_data_storage(**input_data)
+
+                return InsuranceWelcomeView().get_template(request)
+            else:
+                return InsuranceNonEligibleView().get_template(request)
+
+
+@method_decorator(login_required, name='dispatch')
 class InsuranceQuestionnaireView(View):
     template_name = 'creditInsurance/questionnaire.html'
     context_object_name = 'Questionnaire'
@@ -400,14 +460,6 @@ class InsuranceExitApplicationView(View):
         return render(request, template_name=self.template_name, context=context)
 
 
-class InsuranceNonEligibleView(View):
-    template_name = 'creditInsurance/notEligible.html'
-    context_object_name = 'Not Eligible'
-
-    def get(self, request, *args, **kwargs):
-        context = {'menu_name': self.context_object_name}
-        return render(request, template_name=self.template_name, context=context)
-
 
 class InsuranceCallback(View):
 
@@ -417,132 +469,6 @@ class InsuranceCallback(View):
     def post(self, request, *args, **kwargs):
         print("request")
 
-
-class InsuranceDiscussionAPI(APIView):
-    """
-        Retrieve, update or delete a InsuranceDiscussion i.
-    """
-    def response(self, data=None, success=True, **message):
-        if data and success:
-            return Response(data={"result": "success", "data": data},
-                            status=status.HTTP_200_OK)
-        elif success:
-            return Response(data={"result": "success"},
-                            status=status.HTTP_200_OK)
-        else:
-            return Response(data={"result": "failed", "message": message.get("err", "UNKNOWN ERROR")},
-                            status=status.HTTP_400_BAD_REQUEST)
-
-    def get(self, request):
-        if request.request.GET['id']:
-            insurance_discussions = InsuranceDiscussion.objects.filter(id=request.GET['id']).values()
-        else:
-            insurance_discussions = InsuranceDiscussion.objects.all().values()
-        if insurance_discussions:
-            self.response(data=insurance_discussions)
-        else:
-            self.response(success=False, err='No data found')
-
-
-    def post(self, request):
-        serializer = InsuranceDiscussionSerializers(data=request.data)
-        if serializer.is_valid():
-            save_rec = serializer.save()
-            self.response(data=[{'record_id': save_rec}])
-        else:
-            self.response(success=False, err=serializer.errors)
-
-
-    def put(self, request):
-        dis = InsuranceDiscussion.objects.get(id=request.GET['id'])
-        serializer = InsuranceDiscussionSerializers(instance=dis, data=request.data, partial=False)
-        if serializer.is_valid(raise_exception=True):
-            serializer.save()
-            self.response(data=serializer.validated_data)
-        else:
-            self.response(success=False, err=serializer.errors)
-
-
-    def delete(self, request):
-        insurance_discussion = InsuranceDiscussion.objects.filter(id=request.GET['id'])
-        if insurance_discussion:
-            insurance_discussion.delete()
-            self.response()
-        else:
-            self.response(success=False, err="No data found")
-
-
-
-
-class InsuranceDiscussionCreate(APIView):
-    permission_classes = (permissions.AllowAny,)
-    @swagger_auto_schema(query_serializer=InsuranceDiscussionSerializers)
-    def post(self, request):
-        serializer = InsuranceDiscussionSerializers(data=request.data)
-        if serializer.is_valid():
-            save_rec = serializer.save()
-            return Response(data={"result": "success", "record_id": save_rec.id},
-                            status=status.HTTP_200_OK)
-        else:
-            return Response(data={"result": "error", "data": serializer.errors},
-                            status=status.HTTP_400_BAD_REQUEST)
-
-
-class InsuranceDiscussionList(APIView):
-    permission_classes = (permissions.AllowAny,)
-    @swagger_auto_schema(query_serializer=InsuranceDiscussionSerializers)
-    def get(self, request):
-        insurance_discussions = InsuranceDiscussion.objects.all().values()
-        serializer = InsuranceDiscussionSerializers(insurance_discussions, many=True)
-        if insurance_discussions:
-            return Response(data={"result": "success", "data": insurance_discussions},
-                            status=status.HTTP_200_OK)
-        else:
-            return Response(data={"result": "No data found"},
-                            status=status.HTTP_400_BAD_REQUEST)
-
-
-class InsuranceDiscussionGet(APIView):
-    permission_classes = (permissions.AllowAny,)
-    @swagger_auto_schema(query_serializer=InsuranceDiscussionSerializers)
-    def get(self, request):
-        insurance_discussion = InsuranceDiscussion.objects.filter(id=request.GET['id']).values()
-        serializer = InsuranceDiscussionSerializers(insurance_discussion, many=True)
-        if insurance_discussion:
-            return Response(data={"result": "success", "data": insurance_discussion},
-                            status=status.HTTP_200_OK)
-        else:
-            return Response(data={"result": "No data found"},
-                            status=status.HTTP_400_BAD_REQUEST)
-
-
-class InsuranceDiscussionDelete(APIView):
-    permission_classes = (permissions.AllowAny,)
-    @swagger_auto_schema(query_serializer=InsuranceDiscussionSerializers)
-    def delete(self, request):
-        insurance_discussion = InsuranceDiscussion.objects.filter(id=request.GET['id'])
-        if insurance_discussion:
-            insurance_discussion.delete()
-            return Response(data={"result": "success"},
-                            status=status.HTTP_200_OK)
-        else:
-            return Response(data={"result": "No data found"},
-                            status=status.HTTP_400_BAD_REQUEST)
-
-
-class InsuranceDiscussionUpdate(APIView):
-    permission_classes = (permissions.AllowAny,)
-    @swagger_auto_schema(query_serializer=InsuranceDiscussionSerializers)
-    def put(self, request):
-        dis = InsuranceDiscussion.objects.get(id=request.GET['id'])
-        serializer = InsuranceDiscussionSerializers(instance=dis, data=request.data, partial=False)
-        if serializer.is_valid(raise_exception=True):
-            serializer.save()
-            return Response(data={"result": "success", "data": serializer.validated_data},
-                            status=status.HTTP_200_OK)
-        else:
-            return Response(data={"result": "No data found"},
-                            status=status.HTTP_400_BAD_REQUEST)
 
 
 class DashbboardView(View):
