@@ -61,7 +61,7 @@ INSTALLED_APPS = [
     'allauth.socialaccount.providers.google',
     'django.contrib.sites',
     'django_extensions',
-    'django_auth_adfs'
+    'django_auth_adfs',
     "debug_toolbar",
 ]
 
