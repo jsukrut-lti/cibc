@@ -1,0 +1,227 @@
+/* Anecdotes & FAQ CSS Start */
+
+.leftSec {
+    .archetypeSelection {
+        .archetypeSelectionContent {
+            text-align: center;
+            font-size: 14px;
+
+            .icons {
+                height: 60px;
+                width: 60px;
+                
+                .bx-user-circle {
+                    font-size: 55px;
+                    color: #D6D1D1;
+                }
+            }
+
+            .btn.commonBtn.secondaryBtn {
+                font-size: 14px;
+                font-weight: 500;
+                background-color: transparent;
+                color: #212529;
+                border: 1px solid #212529;
+                min-width: 100px;
+
+                &:hover {
+                    background-color: $CIBC_nav;
+                    color: $white;
+                    border: 1px solid $CIBC_nav;
+                }
+            }
+
+            &.activate {
+                .icons {                    
+                    .bx-user-circle {
+                        color: $CIBC_nav;
+                    }
+                }
+
+                .archetypeCount {
+                    color: $CIBC_nav;
+                    font-weight: 700;
+                }
+
+                .btn.commonBtn.secondaryBtn {
+                    background-color: $CIBC_nav;
+                    color: $white;
+                    border: 1px solid $CIBC_nav;
+                }
+            }
+        }
+    }
+
+    .archetypeInformation {
+        .archetypeInformationContent {
+            .nav-tabs {
+                .nav-link {
+                    color: #212529;
+
+                    &.active {
+                        color: $CIBC_nav;
+                        font-weight: 500;
+                        cursor: unset;
+                    }
+                }
+            }
+
+            .tab-content {
+                .imageIcon {
+                    height: 40px;
+                    width: 40px;
+
+                    .bx-user-circle {
+                        font-size: 40px;
+                        color: $CIBC_nav;
+                    }
+                }
+
+                .archetypeCount {
+                    font-weight: 600;
+                    color: $CIBC_nav;
+                    font-size: 14px;
+                }
+
+                .btn.commonBtn {
+                    min-width: 100px;
+                    font-size: 14px;
+                    padding: .375rem .30rem;
+                }
+
+                .archetypeInfoDesc {
+                    font-size: 14px;
+
+                    h6 {
+                        font-size: 14px;
+                    }
+                }
+            }
+        }
+    }
+
+    .reaction {
+        .reactionBlock {
+            .image {
+                margin-right: 15px;
+                cursor: pointer;
+                position: relative;
+
+                &:last-child {
+                    margin-right: 0;
+                }
+
+                &:first-child {
+                    img {
+                        height: 20px;
+                        width: 20px;
+                    }
+                }
+
+                img {
+                    height: 24px;
+                    width: 24px;
+                }
+
+                &::after {
+                    content: '';
+                    position: absolute;
+                    bottom: -10px;
+                    height: 8px;
+                    width: 8px;
+                    border-radius: 50%;
+                }
+
+                &.imageHappy {
+                    margin-top: 3px;
+                    
+                    &.active {
+                        &::after {
+                            background-color: $CIBC_happy;
+                        }
+
+                        span {
+                            font-weight: 700;
+                        }
+                    }
+                }
+
+                &.imageNeutral {
+                    &.active {
+                        &::after {
+                            background-color: $CIBC_neutral;
+                        }
+
+                        span {
+                            font-weight: 700;
+                        }
+                    }
+                }
+
+                &.imageSad {
+                    &.active {
+                        &::after {
+                            background-color: $CIBC_nav;
+                        }
+
+                        span {
+                            font-weight: 700;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    .faqSearch {
+        .faqSearchSection {
+            height: 310px;
+            overflow-y: auto;
+
+            &::-webkit-scrollbar {
+                width: 8px;
+            }
+
+            &::-webkit-scrollbar-track {
+                background-color: $Gray_text;
+            }
+
+            &::-webkit-scrollbar-thumb {
+                background-color: $CIBC_nav; 
+            }
+
+            .faqSearchSectionBlock {
+                .archetypeInfoDesc {
+                    font-size: 14px;
+
+                    h6 {
+                        font-size: 14px;
+                    }
+
+                    strong {
+                        color: $CIBC_nav;
+                    }
+                }
+            }
+
+            .row {
+                &:last-child {
+                    margin-bottom: 0 !important;
+                    padding-bottom: 0 !important;
+                }
+            }
+        }
+
+        .reaction {
+            .reactionBlock {
+                .image {
+                    margin-right: 12px;
+
+                    &:last-child {
+                        margin-right: 0;
+                    }
+                }
+            }
+        }
+    }
+}

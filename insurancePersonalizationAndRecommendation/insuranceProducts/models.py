@@ -8,10 +8,11 @@ from django.utils import timezone
 
 import uuid
 
+
 class InsuranceCreditProduct(TimeStampedModel):
     credit_product_code = models.CharField(max_length=100, verbose_name=u"Credit Product Code",
                             help_text=u"Credit Product Code", unique=True,blank=False)
-    credit_product_name = models.CharField(max_length=200, verbose_name=u"Credit Product  Name", help_text=u"Credit Product Name", blank=False)
+    credit_product_name = models.CharField(max_length=200, verbose_name=u"Credit Product Name", help_text=u"Credit Product Name", blank=False)
     active = models.BooleanField(verbose_name=u"Active", default=True)
 
     def __str__(self):

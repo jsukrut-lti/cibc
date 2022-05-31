@@ -6,6 +6,7 @@ __pycache__
 db.sqlite3
 media
 config/settings/local.py
+local.py
 
 # Backup files # 
 *.bak 
