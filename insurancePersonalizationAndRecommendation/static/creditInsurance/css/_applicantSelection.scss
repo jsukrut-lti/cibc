@@ -18,9 +18,12 @@
                 font-weight: 500;
             }
 
-            .jointApplicantDetails {
+            .jointApplicantDetails,
+            .typeOfApplicant1,
+            .typeOfApplicant2,
+            .eligibilityQuestionaire {
                 &>p {
-                    font-size: 18px;
+                    font-size: 16px;
                 }
 
                 .form-check {
@@ -34,6 +37,17 @@
                 }
             }
 
+            .paymentType {
+                min-height: 38px;
+                display: flex;
+                gap: 10px;
+                align-items: center;
+
+                .form-check-input {
+                    margin-top: 0;
+                }
+            }
+            
             .commonBtnContainer {
                 .commonBtn {
                     position: absolute;
@@ -62,6 +76,8 @@
                     }
 
                     i {
+             
+             
                         margin-right: 8px;
                         font-size: 19px;
                         color: $CIBC_nav;
@@ -189,6 +205,9 @@
     display: none;
 }
 
-#checkSelect {
+#checkSelect,
+#lifeMortgageSelect,
+#lifeLoanSelect,
+#lifeHPPSelect {
     background-image: url(../images/download.svg);
 }
