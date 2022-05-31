@@ -14,7 +14,9 @@ from rest_framework import status, permissions, serializers
 from .serializers import InsuranceDiscussionSerializers, InsuranceProductSerializers
 from drf_yasg.utils import swagger_auto_schema
 import sys
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, HttpResponse
+import json
+
 
 # Get an instance of a logger
 logger = logging.getLogger(__name__)
@@ -322,6 +324,7 @@ class InsuranceWelcomeView(View):
     context_object_name = 'Welcome'
 
     def get(self, request, *args, **kwargs):
+        request.session['session_key'] = 'session_started'
         context = {'menu_name': self.context_object_name}
         return render(request, template_name=self.template_name, context=context)
 
@@ -649,3 +652,11 @@ def get_agent_id():
 def get_ins_product_id(prod_name):
     p = InsuranceProduct.objects.filter(title=prod_name)
     return p[0].id
+
+
+class StartSession(View):
+    def get(self, request, *args, **kwargs):
+        request.session['session_key'] = 'session_started'
+        request.session.modified = True
+        return HttpResponse(json.dumps({'session_key' : 'session_started'}), content_type="application/json")
+

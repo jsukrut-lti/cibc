@@ -230,3 +230,37 @@ subMenuItems.forEach(sideItems => {
 function exitApplication(){
     location.href = "/insurance/exitApplication/";
 }
+
+
+console.log(request_obj);
+document.onclick = function(){
+    console.log(request_obj);
+    if (request_obj != 'session_started') {
+        var retVal = confirm("Session timeout!! Do you want to continue ?");
+        if (retVal == true) {
+            $.ajax({
+                url: window.location.protocol + "//" + window.location.host + '/insurance/start_session',
+                type: "GET",
+                success: function (data) {
+                    var x = JSON.stringify(data);
+                    console.log(x);
+                },
+                error: function (error) {
+                    console.log(`Error ${error}`);
+                }
+            });
+        } else {
+            $.ajax({
+                url: window.location.protocol + "//" + window.location.host + '/exit/56',
+                type: "GET",
+                success: function (data) {
+                    var x = JSON.stringify(data);
+                    console.log(x);
+                },
+                error: function (error) {
+                    console.log(`Error ${error}`);
+                }
+            });
+        }
+    }
+}
