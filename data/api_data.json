@@ -1,0 +1,12 @@
+{ 
+	"sourceApplication": "ecif",
+	"insProducts_details" : [ 
+		{ 
+			"insProduct": "Mortgage Life Insurance",
+			"insProduct_ID": "CIBC0010"
+		} 
+	],
+	"birth_date" : "19801130",
+	"occupation_code" : "6111", 
+	"province_residence" : "AA"
+}
