@@ -19,7 +19,6 @@ class CharactersModelAdmin(admin.ModelAdmin):
         context['avatar_url'] = obj.get_character_img_url()
 
         return super(CharactersModelAdmin, self).render_change_form(request, context, add, change, form_url, obj)
-l
 
     def characterImage(self, obj):
 
@@ -48,7 +47,7 @@ class StoryCharactersModelAdmin(admin.ModelAdmin):
     list_display = ['story','agent','insuranceDiscussion', 'created', 'modified']
 
 @admin.register(ObjectionHandleStatsTracker)
-class StoryCharactersModelAdmin(admin.ModelAdmin):  ```````
+class StoryCharactersModelAdmin(admin.ModelAdmin):
     list_display = ['objectionHandle','agent','insuranceDiscussion', 'created', 'modified']
 
 @admin.register(ObjectioonStatsTracker)
@@ -56,11 +55,37 @@ class StoryCharactersModelAdmin(admin.ModelAdmin):
     list_display = ['objection','agent','insuranceDiscussion', 'created', 'modified']
 
 
-@admin.register(Objection)
-class StoryCharactersModelAdmin(admin.ModelAdmin):
-    list_display = ['objectionName','primaryIssueOrConcern', 'created', 'modified']
+# @admin.register(Objection)
+# class StoryCharactersModelAdmin(admin.ModelAdmin):
+#     list_display = ['objectionName','primaryIssueOrConcern', 'created', 'modified']
 
 @admin.register(ObjectionHandle)
 class StoryCharactersModelAdmin(admin.ModelAdmin):
     list_display = ['buttleName','buttleMessaging','buttleType','objection', 'created', 'modified']
+
+
+
+
+
+@admin.register(Objection)
+class ObjectionModelAdmin(admin.ModelAdmin):
+    list_display = ['objectionName','primaryIssueOrConcern', 'created', 'modified']
+
+    def render_change_form(self, request, context, add=False, change=False, form_url='', obj=None):
+        self.change_form_template = 'admin/objection_change_form.html'
+
+        return super(ObjectionModelAdmin, self).render_change_form(request, context, add, change, form_url, obj)
+
+    def get_form(self, request, obj=None, **kwargs):
+        form = super().get_form(request, obj, **kwargs)
+        print("---------------",form,form.__dict__)
+        print("-------user-",request.user)
+        print("-------obj-",obj.__dict__)
+        
+        form.base_fields['status'].disabled =True
+        print("------",form.base_fields['status'])
+        #form.base_fields["characterName"].label = "Character Name (Humans only!):"
+        #form.base_fields["characterImage"].label = 'Avatar'
+        #form.base_fields["avatarImage"]
+        return form
 
