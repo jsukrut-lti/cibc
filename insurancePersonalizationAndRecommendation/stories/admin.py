@@ -19,7 +19,7 @@ class CharactersModelAdmin(admin.ModelAdmin):
         context['avatar_url'] = obj.get_character_img_url()
 
         return super(CharactersModelAdmin, self).render_change_form(request, context, add, change, form_url, obj)
-
+l
 
     def characterImage(self, obj):
 
@@ -48,7 +48,7 @@ class StoryCharactersModelAdmin(admin.ModelAdmin):
     list_display = ['story','agent','insuranceDiscussion', 'created', 'modified']
 
 @admin.register(ObjectionHandleStatsTracker)
-class StoryCharactersModelAdmin(admin.ModelAdmin):
+class StoryCharactersModelAdmin(admin.ModelAdmin):  ```````
     list_display = ['objectionHandle','agent','insuranceDiscussion', 'created', 'modified']
 
 @admin.register(ObjectioonStatsTracker)
