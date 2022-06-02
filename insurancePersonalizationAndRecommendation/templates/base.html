@@ -54,7 +54,9 @@
                         <i class='bx bx-exit'></i>
                         <span class="link_name">{{ menu_name }}</span>
                     </a>
-
+                    <ul class="sub-menu blank">
+                        <li><a class="link_name" href="{{ request.path }}">{{ menu_name }}</a></li>
+                    </ul>
                 </li>
                 {% endif %}
             </div>

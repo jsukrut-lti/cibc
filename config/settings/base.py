@@ -55,14 +55,10 @@ INSTALLED_APPS = [
     'rest_framework',
     'drf_yasg',
     'rest_framework.authtoken',
-    'allauth',
-    'allauth.account',
-    'allauth.socialaccount',
-    'allauth.socialaccount.providers.google',
     'django.contrib.sites',
     'django_extensions',
     'django_auth_adfs',
-    "debug_toolbar",
+    'debug_toolbar'
 ]
 
 MIDDLEWARE = [
@@ -99,9 +95,6 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'config.wsgi.application'
 
-# LOGIN_URL = '/'
-# LOGIN_REDIRECT_URL = '/'
-LOGOUT_REDIRECT_URL = '/'
 # Configure django to redirect users to the right URL for login
 LOGIN_URL = "django_auth_adfs:login"
 LOGIN_REDIRECT_URL = "/"
@@ -298,3 +291,5 @@ LOGGING = {
 INTERNAL_IPS = [
     "127.0.0.1",
 ]
+
+LOGOUT_REDIRECT_URL = '/admin/login/'
