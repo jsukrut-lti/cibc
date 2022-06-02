@@ -98,6 +98,10 @@
         .btnContainer {
             gap: 15px;
 
+            .commonBtn {
+                min-width: 120px;
+            }
+
             .btnDisagree {
                 background-color: transparent;
                 color: #000000;

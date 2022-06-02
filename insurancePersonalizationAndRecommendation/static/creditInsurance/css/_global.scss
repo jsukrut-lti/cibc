@@ -102,3 +102,10 @@ a {
     color: $white;
     min-width: 169px;
 }
+
+.error {
+    p {
+        color: red;
+        font-size: 14px;
+    }
+}

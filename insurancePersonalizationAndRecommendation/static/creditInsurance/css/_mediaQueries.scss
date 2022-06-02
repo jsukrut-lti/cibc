@@ -1,3 +1,66 @@
+@media screen and (min-width: 1200px) {
+    .leftSec {
+        .archetypeInformation {
+            .archetypeInformationContent {
+                .tab-content {
+                    #nav-objection {
+                        .obejectionRebutal {
+                            width: 37%;
+                        }
+                    }
+
+                    .archetypeInfoDesc {
+                        .reaction {
+                            .reactionBlock {
+                                .image {
+                                    margin-right: 8px;
+    
+                                    &:last-child {
+                                        margin-right: 0;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        .faqSearch {
+            .faqSearchSection {
+                .faqSearchSectionBlock {
+                    width: 38%;
+
+                    &:first-child {
+                        border-right: 1px solid $Gray_text;
+                    }
+
+                    &:last-child {
+                        width: 24%;
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 1199px) {
+    .leftSec { 
+        .faqSearch {
+            .faqSearchSection {
+                .row {
+                    border-bottom: 1px solid $Gray_text;
+
+                    &:last-child {
+                        border-bottom: unset;
+                        padding-bottom: 0 !important;
+                    }
+                }
+            }
+        }
+    }
+}
+
 @media screen and (max-width: 991px) {
     .home-section,
     .sidebar.close ~ .home-section {
@@ -39,12 +102,15 @@
                     .switchBtn {
                         display: none;
                     }
-
-                    .search {
-                        width: 100%;
-                        margin-left: 15px;
-                    }
                 }
+            }
+        }
+    }
+
+    .leftSec {
+        .archetypeSelection {
+            .archetypeSelectionContent {
+                font-size: 16px;
             }
         }
     }
@@ -79,6 +145,16 @@
                     display: none;
                 }
     
+            }
+        }
+    }
+
+    .leftSec {
+        .archetypeInformation {
+            .archetypeInformationContent {
+                .nav-tabs {
+                    flex-wrap: nowrap;
+                }
             }
         }
     }

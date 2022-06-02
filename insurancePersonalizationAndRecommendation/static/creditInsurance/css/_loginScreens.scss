@@ -1,11 +1,15 @@
 /*CSS for Login, Account Creation and Forgot Password Start*/
+#container.grp-container {
+    #grp-content {
+        padding: 0;
+    }
+}
 
 .accountScreen {
     height: 100vh;
     display: flex;
     align-items: center;
     justify-content: center;
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.25);
 
     .content {
         background-color: $white;
@@ -17,7 +21,8 @@
         h3 {
             font-size: 48px;
             font-weight: 300;
-            color: $CIBC_accent_blue;
+            color: $CIBC_nav;
+            font-family: 'Roboto', sans-serif;
 
             span {
                 font-size: 32px;
@@ -25,17 +30,25 @@
         }
 
         form {
+            font-family: 'Roboto', sans-serif;
+
             input {
                 border: none;
                 border-bottom: 1px solid #B7B3B3;
                 border-radius: unset;
-                padding: .375rem 0;
+                padding: .375rem;
                 color: $textColor;
+                font-family: 'Roboto', sans-serif;
+                width: 100%;
+                background-color: $white;
+                box-shadow: unset;
+                height: 28px;
+                font-weight: 500;
 
                 &.form-control {
                     &:focus {
                         box-shadow: unset;
-                        border-bottom: 2px solid $CIBC_accent_blue;
+                        border-bottom: 2px solid $CIBC_nav;
                     }
                 }
 
@@ -54,10 +67,10 @@
                 }
 
                 &#userPassword {
-                    background-image: url(/images/openEye.png);
-                    cursor: pointer;
-                    background-repeat: no-repeat;
-                    background-position: right calc(0.375em + 0.1875rem) center;
+                    // background-image: url(/images/openEye.png);
+                    // cursor: pointer;
+                    // background-repeat: no-repeat;
+                    // background-position: right calc(0.375em + 0.1875rem) center;
 
                     &.invalid {
                         @include invalid;
@@ -80,12 +93,17 @@
                 font-size: 12px;
                 font-weight: bold;
                 text-transform: uppercase;
-                color: $CIBC_accent_blue;
+                // color: $CIBC_accent_blue;
                 margin-bottom: 0;
             }
 
             .userImg {
                 margin-bottom: 5px;
+
+                i.bx-user-circle {
+                    font-size: 60px;
+                    color: $CIBC_nav;
+                }
             }
 
             .redirectLink {
@@ -94,8 +112,8 @@
                 margin-top: 26px;
 
                 a {
-                    font-weight: 300;
-                    color: $CIBC_accent_blue;
+                    font-weight: 400;
+                    color: #212529;
                     position: relative;
 
                     &::after {
@@ -105,7 +123,7 @@
                         left: 0;
                         width: 0%;
                         height: 2px;
-                        background-color: $CIBC_accent_blue;
+                        background-color: $CIBC_nav;
                         transition: 0.2s linear;
                     }
 
@@ -117,13 +135,35 @@
 
             .loginBtn {
                 margin-top: 45px;
+                font-family: 'Roboto', sans-serif;
 
                 .btn {
                     font-size: 12px;
                     font-weight: bold;
+                    // padding: 10px;
+                    height: 35px;
+                    font-family: 'Roboto', sans-serif;
+
+                    &:hover {
+                        border: 1px solid transparent;
+                    }
                 }
             }
         }
+
+        .errornote {
+            background-color: transparent;
+            color: red;
+            padding-left: 0;
+            padding-right: 0;
+        } 
+    }
+
+    input:-webkit-autofill,
+    input:-webkit-autofill:hover, 
+    input:-webkit-autofill:focus, 
+    input:-webkit-autofill:active{
+        -webkit-box-shadow: 0 0 0 30px white inset !important;
     }
 }
 
