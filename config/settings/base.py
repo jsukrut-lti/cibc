@@ -12,12 +12,14 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 
 from pathlib import Path
 from django.utils.translation import ugettext_lazy as _
-
+import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 STATIC_ROOT =  Path(__file__).resolve().parent.parent.parent/'static'
+
+DATA_FILE_DIR = Path(__file__).resolve().parent.parent.parent/'data'
 
 GRAPPELLI_ADMIN_TITLE ='Insurance Personalization and Recommendations'
 
@@ -59,6 +61,8 @@ INSTALLED_APPS = [
     'allauth.socialaccount.providers.google',
     'django.contrib.sites',
     'django_extensions',
+    'django_auth_adfs',
+    "debug_toolbar",
 ]
 
 MIDDLEWARE = [
@@ -69,7 +73,11 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    "debug_toolbar.middleware.DebugToolbarMiddleware",
 ]
+
+if os.environ.get('SQL_DEBUG', False):
+    MIDDLEWARE += ('sql_middleware.SqlPrintingMiddleware',)
 
 ROOT_URLCONF = 'config.urls'
 
@@ -91,8 +99,12 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'config.wsgi.application'
 
-LOGIN_REDIRECT_URL = '/'
+# LOGIN_URL = '/'
+# LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = '/'
+# Configure django to redirect users to the right URL for login
+LOGIN_URL = "django_auth_adfs:login"
+LOGIN_REDIRECT_URL = "/"
 
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
@@ -227,7 +239,7 @@ BOOTSTRAP5 = {
 
 AUTHENTICATION_BACKENDS = [
     'django.contrib.auth.backends.ModelBackend',
-    'allauth.account.auth_backends.AuthenticationBackend'
+    'django_auth_adfs.backend.AdfsAuthCodeBackend',
 ]
 
 SITE_ID = 2
@@ -239,14 +251,50 @@ ACCOUNT_UNIQUE_EMAIL = True
 ACCOUNT_EMAIL_REQUIRED = True
 ACCOUNT_EMAIL_VERIFICATION = 'none'
 
-SOCIALACCOUNT_PROVIDERS = {
-    'google': {
-        'SCOPE': [
-            'profile',
-            'email',
-        ],
-        'AUTH_PARAMS': {
-            'access_type': 'online',
-        }
-    }
+
+# checkout the documentation for more settings
+client_id = '29cb4877-bb9a-4c37-877b-20f5f148c4bd'
+client_secret = 'XK18Q~roOHDX96q24sgiqaS1YeSC0ljxG7PmlcgB'
+tenant_id = '7443f4e9-c7e3-4938-8119-7658730978a5'
+
+
+AUTH_ADFS = {
+    'AUDIENCE': client_id,
+    'CLIENT_ID': client_id,
+    'CLIENT_SECRET': client_secret,
+    'CLAIM_MAPPING': {'first_name': 'given_name',
+                      'last_name': 'family_name',
+                      'email': 'upn'},
+    'GROUPS_CLAIM': 'go1',
+    'MIRROR_GROUPS': True,
+    'USERNAME_CLAIM': 'upn',
+    'TENANT_ID': tenant_id,
+    'RELYING_PARTY_ID': client_id,
 }
+
+CUSTOM_FAILED_RESPONSE_VIEW = 'dot.path.to.custom.views.login_failed'
+
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'handlers': {
+        'file': {
+            'level': 'DEBUG',
+            'class': 'logging.FileHandler',
+            'filename': 'sql.log',
+        },
+    },
+    'loggers': {
+        'django.db.backends': {
+            'sql_middleware': {
+                'handlers': ['file'],
+                'level': 'DEBUG',
+                'propagate': True,
+            },
+        },
+    },
+}
+
+INTERNAL_IPS = [
+    "127.0.0.1",
+]
