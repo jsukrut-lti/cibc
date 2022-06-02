@@ -1,4 +1,9 @@
 /*CSS for Login, Account Creation and Forgot Password Start*/
+#container.grp-container {
+    #grp-content {
+        padding: 0;
+    }
+}
 
 .accountScreen {
     height: 100vh;
@@ -17,6 +22,7 @@
             font-size: 48px;
             font-weight: 300;
             color: $CIBC_nav;
+            font-family: 'Roboto', sans-serif;
 
             span {
                 font-size: 32px;
@@ -24,12 +30,20 @@
         }
 
         form {
+            font-family: 'Roboto', sans-serif;
+
             input {
                 border: none;
                 border-bottom: 1px solid #B7B3B3;
                 border-radius: unset;
-                padding: .375rem 0;
+                padding: .375rem;
                 color: $textColor;
+                font-family: 'Roboto', sans-serif;
+                width: 100%;
+                background-color: $white;
+                box-shadow: unset;
+                height: 28px;
+                font-weight: 500;
 
                 &.form-control {
                     &:focus {
@@ -121,14 +135,35 @@
 
             .loginBtn {
                 margin-top: 45px;
+                font-family: 'Roboto', sans-serif;
 
                 .btn {
                     font-size: 12px;
                     font-weight: bold;
-                    padding: 10px;
+                    // padding: 10px;
+                    height: 35px;
+                    font-family: 'Roboto', sans-serif;
+
+                    &:hover {
+                        border: 1px solid transparent;
+                    }
                 }
             }
         }
+
+        .errornote {
+            background-color: transparent;
+            color: red;
+            padding-left: 0;
+            padding-right: 0;
+        } 
+    }
+
+    input:-webkit-autofill,
+    input:-webkit-autofill:hover, 
+    input:-webkit-autofill:focus, 
+    input:-webkit-autofill:active{
+        -webkit-box-shadow: 0 0 0 30px white inset !important;
     }
 }
 

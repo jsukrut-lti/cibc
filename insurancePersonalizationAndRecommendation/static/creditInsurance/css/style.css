@@ -207,6 +207,10 @@ a {
 
 /*CSS for Welcome, Thanks, Exit Survey and T&C End*/
 /*CSS for Login, Account Creation and Forgot Password Start*/
+#container.grp-container #grp-content {
+  padding: 0;
+}
+
 .accountScreen {
   height: 100vh;
   display: -webkit-box;
@@ -232,18 +236,30 @@ a {
   font-size: 48px;
   font-weight: 300;
   color: #C41F3E;
+  font-family: 'Roboto', sans-serif;
 }
 
 .accountScreen .content h3 span {
   font-size: 32px;
 }
 
+.accountScreen .content form {
+  font-family: 'Roboto', sans-serif;
+}
+
 .accountScreen .content form input {
   border: none;
   border-bottom: 1px solid #B7B3B3;
   border-radius: unset;
-  padding: .375rem 0;
+  padding: .375rem;
   color: #42526E;
+  font-family: 'Roboto', sans-serif;
+  width: 100%;
+  background-color: #FFFFFF;
+  -webkit-box-shadow: unset;
+          box-shadow: unset;
+  height: 28px;
+  font-weight: 500;
 }
 
 .accountScreen .content form input.form-control:focus {
@@ -347,12 +363,32 @@ a {
 
 .accountScreen .content form .loginBtn {
   margin-top: 45px;
+  font-family: 'Roboto', sans-serif;
 }
 
 .accountScreen .content form .loginBtn .btn {
   font-size: 12px;
   font-weight: bold;
-  padding: 10px;
+  height: 35px;
+  font-family: 'Roboto', sans-serif;
+}
+
+.accountScreen .content form .loginBtn .btn:hover {
+  border: 1px solid transparent;
+}
+
+.accountScreen .content .errornote {
+  background-color: transparent;
+  color: red;
+  padding-left: 0;
+  padding-right: 0;
+}
+
+.accountScreen input:-webkit-autofill,
+.accountScreen input:-webkit-autofill:hover,
+.accountScreen input:-webkit-autofill:focus,
+.accountScreen input:-webkit-autofill:active {
+  -webkit-box-shadow: 0 0 0 30px white inset !important;
 }
 
 /*CSS for Login, Account Creation and Forgot Password End*/
