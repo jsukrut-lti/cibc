@@ -3,7 +3,7 @@ from django.utils.translation import ugettext_lazy as _
 from django.views import View
 from django.template.loader import render_to_string
 from django.conf import settings
-from .models import InsuranceDiscussion, InsuranceProduct, InsuranceEligibility,ProvinceResidence,OccupationMaster
+from .models import *
 from django.views.generic.detail import SingleObjectMixin
 import logging
 from drf_yasg.utils import swagger_auto_schema
@@ -125,4 +125,25 @@ class EligibilityCheck(object):
             eligibility_flag = True
 
         return eligibility_flag
+
+
+class AssessmentQuestionnaire(object):
+
+    def __init__(self, *args, **kwargs):
+        pass
+
+    def assessment_data(self,request):
+
+        assessment_detail = {}
+        assessment_rec = AssessmentQuestionnaireMaster.objects.filter(effective_start_date__lte=datetime.datetime.now().date(),
+                                                                 effective_end_date__gte=datetime.datetime.now().date(),
+                                                                 active=True).values('assessment_id','assessment_details').all()
+
+        assessment_rec = assessment_rec and list(assessment_rec) or []
+
+        if assessment_rec:
+            for qust in assessment_rec:
+                assessment_detail[qust['assessment_id']] = qust['assessment_details']
+
+        return assessment_detail
 
