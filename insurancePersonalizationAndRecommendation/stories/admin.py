@@ -6,10 +6,63 @@ from django.urls import reverse
 from django.utils.html import format_html
 from django.conf import settings
 from ..accounts.models import CustomUser
+from django.utils.translation import gettext, gettext_lazy as _
+
+ADDITION = 1
+CHANGE = 2
+DELETION = 3
+
+ACTION_FLAG_CHOICES = (
+    (ADDITION, _('Addition')),
+    (CHANGE, _('Change')),
+    (DELETION, _('Deletion')),
+)
+
+from django.contrib.admin.models import LogEntry
+from django.contrib.admin.options import get_content_type_for_model
+from django.contrib.admin.utils import flatten_fieldsets
+
+class ModelAdmin(admin.ModelAdmin):
+
+
+    def log_change(self, request, object, message):
+        """
+        overriding this method for getting updated content for respective field
+        """
+        verbose_names = [i['changed']['fields'] for i in message][0]
+        for name in verbose_names:
+            for field in self.model._meta.fields:
+                if name.lower() == str(field.verbose_name).lower():
+                    up_content_str = str(getattr(object, field.name))
+                    LogEntry.objects.log_action(
+                        user_id=request.user.pk,
+                        content_type_id=get_content_type_for_model(object).pk,
+                        object_id=object.pk,
+                        object_repr=up_content_str,
+                        action_flag=CHANGE,
+                        change_message= 'Changed ' + name,
+                    )
+
+    def log_addition(self, request, object, message):
+        """
+        overriding this method for getting adding content for respective field
+        """
+        for field in self.model._meta.fields:
+            if str(field.verbose_name) not in ['ID', 'created', 'modified']:
+                custom_message = 'Added ' + str(field.verbose_name)
+                object_repr = getattr(object, field.name)
+                LogEntry.objects.log_action(
+                    user_id=request.user.pk,
+                    content_type_id=get_content_type_for_model(object).pk,
+                    object_id=object.pk,
+                    object_repr=str(object_repr),
+                    action_flag=ADDITION,
+                    change_message=custom_message,
+                )
 
 
 @admin.register(Character)
-class CharactersModelAdmin(admin.ModelAdmin):
+class CharactersModelAdmin(ModelAdmin):
     list_display = ['characterName', 'backstory', 'characterImage','created', 'modified']
     #fields = [Character._meta.get_fields()]
 
@@ -37,23 +90,23 @@ class CharactersModelAdmin(admin.ModelAdmin):
 
 
 @admin.register(Story)
-class StoryModelAdmin(admin.ModelAdmin):
+class StoryModelAdmin(ModelAdmin):
     list_display = ['storyName', 'summary', 'created', 'modified']
 
-@admin.register(StoryCharacter)
-class StoryCharactersModelAdmin(admin.ModelAdmin):
-    list_display = ['story','priorityOrder','character', 'created', 'modified']
+# @admin.register(StoryCharacter)
+# class StoryCharactersModelAdmin(ModelAdmin):
+#     list_display = ['story','priorityOrder','character', 'created', 'modified']
 
 @admin.register(StoryStatsTracker)
-class StoryCharactersModelAdmin(admin.ModelAdmin):
+class StoryStatsTrackersModelAdmin(ModelAdmin):
     list_display = ['story','agent','insuranceDiscussion', 'created', 'modified']
 
 @admin.register(ObjectionHandleStatsTracker)
-class StoryCharactersModelAdmin(admin.ModelAdmin):
+class StoryObjectionHandleStatsTrackerModelAdmin(ModelAdmin):
     list_display = ['objectionHandle','agent','insuranceDiscussion', 'created', 'modified']
 
 @admin.register(ObjectioonStatsTracker)
-class StoryCharactersModelAdmin(admin.ModelAdmin):
+class StoryObjectioonStatsTrackersModelAdmin(ModelAdmin):
     list_display = ['objection','agent','insuranceDiscussion', 'created', 'modified']
 
 
@@ -61,14 +114,24 @@ class StoryCharactersModelAdmin(admin.ModelAdmin):
 # class StoryCharactersModelAdmin(admin.ModelAdmin):
 #     list_display = ['objectionName','primaryIssueOrConcern', 'created', 'modified']
 
+# @admin.register(StoryCharacter)
+# class StoryCharactersModelAdmin(ModelAdmin):
+#     list_display = ['objectionName','primaryIssueOrConcern', 'created', 'modified', 'get_status']
+
+#     def get_status(self, obj):
+#         return obj.my_state_field.label if obj.my_state_field else 0
+
+#     get_status.label = 'status'
+
+
 @admin.register(ObjectionHandle)
-class StoryCharactersModelAdmin(admin.ModelAdmin):
+class StoryObjectionHandleModelAdmin(ModelAdmin):
     list_display = ['buttleName','buttleMessaging','buttleType','objection', 'created', 'modified']
 
 
 
 @admin.register(Objection)
-class ObjectionModelAdmin(admin.ModelAdmin):
+class ObjectionModelAdmin(ModelAdmin):
     list_display = ['objectionName','primaryIssueOrConcern', 'status','created', 'modified']
 
     def render_change_form(self, request, context, add=False, change=False, form_url='', obj=None):

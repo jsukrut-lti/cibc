@@ -400,7 +400,7 @@ class InsuranceQuestionnaireView(View):
 
 class InsuranceTermConditionView(View):
     template_name = 'creditInsurance/TermsAndConditions.html'
-    context_object_name = 'Term & Condition'
+    context_object_name = 'Terms & Condition'
 
     def get(self, request, *args, **kwargs):
         context = {'menu_name': self.context_object_name}
