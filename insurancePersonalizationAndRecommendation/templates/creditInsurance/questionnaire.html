@@ -33,18 +33,13 @@
                                         </div>
 
                                         <div class="questionnaireSection">
-                                            <p>I'd like to ask you, on a scale of <strong>1-10</strong>, how confident are you with your current plan should your income be reduced or eliminated?</p>
+                                            <p>I'd like to ask you, on a scale of <strong>1- {{ assessment|length }}</strong>, how confident are you with your current plan should your income be reduced or eliminated?</p>
                                             <ul class="list-unstyled d-flex flex-wrap justify-content-center">
-                                                <li>1</li>
-                                                <li>2</li>
-                                                <li>3</li>
-                                                <li>4</li>
-                                                <li>5</li>
-                                                <li>6</li>
-                                                <li>7</li>
-                                                <li>8</li>
-                                                <li>9</li>
-                                                <li>10</li>
+
+                                                {% for key, values in assessment.items %}
+                                                <li>{{key}}</li>
+                                                {% endfor %}
+
                                             </ul>
                                             <p class="questionnaireSectionObjection"></p>
                                         </div>
@@ -56,71 +51,39 @@
                                 </div>
                             </div>
                             <div class="col-md-4">
-                                <div class="rightsec">
-                                    <p>Common questions & answers</p>
-                                    <div class="faqSectionByPage">
-                                        <div class="accordion" id="faqRightSec">
-                                            <div class="accordion-item">
-                                                <h2 class="accordion-header" id="faqOne">
-                                                    <button class="accordion-button collapsed" type="button"
-                                                        data-bs-toggle="collapse" data-bs-target="#collapseOne"
-                                                        aria-expanded="false" aria-controls="collapseOne">
-                                                        <i class='bx bx-plus'></i>
-                                                        <span>Question 001</span>
-                                                    </button>
-                                                </h2>
-                                                <div id="collapseOne" class="accordion-collapse collapse"
-                                                    aria-labelledby="faqOne" data-bs-parent="#faqRightSec">
-                                                    <div class="accordion-body">
-                                                        <strong>This is the first item's accordion body.</strong> It is
-                                                        shown by default, until the collapse plugin adds the appropriate
-                                                        classes that we use to style each element.
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="accordion-item">
-                                                <h2 class="accordion-header" id="faqTwo">
-                                                    <button class="accordion-button collapsed" type="button"
-                                                        data-bs-toggle="collapse" data-bs-target="#collapseTwo"
-                                                        aria-expanded="false" aria-controls="collapseTwo">
-                                                        <i class='bx bx-plus'></i>
-                                                        <span>Question 002</span>
-                                                    </button>
-                                                </h2>
-                                                <div id="collapseTwo" class="accordion-collapse collapse"
-                                                    aria-labelledby="faqTwo" data-bs-parent="#faqRightSec">
-                                                    <div class="accordion-body">
-                                                        <strong>This is the second item's accordion body.</strong> It is
-                                                        hidden by default, until the collapse plugin adds the
-                                                        appropriate classes that we use to style each element.
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="accordion-item">
-                                                <h2 class="accordion-header" id="faqThree">
-                                                    <button class="accordion-button collapsed" type="button"
-                                                        data-bs-toggle="collapse" data-bs-target="#collapseThree"
-                                                        aria-expanded="false" aria-controls="collapseThree">
-                                                        <i class='bx bx-plus'></i>
-                                                        <span>Question 003</span>
-                                                    </button>
-                                                </h2>
-                                                <div id="collapseThree" class="accordion-collapse collapse"
-                                                    aria-labelledby="faqThree" data-bs-parent="#faqRightSec">
-                                                    <div class="accordion-body">
-                                                        <strong>This is the third item's accordion body.</strong> It is
-                                                        hidden by default, until the collapse plugin adds the
-                                                        appropriate classes that we use to style each element.
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+                                {% include 'creditInsurance/commonFAQ.html' %}
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+
+<script>
+// Questionnaire - add active class on selected list item
+
+let questionnaireItems = document.querySelectorAll('.questionnaireSection ul li');
+let questionnaireSectionObjection = document.querySelector('.questionnaireSectionObjection');
+
+function addActive(e) {
+    let currentItem = e.currentTarget.innerText;
+    questionnaireSectionObjection.style.display = "block";
+
+    questionnaireItems.forEach((item) => {
+        item.classList.remove('active');
+    })
+    this.classList.add('active');
+
+    var assessment = {{ assessment|safe }};
+    var assessmentJson = JSON.parse(JSON.stringify(assessment))
+
+    questionnaireSectionObjection.innerText = assessmentJson[currentItem];
+
+}
+
+questionnaireItems.forEach((item) => {
+    item.addEventListener('click', addActive);
+})
+
+</script>
 {% endblock %}
