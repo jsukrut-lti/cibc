@@ -79,8 +79,9 @@ class ObjectionModelAdmin(admin.ModelAdmin):
         form = super().get_form(request, obj, **kwargs)
         usr_obj = get_user_obj(request.user)
         user_groups = usr_obj.groups.values_list('name',flat = True)
+        allowed_groups =settings.ALLOWED_GROUPS
         if obj:
-            if 'CIBCADMIN'in user_groups:
+            if allowed_groups.get('maker') in user_groups:
                 form.base_fields['status'].disabled = True
 
             if obj.created_by == str(request.user.id):

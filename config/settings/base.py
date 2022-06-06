@@ -35,6 +35,10 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
 ALLOWED_HOSTS = ['*',]
+ALLOWED_GROUPS = {
+    'maker' : 'CIBCADMIN',
+    'checker':  'CIBCSUPERVISOR'
+}
 
 AVATARS_SERVER_URL = 'http://127.0.0.1:3000'
 
