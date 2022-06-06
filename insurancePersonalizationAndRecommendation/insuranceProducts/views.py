@@ -7,7 +7,7 @@ from django.views import View
 from django.template.loader import render_to_string
 from django.conf import settings
 from ..stories.models import Character, Story, StoryCharacter, Objection, ObjectionHandle
-from .models import InsuranceDiscussion, InsuranceProduct,InsuranceNonEligibleContent, dumpData
+from .models import *
 from django.views.generic.detail import SingleObjectMixin
 import logging
 from django.http import JsonResponse
@@ -392,9 +392,13 @@ class InsuranceEligibilityCheckView(object):
 class InsuranceQuestionnaireView(View):
     template_name = 'creditInsurance/questionnaire.html'
     context_object_name = 'Questionnaire'
+    assessment_details = {}
 
     def get(self, request, *args, **kwargs):
-        context = {'menu_name': self.context_object_name}
+
+        self.assessment_details = AssessmentQuestionnaire.assessment_data(self, request)
+
+        context = {'menu_name': self.context_object_name,'assessment': self.assessment_details}
         return render(request, template_name=self.template_name, context=context)
 
 
@@ -403,7 +407,7 @@ class InsuranceTermConditionView(View):
     context_object_name = 'Terms & Condition'
 
     def get(self, request, *args, **kwargs):
-        context = {'menu_name': self.context_object_name}
+        context = {'menu_name': self.context_object_name,'id' : 57}
         return render(request, template_name=self.template_name, context=context)
 
 

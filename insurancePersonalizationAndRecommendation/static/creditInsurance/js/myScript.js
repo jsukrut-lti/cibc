@@ -128,35 +128,6 @@ exitAssessmentReason.forEach(reason => {
 })
 
 
-// Questionnaire - add active class on selected list item
-let questionnaireItems = document.querySelectorAll('.questionnaireSection ul li');
-let questionnaireSectionObjection = document.querySelector('.questionnaireSectionObjection');
-
-function addActive(e) {
-    let currentItem = e.currentTarget.innerText;
-    questionnaireSectionObjection.style.display = "block";
-
-    questionnaireItems.forEach((item) => {
-        item.classList.remove('active');
-    })
-    this.classList.add('active');
-
-    if(currentItem <= 5) {
-        questionnaireSectionObjection.innerText = `Thank you for sharing that.  I'd like to ask you some additional questions to see if there is an opportunity to help you feel more confident about your plan.`;
-    }
-
-    else if(currentItem <= 8) {
-        questionnaireSectionObjection.innerText = `Thank you for sharing that. I'm glad you have thought about this. I'd like to ask you a few more questions to see if there is an opportunity to compliment the plan you have in place.`;
-    }
-
-    else {
-        questionnaireSectionObjection.innerText = `Thank you for sharing that.  I am very happy to hear that you have thought about this before. I'd like to ask you a few questions to ensure that the changes we are working on today don't impact your existing plan.`;
-    }
-}
-
-questionnaireItems.forEach((item) => {
-    item.addEventListener('click', addActive);
-})
 
 // Anecdotes - Archetype selection script
 
@@ -209,10 +180,10 @@ function faqReactionActive(e) {
 let search = document.querySelector('#search');
 let faqSearchSectionRow = document.querySelectorAll('.faqSearchSection .row');
 
-search.addEventListener('keyup', (e) => {
-    let filterVal = e.target.value.toLowerCase();
-
-    faqSearchSectionRow.forEach((row) => {
-        row.querySelector('.faqSearchSectionBlock .archetypeInfoDesc').innerText.toLowerCase().indexOf(filterVal) > -1 ? (row.style.display = "") : (row.style.display = "none");
-    })
-})
+//search.addEventListener('keyup', (e) => {
+//    let filterVal = e.target.value.toLowerCase();
+//
+//    faqSearchSectionRow.forEach((row) => {
+//        row.querySelector('.faqSearchSectionBlock .archetypeInfoDesc').innerText.toLowerCase().indexOf(filterVal) > -1 ? (row.style.display = "") : (row.style.display = "none");
+//    })
+//})
