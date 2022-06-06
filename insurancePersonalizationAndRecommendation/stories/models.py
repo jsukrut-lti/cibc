@@ -292,11 +292,14 @@ class BUTTLE_TYPE(Enum):
 class Objection(TimeStampedModel):
     objectionName = models.CharField(_("Name of Objection"), max_length=50, unique=True)
     primaryIssueOrConcern = models.CharField(_("Primary issues or concerns"), max_length=300)
-    status = models.CharField(_("Status"), max_length=5, choices=[x.value for x in WorkflowStates],null=True,blank=True)
+    status = models.CharField(_("Status"), max_length=5, choices=[x.value for x in WorkflowStates],null=True,blank=True,default ='d')
 
 
     def __str__(self):
         return '{}'.format(self.objectionName)
+
+    def save(self, *args, **kwargs):
+        super(Objection, self).save()
 
 class ObjectionHandle(TimeStampedModel):
     buttleName = models.CharField(_("Name of Re-Buttle or Pre-Buttle"), max_length=50, unique=True)

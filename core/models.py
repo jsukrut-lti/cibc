@@ -16,8 +16,8 @@ class TimeStampedModel(models.Model):
     """
     created = models.DateTimeField(auto_now_add=True)
     modified = models.DateTimeField(auto_now=True)
-    created_by = models.CharField(max_length=200,null=True)
-    modified_by = models.CharField(max_length=200,null=True)
+    created_by = models.CharField(max_length=200,null=True,blank=True,editable=False)
+    modified_by = models.CharField(max_length=200,null=True,blank=True,editable=False)
 
     class Meta:
         abstract = True
@@ -72,10 +72,8 @@ class PAYMENT_FREQUENCY(Enum):
 
 class WorkflowStates(Enum):
     d = ('d', 'Draft')
-    sap = ('sap', 'Sent for Approval')
     ap = ('ap', 'Approved')
     re = ('re', 'Rejected')
-
 
     @classmethod
     def get_value(cls, member):

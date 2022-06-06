@@ -5,6 +5,8 @@ from .models import *
 from django.urls import reverse
 from django.utils.html import format_html
 from django.conf import settings
+from ..accounts.models import CustomUser
+
 
 @admin.register(Character)
 class CharactersModelAdmin(admin.ModelAdmin):
@@ -65,27 +67,38 @@ class StoryCharactersModelAdmin(admin.ModelAdmin):
 
 
 
-
-
 @admin.register(Objection)
 class ObjectionModelAdmin(admin.ModelAdmin):
-    list_display = ['objectionName','primaryIssueOrConcern', 'created', 'modified']
+    list_display = ['objectionName','primaryIssueOrConcern', 'status','created', 'modified']
 
     def render_change_form(self, request, context, add=False, change=False, form_url='', obj=None):
         self.change_form_template = 'admin/objection_change_form.html'
-
         return super(ObjectionModelAdmin, self).render_change_form(request, context, add, change, form_url, obj)
 
     def get_form(self, request, obj=None, **kwargs):
         form = super().get_form(request, obj, **kwargs)
-        print("---------------",form,form.__dict__)
-        print("-------user-",request.user)
-        print("-------obj-",obj.__dict__)
-        
-        form.base_fields['status'].disabled =True
-        print("------",form.base_fields['status'])
-        #form.base_fields["characterName"].label = "Character Name (Humans only!):"
-        #form.base_fields["characterImage"].label = 'Avatar'
-        #form.base_fields["avatarImage"]
+        usr_obj = get_user_obj(request.user)
+        user_groups = usr_obj.groups.values_list('name',flat = True)
+        if obj:
+            if 'CIBCADMIN'in user_groups:
+                form.base_fields['status'].disabled = True
+
+            if obj.created_by == str(request.user.id):
+                form.base_fields['status'].disabled =True
+        else:
+            form.base_fields['status'].disabled = True
         return form
+    
+    def save_model(self, request, obj, form, change):
+        if not obj.created_by:
+            obj.created_by = str(request.user.id)
+        obj.modified_by = str(request.user.id)
+        obj.save()
+
+def get_user_obj(user):
+    if user:
+        queryset  = CustomUser.objects.filter(id = user.id)
+        usr_obj = queryset[0]
+        return usr_obj
+
 
