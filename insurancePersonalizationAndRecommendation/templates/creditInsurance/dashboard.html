@@ -3,8 +3,11 @@
 {% load static %}
         <div class="main">
             <div class="d-flex justify-content-between align-items-center topBar">
-                <div class="toggle">
-                    <i class='bx bx-menu' onclick="openNavMob()"></i>
+                <div class="toggle d-lg-block d-none">
+                    <i class='bx bx-menu'></i>
+                </div>
+                <div class="toggle d-block d-lg-none">
+                    <i class='bx bx-menu mobileMenu' onclick="openNavMob()"></i>
                 </div>
 
                 <div class="rightSec d-flex align-items-center justify-content-center">
@@ -113,9 +116,8 @@
                                                                 </div>
                                                             </div>
                                                             <div class="text-center mt-3">
-                                                                <a href="/insurance/termCondition2/{{ id }}" >
-                                                                    <button class="btn commonBtn" >Select</button>
-                                                                </a>
+                                                                <button class="btn commonBtn" data-bs-toggle="modal"
+                                                                data-bs-target="#ConfirmPackage">Select</button>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -174,9 +176,8 @@
                                                                 </div>
                                                             </div>
                                                             <div class="text-center mt-3">
-                                                                <a href="/insurance/termCondition2/{{ id }}" >
-                                                                    <button class="btn commonBtn" >Select</button>
-                                                                </a>
+                                                                <button class="btn commonBtn" data-bs-toggle="modal"
+                                                                data-bs-target="#ConfirmPackage">Select</button>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -235,9 +236,8 @@
                                                                 </div>
                                                             </div>
                                                             <div class="text-center mt-3">
-                                                                <a href="/insurance/termCondition2/{{ id }}" >
-                                                                    <button class="btn commonBtn" >Select</button>
-                                                                </a>
+                                                                <button class="btn commonBtn" data-bs-toggle="modal"
+                                                                data-bs-target="#ConfirmPackage">Select</button>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -355,5 +355,26 @@
                 </div>
             </div>
         </div>
+
+        <!-- Modal -->
+    <div class="modal fade" id="ConfirmPackage" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+    aria-labelledby="confirmPackageLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="confirmPackageLabel">Insurance Package</h5>
+                    <!-- <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> -->
+                </div>
+                <div class="modal-body">
+                    <p class="">Are you sure you want to select this package?</p>
+                    <p class="m-0 small"><strong>Note:</strong> You have to complete the IEQ journey to complete the process.</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn commonBtn">Yes</button>
+                    <button type="button" data-bs-dismiss="modal" class="btn commonBtnSecondary">No</button>
+                </div>
+            </div>
+        </div>
+    </div>
 
 {% endblock %}

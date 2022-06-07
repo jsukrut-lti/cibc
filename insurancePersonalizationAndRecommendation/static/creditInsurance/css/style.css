@@ -100,6 +100,21 @@ a {
   min-width: 169px;
 }
 
+.btn.commonBtnSecondary {
+  background-color: transparent;
+  color: #212529;
+  border: 1px solid #212529;
+  min-width: 169px;
+  -webkit-transition: 0.3s ease;
+  transition: 0.3s ease;
+}
+
+.btn.commonBtnSecondary:hover {
+  background-color: #C41F3E;
+  color: #FFFFFF;
+  border-color: #C41F3E;
+}
+
 .error p {
   color: red;
   font-size: 14px;
@@ -1060,6 +1075,27 @@ a {
   font-weight: 500;
 }
 
+.dashboardContent .leftContent .surplus {
+  border-radius: 8px;
+  background-color: #FFFFFF;
+}
+
+.dashboardContent .leftContent .surplus .surplusIcon {
+  height: 35px;
+  width: 35px;
+  margin-right: 23px;
+}
+
+.dashboardContent .leftContent .surplus .surplusIcon .bx-info-circle {
+  font-size: 35px;
+  color: #C41F3E;
+}
+
+.dashboardContent .leftContent .surplus .surplusRight .surplusTitle {
+  color: #C41F3E;
+  font-weight: 700;
+}
+
 .dashboardContent .leftContent .pricingTable .suggestion {
   background-color: #FFFFFF;
   font-weight: 700;
@@ -1079,7 +1115,7 @@ a {
 }
 
 .dashboardContent .leftContent .pricingTable .pricingTableSection .accordion-item .accordion-button::after {
-  background-image: url("/images/downloadPricing.svg");
+  background-image: url("../images/downloadPricing.svg");
   width: 0.8rem;
   height: 0.8rem;
   background-size: 0.8rem;
@@ -1157,6 +1193,20 @@ a {
   font-weight: 400;
 }
 
+.dashboardContent .leftContent .pricingTable .pricingTableSection .accordion-item .accordion-body .pricingDetails .btn.commonBtn {
+  background-color: transparent;
+  color: #212529;
+  border: 1px solid #212529;
+  -webkit-transition: 0.3s ease;
+  transition: 0.3s ease;
+}
+
+.dashboardContent .leftContent .pricingTable .pricingTableSection .accordion-item .accordion-body .pricingDetails .btn.commonBtn:hover {
+  background-color: #C41F3E;
+  color: #FFFFFF;
+  border-color: #C41F3E;
+}
+
 .dashboardContent .leftContent .dashboardFaqSection .suggestion {
   background-color: #FFFFFF;
   border-top-left-radius: 8px;
@@ -1170,7 +1220,7 @@ a {
 }
 
 .dashboardContent .leftContent .dashboardFaqSection .dashboardFaqContent .accordion-button::after {
-  background-image: url("/images/download.svg");
+  background-image: url("../images/download.svg");
 }
 
 .dashboardContent .rightContent {
@@ -1275,6 +1325,10 @@ a {
 
 .dashboardContent .rightContent .aboutYou .circularProgress {
   border-bottom: 1px solid #F2F3F2;
+}
+
+#ConfirmPackage .modal-footer .btn {
+  min-width: 100px;
 }
 
 /* Anecdotes & FAQ CSS Start */
