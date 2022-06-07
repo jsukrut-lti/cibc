@@ -262,6 +262,11 @@ a {
   font-weight: 500;
 }
 
+.accountScreen .content form input[type="radio"] {
+  width: 1em;
+  height: 1em;
+}
+
 .accountScreen .content form input.form-control:focus {
   -webkit-box-shadow: unset;
           box-shadow: unset;
