@@ -1327,8 +1327,24 @@ a {
   border-bottom: 1px solid #F2F3F2;
 }
 
+#ConfirmPackage .modal-dialog {
+  max-width: 700px;
+}
+
 #ConfirmPackage .modal-footer .btn {
   min-width: 100px;
+}
+
+#ConfirmPackage .modal-footer .returntoBoard {
+  color: #212529;
+}
+
+#ConfirmPackage .modal-footer * {
+  margin-right: 15px;
+}
+
+#ConfirmPackage .modal-footer *:last-child {
+  margin-right: 0;
 }
 
 /* Anecdotes & FAQ CSS Start */

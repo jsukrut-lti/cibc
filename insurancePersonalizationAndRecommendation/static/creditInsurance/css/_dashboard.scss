@@ -788,9 +788,25 @@
 
 // Modal CSS Start
 #ConfirmPackage {
+    .modal-dialog  {
+        max-width: 700px;
+    }
+
     .modal-footer {
         .btn {
             min-width: 100px;
+        }
+
+        .returntoBoard {
+            color: #212529;
+        }
+
+        * {
+            margin-right: 15px;
+
+            &:last-child {
+                margin-right: 0;
+            }
         }
     }
 }
