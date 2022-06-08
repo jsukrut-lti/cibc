@@ -45,6 +45,11 @@
                 height: 28px;
                 font-weight: 500;
 
+                &[type="radio"] {
+                    width: 1em;
+                    height: 1em;
+                }
+
                 &.form-control {
                     &:focus {
                         box-shadow: unset;
