@@ -71,9 +71,10 @@ class PAYMENT_FREQUENCY(Enum):
         return cls[member].value[0]
 
 class WorkflowStates(Enum):
-    d = ('d', 'Draft')
+    d = ('o', 'Open')
     ap = ('ap', 'Approved')
     re = ('re', 'Rejected')
+    cl =('cl','Close')
 
     @classmethod
     def get_value(cls, member):

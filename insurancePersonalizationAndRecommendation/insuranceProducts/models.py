@@ -181,8 +181,6 @@ class InsuranceDiscussion(TimeStampedModel):
     totalMonthlyPmt = models.DecimalField(_("Total Monthly Payment"), max_digits=8, decimal_places=2, null=True, blank=True)
     savingsEmergencyFund = models.DecimalField(_("Saving & Emergency Fund"), max_digits=8, decimal_places=2, null=True, blank=True)
 
-    sssavingsEmergencyFund = models.DecimalField(_("Saving & Emergency Fund"), max_digits=8, decimal_places=2, null=True, blank=True)
-
     def __str__(self):
         return '{}'.format(self.insProduct)
 
@@ -191,7 +189,6 @@ class InsuranceDiscussion(TimeStampedModel):
 
     def totalinsuranceCost(self):
         return self.lifeInsurancePremiumPerMonth + self.criticalIllnessPremiumPerMonth + self.disabilityPremiumPerMonth
-
 
 class dumpData(TimeStampedModel):
     STATUS_CHOICES =(

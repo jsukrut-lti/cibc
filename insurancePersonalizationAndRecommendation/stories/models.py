@@ -265,6 +265,8 @@ class Story(TimeStampedModel):
     middle = models.CharField(_("Middle"), max_length=300)
     conclusion = models.CharField(_("Conclusion"), max_length=300)
     keyInsights = models.CharField(_("Key Insights, Messaging or Lessons"), max_length=300)
+    status = models.CharField(_("Status"), max_length=5, choices=[x.value for x in WorkflowStates],null=True,blank=True,default ='d')
+
 
     def get_absolute_url(self):
         return reverse('story-update', kwargs={'pk': self.pk})
@@ -292,7 +294,7 @@ class BUTTLE_TYPE(Enum):
 class Objection(TimeStampedModel):
     objectionName = models.CharField(_("Name of Objection"), max_length=50, unique=True)
     primaryIssueOrConcern = models.CharField(_("Primary issues or concerns"), max_length=300)
-    status = models.CharField(_("Status"), max_length=5, choices=[x.value for x in WorkflowStates],null=True,blank=True,default ='d')
+    status = models.CharField(_("Status"), max_length=5, choices=[x.value for x in WorkflowStates],null=True,blank=True,default ='o')
 
 
     def __str__(self):

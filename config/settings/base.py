@@ -39,6 +39,7 @@ ALLOWED_GROUPS = {
     'maker' : 'CIBCADMIN',
     'checker':  'CIBCSUPERVISOR'
 }
+WORKFLOW_OBJECTS = ['Objection']
 
 AVATARS_SERVER_URL = 'http://127.0.0.1:3000'
 
