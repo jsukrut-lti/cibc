@@ -584,11 +584,36 @@
                 .accordion-item {
                     border-radius: 8px;
 
+                    .bestOption {
+                        display: none;
+                    }
+                    
+                    &.active {
+                        h2 {
+                            position: relative;
+                        }
+
+                        .bestOption {
+                            display: block;
+                            border-radius: 2px;
+                            position: absolute;
+                            z-index: 2;
+                            background: #5C99D6;
+                            color: $white;
+                            padding: 3px 8px;
+                            font-size: 13px;
+                            line-height: 13px;
+                            right: 0;
+                            bottom: -8px;
+                        }
+                    }
+
                     .accordion-button {
                         background-color: $CIBC_nav;
                         color: $white;
                         border-radius: 8px;
                         padding: 16px 14px;
+                        z-index: 1;
 
                         &::after {
                             background-image: url('../images/downloadPricing.svg');

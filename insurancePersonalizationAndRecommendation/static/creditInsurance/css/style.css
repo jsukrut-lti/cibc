@@ -1107,11 +1107,34 @@ a {
   border-radius: 8px;
 }
 
+.dashboardContent .leftContent .pricingTable .pricingTableSection .accordion-item .bestOption {
+  display: none;
+}
+
+.dashboardContent .leftContent .pricingTable .pricingTableSection .accordion-item.active h2 {
+  position: relative;
+}
+
+.dashboardContent .leftContent .pricingTable .pricingTableSection .accordion-item.active .bestOption {
+  display: block;
+  border-radius: 2px;
+  position: absolute;
+  z-index: 2;
+  background: #5C99D6;
+  color: #FFFFFF;
+  padding: 3px 8px;
+  font-size: 13px;
+  line-height: 13px;
+  right: 0;
+  bottom: -8px;
+}
+
 .dashboardContent .leftContent .pricingTable .pricingTableSection .accordion-item .accordion-button {
   background-color: #C41F3E;
   color: #FFFFFF;
   border-radius: 8px;
   padding: 16px 14px;
+  z-index: 1;
 }
 
 .dashboardContent .leftContent .pricingTable .pricingTableSection .accordion-item .accordion-button::after {
