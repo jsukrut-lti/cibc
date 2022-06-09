@@ -17,7 +17,7 @@ from django.conf import settings
 from django.contrib import admin
 from django.urls import path, re_path
 from django.conf.urls import include
-from django.views.generic import TemplateView
+from django.views.generic import TemplateView, RedirectView
 from rest_framework import permissions
 from drf_yasg.views import get_schema_view
 from drf_yasg import openapi
@@ -40,7 +40,7 @@ urlpatterns = [
     path('grappelli/', include('grappelli.urls')),  # grappelli URLS
     path('admin/login/', auth_views.LoginView.as_view(template_name='admin_base.html'), name='login'),
     path('admin/', admin.site.urls),  # admin site
-    path('', TemplateView.as_view(template_name="home.html"), name='home'),
+    path('', RedirectView.as_view(url='/auth/login/')),
     path('auth/', include('django.contrib.auth.urls')),  # home
     path('account/', include('insurancePersonalizationAndRecommendation.accounts.urls')),  # home
     path('insurance/', include('insurancePersonalizationAndRecommendation.insuranceProducts.urls')), # home

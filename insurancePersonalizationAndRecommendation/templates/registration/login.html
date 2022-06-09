@@ -21,7 +21,7 @@
           {# Display django.contrib.messages as Bootstrap alerts #}
           {% bootstrap_messages %}
         {% else %}
-          <button class="btn btn-primary" style="margin:20px">
+          <button class="btn " style="background-color:#C41F3E;">
             <a href="{% url 'django_auth_adfs:login' %}" style="color:white;text-decoration:none;">
               Login with Azure SSO
             </a>
@@ -30,7 +30,7 @@
 
         {{ form.as_p }}
         {% buttons %}
-          <button type="submit" class="btn btn-primary">
+          <button type="submit" class="btn btn-primary" style="background-color:#C41F3E;">
             Submit
           </button>
         {% endbuttons %}

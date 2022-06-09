@@ -106,12 +106,11 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'config.wsgi.application'
 
-# LOGIN_URL = '/'
-# LOGIN_REDIRECT_URL = '/'
-LOGOUT_REDIRECT_URL = '/'
+LOGOUT_REDIRECT_URL = '/auth/login/'
 # Configure django to redirect users to the right URL for login
-LOGIN_URL = "django_auth_adfs:login"
-LOGIN_REDIRECT_URL = "/"
+LOGIN_URL = "/auth/login/"
+# LOGIN_URL = "django_auth_adfs:login"
+LOGIN_REDIRECT_URL = "/insurance/ci_pre_application"
 
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
