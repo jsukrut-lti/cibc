@@ -103,6 +103,20 @@ a {
     min-width: 169px;
 }
 
+.btn.commonBtnSecondary {
+    background-color: transparent;
+    color: #212529;
+    border: 1px solid #212529;
+    min-width: 169px;
+    transition: 0.3s ease;
+
+    &:hover {
+        background-color: $CIBC_nav;
+        color: $white;
+        border-color: $CIBC_nav;
+    }
+}
+
 .error {
     p {
         color: red;

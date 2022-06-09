@@ -549,6 +549,29 @@
             }
         }
 
+        .surplus {
+            border-radius: 8px;
+            background-color: $white;
+
+            .surplusIcon {
+                height: 35px;
+                width: 35px;
+                margin-right: 23px;
+
+                .bx-info-circle {
+                    font-size: 35px;
+                    color: $CIBC_nav;
+                }
+            }
+
+            .surplusRight {
+                .surplusTitle {
+                    color: $CIBC_nav;
+                    font-weight: 700;
+                }
+            }
+        }
+
         .pricingTable {
             .suggestion {
                 background-color: $white;
@@ -561,14 +584,39 @@
                 .accordion-item {
                     border-radius: 8px;
 
+                    .bestOption {
+                        display: none;
+                    }
+                    
+                    &.active {
+                        h2 {
+                            position: relative;
+                        }
+
+                        .bestOption {
+                            display: block;
+                            border-radius: 2px;
+                            position: absolute;
+                            z-index: 2;
+                            background: #5C99D6;
+                            color: $white;
+                            padding: 3px 8px;
+                            font-size: 13px;
+                            line-height: 13px;
+                            right: 0;
+                            bottom: -8px;
+                        }
+                    }
+
                     .accordion-button {
                         background-color: $CIBC_nav;
                         color: $white;
                         border-radius: 8px;
                         padding: 16px 14px;
+                        z-index: 1;
 
                         &::after {
-                            background-image: url('/images/downloadPricing.svg');
+                            background-image: url('../images/downloadPricing.svg');
                             width: 0.8rem;
                             height: 0.8rem;
                             background-size: 0.8rem;
@@ -638,6 +686,19 @@
                                     }
                                 }
                             }
+
+                            .btn.commonBtn {
+                                background-color: transparent;
+                                color: #212529;
+                                border: 1px solid #212529;
+                                transition: 0.3s ease;
+
+                                &:hover {
+                                    background-color: $CIBC_nav;
+                                    color: $white;
+                                    border-color: $CIBC_nav;
+                                }
+                            }
                         }
                     }
                 }
@@ -658,7 +719,7 @@
                     color: #212529;
                     
                     &::after {
-                        background-image: url('/images/download.svg');
+                        background-image: url('../images/download.svg');
                     }
                 }
             }
@@ -745,6 +806,31 @@
 
             .circularProgress {
                 border-bottom: 1px solid $CIBC_background;
+            }
+        }
+    }
+}
+
+// Modal CSS Start
+#ConfirmPackage {
+    .modal-dialog  {
+        max-width: 700px;
+    }
+
+    .modal-footer {
+        .btn {
+            min-width: 100px;
+        }
+
+        .returntoBoard {
+            color: #212529;
+        }
+
+        * {
+            margin-right: 15px;
+
+            &:last-child {
+                margin-right: 0;
             }
         }
     }

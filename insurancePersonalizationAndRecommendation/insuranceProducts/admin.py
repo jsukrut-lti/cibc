@@ -3,7 +3,7 @@ from ..stories.admin import ModelAdmin
 
 # Register your models here.
 from .models import InsuranceProduct, InsuranceDiscussion,dumpData,InsuranceEligibility,InsuranceCreditProduct,\
-    ProvinceResidence,OccupationMaster,InsuranceNonEligibleContent,ClientDetails
+    ProvinceResidence,OccupationMaster,InsuranceNonEligibleContent,ClientDetails,AssessmentQuestionnaireMaster
 
 @admin.register(InsuranceProduct)
 class InsuranceProductModelAdmin(admin.ModelAdmin):
@@ -48,6 +48,7 @@ class InsuranceNonEligibleContentModelAdmin(admin.ModelAdmin):
     list_display = ['content', 'effective_start_date','effective_end_date', 'active', 'created', 'modified']
 
 
-@admin.register(ClientDetails)
-class ClientDetailsModelAdmin(admin.ModelAdmin):
-    list_display = ['client_name', 'client_email','client_phone', 'active', 'created', 'modified']
+@admin.register(AssessmentQuestionnaireMaster)
+class AssessmentQuestionnaireMasterModelAdmin(admin.ModelAdmin):
+    list_display = ['assessment_id', 'assessment_details','effective_start_date','effective_end_date', 'active', 'created', 'modified']
+

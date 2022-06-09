@@ -1,0 +1,111 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Roboto', sans-serif;
+}
+
+body {
+    background-color: $CIBC_background;
+}
+
+a {
+    text-decoration: none;
+}
+
+.hidden {
+    overflow-y: hidden;
+}
+
+%CIBC_blue {
+    background-color: $CIBC_blue;
+    color: $white;
+    box-shadow: inset 0 0 0 0 #006B92;
+
+    &:hover {
+        box-shadow: inset 0 0 0 50px #006B92;
+    }
+}
+
+.btnCIBC {
+    border-radius: 20px;
+    height: 36px;
+    padding: 5px 55px;
+    transition: 0.3s ease;
+
+    &.CIBC_blue {
+        @extend %CIBC_blue;
+    }
+
+    &.launchBtn {
+        background-color: $CIBC_accent_blue;
+        color: $white;
+        box-shadow: inset 0 0 0 0 #2494df;
+
+        &:hover {
+            box-shadow: inset 0 0 0 50px #2494df;
+        }
+    }
+
+    &.btnDefault {
+        background-color: #C4C4C4;
+        font-size: 12px;
+        font-weight: bold;
+
+        &.active {
+            @extend %CIBC_blue;
+        }
+    }
+}
+
+.exitPoint {
+    font-size: 12px;
+    font-weight: 300;
+    color: #9B9595;
+
+    a {
+        color: $CIBC_accent_blue;
+        text-decoration: underline;
+
+        &:hover {
+            color: $CIBC_accent_blue;
+        }
+    }
+}
+
+.closeIcon {
+    position: absolute;
+    right: 12px;
+    top: 11px;
+    cursor: pointer;
+    color: $CIBC_nav;
+}
+
+.contactSec {
+    .contactDetails {
+        gap: 30px;
+
+        img {
+            margin-right: 7px;
+        }
+
+        span, a {
+            font-size: 14px;
+            font-weight: 500;
+            color: #86888A;
+        }
+    }
+}
+
+.btn.commonBtn {
+    background-color: $CIBC_nav;
+    color: $white;
+    min-width: 169px;
+}
+
+.error {
+    p {
+        color: red;
+        font-size: 14px;
+    }
+}
