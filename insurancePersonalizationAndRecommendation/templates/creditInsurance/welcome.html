@@ -17,8 +17,9 @@
                         <div class="closeIcon">
                             <i class="bi bi-x-lg" onclick="exitApplication()"></i>
                         </div>
-                        <form action="/insurance/questionnaire/" method="get" class="form">
+                        <form action="/insurance/questionnaire/" method="post" class="form">
                             {% csrf_token %}
+                            <input type="hidden" name="pk_id" value="{{ pk_id }}">
                             <div class="mb-3">
                                 <h1 class="display-1 text-center mb-3"><span>Welcome</span></h1>
                                 <p class="notEligibleMsg mb-5 text-center">Now that we understand your credit needs, my job is to help you understand your protection needs.</p>

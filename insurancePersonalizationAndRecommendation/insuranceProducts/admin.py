@@ -2,7 +2,7 @@ from django.contrib import admin
 from ..stories.admin import ModelAdmin
 
 # Register your models here.
-from .models import InsuranceProduct, InsuranceDiscussion,dumpData,InsuranceEligibility,InsuranceCreditProduct,\
+from .models import InsuranceProduct, InsuranceDiscussion,InsurancePreProcessData,InsuranceEligibility,InsuranceCreditProduct,\
     ProvinceResidence,OccupationMaster,InsuranceNonEligibleContent,ClientDetails,AssessmentQuestionnaireMaster
 
 @admin.register(InsuranceProduct)
@@ -18,9 +18,9 @@ class InsuranceDiscussionModelAdmin(ModelAdmin):
 
         return '{} {} age {}'.format(obj.primaryFirstName,obj.primaryLastName,obj.primaryAge)
 
-@admin.register(dumpData)
-class dumpDataModelAdmin(admin.ModelAdmin):
-    list_display = ['status','created','modified']
+@admin.register(InsurancePreProcessData)
+class InsurancePreProcessDataModelAdmin(admin.ModelAdmin):
+    list_display = ['application_number','status','created','modified']
 
 
 @admin.register(InsuranceEligibility)

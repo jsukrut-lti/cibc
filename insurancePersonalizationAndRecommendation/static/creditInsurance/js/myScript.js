@@ -187,3 +187,7 @@ let faqSearchSectionRow = document.querySelectorAll('.faqSearchSection .row');
 //        row.querySelector('.faqSearchSectionBlock .archetypeInfoDesc').innerText.toLowerCase().indexOf(filterVal) > -1 ? (row.style.display = "") : (row.style.display = "none");
 //    })
 //})
+
+function exitApplication(e){
+    document.location.href = "/insurance/exit/1";
+}

@@ -22,8 +22,9 @@
                                         <i class="bi bi-x-lg" onclick="exitApplication()"></i>
                                     </div>
 
-                                    <form action="/insurance/termCondition/{{ id }}" method="get" class="form">
+                                    <form action="/insurance/termCondition/" method="post" class="form" id="form">
                                         {% csrf_token %}
+                                        <input type="hidden" name="pk_id" value="{{ pk_id }}">
                                         <div class="userImg">
                                             <img src="{% static 'creditInsurance/images/faq.png' %}" alt="Questionnaire icon">
                                         </div>
@@ -42,6 +43,9 @@
 
                                             </ul>
                                             <p class="questionnaireSectionObjection"></p>
+                                        </div>
+                                        <div class="error mt-5 mb-2 d-none">
+                                            <p class="m-0">Kindly select one of the assessment questionnaire.</p>
                                         </div>
 
                                         <div class="mt-5 d-flex align-items-center justify-content-end commonBtnContainer">
@@ -64,6 +68,8 @@
 
 let questionnaireItems = document.querySelectorAll('.questionnaireSection ul li');
 let questionnaireSectionObjection = document.querySelector('.questionnaireSectionObjection');
+var error = document.querySelector('.error');
+var assessment_click = 0;
 
 function addActive(e) {
     let currentItem = e.currentTarget.innerText;
@@ -78,12 +84,23 @@ function addActive(e) {
     var assessmentJson = JSON.parse(JSON.stringify(assessment))
 
     questionnaireSectionObjection.innerText = assessmentJson[currentItem];
-
+    window.assessment_click++;
+    error.classList.add('d-none');
 }
 
 questionnaireItems.forEach((item) => {
     item.addEventListener('click', addActive);
 })
 
+let form = document.querySelector('form');
+
+form.addEventListener('submit', (e) => {
+    if(window.assessment_click <= 0){
+        error.classList.remove('d-none');
+        error.classList.add('d-block');
+<!--        alert("Kindly click any of the assessment questionnaire...")-->
+        e.preventDefault();
+    }
+})
 </script>
 {% endblock %}

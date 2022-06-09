@@ -293,3 +293,5 @@ INTERNAL_IPS = [
 ]
 
 LOGOUT_REDIRECT_URL = '/admin/login/'
+
+ENCRYPT_KEY = b'iDJpljxUBBsacCZ50GpSBff6Xem0R-giqXXnBFGJ2Rs='

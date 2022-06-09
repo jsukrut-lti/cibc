@@ -21,8 +21,8 @@ from django.contrib.admin.models import LogEntry
 from django.contrib.admin.options import get_content_type_for_model
 from django.contrib.admin.utils import flatten_fieldsets
 
-class ModelAdmin(admin.ModelAdmin):
 
+class ModelAdmin(admin.ModelAdmin):
 
     def log_change(self, request, object, message):
         """
