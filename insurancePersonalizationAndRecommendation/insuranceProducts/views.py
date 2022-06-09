@@ -324,7 +324,6 @@ class InsuranceWelcomeView(View):
     context_object_name = 'Welcome'
 
     def get(self, request, *args, **kwargs):
-        request.session['session_key'] = 'session_started'
         context = {'menu_name': self.context_object_name}
         return render(request, template_name=self.template_name, context=context)
 
@@ -599,7 +598,7 @@ class ExitView(View):
 
     def get(self, request, *args, **kwargs):
         context = {
-            'id': kwargs['pk'],
+            'id': kwargs.get('pk', None),
         }
         return render(request, template_name=self.template_name, context=context)
 

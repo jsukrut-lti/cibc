@@ -232,35 +232,33 @@ function exitApplication(){
 }
 
 
-console.log(request_obj);
-document.onclick = function(){
-    console.log(request_obj);
-    if (request_obj != 'session_started') {
-        var retVal = confirm("Session timeout!! Do you want to continue ?");
-        if (retVal == true) {
-            $.ajax({
-                url: window.location.protocol + "//" + window.location.host + '/insurance/start_session',
-                type: "GET",
-                success: function (data) {
-                    var x = JSON.stringify(data);
-                    console.log(x);
-                },
-                error: function (error) {
-                    console.log(`Error ${error}`);
-                }
-            });
-        } else {
-            $.ajax({
-                url: window.location.protocol + "//" + window.location.host + '/exit/56',
-                type: "GET",
-                success: function (data) {
-                    var x = JSON.stringify(data);
-                    console.log(x);
-                },
-                error: function (error) {
-                    console.log(`Error ${error}`);
-                }
-            });
-        }
+
+
+//session development
+var timer;
+function myTimeout () {
+    console.log('new timeout started!!')
+    clearTimeout(timer)
+    timer = setTimeout(checkSession, 10000);
+};
+myTimeout();
+
+function checkSession (){
+    console.log('success');
+    console.log('timer', timer);
+    var retVal = confirm("Session timeout!! Do you want to continue ?");
+    if (retVal == true) {
+        console.log('session extended');
+        myTimeout ();
+    } else {
+        console.log('click cancel');
+        clearTimeout(timer);
+        window.location = window.location.protocol + "//" + window.location.host + '/insurance/exit';
     }
-}
+
+};
+
+
+document.onclick = function (){
+    myTimeout();
+};
