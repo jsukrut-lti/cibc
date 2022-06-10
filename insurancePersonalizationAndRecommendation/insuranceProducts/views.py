@@ -511,9 +511,9 @@ class InsuranceCallback(View):
 class DashbboardView(View):
     template_name = 'creditInsurance/dashboard.html'
 
-    def get(self, request, *args, **kwargs):
+    def post(self, request, *args, **kwargs):
         context = {
-            'id': kwargs['pk'],
+            'id': request.POST.get("pk_id"),
         }
         return render(request, template_name=self.template_name, context=context)
 
