@@ -25,20 +25,17 @@ def login(request):
 
 def home(request):
     if request:
-        print("-----------------")
         usr_obj = get_user_obj(request.user)
         user_groups = usr_obj.groups.values_list('name', flat=True)
         if 'ADVISOR' in user_groups:
-            print("--ADVISOR")
             response = redirect("/insurance/ci_pre_application")
             return response
-        elif 'CIBCADMIN' or 'CIBCSUPERVISOR' in user_groups:
+        elif 'CIBCADMIN' in user_groups or 'CIBCSUPERVISOR' in user_groups:
             response = redirect('/admin/')
-            print("--dsfsjk")
             return response
         else:
-            ''' crearte new user/ assign roles to new user '''
-            pass
+            response = redirect("/insurance/ci_pre_application")
+            return response
 
 
 
