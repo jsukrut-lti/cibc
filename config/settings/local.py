@@ -10,7 +10,7 @@ DATABASES = {
         'NAME': 'cibc1',
         'HOST': 'localhost',
         'USER': 'postgres',
-        'PASSWORD': 'jayesh123',
+        'PASSWORD': 'root',
         'PORT': '5432',
     }
 }

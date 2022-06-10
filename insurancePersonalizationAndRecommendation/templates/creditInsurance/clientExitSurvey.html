@@ -28,38 +28,40 @@
                                     <h4>Primary reason you declined assessment?</h4>
                                     <div class="col-md-6 col-12">
                                         <div class="form-check">
-                                            <input class="form-check-input" type="radio" name="exitAssessmentReason" id="coverage" value="coverage">
-                                            <label class="form-check-label" for="coverage">
-                                                I already have coverage
-                                            </label>
-                                        </div>
-                                        <div class="form-check">
-                                            <input class="form-check-input" type="radio" name="exitAssessmentReason" id="expensive" value="expensive">
-                                            <label class="form-check-label" for="expensive">
-                                                It's too expensive
-                                            </label>
-                                        </div>
-                                        <div class="form-check">
-                                            <input class="form-check-input" type="radio" name="exitAssessmentReason" id="interested" value="interested">
-                                            <label class="form-check-label" for="interested">
-                                                I'm not interested
-                                            </label>
-                                        </div>
-                                        <div class="form-check">
-                                            <input class="form-check-input" type="radio" name="exitAssessmentReason" id="think" value="think">
-                                            <label class="form-check-label" for="think">
-                                                I want to think about it
-                                            </label>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6 col-12">
-                                        <div class="form-check">
                                             <input class="form-check-input" type="radio" name="exitAssessmentReason" id="laterDate" value="laterDate">
                                             <label class="form-check-label" for="laterDate">
                                                 Lender to complete at a later date
                                             </label>
                                         </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="exitAssessmentReason" id="think" value="think">
+                                            <label class="form-check-label" for="think">
+                                                Need to think about it
+                                            </label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="exitAssessmentReason" id="coverage" value="coverage">
+                                            <label class="form-check-label" for="coverage">
+                                                Already covered
+                                            </label>
+                                        </div>
                                     </div>
+                                    
+                                    <div class="col-md-6 col-12">
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="exitAssessmentReason" id="interested" value="interested">
+                                            <label class="form-check-label" for="interested">
+                                                Not interested
+                                            </label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="exitAssessmentReason" id="noTime" value="noTime">
+                                            <label class="form-check-label" for="noTime">
+                                                No time
+                                            </label>
+                                        </div>
+                                    </div>
+                                    
                                 </div>
                                 <div class="row">
                                     <p class="obejctionData my-3"></p>
@@ -76,11 +78,11 @@
                                     <p class="mb-2 text-capitalize">Feel free to contact us with any questions</p>
                                     <div class="contactDetails d-flex justify-content-center">
                                         <div class="mail mb-2">
-                                            <img src="./images/mail.png" alt="mail icon">
+                                            <img src="{% static 'creditInsurance/images/mail.png' %}" alt="mail icon">
                                             <a href="mailto:info_ci@cibc.com">info_ci@cibc.com</a>
                                         </div>
                                         <div class="call">
-                                            <img src="./images/phone.png" alt="call icon">
+                                            <img src="{% static 'creditInsurance/images/phone.png' %}" alt="call icon">
                                             <span>1.877.448.6500</span>
                                         </div>
                                     </div>

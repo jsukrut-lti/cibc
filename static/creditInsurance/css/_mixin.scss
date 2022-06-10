@@ -1,0 +1,11 @@
+@mixin valid {
+    background-image: url(/images/check.png);
+    background-repeat: no-repeat;
+    background-position: right calc(0.375em + 0.1875rem) center;
+}
+
+@mixin invalid {
+    background-image: url(/images/cross.png);
+    background-repeat: no-repeat;
+    background-position: right calc(0.375em + 0.1875rem) center;
+}

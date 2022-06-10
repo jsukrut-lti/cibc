@@ -1,0 +1,49 @@
+/* Questionnaire CSS Start */
+
+.questionnaireContainer {
+    .questionnaireSection {
+        ul {
+            gap: 30px;
+
+            li {
+                cursor: pointer;
+                background-color: $CIBC_background;
+                color: $CIBC_nav;
+                font-weight: 500;
+                height: 30px;
+                width: 30px;
+                border-radius: 50%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+
+                &.active {
+                    background-color: $CIBC_nav;
+                    color: $white;
+                }
+            }
+        }
+
+        .questionnaireSectionObjection {
+            display: none;
+            font-weight: 500;
+            position: relative;
+            margin-left: 10px;
+
+            &:before {
+                content: '';
+                position: absolute;
+                height: 100%;
+                left: -10px;
+                bottom: 0;
+                width: 5px;
+                background: $CIBC_nav;
+            }
+        }
+    }
+    .leftSec {
+        .applicantMsg {
+            font-size: 18px;
+        }
+    }
+}

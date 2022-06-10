@@ -31,8 +31,15 @@ SECRET_KEY = 'z_l0dnkacydps)ust146uysxr#3i3&8j)u%y$(ma7^w7=&+7v*'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
+DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
 
 ALLOWED_HOSTS = ['*',]
+ALLOWED_GROUPS = {
+    'maker' : 'CIBCADMIN',
+    'checker':  'CIBCSUPERVISOR'
+}
+WORKFLOW_OBJECTS = ['Objection']
 
 AVATARS_SERVER_URL = 'http://127.0.0.1:3000'
 
@@ -55,10 +62,14 @@ INSTALLED_APPS = [
     'rest_framework',
     'drf_yasg',
     'rest_framework.authtoken',
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+    'allauth.socialaccount.providers.google',
     'django.contrib.sites',
     'django_extensions',
     'django_auth_adfs',
-    'debug_toolbar'
+    "debug_toolbar",
 ]
 
 MIDDLEWARE = [
@@ -95,9 +106,11 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'config.wsgi.application'
 
+LOGOUT_REDIRECT_URL = '/auth/login/'
 # Configure django to redirect users to the right URL for login
-LOGIN_URL = "django_auth_adfs:login"
-LOGIN_REDIRECT_URL = "/"
+LOGIN_URL = "/auth/login/"
+# LOGIN_URL = "django_auth_adfs:login"
+LOGIN_REDIRECT_URL = "/insurance/ci_pre_application"
 
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases

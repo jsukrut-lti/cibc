@@ -377,8 +377,9 @@ class InsuranceEligibilityCheckView(object):
             input_data['insurance_product_details'] = insurance_data["insProducts_details"]
             input_data['applicants'] = insurance_data["applicants"]
 
-            eligibility_instance = EligibilityCheck()
-            get_response = eligibility_instance.get_eligibility(request,**input_data)
+            get_response = True
+            # eligibility_instance = EligibilityCheck()
+            # get_response = eligibility_instance.get_eligibility(request,**input_data)
 
             if get_response == True:            #if eligible
 

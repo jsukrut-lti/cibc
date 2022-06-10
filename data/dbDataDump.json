@@ -1,925 +1,1374 @@
 [
 {
-  "model": "accounts.customuser",
+  "model": "auth.permission",
   "pk": 1,
   "fields": {
-    "password": "pbkdf2_sha256$260000$2qz0VaJDswJWqPnTxZY7je$1xLvtS1Mwc6vxBVZE0BRE9oYMk0eNdcYzeTm3FTTIdY=",
-    "last_login": "2022-01-21T18:38:14.337Z",
-    "is_superuser": true,
-    "username": "nfrank",
-    "first_name": "",
-    "last_name": "",
-    "email": "nfrank@skp.com",
-    "is_staff": true,
-    "is_active": true,
-    "date_joined": "2021-05-06T17:37:09.421Z",
-    "groups": [],
-    "user_permissions": []
+    "name": "Can add user",
+    "content_type": 1,
+    "codename": "add_customuser"
   }
 },
 {
-  "model": "accounts.customuser",
+  "model": "auth.permission",
   "pk": 2,
   "fields": {
-    "password": "pbkdf2_sha256$260000$KKBOA01PdWLjuiaIY1Nr6S$nvSXP6hBA8/ypPvSuEvy1kZEW6zHT4sy9kBStNW7wKw=",
-    "last_login": "2022-03-02T13:28:32.734Z",
-    "is_superuser": true,
-    "username": "nfrank2",
-    "first_name": "",
-    "last_name": "",
-    "email": "n@n.com",
-    "is_staff": true,
-    "is_active": true,
-    "date_joined": "2022-03-02T13:28:24.909Z",
-    "groups": [],
-    "user_permissions": []
+    "name": "Can change user",
+    "content_type": 1,
+    "codename": "change_customuser"
   }
 },
 {
-  "model": "accounts.customuser",
-  "pk": 6,
-  "fields": {
-    "password": "!PdVS82d0Oly6dyCl705L25mhokA4rdf1mfErmzTB",
-    "last_login": "2022-04-20T13:44:06.941Z",
-    "is_superuser": false,
-    "username": "nileshpatil480",
-    "first_name": "Nilesh",
-    "last_name": "Patil",
-    "email": "nileshpatil480@hotmail.com",
-    "is_staff": false,
-    "is_active": true,
-    "date_joined": "2022-04-20T13:43:36.548Z",
-    "groups": [],
-    "user_permissions": []
-  }
-},
-{
-  "model": "accounts.customuser",
-  "pk": 7,
-  "fields": {
-    "password": "!4XhbY7pz1vcfseh9n8HvTcKMAJoGYMwDHBGJwyTx",
-    "last_login": "2022-04-21T07:13:34.240Z",
-    "is_superuser": false,
-    "username": "nilesh",
-    "first_name": "nilesh",
-    "last_name": "patil",
-    "email": "electricnilesh@gmail.com",
-    "is_staff": false,
-    "is_active": true,
-    "date_joined": "2022-04-21T07:13:34.209Z",
-    "groups": [],
-    "user_permissions": []
-  }
-},
-{
-  "model": "accounts.customuser",
-  "pk": 8,
-  "fields": {
-    "password": "pbkdf2_sha256$260000$RM0LYErUP4RpAk4MP7GVPu$WX9j21gab5tPfb7A/56mnnNVpfwDPqV4NI6fBSGO8yc=",
-    "last_login": "2022-05-04T08:27:07.907Z",
-    "is_superuser": true,
-    "username": "admingoal",
-    "first_name": "",
-    "last_name": "",
-    "email": "gg@ee.com",
-    "is_staff": true,
-    "is_active": true,
-    "date_joined": "2022-04-21T08:13:34.801Z",
-    "groups": [],
-    "user_permissions": []
-  }
-},
-{
-  "model": "accounts.customuser",
-  "pk": 10,
-  "fields": {
-    "password": "pbkdf2_sha256$260000$rDkmOkA177Cv2Oly5lTrlW$tlW4r2eomc7WhjgBDPODcZ4AB8BzAh0Y6BXwoETvteY=",
-    "last_login": "2022-05-02T13:36:18.148Z",
-    "is_superuser": false,
-    "username": "ciao",
-    "first_name": "",
-    "last_name": "",
-    "email": "",
-    "is_staff": false,
-    "is_active": true,
-    "date_joined": "2022-04-21T09:23:15.634Z",
-    "groups": [],
-    "user_permissions": []
-  }
-},
-{
-  "model": "accounts.customuser",
-  "pk": 12,
-  "fields": {
-    "password": "!aGNPWP0wkd9tZYpKcU4ByzcGiVQXDeNccRohT8VK",
-    "last_login": "2022-04-29T10:55:30.715Z",
-    "is_superuser": false,
-    "username": "nilesh1",
-    "first_name": "Nilesh",
-    "last_name": "Patil",
-    "email": "nileshpatil480@gmail.com",
-    "is_staff": false,
-    "is_active": true,
-    "date_joined": "2022-04-21T12:46:39.895Z",
-    "groups": [],
-    "user_permissions": []
-  }
-},
-{
-  "model": "accounts.customuser",
-  "pk": 13,
-  "fields": {
-    "password": "pbkdf2_sha256$260000$qDFCWWJJYe21eCeLvtE9Xk$mVvvT8BeNr3aso8cfW+ep9aj5GIlcoqhBZZWBDsqIpc=",
-    "last_login": "2022-05-02T13:39:31.480Z",
-    "is_superuser": true,
-    "username": "sam",
-    "first_name": "",
-    "last_name": "",
-    "email": "s@email.com",
-    "is_staff": true,
-    "is_active": true,
-    "date_joined": "2022-05-02T13:39:17.993Z",
-    "groups": [],
-    "user_permissions": []
-  }
-},
-{
-  "model": "accounts.customuser",
-  "pk": 14,
-  "fields": {
-    "password": "pbkdf2_sha256$260000$ARc5ddjJsHxj9X8DZ5lah1$LtweZZkTyciF2ES4Un7CUJ4Ps8ikbcnnFkKmcutjoLk=",
-    "last_login": "2022-06-02T07:12:19.385Z",
-    "is_superuser": true,
-    "username": "admin",
-    "first_name": "",
-    "last_name": "",
-    "email": "",
-    "is_staff": true,
-    "is_active": true,
-    "date_joined": "2022-05-23T09:22:08.203Z",
-    "groups": [],
-    "user_permissions": []
-  }
-},
-{
-  "model": "accounts.customuser",
-  "pk": 15,
-  "fields": {
-    "password": "pbkdf2_sha256$260000$Y2U3gINLNOJ0BB46eedCv0$XerYxsAliuUa57YJLfFtyZ+ROv/ms6Jw/bUeNb7H+qU=",
-    "last_login": null,
-    "is_superuser": false,
-    "username": "jayesh",
-    "first_name": "",
-    "last_name": "",
-    "email": "",
-    "is_staff": false,
-    "is_active": true,
-    "date_joined": "2022-05-26T09:59:42.524Z",
-    "groups": [],
-    "user_permissions": []
-  }
-},
-{
-  "model": "accounts.customuser",
-  "pk": 16,
-  "fields": {
-    "password": "pbkdf2_sha256$260000$xpfxkLcrmyBHAvsQY4pjfi$muGmyp3hu3riU6W4wDj7D61UcXZSlPu7xZN/fDdI3Nw=",
-    "last_login": null,
-    "is_superuser": false,
-    "username": "test",
-    "first_name": "",
-    "last_name": "",
-    "email": "",
-    "is_staff": false,
-    "is_active": true,
-    "date_joined": "2022-05-26T10:01:27.802Z",
-    "groups": [],
-    "user_permissions": []
-  }
-},
-{
-  "model": "accounts.customuser",
-  "pk": 17,
-  "fields": {
-    "password": "!EVVQWP0eewucn7TSkd3nJP7Sb1O7BVZW12gnsbg6",
-    "last_login": "2022-06-01T09:44:09.349Z",
-    "is_superuser": false,
-    "username": "test@nileshpatil480hotmail.onmicrosoft.com",
-    "first_name": "sim",
-    "last_name": "Demo",
-    "email": "test@nileshpatil480hotmail.onmicrosoft.com",
-    "is_staff": false,
-    "is_active": true,
-    "date_joined": "2022-06-01T09:44:08.766Z",
-    "groups": [],
-    "user_permissions": []
-  }
-},
-{
-  "model": "insuranceProducts.insurancecreditproduct",
-  "pk": 1,
-  "fields": {
-    "created": "2022-05-23T09:25:21.220Z",
-    "modified": "2022-05-24T06:46:08.248Z",
-    "credit_product_code": "CI001",
-    "credit_product_name": "Mortgage",
-    "active": true
-  }
-},
-{
-  "model": "insuranceProducts.insurancecreditproduct",
-  "pk": 2,
-  "fields": {
-    "created": "2022-05-23T09:25:30.677Z",
-    "modified": "2022-05-23T09:25:30.677Z",
-    "credit_product_code": "CI002",
-    "credit_product_name": "Compass",
-    "active": true
-  }
-},
-{
-  "model": "insuranceProducts.insurancecreditproduct",
+  "model": "auth.permission",
   "pk": 3,
   "fields": {
-    "created": "2022-05-23T09:25:38.994Z",
-    "modified": "2022-05-23T09:25:38.994Z",
-    "credit_product_code": "CI003",
-    "credit_product_name": "ECIF Tool",
-    "active": true
+    "name": "Can delete user",
+    "content_type": 1,
+    "codename": "delete_customuser"
   }
 },
 {
-  "model": "insuranceProducts.insurancecreditproduct",
+  "model": "auth.permission",
   "pk": 4,
   "fields": {
-    "created": "2022-05-23T09:44:57.041Z",
-    "modified": "2022-05-23T09:44:57.041Z",
-    "credit_product_code": "CI004",
-    "credit_product_name": "PLC",
-    "active": true
+    "name": "Can view user",
+    "content_type": 1,
+    "codename": "view_customuser"
   }
 },
 {
-  "model": "insuranceProducts.insuranceproduct",
+  "model": "auth.permission",
+  "pk": 5,
+  "fields": {
+    "name": "Can add insurance product",
+    "content_type": 2,
+    "codename": "add_insuranceproduct"
+  }
+},
+{
+  "model": "auth.permission",
   "pk": 6,
   "fields": {
-    "created": "2022-05-23T09:42:38.531Z",
-    "modified": "2022-05-24T08:37:29.165Z",
-    "productCode": "IP0001",
-    "title": "Mortgage Life Insurance",
-    "creditProduct_code": 1,
-    "product_cibc_code": "CIBC00009",
-    "active": true
+    "name": "Can change insurance product",
+    "content_type": 2,
+    "codename": "change_insuranceproduct"
   }
 },
 {
-  "model": "insuranceProducts.insuranceproduct",
+  "model": "auth.permission",
   "pk": 7,
   "fields": {
-    "created": "2022-05-23T09:43:13.700Z",
-    "modified": "2022-05-24T08:37:18.043Z",
-    "productCode": "IP0002",
-    "title": "Mortgage Critical Illness Insurance",
-    "creditProduct_code": 1,
-    "product_cibc_code": "CIBC00008",
-    "active": true
+    "name": "Can delete insurance product",
+    "content_type": 2,
+    "codename": "delete_insuranceproduct"
   }
 },
 {
-  "model": "insuranceProducts.insuranceproduct",
+  "model": "auth.permission",
   "pk": 8,
   "fields": {
-    "created": "2022-05-23T09:43:34.587Z",
-    "modified": "2022-05-24T08:37:10.256Z",
-    "productCode": "IP0003",
-    "title": "Mortgage Disability Insurance",
-    "creditProduct_code": 1,
-    "product_cibc_code": "CIBC00007",
-    "active": true
+    "name": "Can view insurance product",
+    "content_type": 2,
+    "codename": "view_insuranceproduct"
   }
 },
 {
-  "model": "insuranceProducts.insuranceproduct",
+  "model": "auth.permission",
   "pk": 9,
   "fields": {
-    "created": "2022-05-23T09:43:51.749Z",
-    "modified": "2022-05-24T08:37:01.648Z",
-    "productCode": "IP0004",
-    "title": "Mortgage Disability Plus Insurance",
-    "creditProduct_code": 1,
-    "product_cibc_code": "CIBC00006",
-    "active": true
+    "name": "Can add insurance discussion",
+    "content_type": 3,
+    "codename": "add_insurancediscussion"
   }
 },
 {
-  "model": "insuranceProducts.insuranceproduct",
+  "model": "auth.permission",
   "pk": 10,
   "fields": {
-    "created": "2022-05-23T09:45:35.441Z",
-    "modified": "2022-05-24T08:36:51.328Z",
-    "productCode": "IP0005",
-    "title": "PLC Life Insurance",
-    "creditProduct_code": 4,
-    "product_cibc_code": "CIBC00005",
-    "active": true
+    "name": "Can change insurance discussion",
+    "content_type": 3,
+    "codename": "change_insurancediscussion"
   }
 },
 {
-  "model": "insuranceProducts.insuranceproduct",
+  "model": "auth.permission",
   "pk": 11,
   "fields": {
-    "created": "2022-05-23T09:45:57.493Z",
-    "modified": "2022-05-24T08:36:37.323Z",
-    "productCode": "IP0006",
-    "title": "PLC Disability Insurance",
-    "creditProduct_code": 4,
-    "product_cibc_code": "CIBC00004",
-    "active": true
+    "name": "Can delete insurance discussion",
+    "content_type": 3,
+    "codename": "delete_insurancediscussion"
   }
 },
 {
-  "model": "insuranceProducts.insuranceproduct",
+  "model": "auth.permission",
   "pk": 12,
   "fields": {
-    "created": "2022-05-23T09:46:28.109Z",
-    "modified": "2022-05-24T08:36:28.524Z",
-    "productCode": "IP0007",
-    "title": "Loan Life Insurance",
-    "creditProduct_code": 2,
-    "product_cibc_code": "CIBC00003",
-    "active": true
+    "name": "Can view insurance discussion",
+    "content_type": 3,
+    "codename": "view_insurancediscussion"
   }
 },
 {
-  "model": "insuranceProducts.insuranceproduct",
+  "model": "auth.permission",
   "pk": 13,
   "fields": {
-    "created": "2022-05-23T09:46:46.581Z",
-    "modified": "2022-05-24T08:36:18.399Z",
-    "productCode": "IP0008",
-    "title": "Loan Disability Insurance",
-    "creditProduct_code": 2,
-    "product_cibc_code": "CIBC00002",
-    "active": true
+    "name": "Can add dump data",
+    "content_type": 4,
+    "codename": "add_dumpdata"
   }
 },
 {
-  "model": "insuranceProducts.insuranceproduct",
+  "model": "auth.permission",
   "pk": 14,
   "fields": {
-    "created": "2022-05-23T09:47:01.398Z",
-    "modified": "2022-05-24T08:36:09.495Z",
-    "productCode": "IP0009",
-    "title": "Loan Disability Insurance + Job Loss (CIBC Payment Protector)",
-    "creditProduct_code": 2,
-    "product_cibc_code": "CIBC00001",
-    "active": true
+    "name": "Can change dump data",
+    "content_type": 4,
+    "codename": "change_dumpdata"
   }
 },
 {
-  "model": "insuranceProducts.insurancediscussion",
+  "model": "auth.permission",
+  "pk": 15,
+  "fields": {
+    "name": "Can delete dump data",
+    "content_type": 4,
+    "codename": "delete_dumpdata"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 16,
+  "fields": {
+    "name": "Can view dump data",
+    "content_type": 4,
+    "codename": "view_dumpdata"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 17,
+  "fields": {
+    "name": "Can add insurance eligibility",
+    "content_type": 5,
+    "codename": "add_insuranceeligibility"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 18,
+  "fields": {
+    "name": "Can change insurance eligibility",
+    "content_type": 5,
+    "codename": "change_insuranceeligibility"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 19,
+  "fields": {
+    "name": "Can delete insurance eligibility",
+    "content_type": 5,
+    "codename": "delete_insuranceeligibility"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 20,
+  "fields": {
+    "name": "Can view insurance eligibility",
+    "content_type": 5,
+    "codename": "view_insuranceeligibility"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 21,
+  "fields": {
+    "name": "Can add province residence",
+    "content_type": 6,
+    "codename": "add_provinceresidence"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 22,
+  "fields": {
+    "name": "Can change province residence",
+    "content_type": 6,
+    "codename": "change_provinceresidence"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 23,
+  "fields": {
+    "name": "Can delete province residence",
+    "content_type": 6,
+    "codename": "delete_provinceresidence"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 24,
+  "fields": {
+    "name": "Can view province residence",
+    "content_type": 6,
+    "codename": "view_provinceresidence"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 25,
+  "fields": {
+    "name": "Can add occupation master",
+    "content_type": 7,
+    "codename": "add_occupationmaster"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 26,
+  "fields": {
+    "name": "Can change occupation master",
+    "content_type": 7,
+    "codename": "change_occupationmaster"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 27,
+  "fields": {
+    "name": "Can delete occupation master",
+    "content_type": 7,
+    "codename": "delete_occupationmaster"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 28,
+  "fields": {
+    "name": "Can view occupation master",
+    "content_type": 7,
+    "codename": "view_occupationmaster"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 29,
+  "fields": {
+    "name": "Can add insurance non eligible content",
+    "content_type": 8,
+    "codename": "add_insurancenoneligiblecontent"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 30,
+  "fields": {
+    "name": "Can change insurance non eligible content",
+    "content_type": 8,
+    "codename": "change_insurancenoneligiblecontent"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 31,
+  "fields": {
+    "name": "Can delete insurance non eligible content",
+    "content_type": 8,
+    "codename": "delete_insurancenoneligiblecontent"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 32,
+  "fields": {
+    "name": "Can view insurance non eligible content",
+    "content_type": 8,
+    "codename": "view_insurancenoneligiblecontent"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 33,
+  "fields": {
+    "name": "Can add client details",
+    "content_type": 9,
+    "codename": "add_clientdetails"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 34,
+  "fields": {
+    "name": "Can change client details",
+    "content_type": 9,
+    "codename": "change_clientdetails"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 35,
+  "fields": {
+    "name": "Can delete client details",
+    "content_type": 9,
+    "codename": "delete_clientdetails"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 36,
+  "fields": {
+    "name": "Can view client details",
+    "content_type": 9,
+    "codename": "view_clientdetails"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 37,
+  "fields": {
+    "name": "Can add insurance credit product",
+    "content_type": 10,
+    "codename": "add_insurancecreditproduct"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 38,
+  "fields": {
+    "name": "Can change insurance credit product",
+    "content_type": 10,
+    "codename": "change_insurancecreditproduct"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 39,
+  "fields": {
+    "name": "Can delete insurance credit product",
+    "content_type": 10,
+    "codename": "delete_insurancecreditproduct"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 40,
+  "fields": {
+    "name": "Can view insurance credit product",
+    "content_type": 10,
+    "codename": "view_insurancecreditproduct"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 41,
+  "fields": {
+    "name": "Can add character",
+    "content_type": 11,
+    "codename": "add_character"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 42,
+  "fields": {
+    "name": "Can change character",
+    "content_type": 11,
+    "codename": "change_character"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 43,
+  "fields": {
+    "name": "Can delete character",
+    "content_type": 11,
+    "codename": "delete_character"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 44,
+  "fields": {
+    "name": "Can view character",
+    "content_type": 11,
+    "codename": "view_character"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 45,
+  "fields": {
+    "name": "Can add objection",
+    "content_type": 12,
+    "codename": "add_objection"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 46,
+  "fields": {
+    "name": "Can change objection",
+    "content_type": 12,
+    "codename": "change_objection"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 47,
+  "fields": {
+    "name": "Can delete objection",
+    "content_type": 12,
+    "codename": "delete_objection"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 48,
+  "fields": {
+    "name": "Can view objection",
+    "content_type": 12,
+    "codename": "view_objection"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 49,
+  "fields": {
+    "name": "Can add objection handle",
+    "content_type": 13,
+    "codename": "add_objectionhandle"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 50,
+  "fields": {
+    "name": "Can change objection handle",
+    "content_type": 13,
+    "codename": "change_objectionhandle"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 51,
+  "fields": {
+    "name": "Can delete objection handle",
+    "content_type": 13,
+    "codename": "delete_objectionhandle"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 52,
+  "fields": {
+    "name": "Can view objection handle",
+    "content_type": 13,
+    "codename": "view_objectionhandle"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 53,
+  "fields": {
+    "name": "Can add story",
+    "content_type": 14,
+    "codename": "add_story"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 54,
+  "fields": {
+    "name": "Can change story",
+    "content_type": 14,
+    "codename": "change_story"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 55,
+  "fields": {
+    "name": "Can delete story",
+    "content_type": 14,
+    "codename": "delete_story"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 56,
+  "fields": {
+    "name": "Can view story",
+    "content_type": 14,
+    "codename": "view_story"
+  }
+},
+{
+  "model": "auth.permission",
   "pk": 57,
   "fields": {
-    "created": "2022-05-23T09:59:14.140Z",
-    "modified": "2022-05-23T09:59:25.385Z",
-    "insProduct": 6,
-    "agent": 14,
-    "primaryFirstName": "jayesh",
-    "primaryMiddleName": "patil",
-    "primaryLastName": "patil",
-    "primaryAge": 23,
-    "primaryGender": "m",
-    "coFirstName": "sdfdsf",
-    "coMiddleName": "sdggdfhgfd",
-    "coLastName": "dfhhdfhfghfdhfhfghgfh",
-    "coAge": 78,
-    "coGender": "f",
-    "canada_provence": "nl",
-    "hoursWeekWorking": null,
-    "hasPartnerFinResponsibility": "y",
-    "hasChildrenFinResponsibility": "y",
-    "hasParentsFinResponsibility": "y",
-    "hasOthersFinResponsibility": "y",
-    "mortgageBalance": "898798.00",
-    "mortgagePmtAmount": "6768.00",
-    "mortgagePmtFrequency": "m",
-    "hlocLimit": null,
-    "hlocBalance": null,
-    "hlocMonthlyPmt": null,
-    "personalLoanLimit": null,
-    "personalAmortizationMonths": null,
-    "personalLoanBalance": null,
-    "personalLoanMonthlyPmt": null,
-    "personalPmtFrequency": "m",
-    "creditCardLimit": "234324.00",
-    "creditCardBalance": "3434.00",
-    "monthlyIncomeAfterTaxes": "23243.00",
-    "totalMonthlyExpenses": "2323.00",
-    "monthlyExpenseOtherCredit": "3434.00",
-    "monthlyExpensePersonal": null,
-    "monthlyExpenseOtherHousing": null,
-    "monthlyExpensePropTaxFees": null,
-    "monthlyExpenseOther": null,
-    "totalSavings": null,
-    "totalSavingsChequing": null,
-    "totalSavingsTaxFreeAccts": null,
-    "totalSavingsRegRetirement": null,
-    "totalSavingsGuarantedInvestmentCerts": null,
-    "totalSavingsOther": null,
-    "lifeInsuranceLimit": null,
-    "criticalIllnessLimit": null,
-    "disabilityInsuranceMonthlyBenefit": null,
-    "disabilityInsurancePercentCoveredByEmployer": null,
-    "disabilityInsuranceUnknownEmployerCoverage": "y",
-    "lifeInsurancePremiumPerMonth": null,
-    "criticalIllnessPremiumPerMonth": null,
-    "disabilityPremiumPerMonth": null,
-    "agentOverallPerceptionOfCustomerResp": "positive",
-    "isRelatedToFinalizedSoldProduct": false,
-    "discussionOutcomes": null,
-    "currentSection": null,
-    "approxNetIncome": null,
-    "totalUnsecuredAmt": null,
-    "totalSecuredAmt": null,
-    "totalExistingDebt": null,
-    "currentApplicationPmt": null,
-    "totalMonthlyPmt": null,
-    "savingsEmergencyFund": null,
-    "sssavingsEmergencyFund": null
+    "name": "Can add story stats tracker",
+    "content_type": 15,
+    "codename": "add_storystatstracker"
   }
 },
 {
-  "model": "insuranceProducts.provinceresidence",
+  "model": "auth.permission",
+  "pk": 58,
+  "fields": {
+    "name": "Can change story stats tracker",
+    "content_type": 15,
+    "codename": "change_storystatstracker"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 59,
+  "fields": {
+    "name": "Can delete story stats tracker",
+    "content_type": 15,
+    "codename": "delete_storystatstracker"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 60,
+  "fields": {
+    "name": "Can view story stats tracker",
+    "content_type": 15,
+    "codename": "view_storystatstracker"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 61,
+  "fields": {
+    "name": "Can add story character",
+    "content_type": 16,
+    "codename": "add_storycharacter"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 62,
+  "fields": {
+    "name": "Can change story character",
+    "content_type": 16,
+    "codename": "change_storycharacter"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 63,
+  "fields": {
+    "name": "Can delete story character",
+    "content_type": 16,
+    "codename": "delete_storycharacter"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 64,
+  "fields": {
+    "name": "Can view story character",
+    "content_type": 16,
+    "codename": "view_storycharacter"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 65,
+  "fields": {
+    "name": "Can add objectioon stats tracker",
+    "content_type": 17,
+    "codename": "add_objectioonstatstracker"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 66,
+  "fields": {
+    "name": "Can change objectioon stats tracker",
+    "content_type": 17,
+    "codename": "change_objectioonstatstracker"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 67,
+  "fields": {
+    "name": "Can delete objectioon stats tracker",
+    "content_type": 17,
+    "codename": "delete_objectioonstatstracker"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 68,
+  "fields": {
+    "name": "Can view objectioon stats tracker",
+    "content_type": 17,
+    "codename": "view_objectioonstatstracker"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 69,
+  "fields": {
+    "name": "Can add objection handle stats tracker",
+    "content_type": 18,
+    "codename": "add_objectionhandlestatstracker"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 70,
+  "fields": {
+    "name": "Can change objection handle stats tracker",
+    "content_type": 18,
+    "codename": "change_objectionhandlestatstracker"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 71,
+  "fields": {
+    "name": "Can delete objection handle stats tracker",
+    "content_type": 18,
+    "codename": "delete_objectionhandlestatstracker"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 72,
+  "fields": {
+    "name": "Can view objection handle stats tracker",
+    "content_type": 18,
+    "codename": "view_objectionhandlestatstracker"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 73,
+  "fields": {
+    "name": "Can add log entry",
+    "content_type": 19,
+    "codename": "add_logentry"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 74,
+  "fields": {
+    "name": "Can change log entry",
+    "content_type": 19,
+    "codename": "change_logentry"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 75,
+  "fields": {
+    "name": "Can delete log entry",
+    "content_type": 19,
+    "codename": "delete_logentry"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 76,
+  "fields": {
+    "name": "Can view log entry",
+    "content_type": 19,
+    "codename": "view_logentry"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 77,
+  "fields": {
+    "name": "Can add permission",
+    "content_type": 20,
+    "codename": "add_permission"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 78,
+  "fields": {
+    "name": "Can change permission",
+    "content_type": 20,
+    "codename": "change_permission"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 79,
+  "fields": {
+    "name": "Can delete permission",
+    "content_type": 20,
+    "codename": "delete_permission"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 80,
+  "fields": {
+    "name": "Can view permission",
+    "content_type": 20,
+    "codename": "view_permission"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 81,
+  "fields": {
+    "name": "Can add group",
+    "content_type": 21,
+    "codename": "add_group"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 82,
+  "fields": {
+    "name": "Can change group",
+    "content_type": 21,
+    "codename": "change_group"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 83,
+  "fields": {
+    "name": "Can delete group",
+    "content_type": 21,
+    "codename": "delete_group"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 84,
+  "fields": {
+    "name": "Can view group",
+    "content_type": 21,
+    "codename": "view_group"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 85,
+  "fields": {
+    "name": "Can add content type",
+    "content_type": 22,
+    "codename": "add_contenttype"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 86,
+  "fields": {
+    "name": "Can change content type",
+    "content_type": 22,
+    "codename": "change_contenttype"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 87,
+  "fields": {
+    "name": "Can delete content type",
+    "content_type": 22,
+    "codename": "delete_contenttype"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 88,
+  "fields": {
+    "name": "Can view content type",
+    "content_type": 22,
+    "codename": "view_contenttype"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 89,
+  "fields": {
+    "name": "Can add session",
+    "content_type": 23,
+    "codename": "add_session"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 90,
+  "fields": {
+    "name": "Can change session",
+    "content_type": 23,
+    "codename": "change_session"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 91,
+  "fields": {
+    "name": "Can delete session",
+    "content_type": 23,
+    "codename": "delete_session"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 92,
+  "fields": {
+    "name": "Can view session",
+    "content_type": 23,
+    "codename": "view_session"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 93,
+  "fields": {
+    "name": "Can add Token",
+    "content_type": 24,
+    "codename": "add_token"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 94,
+  "fields": {
+    "name": "Can change Token",
+    "content_type": 24,
+    "codename": "change_token"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 95,
+  "fields": {
+    "name": "Can delete Token",
+    "content_type": 24,
+    "codename": "delete_token"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 96,
+  "fields": {
+    "name": "Can view Token",
+    "content_type": 24,
+    "codename": "view_token"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 97,
+  "fields": {
+    "name": "Can add token",
+    "content_type": 25,
+    "codename": "add_tokenproxy"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 98,
+  "fields": {
+    "name": "Can change token",
+    "content_type": 25,
+    "codename": "change_tokenproxy"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 99,
+  "fields": {
+    "name": "Can delete token",
+    "content_type": 25,
+    "codename": "delete_tokenproxy"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 100,
+  "fields": {
+    "name": "Can view token",
+    "content_type": 25,
+    "codename": "view_tokenproxy"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 101,
+  "fields": {
+    "name": "Can add email address",
+    "content_type": 26,
+    "codename": "add_emailaddress"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 102,
+  "fields": {
+    "name": "Can change email address",
+    "content_type": 26,
+    "codename": "change_emailaddress"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 103,
+  "fields": {
+    "name": "Can delete email address",
+    "content_type": 26,
+    "codename": "delete_emailaddress"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 104,
+  "fields": {
+    "name": "Can view email address",
+    "content_type": 26,
+    "codename": "view_emailaddress"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 105,
+  "fields": {
+    "name": "Can add email confirmation",
+    "content_type": 27,
+    "codename": "add_emailconfirmation"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 106,
+  "fields": {
+    "name": "Can change email confirmation",
+    "content_type": 27,
+    "codename": "change_emailconfirmation"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 107,
+  "fields": {
+    "name": "Can delete email confirmation",
+    "content_type": 27,
+    "codename": "delete_emailconfirmation"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 108,
+  "fields": {
+    "name": "Can view email confirmation",
+    "content_type": 27,
+    "codename": "view_emailconfirmation"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 109,
+  "fields": {
+    "name": "Can add social account",
+    "content_type": 28,
+    "codename": "add_socialaccount"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 110,
+  "fields": {
+    "name": "Can change social account",
+    "content_type": 28,
+    "codename": "change_socialaccount"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 111,
+  "fields": {
+    "name": "Can delete social account",
+    "content_type": 28,
+    "codename": "delete_socialaccount"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 112,
+  "fields": {
+    "name": "Can view social account",
+    "content_type": 28,
+    "codename": "view_socialaccount"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 113,
+  "fields": {
+    "name": "Can add social application",
+    "content_type": 29,
+    "codename": "add_socialapp"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 114,
+  "fields": {
+    "name": "Can change social application",
+    "content_type": 29,
+    "codename": "change_socialapp"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 115,
+  "fields": {
+    "name": "Can delete social application",
+    "content_type": 29,
+    "codename": "delete_socialapp"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 116,
+  "fields": {
+    "name": "Can view social application",
+    "content_type": 29,
+    "codename": "view_socialapp"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 117,
+  "fields": {
+    "name": "Can add social application token",
+    "content_type": 30,
+    "codename": "add_socialtoken"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 118,
+  "fields": {
+    "name": "Can change social application token",
+    "content_type": 30,
+    "codename": "change_socialtoken"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 119,
+  "fields": {
+    "name": "Can delete social application token",
+    "content_type": 30,
+    "codename": "delete_socialtoken"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 120,
+  "fields": {
+    "name": "Can view social application token",
+    "content_type": 30,
+    "codename": "view_socialtoken"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 121,
+  "fields": {
+    "name": "Can add site",
+    "content_type": 31,
+    "codename": "add_site"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 122,
+  "fields": {
+    "name": "Can change site",
+    "content_type": 31,
+    "codename": "change_site"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 123,
+  "fields": {
+    "name": "Can delete site",
+    "content_type": 31,
+    "codename": "delete_site"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 124,
+  "fields": {
+    "name": "Can view site",
+    "content_type": 31,
+    "codename": "view_site"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
   "pk": 1,
   "fields": {
-    "created": "2022-05-25T06:38:53.344Z",
-    "modified": "2022-05-25T07:50:09.399Z",
-    "province": "AB",
-    "description": "Alberta",
-    "residency": "Canada",
-    "active": true
+    "app_label": "accounts",
+    "model": "customuser"
   }
 },
 {
-  "model": "insuranceProducts.provinceresidence",
+  "model": "contenttypes.contenttype",
   "pk": 2,
   "fields": {
-    "created": "2022-05-25T06:39:15.582Z",
-    "modified": "2022-05-25T07:50:02.481Z",
-    "province": "BC",
-    "description": "British Columbia",
-    "residency": "Canada",
-    "active": true
+    "app_label": "insuranceProducts",
+    "model": "insuranceproduct"
   }
 },
 {
-  "model": "insuranceProducts.provinceresidence",
+  "model": "contenttypes.contenttype",
   "pk": 3,
   "fields": {
-    "created": "2022-05-25T06:39:35.136Z",
-    "modified": "2022-05-25T07:49:56.473Z",
-    "province": "MB",
-    "description": "Manitoba",
-    "residency": "Canada",
-    "active": true
+    "app_label": "insuranceProducts",
+    "model": "insurancediscussion"
   }
 },
 {
-  "model": "insuranceProducts.provinceresidence",
+  "model": "contenttypes.contenttype",
   "pk": 4,
   "fields": {
-    "created": "2022-05-25T06:39:54.344Z",
-    "modified": "2022-05-25T07:49:50.872Z",
-    "province": "NB",
-    "description": "New Brunswick",
-    "residency": "Canada",
-    "active": true
+    "app_label": "insuranceProducts",
+    "model": "dumpdata"
   }
 },
 {
-  "model": "insuranceProducts.occupationmaster",
-  "pk": 1,
-  "fields": {
-    "created": "2022-05-25T07:31:25.544Z",
-    "modified": "2022-05-25T07:31:25.544Z",
-    "occupation_code": "5193",
-    "occupation_name": "Driver",
-    "active": true
-  }
-},
-{
-  "model": "insuranceProducts.occupationmaster",
-  "pk": 2,
-  "fields": {
-    "created": "2022-05-25T07:31:37.959Z",
-    "modified": "2022-05-25T07:31:37.959Z",
-    "occupation_code": "2341",
-    "occupation_name": "Executive",
-    "active": true
-  }
-},
-{
-  "model": "insuranceProducts.occupationmaster",
-  "pk": 3,
-  "fields": {
-    "created": "2022-05-25T07:31:54.813Z",
-    "modified": "2022-05-25T07:31:54.813Z",
-    "occupation_code": "6117",
-    "occupation_name": "Military",
-    "active": true
-  }
-},
-{
-  "model": "insuranceProducts.insuranceeligibility",
-  "pk": 1,
-  "fields": {
-    "created": "2022-05-23T09:47:57.405Z",
-    "modified": "2022-05-25T07:41:10.565Z",
-    "insProduct": 6,
-    "minAge": 18,
-    "maxAge": 69,
-    "residency": "Canada",
-    "occupation": 3,
-    "effective_start_date": "2022-05-23",
-    "effective_end_date": "2099-12-31",
-    "active": true
-  }
-},
-{
-  "model": "insuranceProducts.insuranceeligibility",
-  "pk": 2,
-  "fields": {
-    "created": "2022-05-23T09:48:17.081Z",
-    "modified": "2022-05-25T07:41:02.144Z",
-    "insProduct": 7,
-    "minAge": 18,
-    "maxAge": 69,
-    "residency": "Canada",
-    "occupation": 3,
-    "effective_start_date": "2022-05-23",
-    "effective_end_date": "2099-12-31",
-    "active": true
-  }
-},
-{
-  "model": "insuranceProducts.insuranceeligibility",
-  "pk": 3,
-  "fields": {
-    "created": "2022-05-23T09:48:43.148Z",
-    "modified": "2022-05-25T07:40:55.248Z",
-    "insProduct": 8,
-    "minAge": 18,
-    "maxAge": 65,
-    "residency": "Canada",
-    "occupation": 3,
-    "effective_start_date": "2022-05-23",
-    "effective_end_date": "2099-12-31",
-    "active": true
-  }
-},
-{
-  "model": "insuranceProducts.insuranceeligibility",
-  "pk": 4,
-  "fields": {
-    "created": "2022-05-23T09:49:03.638Z",
-    "modified": "2022-05-25T07:40:48.656Z",
-    "insProduct": 9,
-    "minAge": 18,
-    "maxAge": 65,
-    "residency": "Canada",
-    "occupation": 3,
-    "effective_start_date": "2022-05-23",
-    "effective_end_date": "2099-12-31",
-    "active": true
-  }
-},
-{
-  "model": "insuranceProducts.insuranceeligibility",
+  "model": "contenttypes.contenttype",
   "pk": 5,
   "fields": {
-    "created": "2022-05-23T09:49:25.403Z",
-    "modified": "2022-05-25T07:40:42.268Z",
-    "insProduct": 10,
-    "minAge": 18,
-    "maxAge": 65,
-    "residency": "Canada",
-    "occupation": 3,
-    "effective_start_date": "2022-05-23",
-    "effective_end_date": "2099-12-31",
-    "active": true
+    "app_label": "insuranceProducts",
+    "model": "insuranceeligibility"
   }
 },
 {
-  "model": "insuranceProducts.insuranceeligibility",
+  "model": "contenttypes.contenttype",
   "pk": 6,
   "fields": {
-    "created": "2022-05-23T09:49:39.051Z",
-    "modified": "2022-05-25T07:40:35.848Z",
-    "insProduct": 11,
-    "minAge": 18,
-    "maxAge": 65,
-    "residency": "Canada",
-    "occupation": 3,
-    "effective_start_date": "2022-05-23",
-    "effective_end_date": "2099-12-31",
-    "active": true
+    "app_label": "insuranceProducts",
+    "model": "provinceresidence"
   }
 },
 {
-  "model": "insuranceProducts.insuranceeligibility",
+  "model": "contenttypes.contenttype",
   "pk": 7,
   "fields": {
-    "created": "2022-05-23T09:50:01.609Z",
-    "modified": "2022-05-25T07:40:29.135Z",
-    "insProduct": 12,
-    "minAge": 18,
-    "maxAge": 69,
-    "residency": "Canada",
-    "occupation": 3,
-    "effective_start_date": "2022-05-23",
-    "effective_end_date": "2099-12-31",
-    "active": true
+    "app_label": "insuranceProducts",
+    "model": "occupationmaster"
   }
 },
 {
-  "model": "insuranceProducts.insuranceeligibility",
+  "model": "contenttypes.contenttype",
   "pk": 8,
   "fields": {
-    "created": "2022-05-23T09:50:17.175Z",
-    "modified": "2022-05-25T07:40:21.405Z",
-    "insProduct": 13,
-    "minAge": 18,
-    "maxAge": 65,
-    "residency": "Canada",
-    "occupation": 3,
-    "effective_start_date": "2022-05-23",
-    "effective_end_date": "2099-12-31",
-    "active": true
+    "app_label": "insuranceProducts",
+    "model": "insurancenoneligiblecontent"
   }
 },
 {
-  "model": "insuranceProducts.insuranceeligibility",
+  "model": "contenttypes.contenttype",
   "pk": 9,
   "fields": {
-    "created": "2022-05-23T09:50:32.531Z",
-    "modified": "2022-05-25T07:40:15.066Z",
-    "insProduct": 14,
-    "minAge": 18,
-    "maxAge": 65,
-    "residency": "Canada",
-    "occupation": 3,
-    "effective_start_date": "2022-05-23",
-    "effective_end_date": "2099-12-31",
-    "active": true
+    "app_label": "insuranceProducts",
+    "model": "clientdetails"
   }
 },
 {
-  "model": "insuranceProducts.insurancenoneligiblecontent",
-  "pk": 1,
-  "fields": {
-    "created": "2022-05-30T05:48:43.093Z",
-    "modified": "2022-05-31T06:53:32.959Z",
-    "content": "We are unable to offer you creditor insurance on this product, however we do advise that this may be an opportunity for you to review your existing plan with a licensed professional.",
-    "effective_start_date": "2022-05-01",
-    "effective_end_date": "2099-12-31",
-    "active": true
-  }
-},
-{
-  "model": "insuranceProducts.assessmentquestionnairemaster",
-  "pk": 1,
-  "fields": {
-    "created": "2022-06-02T07:25:44.779Z",
-    "modified": "2022-06-02T07:25:44.779Z",
-    "assessment_id": "1",
-    "assessment_details": "Thank you for sharing that.  I'd like to ask you some additional questions to see if there is an opportunity to help you feel more confident about your plan.",
-    "effective_start_date": "2022-05-01",
-    "effective_end_date": "2099-12-31",
-    "active": true
-  }
-},
-{
-  "model": "insuranceProducts.assessmentquestionnairemaster",
-  "pk": 2,
-  "fields": {
-    "created": "2022-06-02T07:25:58.613Z",
-    "modified": "2022-06-02T07:25:58.613Z",
-    "assessment_id": "2",
-    "assessment_details": "Thank you for sharing that.  I'd like to ask you some additional questions to see if there is an opportunity to help you feel more confident about your plan.",
-    "effective_start_date": "2022-05-01",
-    "effective_end_date": "2099-12-31",
-    "active": true
-  }
-},
-{
-  "model": "insuranceProducts.assessmentquestionnairemaster",
-  "pk": 3,
-  "fields": {
-    "created": "2022-06-02T07:26:11.575Z",
-    "modified": "2022-06-02T07:26:11.576Z",
-    "assessment_id": "3",
-    "assessment_details": "Thank you for sharing that.  I'd like to ask you some additional questions to see if there is an opportunity to help you feel more confident about your plan.",
-    "effective_start_date": "2022-05-01",
-    "effective_end_date": "2099-12-31",
-    "active": true
-  }
-},
-{
-  "model": "insuranceProducts.assessmentquestionnairemaster",
-  "pk": 4,
-  "fields": {
-    "created": "2022-06-02T07:26:25.176Z",
-    "modified": "2022-06-02T07:26:25.176Z",
-    "assessment_id": "4",
-    "assessment_details": "Thank you for sharing that.  I'd like to ask you some additional questions to see if there is an opportunity to help you feel more confident about your plan.",
-    "effective_start_date": "2022-05-01",
-    "effective_end_date": "2099-12-31",
-    "active": true
-  }
-},
-{
-  "model": "insuranceProducts.assessmentquestionnairemaster",
-  "pk": 5,
-  "fields": {
-    "created": "2022-06-02T07:26:38.733Z",
-    "modified": "2022-06-02T07:26:38.733Z",
-    "assessment_id": "5",
-    "assessment_details": "Thank you for sharing that.  I'd like to ask you some additional questions to see if there is an opportunity to help you feel more confident about your plan.",
-    "effective_start_date": "2022-05-01",
-    "effective_end_date": "2099-12-31",
-    "active": true
-  }
-},
-{
-  "model": "insuranceProducts.assessmentquestionnairemaster",
-  "pk": 6,
-  "fields": {
-    "created": "2022-06-02T07:26:58.542Z",
-    "modified": "2022-06-02T07:26:58.542Z",
-    "assessment_id": "6",
-    "assessment_details": "Thank you for sharing that. I'm glad you have thought about this. I'd like to ask you a few more questions to see if there is an opportunity to compliment the plan you have in place",
-    "effective_start_date": "2022-05-01",
-    "effective_end_date": "2099-12-31",
-    "active": true
-  }
-},
-{
-  "model": "insuranceProducts.assessmentquestionnairemaster",
-  "pk": 7,
-  "fields": {
-    "created": "2022-06-02T07:27:10.621Z",
-    "modified": "2022-06-02T07:27:10.621Z",
-    "assessment_id": "7",
-    "assessment_details": "Thank you for sharing that. I'm glad you have thought about this. I'd like to ask you a few more questions to see if there is an opportunity to compliment the plan you have in place",
-    "effective_start_date": "2022-05-01",
-    "effective_end_date": "2099-12-31",
-    "active": true
-  }
-},
-{
-  "model": "insuranceProducts.assessmentquestionnairemaster",
-  "pk": 8,
-  "fields": {
-    "created": "2022-06-02T07:27:30.431Z",
-    "modified": "2022-06-02T07:27:30.432Z",
-    "assessment_id": "8",
-    "assessment_details": "Thank you for sharing that. I'm glad you have thought about this. I'd like to ask you a few more questions to see if there is an opportunity to compliment the plan you have in place.",
-    "effective_start_date": "2022-05-01",
-    "effective_end_date": "2099-12-31",
-    "active": true
-  }
-},
-{
-  "model": "insuranceProducts.assessmentquestionnairemaster",
-  "pk": 9,
-  "fields": {
-    "created": "2022-06-02T07:27:58.648Z",
-    "modified": "2022-06-02T07:27:58.649Z",
-    "assessment_id": "9",
-    "assessment_details": "Thank you for sharing that.  I am very happy to hear that you have thought about this before. I'd like to ask you a few questions to ensure that the changes we are working on today don't impact your existing plan.",
-    "effective_start_date": "2022-05-01",
-    "effective_end_date": "2099-12-31",
-    "active": true
-  }
-},
-{
-  "model": "insuranceProducts.assessmentquestionnairemaster",
+  "model": "contenttypes.contenttype",
   "pk": 10,
   "fields": {
-    "created": "2022-06-02T07:28:14.588Z",
-    "modified": "2022-06-02T07:28:14.588Z",
-    "assessment_id": "10",
-    "assessment_details": "Thank you for sharing that.  I am very happy to hear that you have thought about this before. I'd like to ask you a few questions to ensure that the changes we are working on today don't impact your existing plan.",
-    "effective_start_date": "2022-05-01",
-    "effective_end_date": "2099-12-31",
-    "active": true
+    "app_label": "insuranceProducts",
+    "model": "insurancecreditproduct"
   }
 },
 {
-  "model": "stories.character",
-  "pk": 1,
+  "model": "contenttypes.contenttype",
+  "pk": 11,
   "fields": {
-    "created": "2021-05-07T14:55:42.186Z",
-    "modified": "2021-06-02T14:20:43.143Z",
-    "characterName": "Freddy",
-    "backstory": "Great coder and consultant",
-    "topType": "ShortHairShortCurly",
-    "accessoriesType": "Blank",
-    "hatColor": "Blue01",
-    "hairColor": "BrownDark",
-    "facialHairType": "BeardMagestic",
-    "facialHairColor": "Black",
-    "clotheType": "BlazerSweater",
-    "clotheColor": "Blue01",
-    "graphicType": "Bat",
-    "eyeType": "EyeRoll",
-    "eyebrowType": "Default",
-    "mouthType": "Sad",
-    "skinColor": "Brown",
-    "avatarImage": ""
+    "app_label": "stories",
+    "model": "character"
   }
 },
 {
-  "model": "stories.character",
+  "model": "contenttypes.contenttype",
+  "pk": 12,
+  "fields": {
+    "app_label": "stories",
+    "model": "objection"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 13,
+  "fields": {
+    "app_label": "stories",
+    "model": "objectionhandle"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 14,
+  "fields": {
+    "app_label": "stories",
+    "model": "story"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 15,
+  "fields": {
+    "app_label": "stories",
+    "model": "storystatstracker"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 16,
+  "fields": {
+    "app_label": "stories",
+    "model": "storycharacter"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 17,
+  "fields": {
+    "app_label": "stories",
+    "model": "objectioonstatstracker"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 18,
+  "fields": {
+    "app_label": "stories",
+    "model": "objectionhandlestatstracker"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 19,
+  "fields": {
+    "app_label": "admin",
+    "model": "logentry"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 20,
+  "fields": {
+    "app_label": "auth",
+    "model": "permission"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 21,
+  "fields": {
+    "app_label": "auth",
+    "model": "group"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 22,
+  "fields": {
+    "app_label": "contenttypes",
+    "model": "contenttype"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 23,
+  "fields": {
+    "app_label": "sessions",
+    "model": "session"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 24,
+  "fields": {
+    "app_label": "authtoken",
+    "model": "token"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 25,
+  "fields": {
+    "app_label": "authtoken",
+    "model": "tokenproxy"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 26,
+  "fields": {
+    "app_label": "account",
+    "model": "emailaddress"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 27,
+  "fields": {
+    "app_label": "account",
+    "model": "emailconfirmation"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 28,
+  "fields": {
+    "app_label": "socialaccount",
+    "model": "socialaccount"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 29,
+  "fields": {
+    "app_label": "socialaccount",
+    "model": "socialapp"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 30,
+  "fields": {
+    "app_label": "socialaccount",
+    "model": "socialtoken"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 31,
+  "fields": {
+    "app_label": "sites",
+    "model": "site"
+  }
+},
+{
+  "model": "sites.site",
   "pk": 2,
   "fields": {
-    "created": "2021-05-12T12:27:07.036Z",
-    "modified": "2022-03-02T13:51:07.912Z",
-    "characterName": "Sally Happy",
-    "backstory": "Young worker",
-    "topType": "LongHairStraight",
-    "accessoriesType": "Blank",
-    "hatColor": null,
-    "hairColor": "BlondeGolden",
-    "facialHairType": "Blank",
-    "facialHairColor": null,
-    "clotheType": "BlazerSweater",
-    "clotheColor": null,
-    "graphicType": null,
-    "eyeType": "Default",
-    "eyebrowType": "Default",
-    "mouthType": "Smile",
-    "skinColor": "Light",
-    "avatarImage": ""
+    "domain": "example.com",
+    "name": "example.com"
   }
-},
-{
-  "model": "stories.character",
-  "pk": 3,
-  "fields": {
-    "created": "2021-05-12T12:37:31.119Z",
-    "modified": "2022-04-01T11:56:32.821Z",
-    "characterName": "Jim",
-    "backstory": "Nice older guy",
-    "topType": "ShortHairShortWaved",
-    "accessoriesType": "Sunglasses",
-    "hatColor": "Heather",
-    "hairColor": "Black",
-    "facialHairType": "BeardMagestic",
-    "facialHairColor": "Black",
-    "clotheType": "CollarSweater",
-    "clotheColor": "Red",
-    "graphicType": null,
-    "eyeType": "Default",
-    "eyebrowType": "Default",
-    "mouthType": "Grimace",
-    "skinColor": "Light",
-    "avatarImage": ""
-  }
-},
-{
-  "model": "stories.character",
-  "pk": 4,
-  "fields": {
-    "created": "2021-05-12T12:43:33.561Z",
-    "modified": "2022-04-01T10:00:44.962Z",
-    "characterName": "Sara",
-    "backstory": "Has two kids and is the bread winner",
-    "topType": "Hat",
-    "accessoriesType": "Round",
-    "hatColor": null,
-    "hairColor": "BrownDark",
-    "facialHairType": "Blank",
-    "facialHairColor": null,
-    "clotheType": "ShirtVNeck",
-    "clotheColor": "Pink",
-    "graphicType": null,
-    "eyeType": "Side",
-    "eyebrowType": "Default",
-    "mouthType": "Disbelief",
-    "skinColor": "DarkBrown",
-    "avatarImage": ""
-  }
-},
-{
-  "model": "stories.story",
-  "pk": 1,
-  "fields": {
-    "created": "2021-05-07T20:59:31.819Z",
-    "modified": "2021-05-07T20:59:31.819Z",
-    "storyName": "The Working Professional Single Mother Raising Two",
-    "summary": "Working professional 35-54 year old mother of two that has recently been divorced and is now juggling responsibilities at work with taking care of the kids during the week.",
-    "introduction": "Due to a downturn in the economy she has been let go from her job as an accounting professional for a national hotel chain",
-    "middle": "While has been able to set aside a financial emergency fund that   will help her cover daily living expenses for herself and her two children over the next 4 months, she is in need of additional financial support should it take longer than 4 months to line-up another job opportunity",
-    "conclusion": "This is where her existing job loss insurance policy provides reassurance and peace of mind that she and her children will be able to cope, and enable her to successfully search for new employment opportunities from a stronger position of power.",
-    "keyInsights": 
+}
+]

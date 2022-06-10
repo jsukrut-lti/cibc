@@ -4,7 +4,7 @@ from django.urls import reverse
 from enum import Enum
 from ..accounts.models import CustomUser
 from ..insuranceProducts.models import InsuranceDiscussion
-from core.models import TimeStampedModel,AGENT_PERCEPTION_OF_CUSTOMER_RESPONSE_TYPE
+from core.models import TimeStampedModel,AGENT_PERCEPTION_OF_CUSTOMER_RESPONSE_TYPE,WorkflowStates
 from django.utils.html import format_html
 from django.conf import settings
 
@@ -265,6 +265,8 @@ class Story(TimeStampedModel):
     middle = models.CharField(_("Middle"), max_length=300)
     conclusion = models.CharField(_("Conclusion"), max_length=300)
     keyInsights = models.CharField(_("Key Insights, Messaging or Lessons"), max_length=300)
+    status = models.CharField(_("Status"), max_length=5, choices=[x.value for x in WorkflowStates],null=True,blank=True,default ='d')
+
 
     def get_absolute_url(self):
         return reverse('story-update', kwargs={'pk': self.pk})
@@ -292,9 +294,14 @@ class BUTTLE_TYPE(Enum):
 class Objection(TimeStampedModel):
     objectionName = models.CharField(_("Name of Objection"), max_length=50, unique=True)
     primaryIssueOrConcern = models.CharField(_("Primary issues or concerns"), max_length=300)
+    status = models.CharField(_("Status"), max_length=5, choices=[x.value for x in WorkflowStates],null=True,blank=True,default ='o')
+
 
     def __str__(self):
         return '{}'.format(self.objectionName)
+
+    def save(self, *args, **kwargs):
+        super(Objection, self).save()
 
 class ObjectionHandle(TimeStampedModel):
     buttleName = models.CharField(_("Name of Re-Buttle or Pre-Buttle"), max_length=50, unique=True)
