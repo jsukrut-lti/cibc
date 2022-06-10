@@ -5,7 +5,7 @@ from .models import *
 from django.urls import reverse
 from django.utils.html import format_html
 from django.conf import settings
-from ..accounts.models import CustomUser
+from ..accounts.utils import get_user_obj
 from django.utils.translation import gettext, gettext_lazy as _
 
 ADDITION = 1
@@ -139,8 +139,3 @@ class Objection(ModelAdmin):
     #     self.change_form_template = 'admin/objection_change_form.html'
     #     return super(ObjectionModelAdmin, self).render_change_form(request, context, add, change, form_url, obj)
 
-def get_user_obj(user):
-    if user:
-        queryset = CustomUser.objects.filter(id = user.id)
-        usr_obj = queryset[0]
-        return usr_obj

@@ -110,7 +110,9 @@ LOGOUT_REDIRECT_URL = '/auth/login/'
 # Configure django to redirect users to the right URL for login
 LOGIN_URL = "/auth/login/"
 # LOGIN_URL = "django_auth_adfs:login"
-LOGIN_REDIRECT_URL = "/insurance/ci_pre_application"
+# LOGIN_REDIRECT_URL = "/insurance/ci_pre_application"
+LOGIN_REDIRECT_URL = "/account/home/"
+
 
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
