@@ -21,8 +21,9 @@
                                         <i class="bi bi-x-lg" onclick="exitApplication()"></i>
                                     </div>
 
-                                    <form action="/insurance/applicantSelection/{{ id }}" method="post" class="form">
+                                    <form action="/insurance/applicantDemographic/" method="post" class="form">
                                         {% csrf_token %}
+                                        <input type="hidden" name="pk_id" value="{{ pk_id }}">
                                         <div class="userImg">
                                             <img src="{% static 'creditInsurance/images/applicantSelection.png' %}" alt="Applicant Selection icon">
                                         </div>
