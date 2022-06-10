@@ -27,7 +27,10 @@ def home(request):
     if request:
         usr_obj = get_user_obj(request.user)
         user_groups = usr_obj.groups.values_list('name', flat=True)
-        if 'ADVISOR' in user_groups:
+        if usr_obj.is_superuser:
+            response = redirect('/admin/')
+            return response
+        elif 'ADVISOR' in user_groups:
             response = redirect("/insurance/ci_pre_application")
             return response
         elif 'CIBCADMIN' in user_groups or 'CIBCSUPERVISOR' in user_groups:
