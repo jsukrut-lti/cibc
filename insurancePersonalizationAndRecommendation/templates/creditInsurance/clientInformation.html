@@ -744,7 +744,9 @@
                                         <i class="bi bi-x-lg"></i>
                                     </div>
 
-                                    <form action="/insurance/dashboard/{{ id }}">
+                                    <form action="/insurance/dashboard/" method="post" class="form" >
+                                        {% csrf_token %}
+                                        <input type="hidden" name="pk_id" value="{{ id }}">
                                         <h4 class="mb-2">Your current insurance coverage</h4>
                                         <p class="mb-4 totalDebtInfo">Are you aware of what your current coverage is (sources of coverage include work, external policy, creditor protection)?</p>
                                         <div class="row">
