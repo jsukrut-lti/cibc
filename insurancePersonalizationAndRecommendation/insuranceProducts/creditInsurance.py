@@ -68,6 +68,58 @@ class CreditInsurance(object):
         return pre_data_ID
 
 
+    def get_agent_id(self):
+        return 1
+
+    def get_ins_product_id(self,prod_code):
+        p = InsuranceProduct.objects.filter(product_cibc_code=prod_code).values("id")
+        return p[0].get('id')
+
+    def format_raw_data_for_insdisc(self,queryset, select):
+
+        raw_data = json.loads(queryset['data'])
+        appl_details = raw_data.get('applicants', list())
+        d = dict()
+        d['insProduct_id'] = CreditInsurance.get_ins_product_id(self,raw_data['insProducts_details'][0]['insProduct_ID'])
+        d['agent_id'] = CreditInsurance.get_agent_id(self)
+        d['canada_provence'] = raw_data['canada_province']
+        d['currentApplicationPmt'] = raw_data['currentApplicationPmt']
+        for index, appl in enumerate(appl_details):
+            if appl['applicantId'] in select:
+                if index == 0:
+                    d['primaryFirstName'] = appl['FirstName']
+                    d['primaryMiddleName'] = appl['MiddleName']
+                    d['primaryLastName'] = appl['LastName']
+                    d['primaryAge'] = CreditInsurance.calculate_age(appl["birth_date"])
+                    d['primaryGender'] = appl['Gender']
+                    d['approxNetIncome'] = appl['monthlyGrossIncome']
+                    d['totalUnsecuredAmt'] = appl['existingDebts']['cibcUnsecured']
+                    d['totalSecuredAmt'] = appl['existingDebts']['cibcSecured']
+                    d['totalExistingDebt'] = appl['existingDebts']['cibcSecured'] + appl['existingDebts'][
+                        'cibcUnsecured']
+                    d['totalMonthlyPmt'] = appl['monthlyIncomeAfterTaxes']
+                    d['savingsEmergencyFund'] = appl['savingsEmergencyFund']
+                    d['creditCardBalance'] = appl['creditCard']['balance']
+                    d['totalMonthlyExpenses'] = appl['expenses']['totalMonthlyExpenses']
+                if index == 1:
+                    d['coFirstName'] = appl['FirstName']
+                    d['coMiddleName'] = appl['MiddleName']
+                    d['coLastName'] = appl['LastName']
+                    d['coAge'] = CreditInsurance.calculate_age(appl["birth_date"])
+                    d['coGender'] = appl['Gender']
+                    d['approxNetIncome'] += appl['monthlyGrossIncome']
+                    d['totalUnsecuredAmt'] += appl['existingDebts']['cibcUnsecured']
+                    d['totalSecuredAmt'] += appl['existingDebts']['cibcSecured']
+                    d['totalExistingDebt'] += appl['existingDebts']['cibcSecured'] + appl['existingDebts'][
+                        'cibcUnsecured']
+                    d['totalMonthlyPmt'] += appl['monthlyIncomeAfterTaxes']
+                    d['savingsEmergencyFund'] += appl['savingsEmergencyFund']
+                    d['creditCardBalance'] += appl['creditCard']['balance']
+                    d['totalMonthlyExpenses'] += appl['expenses']['totalMonthlyExpenses']
+
+        return d
+
+
 class EligibilityCheck(object):
 
     def __init__(self, *args, **kwargs):
@@ -170,4 +222,6 @@ class AssessmentQuestionnaire(object):
                 assessment_detail[qust['assessment_id']] = qust['assessment_details']
 
         return assessment_detail
+
+
 
