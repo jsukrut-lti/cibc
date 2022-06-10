@@ -103,6 +103,9 @@ function reasonChange(e) {
         
         <p class="mb-0">[Note: If a quote has not yet been provided] May I provide you with a quote to help you decide if any of these protection plans are within your budget?</p>`;
     }
+    else if(e.currentTarget.checked && e.currentTarget.value == "noTime") {
+        obejctionData.innerHTML = `<p>Content Not Available</p>`;
+    }
     else if(e.currentTarget.checked && e.currentTarget.value == "interested") {
         obejctionData.innerHTML = `
         <p>Ok, I appreciate that. My main priority right now is to help you understand the value/importance of having a plan that protects your financial future, whether or not you choose to take CIBC's optional creditor's insurance.</p>

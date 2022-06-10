@@ -20,6 +20,7 @@ from drf_yasg.utils import swagger_auto_schema
 import sys
 from django.http import HttpResponseRedirect
 
+
 sys.path.append('../../')
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
@@ -317,7 +318,7 @@ class InsuranceConvoUpdateView(SingleObjectMixin, InsuranceConvoView):
 @method_decorator(login_required, name='dispatch')
 class InsuranceCiPreApplicationView(View):
 
-    def get(self, request, *args, **kwargs):
+    def get(self, request, *args, **kwargs): 
         eligibility_check_instance = InsuranceEligibilityCheckView()
         return eligibility_check_instance.get(request)
 
