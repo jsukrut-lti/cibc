@@ -16,8 +16,8 @@ class TimeStampedModel(models.Model):
     """
     created = models.DateTimeField(auto_now_add=True)
     modified = models.DateTimeField(auto_now=True)
-    created_by = models.CharField(max_length=200,null=True,blank=True,editable=False)
-    modified_by = models.CharField(max_length=200,null=True,blank=True,editable=False)
+    created_by = models.CharField(max_length=300,null=True,blank=True,editable=False)
+    modified_by = models.CharField(max_length=300,null=True,blank=True,editable=False)
 
     class Meta:
         abstract = True

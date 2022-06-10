@@ -62,10 +62,6 @@ INSTALLED_APPS = [
     'rest_framework',
     'drf_yasg',
     'rest_framework.authtoken',
-    'allauth',
-    'allauth.account',
-    'allauth.socialaccount',
-    'allauth.socialaccount.providers.google',
     'django.contrib.sites',
     'django_extensions',
     'django_auth_adfs',
@@ -253,11 +249,11 @@ AUTHENTICATION_BACKENDS = [
 SITE_ID = 2
 
 # Additional configuration settings
-SOCIALACCOUNT_QUERY_EMAIL = True
-ACCOUNT_LOGOUT_ON_GET= True
-ACCOUNT_UNIQUE_EMAIL = True
-ACCOUNT_EMAIL_REQUIRED = True
-ACCOUNT_EMAIL_VERIFICATION = 'none'
+# SOCIALACCOUNT_QUERY_EMAIL = True
+# ACCOUNT_LOGOUT_ON_GET= True
+# ACCOUNT_UNIQUE_EMAIL = True
+# ACCOUNT_EMAIL_REQUIRED = True
+# ACCOUNT_EMAIL_VERIFICATION = 'none'
 
 
 # checkout the documentation for more settings
@@ -306,7 +302,5 @@ LOGGING = {
 INTERNAL_IPS = [
     "127.0.0.1",
 ]
-
-LOGOUT_REDIRECT_URL = '/admin/login/'
 
 ENCRYPT_KEY = b'iDJpljxUBBsacCZ50GpSBff6Xem0R-giqXXnBFGJ2Rs='
