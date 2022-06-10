@@ -2,6 +2,7 @@ from django.shortcuts import render
 from .forms import *
 from .api import *
 from .creditInsurance import *
+from .cryptographic import *
 from django.utils.translation import ugettext_lazy as _
 from django.views import View
 from django.template.loader import render_to_string
@@ -24,6 +25,9 @@ from django.http import HttpResponseRedirect
 sys.path.append('../../')
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
+from django.utils.http import int_to_base36, base36_to_int
+
+
 # Get an instance of a logger
 logger = logging.getLogger(__name__)
 
@@ -353,8 +357,8 @@ class InsuranceWelcomeView(View):
         self.context_object_name = 'Welcome'
 
     def get_template(self, request, *args, **kwargs):
-
-        context = {'menu_name': self.context_object_name}
+        pk_id = CrypticSetting.encrypt(self, args[0])
+        context = {'menu_name': self.context_object_name, 'pk_id': pk_id}
         return render(request, template_name=self.template_name, context=context)
 
 
@@ -372,9 +376,7 @@ class InsuranceEligibilityCheckView(object):
 
             input_data['credit_product'] = insurance_data["sourceApplication"]
             input_data['insurance_product_details'] = insurance_data["insProducts_details"]
-            input_data['birth_date'] = insurance_data["birth_date"]
-            input_data['occupation_code'] = insurance_data["occupation_code"]
-            input_data['province'] = insurance_data["province_residence"]
+            input_data['applicants'] = insurance_data["applicants"]
 
             get_response = True
             # eligibility_instance = EligibilityCheck()
@@ -383,9 +385,9 @@ class InsuranceEligibilityCheckView(object):
             if get_response == True:            #if eligible
 
                 # json data stored into DB
-                CreditInsurance.initial_data_storage(**input_data)
+                pre_data_ID = CreditInsurance.initial_data_storage(**insurance_data)
 
-                return InsuranceWelcomeView().get_template(request)
+                return InsuranceWelcomeView().get_template(request,pre_data_ID)
             else:
                 return InsuranceNonEligibleView().get_template(request)
 
@@ -396,11 +398,11 @@ class InsuranceQuestionnaireView(View):
     context_object_name = 'Questionnaire'
     assessment_details = {}
 
-    def get(self, request, *args, **kwargs):
+    def post(self, request, *args, **kwargs):
 
         self.assessment_details = AssessmentQuestionnaire.assessment_data(self, request)
 
-        context = {'menu_name': self.context_object_name,'assessment': self.assessment_details}
+        context = {'menu_name': self.context_object_name,'assessment': self.assessment_details,'pk_id': request.POST.get("pk_id")}
         return render(request, template_name=self.template_name, context=context)
 
 
@@ -408,8 +410,9 @@ class InsuranceTermConditionView(View):
     template_name = 'creditInsurance/TermsAndConditions.html'
     context_object_name = 'Terms & Condition'
 
-    def get(self, request, *args, **kwargs):
-        context = {'menu_name': self.context_object_name,'id' : 57}
+    def post(self, request, *args, **kwargs):
+
+        context = {'menu_name': self.context_object_name,'id' :  request.POST.get("pk_id")}
         return render(request, template_name=self.template_name, context=context)
 
 
@@ -418,10 +421,12 @@ class InsuranceApplicantSelectionView(View):
     context_object_name = 'Applicant Selection'
 
     def get(self, request, *args, **kwargs):
-        queryset = dumpData.objects.filter(id=kwargs['pk']).values()[0]
-        raw_data = queryset['data']
+        pk = CrypticSetting.decrypt(self,kwargs['pk'])
+        queryset = InsurancePreProcessData.objects.filter(id=pk).values()[0]
+        raw_data = json.loads(queryset['data'])
         appl_details = raw_data.get('applicants', list())
         context = {'menu_name': self.context_object_name, 'applicant_details': appl_details, 'id': kwargs['pk']}
+
         return render(request, template_name=self.template_name, context=context)
 
     def post(self, request, *args, **kwargs):
@@ -432,7 +437,8 @@ class InsuranceApplicantSelectionView(View):
         joint_applicant = payload.get('jointApplicant')
         select = multi_select if joint_applicant == 'Yes' else single_select
 
-        queryset = dumpData.objects.filter(id=kwargs['pk']).values()[0]
+        pk = CrypticSetting.decrypt(self, kwargs['pk'])
+        queryset = InsurancePreProcessData.objects.filter(id=pk).values()[0]
         filter_data = format_raw_data_for_insdisc(queryset, select)
         a = InsuranceDiscussion.objects.create(**filter_data)
         a.save()
@@ -537,7 +543,7 @@ class ExitView(View):
 
 
 def format_raw_data_for_insdisc(queryset, select):
-    raw_data = queryset['data']
+    raw_data = json.loads(queryset['data'])
     appl_details = raw_data.get('applicants', list())
     d = dict()
     d['insProduct_id'] = get_ins_product_id(raw_data['insProduct'])

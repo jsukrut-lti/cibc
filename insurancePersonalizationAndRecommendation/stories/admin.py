@@ -24,6 +24,7 @@ from django.contrib.admin.utils import flatten_fieldsets
 
 class ModelAdmin(admin.ModelAdmin):
 
+
     def log_change(self, request, object, message):
         """
         overriding this method for getting updated content for respective field
@@ -85,7 +86,7 @@ class ModelAdmin(admin.ModelAdmin):
             else:
                 form.base_fields['status'].disabled = True
         return form
-        
+
     def save_model(self, request, obj, form, change):
         if not obj.created_by:
             obj.created_by = str(request.user.id)

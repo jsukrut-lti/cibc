@@ -1,0 +1,144 @@
+{
+  "Requester": "sales executives",
+  "isRenewal": false,
+  "application_number": 20120260004,
+  "applicants": [
+    {
+      "birth_date" : "19801130",
+	  "occupation_code" : "6117", 
+	  "province_residence" : "AB",
+      "hloc": {
+        "limit": 67676,
+        "balance": 2500,
+        "pmtAmount": 3000,
+        "pmtFrequency": "m"
+      },
+      "email": "some@email.com",
+      "Gender": "m",
+      "savings": {
+        "totalSavings": 2500,
+        "totalSavingsOther": 2500,
+        "totalSavingsChequing": 2500.02,
+        "totalSavingsTaxFreeAccts": 2500,
+        "totalSavingsRegRetirement": 2500.4,
+        "totalSavingsGuarantedInvestmentCerts": 2500
+      },
+      "LastName": "Sparrow",
+      "expenses": {
+        "monthlyExpenseOther": 2500,
+        "totalMonthlyExpenses": 2500,
+        "monthlyExpensePersonal": 2500,
+        "monthlyExpenseOtherCredit": 2500,
+        "monthlyExpensePropTaxFees": 2500,
+        "monthlyExpenseOtherHousing": 2500
+      },
+      "mortgage": {
+        "limit": 67676,
+        "balance": 2500,
+        "pmtAmount": 3000,
+        "pmtFrequency": "m"
+      },
+      "FirstName": "Jimmmy",
+      "MiddleName": "sr.Jack",
+      "creditCard": {
+        "limit": 67676,
+        "balance": 2500,
+        "pmtAmount": 3000,
+        "pmtFrequency": "m"
+      },
+      "applicantId": "Q123",
+      "personalLoan": {
+        "limit": 67676,
+        "balance": 2500,
+        "pmtAmount": 3000,
+        "pmtFrequency": "m"
+      },
+      "existingDebts": {
+        "cibcSecured": 43434,
+        "cibcUnsecured": 654656
+      },
+      "monthlyGrossIncome": 2500,
+      "eligible_insProducts": [
+        "Mortgage Creditor Insurance"
+      ],
+      "savingsEmergencyFund": 50000,
+      "monthlyIncomeAfterTaxes": 2500
+    },
+    {
+      "birth_date" : "19801130",
+      "occupation_code" : "6117", 
+	  "province_residence" : "AB",
+      "hloc": {
+        "limit": 67676,
+        "balance": 2500,
+        "pmtAmount": 3000,
+        "pmtFrequency": "m"
+      },
+      "email": "some@email.com",
+      "Gender": "m",
+      "savings": {
+        "totalSavings": 2500,
+        "totalSavingsOther": 2500,
+        "totalSavingsChequing": 2500.02,
+        "totalSavingsTaxFreeAccts": 2500,
+        "totalSavingsRegRetirement": 2500.4,
+        "totalSavingsGuarantedInvestmentCerts": 2500
+      },
+      "LastName": "Sim",
+      "expenses": {
+        "monthlyExpenseOther": 2500,
+        "totalMonthlyExpenses": 2500,
+        "monthlyExpensePersonal": 2500,
+        "monthlyExpenseOtherCredit": 2500,
+        "monthlyExpensePropTaxFees": 2500,
+        "monthlyExpenseOtherHousing": 2500
+      },
+      "mortgage": {
+        "limit": 67676,
+        "balance": 2500,
+        "pmtAmount": 3000,
+        "pmtFrequency": "m"
+      },
+      "FirstName": "Ronny",
+      "MiddleName": "K",
+      "creditCard": {
+        "limit": 67676,
+        "balance": 2500,
+        "pmtAmount": 3000,
+        "pmtFrequency": "m"
+      },
+      "applicantId": "Q124",
+      "personalLoan": {
+        "limit": 67676,
+        "balance": 2500,
+        "pmtAmount": 3000,
+        "pmtFrequency": "m"
+      },
+      "existingDebts": {
+        "cibcSecured": 434,
+        "cibcUnsecured": 4656
+      },
+      "monthlyGrossIncome": 250,
+      "eligible_insProducts": [
+        "Mortgage Creditor Insurance"
+      ],
+      "savingsEmergencyFund": 500,
+      "monthlyIncomeAfterTaxes": 250
+    }
+  ],
+  "insProducts_details" : [ 
+		{ 
+			"insProduct": "Mortgage Life Insurance",
+			"insProduct_ID": "CIBC0010"
+		} 
+	],
+  "agentUsername": "shashi_agent_cibc",
+  "currentSection": "personalPresentment",
+  "canada_province": "on",
+  "applicationSentAt": "09/09/2021 22:10:56",
+  "sourceApplication": "ECIF",
+  "discussionOutcomes": "acceptedOffer",
+  "currentApplicationPmt": 5400,
+  "isRelatedToFinalizedSoldProduct": true,
+  "agentOverallPerceptionOfCustomerResp": "positive"
+}
