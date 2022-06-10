@@ -12,7 +12,7 @@
       {# Display a form #}
       <form method="post" >
         {% csrf_token %}
-        <img class="mb-4" src="{% static 'img/logo.svg' %}" alt="" width="288" height="200">
+        <img class="img-fluid mb-5" src="{% static 'img/logo.svg' %}" alt="SKP logo">
         <h1 class="h3 mb-3 fw-normal">Please sign in</h1>
 
         {% if user.is_authenticated %}
