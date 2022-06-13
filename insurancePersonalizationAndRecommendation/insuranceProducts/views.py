@@ -324,6 +324,8 @@ class InsuranceWelcomeView(View):
     context_object_name = 'Welcome'
 
     def get(self, request, *args, **kwargs):
+        request.session['start'] = 'new session started'
+        request.session.modified = True
         context = {'menu_name': self.context_object_name}
         return render(request, template_name=self.template_name, context=context)
 
@@ -654,8 +656,8 @@ def get_ins_product_id(prod_name):
 
 
 class StartSession(View):
-    def get(self, request, *args, **kwargs):
-        request.session['session_key'] = 'session_started'
-        request.session.modified = True
-        return HttpResponse(json.dumps({'session_key' : 'session_started'}), content_type="application/json")
+
+    def post(self, request, *args, **kwargs):
+        print(request.session)
+        return HttpResponse(json.dumps({'exit': 'success'}), content_type="application/json")
 

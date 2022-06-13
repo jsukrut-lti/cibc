@@ -27,5 +27,5 @@ urlpatterns = [
     path('summary/<int:pk>', SummaryView.as_view(), name='ins-summary'),
     path('exit/<int:pk>', ExitView.as_view(), name='ins-exit'),
     path('exit/', ExitView.as_view(), name='ins-exit'),
-    path('start_session/', StartSession.as_view(), name='start-session')
+    path('start_session', StartSession.as_view(), name='start-session')
 ]

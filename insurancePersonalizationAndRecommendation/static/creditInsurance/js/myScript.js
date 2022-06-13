@@ -262,3 +262,54 @@ function checkSession (){
 document.onclick = function (){
     myTimeout();
 };
+
+
+window.onload = function() {
+    if (sessionStorage.instances) {
+        sessionStorage = Number(sessionStorage.instances) + 1;
+        console.log('instance', sessionStorage);
+    } else {
+        sessionStorage.instances = 1
+        console.log('instance', sessionStorage);
+    }
+}
+
+window.onbeforeunload = function() {
+    var instances;
+    debugger;
+    if (sessionStorage.instances) {
+        debugger;
+        instances = Number(sessionStorage.instances) - 1;
+        sessionStorage.instances = instances;
+        if (0 === instances) {
+            // all instances closed.
+            debugger;
+            saveDB();
+        }
+    };
+}
+
+function saveDB(){
+//    var km;
+//    $.ajax({
+//        url: window.location.protocol+"//"+window.location.host+'/insurance/start_session',
+//        type: "GET",
+//        async: false,
+//        success: function(data){
+//            var x = JSON.stringify(data);
+//            console.log(11,x);
+//            debugger;
+//            km = 1;
+//        },
+//        error: function(error){
+//            km = 0;
+//            console.log(`Error ${error}`);
+//            }
+//    });
+
+        var formData = new FormData();
+  		//Required by Django for form post
+        formData.append('csrfmiddlewaretoken', csrf_token);
+        const url = window.location.protocol+"//"+window.location.host+'/insurance/start_session'
+        navigator.sendBeacon(url, formData);
+}
