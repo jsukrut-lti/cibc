@@ -80,6 +80,27 @@ a {
   color: #C41F3E;
 }
 
+.refreshBtn {
+  position: absolute;
+  right: 12px;
+  top: 11px;
+  cursor: pointer;
+}
+
+.refreshBtn img {
+  height: 22px;
+  width: 22px;
+}
+
+.refreshBtnDashboard {
+  cursor: pointer;
+}
+
+.refreshBtnDashboard img {
+  height: 22px;
+  width: 22px;
+}
+
 .contactSec .contactDetails {
   gap: 30px;
 }
@@ -655,9 +676,7 @@ a {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
+  margin-left: 18px;
 }
 
 .sidebar .logo-details i {
@@ -690,6 +709,8 @@ a {
 }
 
 .sidebar .nav-links li {
+  cursor: pointer;
+  padding-left: 10px;
   position: relative;
   list-style: none;
   -webkit-transition: all 0.4s ease;
@@ -752,7 +773,7 @@ a {
   text-align: center;
   line-height: 50px;
   color: #42526E;
-  font-size: 20px;
+  font-size: 36px;
   cursor: pointer;
   -webkit-transition: all 0.3s ease;
   transition: all 0.3s ease;
@@ -828,28 +849,20 @@ a {
   display: block;
 }
 
-.sidebar .nav-links .productLinks {
-  margin-bottom: 30px;
-}
-
-.sidebar .nav-links .productLinks li i {
+.productLinks li i {
   height: 42px;
   min-width: 50px;
   line-height: 42px;
 }
 
-.sidebar .nav-links .productLinks li a {
+.productLinks li a {
   font-weight: 500;
 }
 
-.sidebar .nav-links .productLinks li a span {
-  font-size: 14px;
+.productLinks li a span {
+  font-size: 16px;
   text-decoration: underline;
   color: #C41F3E;
-}
-
-.sidebar .nav-links .productLinks li:hover a, .sidebar .nav-links .productLinks li:hover i, .sidebar .nav-links .productLinks li:hover span {
-  color: #FFFFFF;
 }
 
 .home-section {
@@ -1710,11 +1723,12 @@ a {
   padding: 25px 30px 30px;
   -webkit-box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.25);
           box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.25);
-  min-height: 480px;
 }
 
 .commonLayout .content .rightsec p {
   font-size: 18px;
+  color: #212529;
+  font-weight: 400;
 }
 
 .commonLayout .content .rightsec .faqSectionByPage .accordion-button {
@@ -2063,9 +2077,3 @@ a {
   }
 }
 /*# sourceMappingURL=style.css.map */
-
-
-#grp-navigation{
-
-
-}
