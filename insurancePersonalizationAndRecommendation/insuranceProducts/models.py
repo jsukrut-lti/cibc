@@ -4,15 +4,40 @@ from django.utils.translation import ugettext_lazy as _
 from ..accounts.models import CustomUser
 from enum import Enum
 from django.contrib.postgres.fields import JSONField
-
+from django.utils import timezone
+# from encrypted_id.models import EncryptedIDModel
+import struct
+from .cryptographic import *
 import uuid
+
+
+class InsuranceCreditProduct(TimeStampedModel):
+    credit_product_code = models.CharField(max_length=100, verbose_name=u"Credit Product Code",
+                            help_text=u"Credit Product Code", unique=True,blank=False)
+    credit_product_name = models.CharField(max_length=200, verbose_name=u"Credit Product Name", help_text=u"Credit Product Name", blank=False)
+    active = models.BooleanField(verbose_name=u"Active", default=True)
+
+    def __str__(self):
+        return '{}'.format(self.credit_product_name)
+
+    class Meta:
+        db_table = 'insurance_credit_products'
+        verbose_name_plural = 'Insurance Credit Products Master'
+
 
 class InsuranceProduct(TimeStampedModel):
     productCode = models.CharField(max_length=50)
     title = models.CharField(max_length=200)
+    creditProduct_code = models.ForeignKey(InsuranceCreditProduct, on_delete=models.CASCADE, related_name='creditProduct_code',null=False,blank=False, default=True)
+    product_cibc_code = models.CharField(max_length=50, default=True)
+    active = models.BooleanField(verbose_name=u"Active", default=True)
 
     def __str__(self):
         return '{}'.format(self.title)
+    #
+    # class Meta:
+    #     db_table = 'insurance_products'
+    #     verbose_name_plural = 'Insurance Products Master'
 
 class DISCUSSION_OUTCOME_TYPE(Enum):
     declined = ('declined','declined')
@@ -170,11 +195,110 @@ class InsuranceDiscussion(TimeStampedModel):
         return self.lifeInsurancePremiumPerMonth + self.criticalIllnessPremiumPerMonth + self.disabilityPremiumPerMonth
 
 
-class dumpData(TimeStampedModel):
+class InsurancePreProcessData(TimeStampedModel):
     STATUS_CHOICES =(
         ('draft', 'DRAFT'),
         ('active', 'ACTIVE'),
         ('deactivate', 'DEACTIVATE'),
     )
+
+    application_number = models.CharField(max_length=100, verbose_name=u"Application Number", help_text=u"Application Number",blank=False)
     status = models.CharField(max_length=10, choices=STATUS_CHOICES, default='draft')
     data = models.JSONField()
+
+    def __str__(self):
+        return '{}'.format(self.application_number)
+
+class ProvinceResidence(TimeStampedModel):
+
+    RESIDENCY = [
+        ('Canada', 'Canadian Residence'),
+        ('Other', 'Others'),
+    ]
+    province = models.CharField(max_length=3, verbose_name=u"Province",help_text=u"Province", blank=False)
+    description = models.CharField(max_length=100, verbose_name=u"Province Description",help_text=u"Province Description", blank=False)
+    residency = models.CharField(_("Residency"), max_length=50, choices=RESIDENCY,null=True, blank=True)
+    active = models.BooleanField(verbose_name=u"Active", default=True)
+
+    def __str__(self):
+        return '{}'.format(self.description)
+
+    class Meta:
+        db_table = 'province_residence_master'
+        verbose_name_plural = 'Province Residence Master'
+
+
+class OccupationMaster(TimeStampedModel):
+    occupation_code = models.CharField(max_length=10, verbose_name=u"Occupation Code",help_text=u"Occupation Code", blank=False)
+    occupation_name = models.CharField(max_length=100, verbose_name=u"Occupation Name",help_text=u"Occupation Name", blank=False)
+    active = models.BooleanField(verbose_name=u"Active", default=True)
+
+    def __str__(self):
+        return '{}'.format(self.occupation_name)
+
+    class Meta:
+        db_table = 'occupation_master'
+        verbose_name_plural = 'Occupation Master'
+
+
+class InsuranceEligibility(TimeStampedModel):
+
+    RESIDENCY = [
+        ('Canada', 'Canadian Residence'),
+        ('Other', 'Others'),
+    ]
+
+    insProduct = models.ForeignKey(InsuranceProduct, on_delete=models.CASCADE,null=False,blank=False)
+    minAge = models.PositiveSmallIntegerField(_("Min Age"),null=True,blank=True)
+    maxAge = models.PositiveSmallIntegerField(_("Max Age"), null=True, blank=True)
+    residency = models.CharField(_("Residency"), max_length=50, choices=RESIDENCY,null=True, blank=True)
+    occupation = models.ForeignKey(OccupationMaster, on_delete=models.CASCADE,null=True,blank=True)
+    effective_start_date = models.DateField(verbose_name=u"Effective Start Date", default=timezone.now)
+    effective_end_date = models.DateField(verbose_name=u"Effective End Date", default="2099-12-31")
+    active = models.BooleanField(verbose_name=u"Active", default=True)
+
+    def __str__(self):
+        return '{}'.format(self.insProduct)
+
+    class Meta:
+        db_table = 'insurance_eligibility_master'
+        verbose_name_plural = 'Insurance Eligibility Master'
+
+
+class InsuranceNonEligibleContent(TimeStampedModel):
+
+    content = models.TextField(verbose_name=u"Non Eligible Content")
+    effective_start_date = models.DateField(verbose_name=u"Effective Start Date", default=timezone.now)
+    effective_end_date = models.DateField(verbose_name=u"Effective End Date", default="2099-12-31")
+    active = models.BooleanField(verbose_name=u"Active", default=True)
+
+    def __str__(self):
+        return '{}'.format(self.content)
+
+
+class ClientDetails(TimeStampedModel):
+
+    client_id = models.CharField(max_length=11, verbose_name=u"Client ID",
+                            help_text=u"Client ID", unique=True,blank=False)
+    client_name = models.CharField(max_length=100, verbose_name=u"Client Name",help_text=u"Client Name", blank=False)
+    client_email = models.CharField(max_length=100, verbose_name=u"Client Email",help_text=u"Client Email", blank=False)
+    client_phone = models.CharField(max_length=100, verbose_name=u"Client Phone", help_text=u"Client Phone",blank=False)
+    effective_start_date = models.DateField(verbose_name=u"Effective Start Date", default=timezone.now)
+    effective_end_date = models.DateField(verbose_name=u"Effective End Date", default="2099-12-31")
+    active = models.BooleanField(verbose_name=u"Active", default=True)
+
+    def __str__(self):
+        return '{}'.format(self.content)
+
+
+class AssessmentQuestionnaireMaster(TimeStampedModel):
+
+    assessment_id = models.CharField(max_length=11, verbose_name=u"Assessment ID",
+                            help_text=u"Assessment ID", unique=True,blank=False)
+    assessment_details = models.TextField(verbose_name=u"Non Assessment Details")
+    effective_start_date = models.DateField(verbose_name=u"Effective Start Date", default=timezone.now)
+    effective_end_date = models.DateField(verbose_name=u"Effective End Date", default="2099-12-31")
+    active = models.BooleanField(verbose_name=u"Active", default=True)
+
+    def __str__(self):
+        return '{}'.format(self.assessment_details)

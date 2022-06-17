@@ -103,6 +103,9 @@ function reasonChange(e) {
         
         <p class="mb-0">[Note: If a quote has not yet been provided] May I provide you with a quote to help you decide if any of these protection plans are within your budget?</p>`;
     }
+    else if(e.currentTarget.checked && e.currentTarget.value == "noTime") {
+        obejctionData.innerHTML = `<p>Content Not Available</p>`;
+    }
     else if(e.currentTarget.checked && e.currentTarget.value == "interested") {
         obejctionData.innerHTML = `
         <p>Ok, I appreciate that. My main priority right now is to help you understand the value/importance of having a plan that protects your financial future, whether or not you choose to take CIBC's optional creditor's insurance.</p>
@@ -128,107 +131,68 @@ exitAssessmentReason.forEach(reason => {
 })
 
 
-// Questionnaire - add active class on selected list item
-let questionnaireItems = document.querySelectorAll('.questionnaireSection ul li');
-let questionnaireSectionObjection = document.querySelector('.questionnaireSectionObjection');
 
-function addActive(e) {
-    let currentItem = e.currentTarget.innerText;
-    questionnaireSectionObjection.style.display = "block";
+// Anecdotes - Archetype selection script
 
-    questionnaireItems.forEach((item) => {
-        item.classList.remove('active');
-    })
-    this.classList.add('active');
+let selectBtn = document.querySelectorAll('.selectBtn');
 
-    if(currentItem <= 5) {
-        questionnaireSectionObjection.innerText = `Thank you for sharing that.  I'd like to ask you some additional questions to see if there is an opportunity to help you feel more confident about your plan.`;
-    }
-
-    else if(currentItem <= 8) {
-        questionnaireSectionObjection.innerText = `Thank you for sharing that. I'm glad you have thought about this. I'd like to ask you a few more questions to see if there is an opportunity to compliment the plan you have in place.`;
-    }
-
-    else {
-        questionnaireSectionObjection.innerText = `Thank you for sharing that.  I am very happy to hear that you have thought about this before. I'd like to ask you a few questions to ensure that the changes we are working on today don't impact your existing plan.`;
-    }
-}
-
-questionnaireItems.forEach((item) => {
-    item.addEventListener('click', addActive);
+selectBtn.forEach((ele) => {
+    ele.addEventListener('click', addActivateClass);
 })
 
-
-// Multi Step Form For Client Page
-
-var currentTab = 0; // Current tab is set to be the first tab (0)
-//showTab(currentTab); // Display the current tab
-
-function showTab(n) {
-  // This function will display the specified tab of the form...
-  var x = document.getElementsByClassName("tabContent");
-  x[n].classList.add('active');
-
-  //... and fix the Previous/Next buttons:
-//   if (n == 0) {
-//     document.getElementById("prevBtn").style.display = "none";
-//   } else {
-//     document.getElementById("prevBtn").style.display = "inline";
-//   }
-
-//   if (n == (x.length - 1)) {
-//     document.getElementById("nextBtn").innerHTML = "Submit";
-//   } else {
-//     document.getElementById("nextBtn").innerHTML = "Next";
-//   }
-}
-
-function nextPrev(n) {
-  // This function will figure out which tab to display
-  var x = document.getElementsByClassName("tabContent");
-  
-  // Hide the current tab:
-//   x[currentTab].style.display = "none";
-  x[currentTab].classList.remove('active');
-  // Increase or decrease the current tab by 1:
-  currentTab = currentTab + n;
-  // if you have reached the end of the form...
-  if (currentTab >= x.length) {
-    // ... the form gets submitted:
-    document.getElementById("regForm").submit();
-    return false;
-  }
-  // Otherwise, display the correct tab:
-  showTab(currentTab);
-}
-
-let subMenuItems = document.querySelectorAll('.subMenu ul.sub-menu li a');
-    tabContentList = document.querySelectorAll('.tabContent');
-    i = 0;
-    myArr = new Array();
-
-    for (let key in tabContentList) {
-        myArr[tabContentList[key].id] = i;
-        i++;
-    }
-
-function hideTab() {
-    tabContentList.forEach(item => {
-        item.classList.remove('active');
+function addActivateClass() {
+    selectBtn.forEach((btnParent) => {
+        btnParent.parentElement.classList.remove('activate');
     })
+    this.parentElement.classList.add('activate');
 }
 
-subMenuItems.forEach(sideItems => {
-    sideItems.addEventListener("click", (e) => {
-        hideTab();
-        let text = e.currentTarget.innerText.toLowerCase().replace(' ','');
-        document.querySelector('#' + text).classList.add('active');
-        currentTab = myArr[e.currentTarget.innerText.toLowerCase().replace(' ','')];
-    })
+// Anecdotes - Archetype Information script
+
+let specificReaction = document.querySelectorAll('.navObjectionBlock .reactionBlock .image');
+
+specificReaction.forEach((ele) => {
+    ele.addEventListener('click', reactionActive);
 })
 
-function exitApplication(){
-    location.href = "/insurance/exitApplication/";
+function reactionActive(e) {
+    let allTargetReaction = e.currentTarget.parentElement.children;
+    let getID = e.currentTarget.id;
+
+    $(allTargetReaction).removeClass('active');
+    $('#' + getID).addClass('active');
+}
+
+// FAQ Search - Reaction
+let faqSearchReaction = document.querySelectorAll('.faqSearchSectionBlock .reactionBlock .image');
+
+faqSearchReaction.forEach((ele) => {
+    ele.addEventListener('click', faqReactionActive)
+})
+
+function faqReactionActive(e) {
+    let allTargetFAQReaction = e.currentTarget.parentElement.children;
+    let getFAQID = e.currentTarget.id;
+
+    $(allTargetFAQReaction).removeClass('active');
+    $('#' + getFAQID).addClass('active');
+}
+
+// FAQ Search - Filter
+
+let search = document.querySelector('#search');
+let faqSearchSectionRow = document.querySelectorAll('.faqSearchSection .row');
+
+//search.addEventListener('keyup', (e) => {
+//    let filterVal = e.target.value.toLowerCase();
+//
+//    faqSearchSectionRow.forEach((row) => {
+//        row.querySelector('.faqSearchSectionBlock .archetypeInfoDesc').innerText.toLowerCase().indexOf(filterVal) > -1 ? (row.style.display = "") : (row.style.display = "none");
+//    })
+//})
+
+function exitApplication(e){
+    document.location.href = "/insurance/exit/1";
 }
 
 

@@ -2,11 +2,7 @@
 {% block content %}
 {% load static %}
         <div class="main">
-            <div class="d-flex justify-content-between align-items-center topBar">
-                <div class="toggle">
-                    <i class='bx bx-menu' onclick="openNavMob()"></i>
-                </div>
-
+            <div class="d-flex justify-content-end align-items-center topBar">
                 <div class="rightSec d-flex align-items-center justify-content-center">
                     <!-- Switch Button -->
                    <div class="switchBtn">
@@ -17,13 +13,17 @@
                         <label for="toggle-rep" class="btnToggle">Rep</label>
                    </div>
 
+                    <div class="refreshBtnDashboard">
+                        <img src="{% static 'creditInsurance/images/reload.png' %}" alt="reload icon">
+                    </div>
+
                     <!-- Search -->
-                    <div class="search">
+                    <!-- <div class="search">
                         <label>
                             <input type="text" placeholder="Search">
                             <img src="{% static 'creditInsurance/images/search.png' %}" alt="Search icon">
                         </label>
-                    </div>
+                    </div> -->
 
                     <!-- User Profile -->
                     <!-- <div class="user">
@@ -32,15 +32,6 @@
                 </div>
             </div>
 
-            <!-- <div class="breadcrumbSec">
-                <nav style="--bs-breadcrumb-divider: url(&#34;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8'%3E%3Cpath d='M2.5 0L1 1.5 3.5 4 1 6.5 2.5 8l4-4-4-4z' fill='currentColor'/%3E%3C/svg%3E&#34;);" aria-label="breadcrumb">
-                    <ol class="breadcrumb">
-                      <li class="breadcrumb-item"><a href="#">Home</a></li>
-                      <li class="breadcrumb-item active" aria-current="page">FAQ</li>
-                    </ol>
-                  </nav>
-            </div> -->
-
             <div class="container-lg px-4">
                 <div class="dashboardContent my-4">
                     <div class="row">
@@ -48,14 +39,25 @@
                             <div class="leftContent mb-3">
                                 <h1 class="p-3 mb-3">Hi, <span>Valued Customer</span></h1>
 
-                                <div class="pricingTable mb-3">
+                                <div class="mb-3 px-3 py-4 d-flex align-items-center surplus">
+                                    <div class="surplusIcon">
+                                        <i class='bx bx-info-circle'></i>
+                                    </div>
+                                    <div class="surplusRight">
+                                        <p class="mb-1 surplusTitle">Adequately Covered</p>
+                                        <p class="mb-0">You are adequately covered and do not need additional coverage.  Do you still want to continue to explore more coverage options?</p>
+                                    </div>
+                                </div>
+
+                                <div class="pricingTable">
                                     <p class="suggestion p-3 mb-2">What We Suggest</p>
                                     <div class="pricingTableSection">
                                         <div class="accordion row" id="pricingTablesAccordion">
-                                            <div class="col-lg-4 col-md-6 col-12">
-                                                <div class="accordion-item">
+                                            <div class="col-lg-4 col-md-6 col-12 mb-3">
+                                                <div class="accordion-item active">
                                                     <h2 class="accordion-header" id="pricingTablesBasic">
-                                                    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="false" aria-controls="panelsStayOpen-collapseOne">
+                                                        <span class="bestOption">Best Option</span>
+                                                        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="false" aria-controls="panelsStayOpen-collapseOne">
                                                         <div>
                                                             <span class="packageType text-uppercase">Basic</span>
                                                             <span class="package"><sup>$</sup>23.19</span>
@@ -103,9 +105,8 @@
                                                                 </div>
                                                             </div>
                                                             <div class="text-center mt-3">
-                                                                <a href="/insurance/termCondition2/{{ id }}" >
-                                                                    <button class="btn commonBtn" >Select</button>
-                                                                </a>
+                                                                <button class="btn commonBtn" data-bs-toggle="modal"
+                                                                data-bs-target="#ConfirmPackage">Select</button>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -113,10 +114,11 @@
                                                 </div>
                                             </div>
 
-                                            <div class="col-lg-4 col-md-6 col-12">
+                                            <div class="col-lg-4 col-md-6 col-12 mb-3">
                                                 <div class="accordion-item">
                                                     <h2 class="accordion-header" id="pricingTablesEnhanced">
-                                                    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseTwo" aria-expanded="false" aria-controls="panelsStayOpen-collapseTwo">
+                                                        <span class="bestOption">Best Option</span>
+                                                        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseTwo" aria-expanded="false" aria-controls="panelsStayOpen-collapseTwo">
                                                         <div>
                                                             <span class="packageType text-uppercase">Enhanced</span>
                                                             <span class="package"><sup>$</sup>23.19</span>
@@ -164,9 +166,8 @@
                                                                 </div>
                                                             </div>
                                                             <div class="text-center mt-3">
-                                                                <a href="/insurance/termCondition2/{{ id }}" >
-                                                                    <button class="btn commonBtn" >Select</button>
-                                                                </a>
+                                                                <button class="btn commonBtn" data-bs-toggle="modal"
+                                                                data-bs-target="#ConfirmPackage">Select</button>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -174,10 +175,11 @@
                                                 </div>
                                             </div>
 
-                                            <div class="col-lg-4 col-md-6 col-12">
+                                            <div class="col-lg-4 col-md-6 col-12 mb-3">
                                                 <div class="accordion-item">
                                                     <h2 class="accordion-header" id="pricingTablesComplete">
-                                                    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseThree" aria-expanded="false" aria-controls="panelsStayOpen-collapseThree">
+                                                        <span class="bestOption">Best Option</span>
+                                                        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseThree" aria-expanded="false" aria-controls="panelsStayOpen-collapseThree">
                                                         <div>
                                                             <span class="packageType text-uppercase">Complete</span>
                                                             <span class="package"><sup>$</sup>23.19</span>
@@ -225,9 +227,8 @@
                                                                 </div>
                                                             </div>
                                                             <div class="text-center mt-3">
-                                                                <a href="/insurance/termCondition2/{{ id }}" >
-                                                                    <button class="btn commonBtn" >Select</button>
-                                                                </a>
+                                                                <button class="btn commonBtn" data-bs-toggle="modal"
+                                                                data-bs-target="#ConfirmPackage">Select</button>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -345,5 +346,27 @@
                 </div>
             </div>
         </div>
+
+        <!-- Modal -->
+    <div class="modal fade" id="ConfirmPackage" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+    aria-labelledby="confirmPackageLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header border-0">
+                    <h5 class="modal-title" id="confirmPackageLabel">Insurance Package</h5>
+                    <!-- <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> -->
+                </div>
+                <div class="modal-body">
+                    <p class="">Are you sure you want to select this package?</p>
+                    <p class="m-0 small"><strong>Note:</strong> For further assessment you will have to proceed with eligibility questionnaire.</p>
+                </div>
+                <div class="modal-footer border-0">
+                    <a href="#" class="returntoBoard">Return to Dashboard</a>
+                    <button type="button" class="btn commonBtn">Exit Tool</button>
+                    <button type="button" class="btn commonBtn">Agree</button>
+                </div>
+            </div>
+        </div>
+    </div>
 
 {% endblock %}

@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Eligibility Questionaire - Mortgage Plus</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/x-icon" href="./images/logoSmall.png">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
+    <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+    <div class="sidebar d-lg-block d-none">
+        <div class="logo-details">
+            <span class="icon openNav"><img src="./images/logo.png" alt="CIBC logo"></span>
+            <span class="icon closeNav"><img src="./images/logoSmall.png" alt="CIBC logo"></span>
+        </div>
+        <ul class="nav-links flex-column justify-content-between">
+            <div class="mainLinks">
+                <li>
+                    <a href="eligibilityQMortgagePlus.html">
+                        <i class='bx bx-exit'></i>
+                        <span class="link_name" title="Eligibility Questionaire">Eligibility Questionaire</span>
+                    </a>
+                    <ul class="sub-menu blank">
+                        <li><a class="link_name" href="eligibilityQMortgagePlus.html">Eligibility Questionaire</a></li>
+                    </ul>
+                </li>
+            </div>
+
+            <div class="productLinks">
+                <li>
+                    <a href="https://www.cibc.com/en/personal-banking/insurance.html" target="_blank">
+                        <i class='bx bxl-product-hunt'></i>
+                        <span class="link_name">Link 1</span>
+                    </a>
+                    <ul class="sub-menu blank">
+                        <li><a class="link_name" href="https://www.cibc.com/en/personal-banking/insurance.html" target="_blank">Link 1</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="https://www.cibc.com/en/personal-banking/insurance.html" target="_blank">
+                        <i class='bx bxl-product-hunt'></i>
+                        <span class="link_name">Link 2</span>
+                    </a>
+                    <ul class="sub-menu blank">
+                        <li><a class="link_name" href="https://www.cibc.com/en/personal-banking/insurance.html" target="_blank">Link 2</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="https://www.cibc.com/en/personal-banking/insurance.html" target="_blank">
+                        <i class='bx bxl-product-hunt'></i>
+                        <span class="link_name">Link 3</span>
+                    </a>
+                    <ul class="sub-menu blank">
+                        <li><a class="link_name" href="https://www.cibc.com/en/personal-banking/insurance.html" target="_blank">Link 3</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="https://www.cibc.com/en/personal-banking/insurance.html" target="_blank">
+                        <i class='bx bxl-product-hunt'></i>
+                        <span class="link_name">Link 4</span>
+                    </a>
+                    <ul class="sub-menu blank">
+                        <li><a class="link_name" href="https://www.cibc.com/en/personal-banking/insurance.html" target="_blank">Link 4</a></li>
+                    </ul>
+                </li>
+            </div>
+        </ul>
+    </div>
+    <div id="sidebarMob" class="overlay d-block d-lg-none">
+        <a href="javascript:void(0)" class="closebtnMob" onclick="closeNavMob()"><i class="bi bi-x"></i></a>
+        <div class="overlayContent">
+          <a href="eligibilityQMortgagePlus.html">Eligibility Questionaire</a>
+        </div>
+    </div>
+    <section class="home-section">
+        <div class="main">
+            <div class="d-flex justify-content-end align-items-center topBar">
+            </div>
+
+            <div class="container-lg px-4">
+                <div class="commonLayout eligibilityQuestionaire my-4">
+                    <div class="content">
+                        <div class="row">
+                            <div class="col-md-8 mb-3 mb-md-0">
+                                <div class="leftSec">
+                                    <div class="closeIcon">
+                                        <i class="bi bi-x-lg"></i>
+                                    </div>
+
+                                    <form>
+                                        <div class="userImg">
+                                            <img src="/images/faq.png" alt="Eligibility Questionaire icon">
+                                        </div>
+                                        <h4 class="mb-3">Mortgage disability plus insurance eligibility</h4>
+
+                                        <div class="eligibilityQuestionaire eligibilityQuestionaire1 mb-3">
+                                            <p class="mb-2">Do you currently receive disability benefits from any source?</p>
+                                            <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="radio" name="disabilityBenefits"
+                                                    id="disabilityBenefitsYes" value="Yes" checked>
+                                                <label class="form-check-label" for="disabilityBenefitsYes">
+                                                    Yes
+                                                </label>
+                                            </div>
+                                            <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="radio" name="disabilityBenefits"
+                                                    id="disabilityBenefitsNo" value="No">
+                                                <label class="form-check-label" for="disabilityBenefitsNo">
+                                                    No
+                                                </label>
+                                            </div>
+                                        </div>
+
+                                        <div class="eligibilityQuestionaire eligibilityQuestionaire2 mb-3">
+                                            <p class="mb-2">Is your main source of employment income from a seasonal employment?</p>
+                                            <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="radio" name="seasonalEmployment"
+                                                    id="seasonalEmploymentYes" value="Yes" checked>
+                                                <label class="form-check-label" for="seasonalEmploymentYes">
+                                                    Yes
+                                                </label>
+                                            </div>
+                                            <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="radio" name="seasonalEmployment"
+                                                    id="seasonalEmploymentNo" value="No">
+                                                <label class="form-check-label" for="seasonalEmploymentNo">
+                                                    No
+                                                </label>
+                                            </div>
+                                        </div>
+
+                                        <div class="eligibilityQuestionaire eligibilityQuestionaire3 mb-3">
+                                            <p class="mb-2">Do you currently work at least 25 hours per week? </p>
+                                            <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="radio" name="insurance25Hours"
+                                                    id="insurance25HoursYes" value="Yes" checked>
+                                                <label class="form-check-label" for="insurance25HoursYes">
+                                                    Yes
+                                                </label>
+                                            </div>
+                                            <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="radio" name="insurance25Hours"
+                                                    id="insurance25HoursNo" value="No">
+                                                <label class="form-check-label" for="insurance25HoursNo">
+                                                    No
+                                                </label>
+                                            </div>
+                                        </div>
+
+                                        <div class="eligibilityQuestionaire eligibilityQuestionaire4 mb-3">
+                                            <p class="mb-2">Do any of the following apply to you? Are you</p>
+
+                                            <div class="eligibilityQuestionaire4A mb-3 ms-3">
+                                                <p class="mb-2">(a)	An Independent contractor</p>
+                                                <div class="form-check form-check-inline">
+                                                    <input class="form-check-input" type="radio" name="insuranceSelfEmployedA"
+                                                        id="insuranceSelfEmployedAYes" value="Yes" checked>
+                                                    <label class="form-check-label" for="insuranceSelfEmployedAYes">
+                                                        Yes
+                                                    </label>
+                                                </div>
+                                                <div class="form-check form-check-inline">
+                                                    <input class="form-check-input" type="radio" name="insuranceSelfEmployedA"
+                                                        id="insuranceSelfEmployedANo" value="No">
+                                                    <label class="form-check-label" for="insuranceSelfEmployedANo">
+                                                        No
+                                                    </label>
+                                                </div>
+                                            </div>
+
+                                            <div class="eligibilityQuestionaire4B mb-3 ms-3">
+                                                <p class="mb-2">(b)	A temporary employee with a pre-determined time limit or end date for your employment</p>
+                                                <div class="form-check form-check-inline">
+                                                    <input class="form-check-input" type="radio" name="insuranceSelfEmployedB"
+                                                        id="insuranceSelfEmployedBYes" value="Yes" checked>
+                                                    <label class="form-check-label" for="insuranceSelfEmployedBYes">
+                                                        Yes
+                                                    </label>
+                                                </div>
+                                                <div class="form-check form-check-inline">
+                                                    <input class="form-check-input" type="radio" name="insuranceSelfEmployedB"
+                                                        id="insuranceSelfEmployedBNo" value="No">
+                                                    <label class="form-check-label" for="insuranceSelfEmployedBNo">
+                                                        No
+                                                    </label>
+                                                </div>
+                                            </div>
+
+                                            <div class="eligibilityQuestionaire4C mb-3 ms-3">
+                                                <p class="mb-2">(c)	Self employed</p>
+                                                <div class="form-check form-check-inline">
+                                                    <input class="form-check-input" type="radio" name="insuranceSelfEmployedC"
+                                                        id="insuranceSelfEmployedCYes" value="Yes" checked>
+                                                    <label class="form-check-label" for="insuranceSelfEmployedCYes">
+                                                        Yes
+                                                    </label>
+                                                </div>
+                                                <div class="form-check form-check-inline">
+                                                    <input class="form-check-input" type="radio" name="insuranceSelfEmployedC"
+                                                        id="insuranceSelfEmployedCNo" value="No">
+                                                    <label class="form-check-label" for="insuranceSelfEmployedCNo">
+                                                        No
+                                                    </label>
+                                                </div>
+                                            </div>
+
+                                            <div class="eligibilityQuestionaire4D mb-3 ms-3">
+                                                <p class="mb-2">(d)	A controlling shareholder of the company that employs you</p>
+                                                <div class="form-check form-check-inline">
+                                                    <input class="form-check-input" type="radio" name="insuranceSelfEmployedD"
+                                                        id="insuranceSelfEmployedDYes" value="Yes" checked>
+                                                    <label class="form-check-label" for="insuranceSelfEmployedDYes">
+                                                        Yes
+                                                    </label>
+                                                </div>
+                                                <div class="form-check form-check-inline">
+                                                    <input class="form-check-input" type="radio" name="insuranceSelfEmployedD"
+                                                        id="insuranceSelfEmployedDNo" value="No">
+                                                    <label class="form-check-label" for="insuranceSelfEmployedDNo">
+                                                        No
+                                                    </label>
+                                                </div>
+                                            </div>
+
+                                            <div class="eligibilityQuestionaire4E mb-3 ms-3">
+                                                <p class="mb-2">(e)	Employed by a member of your immediate family or a company either owned or controlled by an immediate family member</p>
+                                                <div class="form-check form-check-inline">
+                                                    <input class="form-check-input" type="radio" name="insuranceSelfEmployedE"
+                                                        id="insuranceSelfEmployedEYes" value="Yes" checked>
+                                                    <label class="form-check-label" for="insuranceSelfEmployedEYes">
+                                                        Yes
+                                                    </label>
+                                                </div>
+                                                <div class="form-check form-check-inline">
+                                                    <input class="form-check-input" type="radio" name="insuranceSelfEmployedE"
+                                                        id="insuranceSelfEmployedENo" value="No">
+                                                    <label class="form-check-label" for="insuranceSelfEmployedENo">
+                                                        No
+                                                    </label>
+                                                </div>
+                                            </div>
+
+                                        </div>
+
+                                        <div class="eligibilityQuestionaire eligibilityQuestionaire5 mb-3">
+                                            <p class="mb-2">Have you received any notices or otherwise become aware of your future unemployment?</p>
+                                            <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="radio" name="futureUnemployment"
+                                                    id="futureUnemploymentYes" value="Yes" checked>
+                                                <label class="form-check-label" for="futureUnemploymentYes">
+                                                    Yes
+                                                </label>
+                                            </div>
+                                            <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="radio" name="futureUnemployment"
+                                                    id="futureUnemploymentNo" value="No">
+                                                <label class="form-check-label" for="futureUnemploymentNo">
+                                                    No
+                                                </label>
+                                            </div>
+                                        </div>
+
+                                        <div class="error">
+                                            <p>Sorry, You are not eligible to apply for Mortgage DI+.</p>
+                                        </div>
+
+                                        <div class="mt-5 d-flex align-items-center justify-content-end commonBtnContainer">
+                                            <button type="button" class="btn commonBtn">Proceed</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="rightsec">
+                                    <p>Common questions & answers</p>
+                                    <div class="faqSectionByPage">
+                                        <div class="accordion" id="faqRightSec">
+                                            <div class="accordion-item">
+                                                <h2 class="accordion-header" id="MortgagePlusFAQ1">
+                                                    <button class="accordion-button collapsed" type="button"
+                                                        data-bs-toggle="collapse" data-bs-target="#collapseOne"
+                                                        aria-expanded="false" aria-controls="collapseOne">
+                                                        <i class='bx bx-plus'></i>
+                                                        <span>Question 001</span>
+                                                    </button>
+                                                </h2>
+                                                <div id="collapseOne" class="accordion-collapse collapse"
+                                                    aria-labelledby="MortgagePlusFAQ1" data-bs-parent="#faqRightSec">
+                                                    <div class="accordion-body">
+                                                        <strong>This is the first item's accordion body.</strong> It is
+                                                        shown by default, until the collapse plugin adds the appropriate
+                                                        classes that we use to style each element.
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="accordion-item">
+                                                <h2 class="accordion-header" id="MortgagePlusFAQ2">
+                                                    <button class="accordion-button collapsed" type="button"
+                                                        data-bs-toggle="collapse" data-bs-target="#collapseTwo"
+                                                        aria-expanded="false" aria-controls="collapseTwo">
+                                                        <i class='bx bx-plus'></i>
+                                                        <span>Question 002</span>
+                                                    </button>
+                                                </h2>
+                                                <div id="collapseTwo" class="accordion-collapse collapse"
+                                                    aria-labelledby="MortgagePlusFAQ2" data-bs-parent="#faqRightSec">
+                                                    <div class="accordion-body">
+                                                        <strong>This is the second item's accordion body.</strong> It is
+                                                        hidden by default, until the collapse plugin adds the
+                                                        appropriate classes that we use to style each element.
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="accordion-item">
+                                                <h2 class="accordion-header" id="MortgagePlusFAQ3">
+                                                    <button class="accordion-button collapsed" type="button"
+                                                        data-bs-toggle="collapse" data-bs-target="#collapseThree"
+                                                        aria-expanded="false" aria-controls="collapseThree">
+                                                        <i class='bx bx-plus'></i>
+                                                        <span>Question 003</span>
+                                                    </button>
+                                                </h2>
+                                                <div id="collapseThree" class="accordion-collapse collapse"
+                                                    aria-labelledby="MortgagePlusFAQ3" data-bs-parent="#faqRightSec">
+                                                    <div class="accordion-body">
+                                                        <strong>This is the third item's accordion body.</strong> It is
+                                                        hidden by default, until the collapse plugin adds the
+                                                        appropriate classes that we use to style each element.
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="./js/jquery.multi-select.js"></script>
+    <script src="./js/myScript.js"></script>
+</body>
+
+</html>

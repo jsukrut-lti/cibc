@@ -13,13 +13,15 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
+from django.conf import settings
 from django.contrib import admin
 from django.urls import path, re_path
 from django.conf.urls import include
-from django.views.generic import TemplateView
+from django.views.generic import TemplateView, RedirectView
 from rest_framework import permissions
 from drf_yasg.views import get_schema_view
 from drf_yasg import openapi
+from django.contrib.auth import views as auth_views
 
 schema_view = get_schema_view(
    openapi.Info(
@@ -36,8 +38,9 @@ schema_view = get_schema_view(
 
 urlpatterns = [
     path('grappelli/', include('grappelli.urls')),  # grappelli URLS
+    path('admin/login/', auth_views.LoginView.as_view(template_name='admin_base.html'), name='login'),
     path('admin/', admin.site.urls),  # admin site
-    path('', TemplateView.as_view(template_name="home.html"), name='home'),
+    path('', RedirectView.as_view(url='/auth/login/')),
     path('auth/', include('django.contrib.auth.urls')),  # home
     path('account/', include('insurancePersonalizationAndRecommendation.accounts.urls')),  # home
     path('insurance/', include('insurancePersonalizationAndRecommendation.insuranceProducts.urls')), # home
@@ -49,5 +52,9 @@ urlpatterns = [
     re_path(r'^swagger(?P<format>\.json|\.yaml)$', schema_view.without_ui(cache_timeout=0), name='schema-json'),
     re_path(r'^swagger/$', schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui'),
     re_path(r'^redoc/$', schema_view.with_ui('redoc', cache_timeout=0), name='schema-redoc'),
-    path('accounts/', include('allauth.urls')),
+    path('oauth2/', include('django_auth_adfs.urls')),
 ]
+
+if settings.DEBUG:
+    import debug_toolbar
+    urlpatterns += path('__debug__/', include(debug_toolbar.urls)),

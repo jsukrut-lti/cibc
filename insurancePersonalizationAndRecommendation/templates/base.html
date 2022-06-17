@@ -9,7 +9,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" type="image/x-icon" href="./images/logoSmall.png">
+    <link rel="icon" type="image/x-icon" href="{% static 'creditInsurance/images/logoSmall.png' %}">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
     <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
@@ -54,47 +54,18 @@
                         <i class='bx bx-exit'></i>
                         <span class="link_name">{{ menu_name }}</span>
                     </a>
-
+                    <ul class="sub-menu blank">
+                        <li><a class="link_name" href="{{ request.path }}">{{ menu_name }}</a></li>
+                    </ul>
                 </li>
                 {% endif %}
             </div>
-
-            <div class="productLinks">
-                <li>
-                    <a href="https://www.cibc.com/en/personal-banking/insurance.html" target="_blank">
-                        <i class='bx bxl-product-hunt'></i>
-                        <span class="link_name">Link 1</span>
+            <div class="exitApplication">
+                <li class="mb-3">
+                    <a onclick="exitApplication()">
+                        <i class="bx bx-exit"></i>
+                        <span class="link_name">Exit</span>
                     </a>
-                    <ul class="sub-menu blank">
-                        <li><a class="link_name" href="https://www.cibc.com/en/personal-banking/insurance.html" target="_blank">Link 1</a></li>
-                    </ul>
-                </li>
-                <li>
-                    <a href="https://www.cibc.com/en/personal-banking/insurance.html" target="_blank">
-                        <i class='bx bxl-product-hunt'></i>
-                        <span class="link_name">Link 2</span>
-                    </a>
-                    <ul class="sub-menu blank">
-                        <li><a class="link_name" href="https://www.cibc.com/en/personal-banking/insurance.html" target="_blank">Link 2</a></li>
-                    </ul>
-                </li>
-                <li>
-                    <a href="https://www.cibc.com/en/personal-banking/insurance.html" target="_blank">
-                        <i class='bx bxl-product-hunt'></i>
-                        <span class="link_name">Link 3</span>
-                    </a>
-                    <ul class="sub-menu blank">
-                        <li><a class="link_name" href="https://www.cibc.com/en/personal-banking/insurance.html" target="_blank">Link 3</a></li>
-                    </ul>
-                </li>
-                <li>
-                    <a href="https://www.cibc.com/en/personal-banking/insurance.html" target="_blank">
-                        <i class='bx bxl-product-hunt'></i>
-                        <span class="link_name">Link 4</span>
-                    </a>
-                    <ul class="sub-menu blank">
-                        <li><a class="link_name" href="https://www.cibc.com/en/personal-banking/insurance.html" target="_blank">Link 4</a></li>
-                    </ul>
                 </li>
             </div>
         </ul>
@@ -130,7 +101,6 @@
     <script src="{% static 'creditInsurance/js/myScript.js' %}">request_obj</script>
 <!--    <script src="{% static 'creditInsurance/js/base.js' %}"></script>-->
    <script>
-<!--        console.log({"request_obj": "{{ request.session.session_key }}" })-->
         $('#checkSelectMultiple').multiSelect({
             'noneText':'Select'
         });

@@ -10,10 +10,9 @@ DATABASES = {
         'NAME': 'cibc',
         'HOST': 'localhost',
         'USER': 'postgres',
-        'PASSWORD': 'root',
+        'PASSWORD': 'jayesh123',
         'PORT': '5432',
     }
 }
 
-
-#INSTALLED_APPS += ['debug_toolbar',]
+# INSTALLED_APPS += ['debug_toolbar',]

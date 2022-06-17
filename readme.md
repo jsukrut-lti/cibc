@@ -54,7 +54,7 @@ postgres=# \q
 python manage.py makemessages -a  --settings=config.settings.local
 
 # Data Dump
-python manage.py dumpdata --settings=config.settings.local --indent 2 > ./data/dbDataDump.json
+#python manage.py dumpdata --settings=config.settings.local --indent 2 > ./data/dbDataDump.json
 
 # Load Storie Objects when the data tables are empty
 python manage.py loaddata --settings=config.settings.local ./data/stories_Objections.json

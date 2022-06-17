@@ -2,43 +2,45 @@
 {% block content %}
 {% load static %}
         <div class="main">
-            <div class="d-flex justify-content-between align-items-center topBar">
-                <div class="toggle d-lg-block d-none">
-                    <i class='bx bx-menu'></i>
-                </div>
-                <div class="toggle d-block d-lg-none">
-                    <i class='bx bx-menu mobileMenu' onclick="openNavMob()"></i>
-                </div>
+            <div class="d-flex justify-content-end align-items-center topBar">
             </div>
 
             <div class="container-lg px-4">
-                <div class="accountScreen notEligible welcomeScreen my-4">
+                <div class="commonLayout welcomeScreen my-4">
                     <div class="content">
-                        <div class="closeIcon">
-                            <i class="bi bi-x-lg" onclick="exitApplication()"></i>
-                        </div>
-                        <form action="/insurance/questionnaire/" method="get" class="form">
-                            {% csrf_token %}
-                            <div class="mb-3">
-                                <h1 class="display-1 text-center mb-3"><span>Welcome</span></h1>
-                                <p class="notEligibleMsg mb-5 text-center">Now that we understand your credit needs, my job is to help you understand your protection needs.</p>
-                            </div>
-                            <div class="closePage text-center">
-                                <button type="submit" class="btn commonBtn mb-5">Continue</button>
-                                <div class="contactSec mt-4">
-                                    <div class="contactDetails d-flex justify-content-center">
-                                        <div class="mail mb-2">
-                                            <img src="{% static 'creditInsurance/images/mail.png' %}" alt="mail icon">
-                                            <a href="mailto:info_ci@cibc.com">info_ci@cibc.com</a>
+                        <div class="row">
+                            <div class="col-md-8 mb-3 mb-md-0">
+                                <div class="leftSec">
+                                    <form action="/insurance/questionnaire/" method="post" class="form">
+                                        {% csrf_token %}
+                                        <input type="hidden" name="pk_id" value="{{ pk_id }}">
+                                        <div class="mb-3">
+                                            <h1 class="display-1 text-center mb-3"><span>Welcome</span></h1>
+                                            <p class="notEligibleMsg mb-5 text-center">Now that we understand your credit needs, my job is to help you understand your protection needs.</p>
                                         </div>
-                                        <div class="call">
-                                            <img src="{% static 'creditInsurance/images/phone.png' %}" alt="call icon">
-                                            <span>1.877.448.6500</span>
+                                        <div class="closePage text-center">
+                                            <button type="submit" class="btn commonBtn mb-5">Continue</button>
+                                            <div class="contactSec mt-4">
+                                                <div class="contactDetails d-flex justify-content-center">
+                                                    <div class="mail mb-2">
+                                                        <img src="{% static 'creditInsurance/images/mail.png' %}" alt="mail icon">
+                                                        <a href="mailto:info_ci@cibc.com">info_ci@cibc.com</a>
+                                                    </div>
+                                                    <div class="call">
+                                                        <img src="{% static 'creditInsurance/images/phone.png' %}" alt="call icon">
+                                                        <span>1.877.448.6500</span>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </div>
-                                    </div>
+                                    </form>
                                 </div>
                             </div>
-                        </form>
+
+                            <div class="col-md-4">
+                                {% include 'creditInsurance/commonRelevantLinks.html' %}
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
