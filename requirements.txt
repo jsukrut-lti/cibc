@@ -141,3 +141,5 @@ zipp==3.4.1
 django-auth-adfs==1.9.6
 django-river==3.3.0
 django-debug-toolbar==3.4.0
+apscheduler==3.9.1
+django-apscheduler==0.6.2

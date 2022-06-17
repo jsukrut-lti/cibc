@@ -51,8 +51,8 @@ INSTALLED_APPS = [
     'insurancePersonalizationAndRecommendation.stories',
     'grappelli',
     'bootstrap5',
-    "crispy_forms",
-    "crispy_bootstrap5",
+    'crispy_forms',
+    'crispy_bootstrap5',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -65,7 +65,8 @@ INSTALLED_APPS = [
     'django.contrib.sites',
     'django_extensions',
     'django_auth_adfs',
-    "debug_toolbar",
+    'debug_toolbar',
+    'django_apscheduler',
 ]
 
 MIDDLEWARE = [
@@ -304,3 +305,8 @@ INTERNAL_IPS = [
 ]
 
 ENCRYPT_KEY = b'iDJpljxUBBsacCZ50GpSBff6Xem0R-giqXXnBFGJ2Rs='
+
+SCHEDULE_SECONDS = 10
+SCHEDULE_MINUTES = 0
+SCHEDULE_HOURS = 0
+SCHEDULE_DAYS = 0
