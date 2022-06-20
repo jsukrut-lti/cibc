@@ -1569,15 +1569,10 @@ a {
 }
 
 /*Not Eligible Page CSS*/
-.notEligible {
-  height: inherit;
-  background-color: #FFFFFF;
-  position: relative;
-}
-
 .notEligible .content h4 {
-  font-weight: 400;
+  font-weight: 400 !important;
   margin-bottom: 14px;
+  color: #212529 !important;
 }
 
 .notEligible .content form .userImg {
@@ -1645,8 +1640,9 @@ a {
 }
 
 .exitPlatform .content h4 {
-  font-weight: 300;
+  font-weight: 300 !important;
   position: relative;
+  color: #212529 !important;
 }
 
 .exitPlatform .content h4::before {
