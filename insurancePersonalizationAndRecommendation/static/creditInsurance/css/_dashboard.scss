@@ -132,6 +132,34 @@
         align-items: center;
         margin-left: 18px;
         // justify-content: center;
+        gap: 50px;
+
+        .langChange {
+            .dropdown {
+                .btn {
+                    &::after {
+                        display: none;
+                    }
+                }
+
+                ul.dropdown-menu {
+                    background-color: $white;
+                    transform: translate(-93px, 48px) !important;
+
+                    li {
+                        a {
+                            color: $CIBC_nav;
+                            font-weight: 500;
+
+                            &:hover,
+                            &:focus {
+                                background-color: transparent;
+                            }
+                        }
+                    }
+                }
+            }
+        }
 
         i {
             font-size: 30px;

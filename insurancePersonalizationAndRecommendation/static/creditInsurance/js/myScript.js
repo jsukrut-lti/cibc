@@ -45,9 +45,9 @@ for (var i = 0; i < arrow.length; i++) {
 let sidebar = document.querySelector(".sidebar");
 let sidebarBtn = document.querySelector(".bx.bx-menu");
 
-sidebarBtn.addEventListener("click", () => {
-    sidebar.classList.toggle("close");
-});
+// sidebarBtn.addEventListener("click", () => {
+//     sidebar.classList.toggle("close");
+// });
 
 
 // SideBar Navigation for Mobile

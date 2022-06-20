@@ -677,6 +677,26 @@ a {
       -ms-flex-align: center;
           align-items: center;
   margin-left: 18px;
+  gap: 50px;
+}
+
+.sidebar .logo-details .langChange .dropdown .btn::after {
+  display: none;
+}
+
+.sidebar .logo-details .langChange .dropdown ul.dropdown-menu {
+  background-color: #FFFFFF;
+  -webkit-transform: translate(-93px, 48px) !important;
+          transform: translate(-93px, 48px) !important;
+}
+
+.sidebar .logo-details .langChange .dropdown ul.dropdown-menu li a {
+  color: #C41F3E;
+  font-weight: 500;
+}
+
+.sidebar .logo-details .langChange .dropdown ul.dropdown-menu li a:hover, .sidebar .logo-details .langChange .dropdown ul.dropdown-menu li a:focus {
+  background-color: transparent;
 }
 
 .sidebar .logo-details i {
