@@ -727,6 +727,30 @@
                 }
             }
         }
+
+        .relevantLinksSection {
+            .relevantHeading {
+                background-color: $white;
+                border-top-left-radius: 8px;
+                border-top-right-radius: 8px;
+                font-weight: 700;
+            }
+
+            .relevantLinksGroup {
+                background-color: $white;
+
+                p {
+                    padding: 1rem 1.25rem;
+                    border-bottom: 1px solid #00000020;
+
+                    a {
+                        color: $CIBC_nav;
+                        text-decoration: underline;
+                        font-weight: 500;
+                    }
+                }
+            } 
+        }
     }
 
     .rightContent {

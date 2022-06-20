@@ -545,3 +545,12 @@ class ExitView(View):
         }
         return render(request, template_name=self.template_name, context=context)
 
+class ExitApplication(View):
+    template_name = 'creditInsurance/exitApplication.html'
+
+    def get(self, request, *args, **kwargs):
+        context = {
+            'id': kwargs['pk'],
+        }
+        return render(request, template_name=self.template_name, context=context)
+

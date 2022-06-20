@@ -1259,6 +1259,28 @@ a {
   background-image: url("../images/download.svg");
 }
 
+.dashboardContent .leftContent .relevantLinksSection .relevantHeading {
+  background-color: #FFFFFF;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+  font-weight: 700;
+}
+
+.dashboardContent .leftContent .relevantLinksSection .relevantLinksGroup {
+  background-color: #FFFFFF;
+}
+
+.dashboardContent .leftContent .relevantLinksSection .relevantLinksGroup p {
+  padding: 1rem 1.25rem;
+  border-bottom: 1px solid #00000020;
+}
+
+.dashboardContent .leftContent .relevantLinksSection .relevantLinksGroup p a {
+  color: #C41F3E;
+  text-decoration: underline;
+  font-weight: 500;
+}
+
 .dashboardContent .rightContent {
   background-color: #FFFFFF;
   border-radius: 8px;
@@ -1569,15 +1591,10 @@ a {
 }
 
 /*Not Eligible Page CSS*/
-.notEligible {
-  height: inherit;
-  background-color: #FFFFFF;
-  position: relative;
-}
-
 .notEligible .content h4 {
-  font-weight: 400;
+  font-weight: 400 !important;
   margin-bottom: 14px;
+  color: #212529 !important;
 }
 
 .notEligible .content form .userImg {
@@ -1601,7 +1618,8 @@ a {
 
 .exitPage .content h4 {
   font-size: 36px;
-  font-weight: 500;
+  font-weight: 500 !important;
+  color: #212529 !important;
 }
 
 .exitPage .content .exitReason {
@@ -1613,6 +1631,7 @@ a {
 .exitPage .content .exitReason h4 {
   font-size: 24px;
   font-weight: 500 !important;
+  color: #212529 !important;
 }
 
 .exitPage .content .exitReason .form-check {
@@ -1645,8 +1664,9 @@ a {
 }
 
 .exitPlatform .content h4 {
-  font-weight: 300;
+  font-weight: 300 !important;
   position: relative;
+  color: #212529 !important;
 }
 
 .exitPlatform .content h4::before {

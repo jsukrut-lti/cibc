@@ -11,8 +11,8 @@
                         <div class="row">
                             <div class="col-md-8 mb-3 mb-md-0">
                                 <div class="leftSec">
-                                    <div class="closeIcon">
-                                        <i class="bi bi-x-lg"></i>
+                                    <div class="refreshBtn">
+                                        <img src="{% static 'creditInsurance/images/reload.png' %}" alt="reload icon">
                                     </div>
 
                                     <div class="userImg">
@@ -48,61 +48,66 @@
                                 </div>
                             </div>
                             <div class="col-md-4">
-                                <div class="rightsec">
-                                    <p>Common questions & answers</p>
-                                    <div class="faqSectionByPage">
-                                        <div class="accordion" id="faqRightSec">
-                                            <div class="accordion-item">
-                                                <h2 class="accordion-header" id="faqOne">
-                                                    <button class="accordion-button collapsed" type="button"
-                                                        data-bs-toggle="collapse" data-bs-target="#collapseOne"
-                                                        aria-expanded="false" aria-controls="collapseOne">
-                                                        <i class='bx bx-plus'></i>
-                                                        <span>Question 001</span>
-                                                    </button>
-                                                </h2>
-                                                <div id="collapseOne" class="accordion-collapse collapse"
-                                                    aria-labelledby="faqOne" data-bs-parent="#faqRightSec">
-                                                    <div class="accordion-body">
-                                                        <strong>This is the first item's accordion body.</strong> It is
-                                                        shown by default, until the collapse plugin adds the appropriate
-                                                        classes that we use to style each element.
+                                <div class="col-md-12 mb-3">
+                                    {% include 'creditInsurance/commonRelevantLinks.html' %}
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="rightsec">
+                                        <p>Common questions & answers</p>
+                                        <div class="faqSectionByPage">
+                                            <div class="accordion" id="faqRightSec">
+                                                <div class="accordion-item">
+                                                    <h2 class="accordion-header" id="faqOne">
+                                                        <button class="accordion-button collapsed" type="button"
+                                                            data-bs-toggle="collapse" data-bs-target="#collapseOne"
+                                                            aria-expanded="false" aria-controls="collapseOne">
+                                                            <i class='bx bx-plus'></i>
+                                                            <span>Question 001</span>
+                                                        </button>
+                                                    </h2>
+                                                    <div id="collapseOne" class="accordion-collapse collapse"
+                                                        aria-labelledby="faqOne" data-bs-parent="#faqRightSec">
+                                                        <div class="accordion-body">
+                                                            <strong>This is the first item's accordion body.</strong> It is
+                                                            shown by default, until the collapse plugin adds the appropriate
+                                                            classes that we use to style each element.
+                                                        </div>
                                                     </div>
                                                 </div>
-                                            </div>
-                                            <div class="accordion-item">
-                                                <h2 class="accordion-header" id="faqTwo">
-                                                    <button class="accordion-button collapsed" type="button"
-                                                        data-bs-toggle="collapse" data-bs-target="#collapseTwo"
-                                                        aria-expanded="false" aria-controls="collapseTwo">
-                                                        <i class='bx bx-plus'></i>
-                                                        <span>Question 002</span>
-                                                    </button>
-                                                </h2>
-                                                <div id="collapseTwo" class="accordion-collapse collapse"
-                                                    aria-labelledby="faqTwo" data-bs-parent="#faqRightSec">
-                                                    <div class="accordion-body">
-                                                        <strong>This is the second item's accordion body.</strong> It is
-                                                        hidden by default, until the collapse plugin adds the
-                                                        appropriate classes that we use to style each element.
+                                                <div class="accordion-item">
+                                                    <h2 class="accordion-header" id="faqTwo">
+                                                        <button class="accordion-button collapsed" type="button"
+                                                            data-bs-toggle="collapse" data-bs-target="#collapseTwo"
+                                                            aria-expanded="false" aria-controls="collapseTwo">
+                                                            <i class='bx bx-plus'></i>
+                                                            <span>Question 002</span>
+                                                        </button>
+                                                    </h2>
+                                                    <div id="collapseTwo" class="accordion-collapse collapse"
+                                                        aria-labelledby="faqTwo" data-bs-parent="#faqRightSec">
+                                                        <div class="accordion-body">
+                                                            <strong>This is the second item's accordion body.</strong> It is
+                                                            hidden by default, until the collapse plugin adds the
+                                                            appropriate classes that we use to style each element.
+                                                        </div>
                                                     </div>
                                                 </div>
-                                            </div>
-                                            <div class="accordion-item">
-                                                <h2 class="accordion-header" id="faqThree">
-                                                    <button class="accordion-button collapsed" type="button"
-                                                        data-bs-toggle="collapse" data-bs-target="#collapseThree"
-                                                        aria-expanded="false" aria-controls="collapseThree">
-                                                        <i class='bx bx-plus'></i>
-                                                        <span>Question 003</span>
-                                                    </button>
-                                                </h2>
-                                                <div id="collapseThree" class="accordion-collapse collapse"
-                                                    aria-labelledby="faqThree" data-bs-parent="#faqRightSec">
-                                                    <div class="accordion-body">
-                                                        <strong>This is the third item's accordion body.</strong> It is
-                                                        hidden by default, until the collapse plugin adds the
-                                                        appropriate classes that we use to style each element.
+                                                <div class="accordion-item">
+                                                    <h2 class="accordion-header" id="faqThree">
+                                                        <button class="accordion-button collapsed" type="button"
+                                                            data-bs-toggle="collapse" data-bs-target="#collapseThree"
+                                                            aria-expanded="false" aria-controls="collapseThree">
+                                                            <i class='bx bx-plus'></i>
+                                                            <span>Question 003</span>
+                                                        </button>
+                                                    </h2>
+                                                    <div id="collapseThree" class="accordion-collapse collapse"
+                                                        aria-labelledby="faqThree" data-bs-parent="#faqRightSec">
+                                                        <div class="accordion-body">
+                                                            <strong>This is the third item's accordion body.</strong> It is
+                                                            hidden by default, until the collapse plugin adds the
+                                                            appropriate classes that we use to style each element.
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
