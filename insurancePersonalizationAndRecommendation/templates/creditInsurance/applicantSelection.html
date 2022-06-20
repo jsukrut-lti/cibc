@@ -64,7 +64,7 @@
                                                 </label>
                                             </div>
                                         </div>
-                                        <div class="error mt-5 mb-2 d-none">
+                                        <div class="error mt-3 mb-1 d-none">
                                             <p class="m-0 error_applicantSelection">Kindly select one of the applicant</p>
                                         </div>
 
@@ -87,6 +87,37 @@
                 </div>
             </div>
         </div>
+
+<script>
+
+let error = document.querySelector('.error');
+
+
+let form = document.querySelector('.applicantSelection form');
+form.addEventListener('submit', (e) => {
+
+            var applicantJoinSelectionCount = document.querySelector('input[name="jointApplicant"]:checked').value;
+            var applicantSelectionCount = 0;
+
+            if(applicantJoinSelectionCount == "Yes" && document.getElementById("checkSelectMultiple").selectedIndex >= 0){
+                applicantSelectionCount = 1;
+
+            }
+            else if(applicantJoinSelectionCount == "No" && document.getElementById("checkSelect").selectedIndex >= 0) {
+                applicantSelectionCount = 1;
+
+            }
+
+        if(applicantSelectionCount == 0){
+            error.classList.remove('d-none');
+            error.classList.add('d-block');
+            e.preventDefault();
+            return false;
+        }
+
+
+})
+</script>
 
 
 {% endblock %}

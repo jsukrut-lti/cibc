@@ -68,14 +68,14 @@ let selectBox = document.querySelector('.selectBox');
 let selectBoxMultiple = document.querySelector('.selectBoxMultiple');
 
 selectBox.addEventListener('change', () => {
-    if(div.classList.contains('d-block') == true){
+    if(error.classList.contains('d-block') == true){
         error.classList.remove('d-block');
     }
     error.classList.add('d-none');
 })
 
 selectBoxMultiple.addEventListener('change', () => {
-    if(div.classList.contains('d-block') == true){
+    if(error.classList.contains('d-block') == true){
         error.classList.remove('d-block');
     }
     error.classList.add('d-none');
@@ -91,7 +91,7 @@ function selectedItem(e) {
         selectBox.style.display = "block";
         selectBoxMultiple.style.display = "none";
     }
-    if(div.classList.contains('d-block') == true){
+    if(error.classList.contains('d-block') == true){
         error.classList.remove('d-block');
     }
     error.classList.add('d-none');
