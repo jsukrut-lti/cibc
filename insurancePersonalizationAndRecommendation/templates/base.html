@@ -22,7 +22,19 @@
     <div class="sidebar d-lg-block d-none">
         <div class="logo-details">
             <span class="icon openNav"><img src="{% static 'creditInsurance/images/logo.png' %}" alt="CIBC logo"></span>
-            <span class="icon closeNav"><img src="{% static 'creditInsurance/images/logoSmall.png' %}" alt="CIBC logo"></span>
+            <!-- <span class="icon closeNav"><img src="{% static 'creditInsurance/images/logoSmall.png' %}" alt="CIBC logo"></span> -->
+            
+            <div class="langChange">
+                <div class="dropdown">
+                    <button class="btn dropdown-toggle" type="button" id="langDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                        <img src="{% static 'creditInsurance/images/global.svg' %}" alt="Gloabl Language Icon">
+                    </button>
+                    <ul class="dropdown-menu" aria-labelledby="langDropdown">
+                      <li><a class="dropdown-item" href="#">English</a></li>
+                      <li><a class="dropdown-item" href="#">French</a></li>
+                    </ul>
+                </div>
+            </div>
         </div>
         <ul class="nav-links d-flex flex-column justify-content-between">
             <div class="mainLinks">
