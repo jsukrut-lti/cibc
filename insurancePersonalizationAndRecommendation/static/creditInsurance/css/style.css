@@ -80,6 +80,27 @@ a {
   color: #C41F3E;
 }
 
+.refreshBtn {
+  position: absolute;
+  right: 12px;
+  top: 11px;
+  cursor: pointer;
+}
+
+.refreshBtn img {
+  height: 22px;
+  width: 22px;
+}
+
+.refreshBtnDashboard {
+  cursor: pointer;
+}
+
+.refreshBtnDashboard img {
+  height: 22px;
+  width: 22px;
+}
+
 .contactSec .contactDetails {
   gap: 30px;
 }
@@ -655,9 +676,27 @@ a {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
+  margin-left: 18px;
+  gap: 50px;
+}
+
+.sidebar .logo-details .langChange .dropdown .btn::after {
+  display: none;
+}
+
+.sidebar .logo-details .langChange .dropdown ul.dropdown-menu {
+  background-color: #FFFFFF;
+  -webkit-transform: translate(-93px, 48px) !important;
+          transform: translate(-93px, 48px) !important;
+}
+
+.sidebar .logo-details .langChange .dropdown ul.dropdown-menu li a {
+  color: #C41F3E;
+  font-weight: 500;
+}
+
+.sidebar .logo-details .langChange .dropdown ul.dropdown-menu li a:hover, .sidebar .logo-details .langChange .dropdown ul.dropdown-menu li a:focus {
+  background-color: transparent;
 }
 
 .sidebar .logo-details i {
@@ -690,6 +729,8 @@ a {
 }
 
 .sidebar .nav-links li {
+  cursor: pointer;
+  padding-left: 10px;
   position: relative;
   list-style: none;
   -webkit-transition: all 0.4s ease;
@@ -752,7 +793,7 @@ a {
   text-align: center;
   line-height: 50px;
   color: #42526E;
-  font-size: 20px;
+  font-size: 36px;
   cursor: pointer;
   -webkit-transition: all 0.3s ease;
   transition: all 0.3s ease;
@@ -828,28 +869,20 @@ a {
   display: block;
 }
 
-.sidebar .nav-links .productLinks {
-  margin-bottom: 30px;
-}
-
-.sidebar .nav-links .productLinks li i {
+.productLinks li i {
   height: 42px;
   min-width: 50px;
   line-height: 42px;
 }
 
-.sidebar .nav-links .productLinks li a {
+.productLinks li a {
   font-weight: 500;
 }
 
-.sidebar .nav-links .productLinks li a span {
-  font-size: 14px;
+.productLinks li a span {
+  font-size: 16px;
   text-decoration: underline;
   color: #C41F3E;
-}
-
-.sidebar .nav-links .productLinks li:hover a, .sidebar .nav-links .productLinks li:hover i, .sidebar .nav-links .productLinks li:hover span {
-  color: #FFFFFF;
 }
 
 .home-section {
@@ -1246,6 +1279,28 @@ a {
   background-image: url("../images/download.svg");
 }
 
+.dashboardContent .leftContent .relevantLinksSection .relevantHeading {
+  background-color: #FFFFFF;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+  font-weight: 700;
+}
+
+.dashboardContent .leftContent .relevantLinksSection .relevantLinksGroup {
+  background-color: #FFFFFF;
+}
+
+.dashboardContent .leftContent .relevantLinksSection .relevantLinksGroup p {
+  padding: 1rem 1.25rem;
+  border-bottom: 1px solid #00000020;
+}
+
+.dashboardContent .leftContent .relevantLinksSection .relevantLinksGroup p a {
+  color: #C41F3E;
+  text-decoration: underline;
+  font-weight: 500;
+}
+
 .dashboardContent .rightContent {
   background-color: #FFFFFF;
   border-radius: 8px;
@@ -1556,15 +1611,10 @@ a {
 }
 
 /*Not Eligible Page CSS*/
-.notEligible {
-  height: inherit;
-  background-color: #FFFFFF;
-  position: relative;
-}
-
 .notEligible .content h4 {
-  font-weight: 400;
+  font-weight: 400 !important;
   margin-bottom: 14px;
+  color: #212529 !important;
 }
 
 .notEligible .content form .userImg {
@@ -1588,7 +1638,8 @@ a {
 
 .exitPage .content h4 {
   font-size: 36px;
-  font-weight: 500;
+  font-weight: 500 !important;
+  color: #212529 !important;
 }
 
 .exitPage .content .exitReason {
@@ -1600,6 +1651,7 @@ a {
 .exitPage .content .exitReason h4 {
   font-size: 24px;
   font-weight: 500 !important;
+  color: #212529 !important;
 }
 
 .exitPage .content .exitReason .form-check {
@@ -1632,8 +1684,9 @@ a {
 }
 
 .exitPlatform .content h4 {
-  font-weight: 300;
+  font-weight: 300 !important;
   position: relative;
+  color: #212529 !important;
 }
 
 .exitPlatform .content h4::before {
@@ -1654,7 +1707,7 @@ a {
   position: relative;
   -webkit-box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.25);
           box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.25);
-  min-height: 480px;
+  min-height: 484px;
   position: relative;
 }
 
@@ -1710,11 +1763,12 @@ a {
   padding: 25px 30px 30px;
   -webkit-box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.25);
           box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.25);
-  min-height: 480px;
 }
 
 .commonLayout .content .rightsec p {
   font-size: 18px;
+  color: #212529;
+  font-weight: 400;
 }
 
 .commonLayout .content .rightsec .faqSectionByPage .accordion-button {
@@ -2063,9 +2117,3 @@ a {
   }
 }
 /*# sourceMappingURL=style.css.map */
-
-
-#grp-navigation{
-
-
-}

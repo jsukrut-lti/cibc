@@ -45,9 +45,9 @@ for (var i = 0; i < arrow.length; i++) {
 let sidebar = document.querySelector(".sidebar");
 let sidebarBtn = document.querySelector(".bx.bx-menu");
 
-sidebarBtn.addEventListener("click", () => {
-    sidebar.classList.toggle("close");
-});
+// sidebarBtn.addEventListener("click", () => {
+//     sidebar.classList.toggle("close");
+// });
 
 
 // SideBar Navigation for Mobile
@@ -66,13 +66,19 @@ function closeNavMob() {
 let radioBtns = document.querySelectorAll('.jointApplicantDetails .form-check-input[name="jointApplicant"]');
 let selectBox = document.querySelector('.selectBox');
 let selectBoxMultiple = document.querySelector('.selectBoxMultiple');
-let selectSingle = document.querySelector('.selectBox select');
-let selectMultiple = document.querySelector('.selectBoxMultiple select');
 
-console.log(selectSingle,selectMultiple)
+selectBox.addEventListener('change', () => {
+    if(div.classList.contains('d-block') == true){
+        error.classList.remove('d-block');
+    }
+    error.classList.add('d-none');
+})
 
-selectMultiple.addEventListener('change',() =>{
-    console.log("fdslfkdsflkdjflkdfjsdlkf")
+selectBoxMultiple.addEventListener('change', () => {
+    if(div.classList.contains('d-block') == true){
+        error.classList.remove('d-block');
+    }
+    error.classList.add('d-none');
 })
 
 function selectedItem(e) {
@@ -85,7 +91,9 @@ function selectedItem(e) {
         selectBox.style.display = "block";
         selectBoxMultiple.style.display = "none";
     }
-    error.classList.remove('d-block');
+    if(div.classList.contains('d-block') == true){
+        error.classList.remove('d-block');
+    }
     error.classList.add('d-none');
 }
 

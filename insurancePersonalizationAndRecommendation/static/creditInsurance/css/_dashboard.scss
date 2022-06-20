@@ -130,7 +130,36 @@
         width: 100%;
         display: flex;
         align-items: center;
-        justify-content: center;
+        margin-left: 18px;
+        // justify-content: center;
+        gap: 50px;
+
+        .langChange {
+            .dropdown {
+                .btn {
+                    &::after {
+                        display: none;
+                    }
+                }
+
+                ul.dropdown-menu {
+                    background-color: $white;
+                    transform: translate(-93px, 48px) !important;
+
+                    li {
+                        a {
+                            color: $CIBC_nav;
+                            font-weight: 500;
+
+                            &:hover,
+                            &:focus {
+                                background-color: transparent;
+                            }
+                        }
+                    }
+                }
+            }
+        }
 
         i {
             font-size: 30px;
@@ -162,6 +191,8 @@
         }
 
         li {
+            cursor: pointer;
+            padding-left: 10px;
             position: relative;
             list-style: none;
             transition: all 0.4s ease;
@@ -225,7 +256,7 @@
                 text-align: center;
                 line-height: 50px;
                 color: $textColor;
-                font-size: 20px;
+                font-size: 36px;
                 cursor: pointer;
                 transition: all 0.3s ease;
 
@@ -297,32 +328,32 @@
         i.arrow {
             display: block;
         }
+    }
+}
 
-        .productLinks {
-            margin-bottom: 30px;
+.productLinks {
+    // margin-bottom: 30px;
 
-            li {
-                i {
-                    height: 42px;
-                    min-width: 50px;
-                    line-height: 42px;
-                }
+    li {
+        i {
+            height: 42px;
+            min-width: 50px;
+            line-height: 42px;
+        }
 
-                a {
-                    font-weight: 500;
-                    
-                    span {
-                        font-size: 14px;
-                        text-decoration: underline;
-                        color: $CIBC_nav;
-                    }
-                }
+        a {
+            font-weight: 500;
+            
+            span {
+                font-size: 16px;
+                text-decoration: underline;
+                color: $CIBC_nav;
+            }
+        }
 
-                &:hover {
-                    a, i, span {
-                        color: $white;
-                    }
-                }
+        &:hover {
+            a, i, span {
+                // color: $white;
             }
         }
     }
@@ -723,6 +754,30 @@
                     }
                 }
             }
+        }
+
+        .relevantLinksSection {
+            .relevantHeading {
+                background-color: $white;
+                border-top-left-radius: 8px;
+                border-top-right-radius: 8px;
+                font-weight: 700;
+            }
+
+            .relevantLinksGroup {
+                background-color: $white;
+
+                p {
+                    padding: 1rem 1.25rem;
+                    border-bottom: 1px solid #00000020;
+
+                    a {
+                        color: $CIBC_nav;
+                        text-decoration: underline;
+                        font-weight: 500;
+                    }
+                }
+            } 
         }
     }
 

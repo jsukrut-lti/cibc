@@ -81,6 +81,27 @@ a {
     color: $CIBC_nav;
 }
 
+.refreshBtn {
+    position: absolute;
+    right: 12px;
+    top: 11px;
+    cursor: pointer;
+
+    img {
+        height: 22px;
+        width: 22px;
+    }
+}
+
+.refreshBtnDashboard {
+    cursor: pointer;
+
+    img {
+        height: 22px;
+        width: 22px;
+    }
+}
+
 .contactSec {
     .contactDetails {
         gap: 30px;

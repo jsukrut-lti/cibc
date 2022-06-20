@@ -2,13 +2,7 @@
 {% block content %}
 {% load static %}
         <div class="main">
-            <div class="d-flex justify-content-between align-items-center topBar">
-                <div class="toggle d-lg-block d-none">
-                    <i class='bx bx-menu'></i>
-                </div>
-                <div class="toggle d-block d-lg-none">
-                    <i class='bx bx-menu mobileMenu' onclick="openNavMob()"></i>
-                </div>
+            <div class="d-flex justify-content-end align-items-center topBar">
             </div>
 
             <div class="container-lg px-4">
@@ -17,8 +11,8 @@
                         <div class="row">
                             <div class="col-md-8 mb-3 mb-md-0">
                                 <div class="leftSec">
-                                    <div class="closeIcon">
-                                        <i class="bi bi-x-lg" onclick="exitApplication()"></i>
+                                    <div class="refreshBtn">
+                                        <img src="{% static 'creditInsurance/images/reload.png' %}" alt="reload icon">
                                     </div>
 
                                     <form action="/insurance/applicantDemographic/" method="post" class="form" id="applicantSelection">
@@ -81,44 +75,18 @@
                                 </div>
                             </div>
                             <div class="col-md-4">
-                                {% include 'creditInsurance/commonFAQ.html' %}
+                                <div class="col-md-12 mb-3">
+                                    {% include 'creditInsurance/commonRelevantLinks.html' %}
+                                </div>
+                                <div class="col-md-12">
+                                    {% include 'creditInsurance/commonFAQ.html' %}
+                            </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-
-<script>
-
-let error = document.querySelector('.error');
-
-
-let form = document.querySelector('.applicantSelection form');
-form.addEventListener('submit', (e) => {
-
-            var applicantJoinSelectionCount = document.querySelector('input[name="jointApplicant"]:checked').value;
-            var applicantSelectionCount = 0;
-
-            if(applicantJoinSelectionCount == "Yes" && document.getElementById("checkSelectMultiple").selectedIndex >= 0){
-                applicantSelectionCount = 1;
-
-            }
-            else if(applicantJoinSelectionCount == "No" && document.getElementById("checkSelect").selectedIndex >= 0) {
-                applicantSelectionCount = 1;
-
-            }
-
-        if(applicantSelectionCount == 0){
-            error.classList.remove('d-none');
-            error.classList.add('d-block');
-            e.preventDefault();
-            return false;
-        }
-
-
-})
-</script>
 
 
 {% endblock %}

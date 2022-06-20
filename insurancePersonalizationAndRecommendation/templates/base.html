@@ -22,7 +22,19 @@
     <div class="sidebar d-lg-block d-none">
         <div class="logo-details">
             <span class="icon openNav"><img src="{% static 'creditInsurance/images/logo.png' %}" alt="CIBC logo"></span>
-            <span class="icon closeNav"><img src="{% static 'creditInsurance/images/logoSmall.png' %}" alt="CIBC logo"></span>
+            <!-- <span class="icon closeNav"><img src="{% static 'creditInsurance/images/logoSmall.png' %}" alt="CIBC logo"></span> -->
+            
+            <div class="langChange">
+                <div class="dropdown">
+                    <button class="btn dropdown-toggle" type="button" id="langDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                        <img src="{% static 'creditInsurance/images/global.svg' %}" alt="Gloabl Language Icon">
+                    </button>
+                    <ul class="dropdown-menu" aria-labelledby="langDropdown">
+                      <li><a class="dropdown-item" href="#">English</a></li>
+                      <li><a class="dropdown-item" href="#">French</a></li>
+                    </ul>
+                </div>
+            </div>
         </div>
         <ul class="nav-links d-flex flex-column justify-content-between">
             <div class="mainLinks">
@@ -60,43 +72,12 @@
                 </li>
                 {% endif %}
             </div>
-
-            <div class="productLinks">
-                <li>
-                    <a href="https://www.cibc.com/en/personal-banking/insurance.html" target="_blank">
-                        <i class='bx bxl-product-hunt'></i>
-                        <span class="link_name">Link 1</span>
+            <div class="exitApplication">
+                <li class="mb-3">
+                    <a onclick="exitApplication()">
+                        <i class="bx bx-exit"></i>
+                        <span class="link_name">Exit</span>
                     </a>
-                    <ul class="sub-menu blank">
-                        <li><a class="link_name" href="https://www.cibc.com/en/personal-banking/insurance.html" target="_blank">Link 1</a></li>
-                    </ul>
-                </li>
-                <li>
-                    <a href="https://www.cibc.com/en/personal-banking/insurance.html" target="_blank">
-                        <i class='bx bxl-product-hunt'></i>
-                        <span class="link_name">Link 2</span>
-                    </a>
-                    <ul class="sub-menu blank">
-                        <li><a class="link_name" href="https://www.cibc.com/en/personal-banking/insurance.html" target="_blank">Link 2</a></li>
-                    </ul>
-                </li>
-                <li>
-                    <a href="https://www.cibc.com/en/personal-banking/insurance.html" target="_blank">
-                        <i class='bx bxl-product-hunt'></i>
-                        <span class="link_name">Link 3</span>
-                    </a>
-                    <ul class="sub-menu blank">
-                        <li><a class="link_name" href="https://www.cibc.com/en/personal-banking/insurance.html" target="_blank">Link 3</a></li>
-                    </ul>
-                </li>
-                <li>
-                    <a href="https://www.cibc.com/en/personal-banking/insurance.html" target="_blank">
-                        <i class='bx bxl-product-hunt'></i>
-                        <span class="link_name">Link 4</span>
-                    </a>
-                    <ul class="sub-menu blank">
-                        <li><a class="link_name" href="https://www.cibc.com/en/personal-banking/insurance.html" target="_blank">Link 4</a></li>
-                    </ul>
                 </li>
             </div>
         </ul>
