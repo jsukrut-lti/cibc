@@ -86,36 +86,35 @@ class CreditInsurance(object):
         d['currentApplicationPmt'] = raw_data['currentApplicationPmt']
         for index, appl in enumerate(appl_details):
             if appl['applicantId'] in select:
-                if index == 0:
-                    d['primaryFirstName'] = appl['FirstName']
-                    d['primaryMiddleName'] = appl['MiddleName']
-                    d['primaryLastName'] = appl['LastName']
-                    d['primaryAge'] = CreditInsurance.calculate_age(appl["birth_date"])
-                    d['primaryGender'] = appl['Gender']
-                    d['approxNetIncome'] = appl['monthlyGrossIncome']
-                    d['totalUnsecuredAmt'] = appl['existingDebts']['cibcUnsecured']
-                    d['totalSecuredAmt'] = appl['existingDebts']['cibcSecured']
-                    d['totalExistingDebt'] = appl['existingDebts']['cibcSecured'] + appl['existingDebts'][
-                        'cibcUnsecured']
-                    d['totalMonthlyPmt'] = appl['monthlyIncomeAfterTaxes']
-                    d['savingsEmergencyFund'] = appl['savingsEmergencyFund']
-                    d['creditCardBalance'] = appl['creditCard']['balance']
-                    d['totalMonthlyExpenses'] = appl['expenses']['totalMonthlyExpenses']
-                if index == 1:
-                    d['coFirstName'] = appl['FirstName']
-                    d['coMiddleName'] = appl['MiddleName']
-                    d['coLastName'] = appl['LastName']
-                    d['coAge'] = CreditInsurance.calculate_age(appl["birth_date"])
-                    d['coGender'] = appl['Gender']
-                    d['approxNetIncome'] += appl['monthlyGrossIncome']
-                    d['totalUnsecuredAmt'] += appl['existingDebts']['cibcUnsecured']
-                    d['totalSecuredAmt'] += appl['existingDebts']['cibcSecured']
-                    d['totalExistingDebt'] += appl['existingDebts']['cibcSecured'] + appl['existingDebts'][
-                        'cibcUnsecured']
-                    d['totalMonthlyPmt'] += appl['monthlyIncomeAfterTaxes']
-                    d['savingsEmergencyFund'] += appl['savingsEmergencyFund']
-                    d['creditCardBalance'] += appl['creditCard']['balance']
-                    d['totalMonthlyExpenses'] += appl['expenses']['totalMonthlyExpenses']
+                d['primaryFirstName'] = appl['FirstName']
+                d['primaryMiddleName'] = appl['MiddleName']
+                d['primaryLastName'] = appl['LastName']
+                d['primaryAge'] = CreditInsurance.calculate_age(appl["birth_date"])
+                d['primaryGender'] = appl['Gender']
+                d['approxNetIncome'] = appl['monthlyGrossIncome']
+                d['totalUnsecuredAmt'] = appl['existingDebts']['cibcUnsecured']
+                d['totalSecuredAmt'] = appl['existingDebts']['cibcSecured']
+                d['totalExistingDebt'] = appl['existingDebts']['cibcSecured'] + appl['existingDebts'][
+                    'cibcUnsecured']
+                d['totalMonthlyPmt'] = appl['monthlyIncomeAfterTaxes']
+                d['savingsEmergencyFund'] = appl['savingsEmergencyFund']
+                d['creditCardBalance'] = appl['creditCard']['balance']
+                d['totalMonthlyExpenses'] = appl['expenses']['totalMonthlyExpenses']
+            if len(select) > 1 and index == 1:
+                d['coFirstName'] = appl['FirstName']
+                d['coMiddleName'] = appl['MiddleName']
+                d['coLastName'] = appl['LastName']
+                d['coAge'] = CreditInsurance.calculate_age(appl["birth_date"])
+                d['coGender'] = appl['Gender']
+                d['approxNetIncome'] += appl['monthlyGrossIncome']
+                d['totalUnsecuredAmt'] += appl['existingDebts']['cibcUnsecured']
+                d['totalSecuredAmt'] += appl['existingDebts']['cibcSecured']
+                d['totalExistingDebt'] += appl['existingDebts']['cibcSecured'] + appl['existingDebts'][
+                    'cibcUnsecured']
+                d['totalMonthlyPmt'] += appl['monthlyIncomeAfterTaxes']
+                d['savingsEmergencyFund'] += appl['savingsEmergencyFund']
+                d['creditCardBalance'] += appl['creditCard']['balance']
+                d['totalMonthlyExpenses'] += appl['expenses']['totalMonthlyExpenses']
 
         return d
 
