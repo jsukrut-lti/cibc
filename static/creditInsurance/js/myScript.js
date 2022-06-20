@@ -67,21 +67,25 @@ let radioBtns = document.querySelectorAll('.jointApplicantDetails .form-check-in
 let selectBox = document.querySelector('.selectBox');
 let selectBoxMultiple = document.querySelector('.selectBoxMultiple');
 
+
 function selectedItem(e) {
     if(e.currentTarget.checked && e.currentTarget.value == "Yes") {
         selectBox.style.display = "none";
-        selectBoxMultiple.style.display = "block"; 
+        selectBoxMultiple.style.display = "block";
+
     }
 
     else if(e.currentTarget.checked && e.currentTarget.value == "No") {
         selectBox.style.display = "block";
         selectBoxMultiple.style.display = "none";
+
     }
 }
 
 radioBtns.forEach(item => {
     item.addEventListener('change', selectedItem);
 })
+
 
 // Exit Assessment - Show Objection as per radio button selection
 

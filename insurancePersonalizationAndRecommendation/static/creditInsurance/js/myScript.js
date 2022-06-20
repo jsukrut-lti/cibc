@@ -66,6 +66,14 @@ function closeNavMob() {
 let radioBtns = document.querySelectorAll('.jointApplicantDetails .form-check-input[name="jointApplicant"]');
 let selectBox = document.querySelector('.selectBox');
 let selectBoxMultiple = document.querySelector('.selectBoxMultiple');
+let selectSingle = document.querySelector('.selectBox select');
+let selectMultiple = document.querySelector('.selectBoxMultiple select');
+
+console.log(selectSingle,selectMultiple)
+
+selectMultiple.addEventListener('change',() =>{
+    console.log("fdslfkdsflkdjflkdfjsdlkf")
+})
 
 function selectedItem(e) {
     if(e.currentTarget.checked && e.currentTarget.value == "Yes") {
@@ -77,6 +85,8 @@ function selectedItem(e) {
         selectBox.style.display = "block";
         selectBoxMultiple.style.display = "none";
     }
+    error.classList.remove('d-block');
+    error.classList.add('d-none');
 }
 
 radioBtns.forEach(item => {
