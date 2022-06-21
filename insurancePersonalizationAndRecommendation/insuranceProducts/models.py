@@ -90,10 +90,22 @@ class SCENARIO_TYPE(Enum):
 
 
 class InsuranceDiscussion(TimeStampedModel):
+
+    STATUS_CHOICES = (
+        ('inprocess', 'INPROCESS'),
+        ('complete', 'COMPLETE'),
+        ('incomplete', 'INCOMPLETE'),
+    )
+
     insProduct = models.ForeignKey(InsuranceProduct, on_delete=models.CASCADE,null=False,blank=False)
     agent = models.ForeignKey(CustomUser, related_name='agent', on_delete=models.CASCADE,null=False,blank=False)
     # unique = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
 
+    #Application Details
+    application_number = models.CharField(max_length=100, verbose_name=u"Application Number",
+                                          help_text=u"Application Number",null=True,blank=True)
+
+    application_status = models.CharField(max_length=10, choices=STATUS_CHOICES, default='inprocess')
 
     # Primary Demographics
     primaryFirstName = models.CharField(_("First Name"), max_length=50,blank=True)
@@ -193,6 +205,15 @@ class InsuranceDiscussion(TimeStampedModel):
 
     def totalinsuranceCost(self):
         return self.lifeInsurancePremiumPerMonth + self.criticalIllnessPremiumPerMonth + self.disabilityPremiumPerMonth
+
+
+class InsuranceDiscussionApplicantDetails(TimeStampedModel):
+    insDiscussion = models.ForeignKey(InsuranceDiscussion, on_delete=models.CASCADE, null=False, blank=False)
+    application_number = models.CharField(max_length=100, verbose_name=u"Application Number",
+                                          help_text=u"Application Number", blank=False)
+    applicantID = models.CharField(max_length=100, verbose_name=u"Applicant ID",
+                                          help_text=u"Applicant ID", blank=False)
+    active = models.BooleanField(verbose_name=u"Active", default=True)
 
 
 class InsurancePreProcessData(TimeStampedModel):
