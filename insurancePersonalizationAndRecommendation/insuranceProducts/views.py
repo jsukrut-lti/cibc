@@ -381,8 +381,8 @@ class InsuranceEligibilityCheckView(object):
             input_data['applicants'] = insurance_data["applicants"]
 
             get_response = True
-            # eligibility_instance = EligibilityCheck()
-            # get_response = eligibility_instance.get_eligibility(request,**input_data)
+            eligibility_instance = EligibilityCheck()
+            get_response = eligibility_instance.get_eligibility(request,**input_data)
 
             if get_response == True:            #if eligible
 
@@ -425,11 +425,11 @@ class InsuranceApplicantSelectionView(View):
     context_object_name = 'Applicant Selection'
 
     def get(self, request, *args, **kwargs):
-        pk = CrypticSetting.decrypt(self,kwargs['pk'])
-        queryset = InsurancePreProcessData.objects.filter(id=pk).values()[0]
-        raw_data = json.loads(queryset['data'])
-        appl_details = raw_data.get('applicants', list())
-        context = {'menu_name': self.context_object_name, 'applicant_details': appl_details, 'pk_id': kwargs['pk']}
+
+        appl_details_remaining = []
+        appl_details_remaining = ApplicantDetails.get_applicant_details(self,**kwargs)
+
+        context = {'menu_name': self.context_object_name, 'applicant_details': appl_details_remaining, 'pk_id': kwargs['pk']}
 
         return render(request, template_name=self.template_name, context=context)
 
@@ -446,9 +446,20 @@ class InsuranceApplicantDemographicView(View):
 
         pk = CrypticSetting.decrypt(self, payload.get("pk_id"))
         queryset = InsurancePreProcessData.objects.filter(id=pk).values()[0]
-        filter_data = CreditInsurance.format_raw_data_for_insdisc(self,queryset, select)
+        filter_data, appDetails = CreditInsurance.format_raw_data_for_insdisc(self,queryset, select)
+
         discussionDetails = InsuranceDiscussion.objects.create(**filter_data)
         discussionDetails.save()
+
+        discussion_appDetails = dict()
+        for app_id in appDetails:
+            discussion_appDetails['insDiscussion_id'] = discussionDetails.pk
+            discussion_appDetails['application_number'] = filter_data['application_number']
+            discussion_appDetails['applicantID'] = app_id
+            
+        applicantDetails = InsuranceDiscussionApplicantDetails.objects.create(**discussion_appDetails)
+        applicantDetails.save()
+
         discussion_pk = CrypticSetting.encrypt(self, discussionDetails.pk)
         return HttpResponseRedirect('/insurance/clientInformation/{}'.format(discussion_pk))
 

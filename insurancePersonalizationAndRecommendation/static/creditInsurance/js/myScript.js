@@ -67,6 +67,20 @@ let radioBtns = document.querySelectorAll('.jointApplicantDetails .form-check-in
 let selectBox = document.querySelector('.selectBox');
 let selectBoxMultiple = document.querySelector('.selectBoxMultiple');
 
+selectBox.addEventListener('change', () => {
+    if(error.classList.contains('d-block') == true){
+        error.classList.remove('d-block');
+    }
+    error.classList.add('d-none');
+})
+
+selectBoxMultiple.addEventListener('change', () => {
+    if(error.classList.contains('d-block') == true){
+        error.classList.remove('d-block');
+    }
+    error.classList.add('d-none');
+})
+
 function selectedItem(e) {
     if(e.currentTarget.checked && e.currentTarget.value == "Yes") {
         selectBox.style.display = "none";
@@ -77,6 +91,10 @@ function selectedItem(e) {
         selectBox.style.display = "block";
         selectBoxMultiple.style.display = "none";
     }
+    if(error.classList.contains('d-block') == true){
+        error.classList.remove('d-block');
+    }
+    error.classList.add('d-none');
 }
 
 radioBtns.forEach(item => {

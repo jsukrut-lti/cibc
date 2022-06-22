@@ -80,10 +80,13 @@ class CreditInsurance(object):
         raw_data = json.loads(queryset['data'])
         appl_details = raw_data.get('applicants', list())
         d = dict()
+        appDetails = []
         d['insProduct_id'] = CreditInsurance.get_ins_product_id(self,raw_data['insProducts_details'][0]['insProduct_ID'])
         d['agent_id'] = CreditInsurance.get_agent_id(self)
         d['canada_provence'] = raw_data['canada_province']
         d['currentApplicationPmt'] = raw_data['currentApplicationPmt']
+        d['application_number'] = raw_data['application_number']
+
         for index, appl in enumerate(appl_details):
             if appl['applicantId'] in select:
                 d['primaryFirstName'] = appl['FirstName']
@@ -116,7 +119,9 @@ class CreditInsurance(object):
                 d['creditCardBalance'] += appl['creditCard']['balance']
                 d['totalMonthlyExpenses'] += appl['expenses']['totalMonthlyExpenses']
 
-        return d
+                appDetails.append(appl['applicantId'])
+
+        return d,appDetails
 
 
 class EligibilityCheck(object):
@@ -223,4 +228,28 @@ class AssessmentQuestionnaire(object):
         return assessment_detail
 
 
+class ApplicantDetails(object):
 
+    def __init__(self):
+        pass
+
+    def get_applicant_details(self,**kwargs):
+
+        pk = CrypticSetting.decrypt(self, kwargs['pk'])
+        queryset = InsurancePreProcessData.objects.filter(id=pk).values()[0]
+        raw_data = json.loads(queryset['data'])
+        appl_details = raw_data.get('applicants', list())
+
+        discAppl_details = InsuranceDiscussionApplicantDetails.objects.filter(
+            application_number=raw_data.get('application_number')).values('applicantID')
+        discAppl_details_rec = discAppl_details and list(discAppl_details) or []
+
+        discApp_list = [a['applicantID'] for a in discAppl_details_rec]
+
+        appl_details_remaining = []
+
+        for appl in appl_details:
+            if appl['applicantId'] not in discApp_list:
+                appl_details_remaining.append(appl)
+
+        return appl_details_remaining
