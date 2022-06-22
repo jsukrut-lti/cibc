@@ -1,4 +1,6 @@
-from django.shortcuts import render
+import webbrowser
+
+from django.shortcuts import render, redirect
 from .forms import *
 from .api import *
 from .creditInsurance import *
@@ -538,12 +540,23 @@ class SummaryView(View):
 
 class ExitView(View):
     template_name = 'creditInsurance/clientExitSurvey.html'
+    queryset = ExitSurveyMaster.objects.all().values()
 
     def get(self, request, *args, **kwargs):
+        data ={}
+        # context['close'] =  self.close_browser()
+        for query in self.queryset:
+            data[query["exit_selector"]] = [query["exit_msg_line0"], query["exit_msg_line1"], query["exit_msg_line2"]]
         context = {
-            'id': kwargs['pk'],
+            'data': data,
+            # 'close': self.close_browser()
         }
         return render(request, template_name=self.template_name, context=context)
+    def close_browser(self):
+        import webbrowser
+        webbrowser.close()
+        return None
+
 
 class ExitApplication(View):
     template_name = 'creditInsurance/exitApplication.html'

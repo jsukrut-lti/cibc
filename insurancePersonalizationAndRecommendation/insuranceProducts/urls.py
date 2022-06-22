@@ -28,5 +28,4 @@ urlpatterns = [
     path('summary/<int:pk>', SummaryView.as_view(), name='ins-summary'),
     path('exit/<int:pk>', ExitView.as_view(), name='ins-exit'),
     path('exitApplication/<int:pk>', ExitApplication.as_view(), name='ins-exit'),
-
 ]
