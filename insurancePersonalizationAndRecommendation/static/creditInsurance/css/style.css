@@ -730,49 +730,10 @@ a {
 
 .sidebar .nav-links li {
   cursor: pointer;
-  padding-left: 10px;
+  padding-left: 21px;
   position: relative;
-  list-style: none;
   -webkit-transition: all 0.4s ease;
   transition: all 0.4s ease;
-}
-
-.sidebar .nav-links li.active {
-  background-color: #C41F3E;
-}
-
-.sidebar .nav-links li.active a i, .sidebar .nav-links li.active a span {
-  color: #FFFFFF;
-}
-
-.sidebar .nav-links li.subMenu {
-  cursor: pointer;
-}
-
-.sidebar .nav-links li.subMenu.active {
-  background-color: unset;
-}
-
-.sidebar .nav-links li.subMenu.active a i, .sidebar .nav-links li.subMenu.active a span {
-  color: #42526E;
-}
-
-.sidebar .nav-links li:hover {
-  background-color: #C41F3E;
-}
-
-.sidebar .nav-links li:hover a i, .sidebar .nav-links li:hover a span {
-  color: #FFFFFF;
-}
-
-.sidebar .nav-links li:hover .sub-menu li:hover a {
-  color: #FFFFFF;
-}
-
-.sidebar .nav-links li:hover .sub-menu.blank {
-  top: 50%;
-  -webkit-transform: translateY(-50%);
-          transform: translateY(-50%);
 }
 
 .sidebar .nav-links li .iocn-link {
@@ -788,12 +749,10 @@ a {
 }
 
 .sidebar .nav-links li i {
-  height: 50px;
-  min-width: 50px;
   text-align: center;
-  line-height: 50px;
   color: #42526E;
-  font-size: 36px;
+  font-size: 32px;
+  padding-right: 10px;
   cursor: pointer;
   -webkit-transition: all 0.3s ease;
   transition: all 0.3s ease;
@@ -867,6 +826,82 @@ a {
 
 .sidebar .nav-links i.arrow {
   display: block;
+}
+
+.sidebar .sideProgressBar li.active .mainProgressBarLink {
+  opacity: 1;
+  cursor: pointer;
+}
+
+.sidebar .sideProgressBar li.active .progressSubMenu {
+  display: block;
+}
+
+.sidebar .sideProgressBar li.active .progressSubMenu li.currentEle {
+  opacity: 1;
+  cursor: pointer;
+}
+
+.sidebar .sideProgressBar li.active .progressSubMenu li.currentEle::marker {
+  color: #C41F3E;
+}
+
+.sidebar .sideProgressBar li .mainProgressBarLink {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  gap: 10px;
+  list-style: disc;
+  opacity: 0.6;
+  cursor: default;
+}
+
+.sidebar .sideProgressBar li .number {
+  background-color: #F2F3F2;
+  color: #C41F3E;
+  height: 32px;
+  width: 32px;
+  border-radius: 50%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.sidebar .sideProgressBar li .progressText span {
+  height: 32px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.sidebar .sideProgressBar li .progressSubMenu {
+  list-style-type: disc;
+  display: none;
+}
+
+.sidebar .sideProgressBar li .progressSubMenu li {
+  padding-left: 10px;
+  opacity: 0.6;
+  cursor: default;
+}
+
+.sidebar .sideProgressBar li .progressSubMenu li::marker {
+  font-size: 18px;
+}
+
+.sidebar .sideProgressBar li .progressSubMenu li a {
+  color: #212529;
 }
 
 .productLinks li i {

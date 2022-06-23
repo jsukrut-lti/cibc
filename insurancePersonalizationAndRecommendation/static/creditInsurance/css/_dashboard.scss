@@ -131,7 +131,6 @@
         display: flex;
         align-items: center;
         margin-left: 18px;
-        // justify-content: center;
         gap: 50px;
 
         .langChange {
@@ -192,57 +191,57 @@
 
         li {
             cursor: pointer;
-            padding-left: 10px;
+            padding-left: 21px;
             position: relative;
-            list-style: none;
+            // list-style: none;
             transition: all 0.4s ease;
 
-            &.active {
-                background-color: $CIBC_nav;
+            // &.active {
+            //     background-color: $CIBC_nav;
 
-                a {
-                    i, span {
-                        color: $white;
-                    }
-                }
-            }
+            //     a {
+            //         i, span {
+            //             color: $white;
+            //         }
+            //     }
+            // }
 
-            &.subMenu {
-                cursor: pointer;
+            // &.subMenu {
+            //     cursor: pointer;
 
-                &.active {
-                    background-color: unset;                    
+            //     &.active {
+            //         background-color: unset;                    
                     
-                    a {
-                        i, span {
-                            color: $textColor;
-                        }
-                    }
-                }
-            }
+            //         a {
+            //             i, span {
+            //                 color: $textColor;
+            //             }
+            //         }
+            //     }
+            // }
 
-            &:hover {
-                background-color: $CIBC_nav;
+            // &:hover {
+            //     background-color: $CIBC_nav;
 
-                a {
-                    i, span {
-                        color: $white;
-                    }
-                }
+            //     a {
+            //         i, span {
+            //             color: $white;
+            //         }
+            //     }
 
-                .sub-menu {
-                    li:hover {
-                        a {
-                            color: $white;
-                        }
-                    }
-                }
+            //     .sub-menu {
+            //         li:hover {
+            //             a {
+            //                 color: $white;
+            //             }
+            //         }
+            //     }
 
-                .sub-menu.blank {
-                    top: 50%;
-                    transform: translateY(-50%);
-                }
-            }
+            //     .sub-menu.blank {
+            //         top: 50%;
+            //         transform: translateY(-50%);
+            //     }
+            // }
 
             .iocn-link {
                 display: flex;
@@ -251,12 +250,13 @@
             }
 
             i {
-                height: 50px;
-                min-width: 50px;
+                // height: 50px;
+                // min-width: 50px;
                 text-align: center;
-                line-height: 50px;
+                // line-height: 50px;
                 color: $textColor;
-                font-size: 36px;
+                font-size: 32px;
+                padding-right: 10px;
                 cursor: pointer;
                 transition: all 0.3s ease;
 
@@ -327,6 +327,80 @@
 
         i.arrow {
             display: block;
+        }
+    }
+
+    .sideProgressBar {
+        li {
+            &.active {
+                .mainProgressBarLink {
+                    opacity: 1;
+                    cursor: pointer;
+                }
+
+                .progressSubMenu {
+                    display: block;
+
+                    li {
+                        &.currentEle {
+                            opacity: 1;
+                            cursor: pointer;
+                            
+                            &::marker {
+                                color: $CIBC_nav;
+                            }
+                        }
+                    }
+                }
+            }
+
+            .mainProgressBarLink {
+                display: flex;
+                gap: 10px;
+                list-style: disc;
+                opacity: 0.6;
+                cursor: default;
+            }
+        
+            .number {
+                background-color: $CIBC_background;
+                color: $CIBC_nav;
+                height: 32px;
+                width: 32px;
+                border-radius: 50%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-size: 20px;
+                font-weight: 600;
+            }
+
+            .progressText {
+                span {
+                    height: 32px;
+                    display: flex;
+                    align-items: center;
+                }
+            }
+
+            .progressSubMenu {
+                list-style-type: disc;
+                display: none;
+
+                li {
+                    padding-left: 10px;
+                    opacity: 0.6;
+                    cursor: default;
+
+                    &::marker {
+                        font-size: 18px;
+                    }
+
+                    a {
+                        color: #212529;
+                    }
+                }
+            }
         }
     }
 }
