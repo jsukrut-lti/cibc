@@ -454,9 +454,9 @@ class InsuranceApplicantDemographicView(View):
             discussion_appDetails['insDiscussion_id'] = discussionDetails.pk
             discussion_appDetails['application_number'] = filter_data['application_number']
             discussion_appDetails['applicantID'] = app_id
-            
-        applicantDetails = InsuranceDiscussionApplicantDetails.objects.create(**discussion_appDetails)
-        applicantDetails.save()
+
+            applicantDetails = InsuranceDiscussionApplicantDetails.objects.create(**discussion_appDetails)
+            applicantDetails.save()
 
         discussion_pk = CrypticSetting.encrypt(self, discussionDetails.pk)
         return HttpResponseRedirect('/insurance/clientInformation/{}'.format(discussion_pk))
