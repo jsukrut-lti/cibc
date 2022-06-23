@@ -66,7 +66,7 @@
                                         </div>
                                         
                                         <div class="closePage text-center">
-                                            <button type="button" class="btn commonBtn">Exit</button>
+                                            <button type="button" class="btn commonBtn" onclick="closeCurrentTab()"> Exit </button>
                                             <div class="returnToCI">
                                                 <a href="#" onclick="history.back()">I changed my mind, return to dashboard tool</a>
                                             </div>
@@ -97,6 +97,31 @@
                 </div>
             </div>
         </div>
+<!--        <script>function closeCurrentTab() {-->
+<!--        // write a simple wrapper around window.open that allows legal-->
+<!--        closeconst openWindow = () => {-->
+<!--          const wind =  window.open('','_blank','');-->
+
+<!--          // save the old close-->
+<!--          functionconst actualClose = wind.close;-->
+
+<!--          // Override wind.close and setup a promise that is resolved on-->
+<!--          wind.closeconst closePromise = new Promise(r=>{wind.close = ()=>{r(undefined);}});-->
+
+<!--          // Setup an async function// that closes the window after resolution of the above promise-->
+<!--          (async ()=>{-->
+<!--            await closePromise; // wait for promise resolutionactualClose(); // closing the window here is legal-->
+<!--          })();-->
+
+<!--          return wind;-->
+<!--        }-->
+
+
+<!--        // call wind.close-->
+<!--        anywheredocument.getElementById('myButton').addEventListener('click', wind.close)-->
+
+<!--        }-->
+<!--        </script>-->
 
         <script>
             // Exit Assessment - Show Objection as per radio button selection
@@ -106,24 +131,21 @@
             var clientExit = {{ data|safe }};
             var exitSurveyJson = JSON.parse(JSON.stringify(clientExit))
             var keyList = Object.keys(exitSurveyJson)
-            console.log(keyList)
+<!--            exitSurveyJson.forEach(reasonChange);-->
+            function reasonChange(e) {
+                keyList.forEach(item => {
 
-<!--            function reasonChange(e) {-->
-
-<!--            keyList.forEach(item => {-->
-<!--                if(e.currentTarget.checked && e.currentTarget.value == keyList[item]) {-->
-<!--                                    console.log(keyList[item])-->
-
-<!--                                    objectionData.innerHTML = `-->
-<!--                                    <p>${exitSurveyJson.keyList[item][0]}</p>-->
-<!--                                    <p>${exitSurveyJson.keyList[item][1]}</p>-->
-<!--                                    <p class="mb-0">${exitSurveyJson.keyList[item][2]}</p>`;-->
-<!--                                }-->
-<!--                objectionData.style.display = "block";-->
-<!--                              })-->
-
-<!--                }-->
-
+                    if(e.currentTarget.checked && e.currentTarget.value in keyList) {
+                        item = e.currentTarget.checked
+                        console.log(item)
+                        objectionData.innerHTML = `
+                        <p>${exitSurveyJson.item[0]}</p>
+                        <p>${exitSurveyJson.item[1]}</p>
+                        <p class="mb-0">${exitSurveyJson.item[2]}</p>`;
+                        }
+                    objectionData.style.display = "block";
+                    })
+                }
 
             exitAssessmentReason.forEach(reason => {
                 reason.addEventListener('change', reasonChange);

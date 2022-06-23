@@ -21,7 +21,7 @@ from rest_framework import status, permissions, serializers
 from .serializers import InsuranceDiscussionSerializers, InsuranceProductSerializers
 from drf_yasg.utils import swagger_auto_schema
 import sys
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, request
 
 
 sys.path.append('../../')
@@ -360,7 +360,7 @@ class InsuranceWelcomeView(View):
 
     def get_template(self, request, *args, **kwargs):
         pk_id = CrypticSetting.encrypt(self, args[0])
-        context = {'menu_name': self.context_object_name, 'pk_id': pk_id}
+        context = {'menu_name': self.context_object_name, 'pk_id': pk_id, 'exit_id': request.POST.get("pk_id")}
         return render(request, template_name=self.template_name, context=context)
 
 
@@ -404,7 +404,7 @@ class InsuranceQuestionnaireView(View):
 
         self.assessment_details = AssessmentQuestionnaire.assessment_data(self, request)
 
-        context = {'menu_name': self.context_object_name,'assessment': self.assessment_details,'pk_id': request.POST.get("pk_id")}
+        context = {'menu_name': self.context_object_name,'assessment': self.assessment_details,'pk_id': request.POST.get("pk_id"), 'exit_id': request.POST.get("pk_id")}
         return render(request, template_name=self.template_name, context=context)
 
 
@@ -415,7 +415,7 @@ class InsuranceTermConditionView(View):
 
     def post(self, request, *args, **kwargs):
 
-        context = {'menu_name': self.context_object_name,'id' :  request.POST.get("pk_id")}
+        context = {'menu_name': self.context_object_name,'id' :  request.POST.get("pk_id"), 'exit_id': request.POST.get("pk_id")}
         return render(request, template_name=self.template_name, context=context)
 
 
@@ -429,7 +429,7 @@ class InsuranceApplicantSelectionView(View):
         appl_details_remaining = []
         appl_details_remaining = ApplicantDetails.get_applicant_details(self,**kwargs)
 
-        context = {'menu_name': self.context_object_name, 'applicant_details': appl_details_remaining, 'pk_id': kwargs['pk']}
+        context = {'menu_name': self.context_object_name, 'applicant_details': appl_details_remaining, 'pk_id': kwargs['pk'], 'exit_id': request.POST.get("pk_id")}
 
         return render(request, template_name=self.template_name, context=context)
 
@@ -498,7 +498,7 @@ class InsuranceClient(View):
 
     def get(self, request, *args, **kwargs):
         context = {
-            'id': kwargs['pk']
+            'id': kwargs['pk'],'exit_id': request.POST.get("pk_id")
         }
         return render(request, template_name=self.template_name, context=context)
 
@@ -508,7 +508,7 @@ class InsuranceExitApplicationView(View):
     context_object_name = 'Exit'
 
     def get(self, request, *args, **kwargs):
-        context = {'menu_name': self.context_object_name}
+        context = {'menu_name': self.context_object_name, 'exit_id': request.POST.get("pk_id")}
         return render(request, template_name=self.template_name, context=context)
 
 
@@ -527,6 +527,7 @@ class DashbboardView(View):
     def post(self, request, *args, **kwargs):
         context = {
             'id': request.POST.get("pk_id"),
+            'exit_id': request.POST.get("pk_id")
         }
         return render(request, template_name=self.template_name, context=context)
 
@@ -537,6 +538,7 @@ class InsuranceTermCondition2View(View):
     def get(self, request, *args, **kwargs):
         context = {
             'id': kwargs['pk'],
+            'exit_id': request.POST.get("pk_id")
         }
         return render(request, template_name=self.template_name, context=context)
 
@@ -546,6 +548,7 @@ class SummaryView(View):
     def get(self, request, *args, **kwargs):
         context = {
             'id': kwargs['pk'],
+            'exit_id': request.POST.get("pk_id")
         }
         return render(request, template_name=self.template_name, context=context)
 
@@ -554,19 +557,14 @@ class ExitView(View):
     queryset = ExitSurveyMaster.objects.all().values()
 
     def get(self, request, *args, **kwargs):
-        data ={}
-        # context['close'] =  self.close_browser()
+        data = {}
         for query in self.queryset:
             data[query["exit_selector"]] = [query["exit_msg_line0"], query["exit_msg_line1"], query["exit_msg_line2"]]
         context = {
             'data': data,
-            # 'close': self.close_browser()
+            'exit_id': request.POST.get("pk_id"),
         }
         return render(request, template_name=self.template_name, context=context)
-    def close_browser(self):
-        import webbrowser
-        webbrowser.close()
-        return None
 
 
 class ExitApplication(View):
@@ -574,7 +572,7 @@ class ExitApplication(View):
 
     def get(self, request, *args, **kwargs):
         context = {
-            'id': kwargs['pk'],
+            'exit_id': request.POST.get("pk_id"),
         }
         return render(request, template_name=self.template_name, context=context)
 

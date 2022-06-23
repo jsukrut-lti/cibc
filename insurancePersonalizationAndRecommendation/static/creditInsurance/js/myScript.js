@@ -163,5 +163,5 @@ let faqSearchSectionRow = document.querySelectorAll('.faqSearchSection .row');
 //})
 
 function exitApplication(e){
-    document.location.href = "/insurance/exit/1";
+    document.location.href="/insurance/exit/{{ exit_id }}";
 }
