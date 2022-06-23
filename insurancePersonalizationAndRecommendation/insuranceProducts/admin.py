@@ -58,4 +58,4 @@ class AssessmentQuestionnaireMasterModelAdmin(admin.ModelAdmin):
 
 @admin.register(ExitSurveyMaster)
 class ExitSurveyMasterModelAdmin(admin.ModelAdmin):
-    list_filter = ['exit_id', 'exit_selector', 'exit_radio_disply', 'exit_msg_line0', 'exit_msg_line1', 'exit_msg_line2']
+    list_filter = ['exit_id', 'exit_selector', 'exit_radio_display', 'exit_msg_line0', 'exit_msg_line1', 'exit_msg_line2']

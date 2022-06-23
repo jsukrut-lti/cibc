@@ -330,8 +330,8 @@ class ExitSurveyMaster(TimeStampedModel):
                             help_text=u"Exit ID", unique=True,blank=False)
     exit_selector = models.CharField(max_length=100, verbose_name=u"Exit Selector",
                             help_text=u"Exit Selector", unique=True,blank=False)
-    exit_radio_disply = models.CharField(max_length=500, verbose_name=u"Radio Msg",
-                                help_text=u"Radio Message", unique=False, blank=True)
+    exit_radio_display = models.CharField(max_length=500, verbose_name=u"Radio Msg",
+                                          help_text=u"Radio Message", unique=False, blank=True)
     exit_msg_line0 = models.CharField(max_length=500, verbose_name=u"Exit Msg0",
                                 help_text=u"Exit Message0", unique=False, blank=True)
     exit_msg_line1 = models.CharField(max_length=500, verbose_name=u"Exit Msg1",

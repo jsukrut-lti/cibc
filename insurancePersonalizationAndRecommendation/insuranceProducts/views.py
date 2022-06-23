@@ -559,7 +559,7 @@ class ExitView(View):
     def get(self, request, *args, **kwargs):
         data = {}
         for query in self.queryset:
-            data[query["exit_selector"]] = [query["exit_msg_line0"], query["exit_msg_line1"], query["exit_msg_line2"]]
+            data[query["exit_selector"]] = [query["exit_radio_display"], query["exit_msg_line0"], query["exit_msg_line1"], query["exit_msg_line2"]]
         context = {
             'data': data,
             'exit_id': request.POST.get("pk_id"),
