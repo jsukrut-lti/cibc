@@ -28,4 +28,8 @@ urlpatterns = [
     path('summary/<int:pk>', SummaryView.as_view(), name='ins-summary'),
     path('exit/<str:pk>', ExitView.as_view(), name='ins-exit'),
     path('exitApplication/<str:pk>', ExitApplication.as_view(), name='ins-exit'),
+    path('anecdotesArchetypeInformation/<int:pk>', AnecdotesArchetypeInformation.as_view(), name='ins-exit'),
+    path('anecdotesArchetypeSelection/<int:pk>', AnecdotesArchetypeSelection.as_view(), name='ins-exit'),
+    path('faq/<int:pk>', FAQ.as_view(), name='ins-exit'),
+
 ]
