@@ -148,67 +148,6 @@ exitAssessmentReason.forEach(reason => {
     reason.addEventListener('change', reasonChange);
 })
 
-
-
-// Anecdotes - Archetype selection script
-
-let selectBtn = document.querySelectorAll('.selectBtn');
-
-selectBtn.forEach((ele) => {
-    ele.addEventListener('click', addActivateClass);
-})
-
-function addActivateClass() {
-    selectBtn.forEach((btnParent) => {
-        btnParent.parentElement.classList.remove('activate');
-    })
-    this.parentElement.classList.add('activate');
-}
-
-// Anecdotes - Archetype Information script
-
-let specificReaction = document.querySelectorAll('.navObjectionBlock .reactionBlock .image');
-
-specificReaction.forEach((ele) => {
-    ele.addEventListener('click', reactionActive);
-})
-
-function reactionActive(e) {
-    let allTargetReaction = e.currentTarget.parentElement.children;
-    let getID = e.currentTarget.id;
-
-    $(allTargetReaction).removeClass('active');
-    $('#' + getID).addClass('active');
-}
-
-// FAQ Search - Reaction
-let faqSearchReaction = document.querySelectorAll('.faqSearchSectionBlock .reactionBlock .image');
-
-faqSearchReaction.forEach((ele) => {
-    ele.addEventListener('click', faqReactionActive)
-})
-
-function faqReactionActive(e) {
-    let allTargetFAQReaction = e.currentTarget.parentElement.children;
-    let getFAQID = e.currentTarget.id;
-
-    $(allTargetFAQReaction).removeClass('active');
-    $('#' + getFAQID).addClass('active');
-}
-
-// FAQ Search - Filter
-
-let search = document.querySelector('#search');
-let faqSearchSectionRow = document.querySelectorAll('.faqSearchSection .row');
-
-//search.addEventListener('keyup', (e) => {
-//    let filterVal = e.target.value.toLowerCase();
-//
-//    faqSearchSectionRow.forEach((row) => {
-//        row.querySelector('.faqSearchSectionBlock .archetypeInfoDesc').innerText.toLowerCase().indexOf(filterVal) > -1 ? (row.style.display = "") : (row.style.display = "none");
-//    })
-//})
-
 function exitApplication(e){
     document.location.href = "/insurance/exit/1";
 }

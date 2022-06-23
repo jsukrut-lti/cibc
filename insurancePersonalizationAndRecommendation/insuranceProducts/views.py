@@ -565,3 +565,29 @@ class ExitApplication(View):
         }
         return render(request, template_name=self.template_name, context=context)
 
+class AnecdotesArchetypeInformation(View):
+    template_name = 'creditInsurance/anecdotesArchetypeInformation.html'
+
+    def get(self, request, *args, **kwargs):
+        context = {
+            'id': kwargs['pk'],
+        }
+        return render(request, template_name=self.template_name, context=context)
+
+class AnecdotesArchetypeSelection(View):
+    template_name = 'creditInsurance/anecdotesArchetypeSelection.html'
+
+    def get(self, request, *args, **kwargs):
+        context = {
+            'id': kwargs['pk'],
+        }
+        return render(request, template_name=self.template_name, context=context)
+
+class FAQ(View):
+    template_name = 'creditInsurance/faq.html'
+
+    def get(self, request, *args, **kwargs):
+        context = {
+            'id': kwargs['pk'],
+        }
+        return render(request, template_name=self.template_name, context=context)
