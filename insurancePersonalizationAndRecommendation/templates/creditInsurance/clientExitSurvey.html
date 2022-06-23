@@ -131,7 +131,6 @@
             var clientExit = {{ data|safe }};
             var exitSurveyJson = JSON.parse(JSON.stringify(clientExit))
             var keyList = Object.keys(exitSurveyJson)
-<!--            exitSurveyJson.forEach(reasonChange);-->
             function reasonChange(e) {
                 keyList.forEach(item => {
 
