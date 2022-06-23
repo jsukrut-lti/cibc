@@ -26,7 +26,6 @@ urlpatterns = [
     path('dashboard/', DashbboardView.as_view(), name='ins-dashboard'),
     path('termCondition2/<int:pk>', InsuranceTermCondition2View.as_view(), name='ins-convo-tc'),
     path('summary/<int:pk>', SummaryView.as_view(), name='ins-summary'),
-    path('exit/<int:pk>', ExitView.as_view(), name='ins-exit'),
-    path('exitApplication/<int:pk>', ExitApplication.as_view(), name='ins-exit'),
-
+    path('exit/<str:pk>', ExitView.as_view(), name='ins-exit'),
+    path('exitApplication/<str:pk>', ExitApplication.as_view(), name='ins-exit'),
 ]
