@@ -101,53 +101,6 @@ radioBtns.forEach(item => {
     item.addEventListener('change', selectedItem);
 })
 
-// Exit Assessment - Show Objection as per radio button selection
-
-let exitAssessmentReason = document.querySelectorAll('.exitReason .form-check-input[name="exitAssessmentReason"]');
-let obejctionData = document.querySelector('.obejctionData');
-
-function reasonChange(e) {
-    if(e.currentTarget.checked && e.currentTarget.value == "coverage") {
-        obejctionData.innerHTML = `
-        <p>Is your existing insurance enough to cover your debt and look after your family's immediate and long-term needs?</p>
-        <p>Does your existing insurance cover both you and your co-borrower/guarantor?</p>
-        <p class="mb-0">Have you considered if you leave your employer or lose your job, that any group coverage you have through your employer may terminate, meaning you and your family could be left without coverage?</p>`; 
-    }
-    else if(e.currentTarget.checked && e.currentTarget.value == "expensive") {
-        obejctionData.innerHTML = `
-        <p>I agree it is an additional expense. Without a plan, though, have you considered what would happen if you could no longer afford to make your regular payments on your [new borrowing product]</p>
- 
-        <p>My main priority right now is to help you understand the value/importance of having a plan that protects your financial future, whether or not you choose to take CIBC's optional creditor's insurance</p> 
-        
-        <p class="mb-0">[Note: If a quote has not yet been provided] May I provide you with a quote to help you decide if any of these protection plans are within your budget?</p>`;
-    }
-    else if(e.currentTarget.checked && e.currentTarget.value == "noTime") {
-        obejctionData.innerHTML = `<p>Content Not Available</p>`;
-    }
-    else if(e.currentTarget.checked && e.currentTarget.value == "interested") {
-        obejctionData.innerHTML = `
-        <p>Ok, I appreciate that. My main priority right now is to help you understand the value/importance of having a plan that protects your financial future, whether or not you choose to take CIBC's optional creditor's insurance.</p>
-        
-        <p class="mb-0">The benefit of CIBC creditor insurance is that it can help to pay down or payoff your debt, leaving your other insurance/savings/assets available to support your family when you are not able to and preserve your family wealth.</p>`;
-    }
-    else if(e.currentTarget.checked && e.currentTarget.value == "think") {
-        obejctionData.innerHTML = `
-        <p>Ok, I appreciate that. My main priority right now is to help you understand the value/importance of having a plan that protects your financial future , whether or not you choose to take CIBC's optional creditor's insurance.</p>
-        
-        <p>I'll be happy to share some information for your consideration, [provide client with Creditor insurance product summary to review].</p>
-
-        <p class="mb-0">I would like you to take the time to research your protection needs. Look at the CIBC Creditor Insurance product summaries with the different coverages we offer, talk to friends or family and even do some research online on different types of insurance offerings out there. One of my main goals is to help you understand the value of protecting your future, whether or not you choose to take CIBC's optional insurance.</p>`;
-    }
-    else if(e.currentTarget.checked && e.currentTarget.value == "laterDate") {
-        obejctionData.innerHTML = `<p>Content Not Available</p>`;
-    }
-    obejctionData.style.display = "block";
-}
-
-exitAssessmentReason.forEach(reason => {
-    reason.addEventListener('change', reasonChange);
-})
-
 function exitApplication(e){
-    document.location.href = "/insurance/exit/1";
+    document.location.href="/insurance/exit/{{ exit_id }}";
 }

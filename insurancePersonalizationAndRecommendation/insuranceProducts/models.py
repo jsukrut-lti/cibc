@@ -323,3 +323,19 @@ class AssessmentQuestionnaireMaster(TimeStampedModel):
 
     def __str__(self):
         return '{}'.format(self.assessment_details)
+
+
+class ExitSurveyMaster(TimeStampedModel):
+    exit_id = models.CharField(max_length=11, verbose_name=u"Exit ID",
+                            help_text=u"Exit ID", unique=True,blank=False)
+    exit_selector = models.CharField(max_length=100, verbose_name=u"Exit Selector",
+                            help_text=u"Exit Selector", unique=True,blank=False)
+    exit_msg_line0 = models.CharField(max_length=500, verbose_name=u"Exit Msg0",
+                                help_text=u"Exit Message0", unique=False, blank=True)
+    exit_msg_line1 = models.CharField(max_length=500, verbose_name=u"Exit Msg1",
+                                              help_text=u"Exit Message1", unique=False, blank=True)
+    exit_msg_line2 = models.CharField(max_length=500, verbose_name=u"Exit Msg2",
+                                              help_text=u"Exit Message2", unique=False, blank=True)
+
+    def __str__(self):
+        return '{}'.format(self.exit_selector)
