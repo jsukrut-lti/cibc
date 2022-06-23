@@ -103,6 +103,9 @@ class CreditInsurance(object):
                 d['savingsEmergencyFund'] = appl['savingsEmergencyFund']
                 d['creditCardBalance'] = appl['creditCard']['balance']
                 d['totalMonthlyExpenses'] = appl['expenses']['totalMonthlyExpenses']
+
+                appDetails.append(appl['applicantId'])
+
             if len(select) > 1 and index == 1:
                 d['coFirstName'] = appl['FirstName']
                 d['coMiddleName'] = appl['MiddleName']
@@ -119,7 +122,6 @@ class CreditInsurance(object):
                 d['creditCardBalance'] += appl['creditCard']['balance']
                 d['totalMonthlyExpenses'] += appl['expenses']['totalMonthlyExpenses']
 
-                appDetails.append(appl['applicantId'])
 
         return d,appDetails
 
