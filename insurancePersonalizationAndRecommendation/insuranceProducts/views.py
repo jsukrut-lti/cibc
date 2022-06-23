@@ -21,7 +21,7 @@ from rest_framework import status, permissions, serializers
 from .serializers import InsuranceDiscussionSerializers, InsuranceProductSerializers
 from drf_yasg.utils import swagger_auto_schema
 import sys
-from django.http import HttpResponseRedirect, request
+from django.http import HttpResponseRedirect
 
 
 sys.path.append('../../')
