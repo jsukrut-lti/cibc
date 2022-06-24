@@ -20,7 +20,8 @@ urlpatterns = [
     path('questionnaire/', InsuranceQuestionnaireView.as_view(), name='ins-convo-questionnaire'),
     path('termCondition/', InsuranceTermConditionView.as_view(), name='ins-convo-tc'),
     path('applicantSelection/<str:pk>', InsuranceApplicantSelectionView.as_view(), name='ins-convo-tc'),
-    path('applicantDemographic/', InsuranceApplicantDemographicView.as_view(), name='ins-convo-tc'),
+    path('confirm_prev_session/', PrevSessionView.as_view(), name='ins-convo-tc'),
+    path('applicantDemographic/', InsuranceApplicantDemographicView.as_view(), name='ins-convo-appli'),
     path('callback/', InsuranceCallback.as_view(), name='ins-callback'),
     path('clientInformation/<str:pk>', InsuranceClientInformationView.as_view(), name='ins-convo-clientInfo'),
     path('dashboard/', DashbboardView.as_view(), name='ins-dashboard'),
@@ -28,5 +29,5 @@ urlpatterns = [
     path('summary/<int:pk>', SummaryView.as_view(), name='ins-summary'),
     path('exit/<int:pk>', ExitView.as_view(), name='ins-exit'),
     path('exit/', ExitView.as_view(), name='ins-exit'),
-    path('start_session', StartSession.as_view(), name='start-session')
+    path('save_session', SaveSession.as_view(), name='start-session')
 ]

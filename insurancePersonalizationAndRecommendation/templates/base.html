@@ -97,6 +97,7 @@
     <script>
         var request_obj = "{{ request.session.session_key }}";
         var csrf_token = "{{ csrf_token }}";
+        var checkNavigation = true;
     </script>
     <script src="{% static 'creditInsurance/js/myScript.js' %}">request_obj</script>
 <!--    <script src="{% static 'creditInsurance/js/base.js' %}"></script>-->

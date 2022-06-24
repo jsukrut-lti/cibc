@@ -20,6 +20,11 @@ from drf_yasg.utils import swagger_auto_schema
 import sys
 from django.http import HttpResponseRedirect, HttpResponse
 import json
+from django.forms.models import model_to_dict
+from django.db import connection
+cursor = connection.cursor()
+from django.shortcuts import redirect, reverse
+
 
 
 
@@ -434,7 +439,9 @@ class InsuranceApplicantSelectionView(View):
 
 
 @method_decorator(login_required, name='dispatch')
-class InsuranceApplicantDemographicView(View):
+class PrevSessionView(View):
+    # template_name = 'creditInsurance/applicantSelection.html'
+    # context_object_name = 'Applicant Selection'
 
     def post(self, request, *args, **kwargs):
         payload = request.POST
@@ -443,12 +450,64 @@ class InsuranceApplicantDemographicView(View):
         joint_applicant = payload.get('jointApplicant')
         select = multi_select if joint_applicant == 'Yes' else single_select
 
+        pk = CrypticSetting.decrypt(self,payload['pk_id'])
+        queryset = InsurancePreProcessData.objects.filter(id=pk).values()[0]
+        raw_data = json.loads(queryset['data'])
+        appl_details = raw_data.get('applicants', list())
+
+        appli_number = raw_data['application_number']
+        ins_product = CreditInsurance.get_ins_product(self,raw_data['insProducts_details'][0]['insProduct_ID'])
+        primaryApplicantId = None
+        coApplicantId = None
+        for index, appl in enumerate(appl_details):
+            if appl['applicantId'] in select:
+                if not primaryApplicantId:
+                    primaryApplicantId = appl['applicantId']
+                else:
+                    coApplicantId = appl['applicantId']
+        status = 'inprogress'
+
+        if joint_applicant == 'Yes':
+            cursor.execute('''select b.id FROM public."insuranceProducts_insurancepreprocessdata" a right join public."insuranceProducts_insurancediscussion" b on a.id=b."preProcessData_id" where a.application_number='{0}' and b."insProduct_id"='{1}' and b."primaryApplicantId"='{2}' and b."coApplicantId"='{3}' and b.status='{4}' '''.format(appli_number, ins_product.id, primaryApplicantId, coApplicantId, status))
+        else:
+            cursor.execute('''select b.id FROM public."insuranceProducts_insurancepreprocessdata" a right join public."insuranceProducts_insurancediscussion" b on a.id=b."preProcessData_id" where a.application_number='{0}' and b."insProduct_id"='{1}' and b."primaryApplicantId"='{2}' and b.status='{4}' '''.format(appli_number, ins_product.id, primaryApplicantId, coApplicantId, status))
+
+        prev_discs = cursor.fetchone()
+        if not prev_discs:
+            pre_ = {
+                'is_new': True,
+                'prev_disc': None,
+                'selected_applicants': [primaryApplicantId, coApplicantId]
+            }
+            request.POST.update(pre_)
+            return InsuranceApplicantDemographicView().post(request)
+        return HttpResponse({'prev_disc': prev_discs}, status=200)
+
+
+@method_decorator(login_required, name='dispatch')
+class InsuranceApplicantDemographicView(View):
+
+    def post(self, request, *args, **kwargs):
+        payload = request.POST
+        start_new = payload.get('is_new')
+        prev_disc = payload.get('prev_disc')
+        selected_applicants = payload.get('selected_applicants')
+
         pk = CrypticSetting.decrypt(self, payload.get("pk_id"))
         queryset = InsurancePreProcessData.objects.filter(id=pk).values()[0]
-        filter_data = CreditInsurance.format_raw_data_for_insdisc(self,queryset, select)
-        discussionDetails = InsuranceDiscussion.objects.create(**filter_data)
-        discussionDetails.save()
+        if start_new:
+            if prev_disc:
+                res = InsuranceDiscussion.objects.filter(pk=prev_disc, status='inprogress').update(status='cancelled')
+            filter_data = CreditInsurance.format_raw_data_for_insdisc(self, queryset, selected_applicants)
+            filter_data['status'] = 'inprogress'
+            discussionDetails = InsuranceDiscussion.objects.create(**filter_data)
+            discussionDetails.save()
+        else:
+            discussionDetails = InsuranceDiscussion.objects.filter(id=prev_disc).values()[0]
         discussion_pk = CrypticSetting.encrypt(self, discussionDetails.pk)
+
+        # session data inserted here
+        request.session['ins_data'] = model_to_dict(discussionDetails)
         return HttpResponseRedirect('/insurance/clientInformation/{}'.format(discussion_pk))
 
 
@@ -457,8 +516,9 @@ class InsuranceClientInformationView(View):
     context_object_name = 'Client'
 
     def get(self, request, *args, **kwargs):
-        pk = CrypticSetting.decrypt(self, kwargs['pk'])
-        queryset = InsuranceDiscussion.objects.filter(id=pk).values()[0]
+        # pk = CrypticSetting.decrypt(self, kwargs['pk'])
+        # queryset = InsuranceDiscussion.objects.filter(id=pk).values()[0]
+        queryset = request.session['ins_data']
         if queryset['primaryGender'] == 'm':
             queryset['primaryGender'] = 'Male'
         elif queryset['primaryGender'] == 'f':
@@ -466,8 +526,8 @@ class InsuranceClientInformationView(View):
         else:
             queryset['primaryGender'] = 'Other'
 
-        if queryset['canada_provence'] == 'on':
-            queryset['canada_provence'] = 'Canada'
+        if queryset['canada_province'] == 'on':
+            queryset['canada_province'] = 'Canada'
 
         context = {
             'id': kwargs['pk'],
@@ -477,8 +537,9 @@ class InsuranceClientInformationView(View):
         return render(request, template_name=self.template_name, context=context)
 
     def post(self, request, *args, **kwargs):
-        form = request.POST.form()
-        return render(request, template_name=self.template_name, context=context)
+        update_session_with_form_data(request)
+        request.session.modified = True
+        return HttpResponse('successfully updated', status=204)
 
 
 class InsuranceClient(View):
@@ -516,6 +577,7 @@ class DashbboardView(View):
         context = {
             'id': request.POST.get("pk_id"),
         }
+
         return render(request, template_name=self.template_name, context=context)
 
 
@@ -544,6 +606,7 @@ class ExitView(View):
         context = {
             'id': kwargs.get('pk', None),
         }
+        update_session_with_form_data(request)
         return render(request, template_name=self.template_name, context=context)
 
 
@@ -597,9 +660,27 @@ def get_ins_product_id(prod_name):
     return p[0].id
 
 
-class StartSession(View):
+class SaveSession(View):
 
     def post(self, request, *args, **kwargs):
-        print(request.session)
+        if 'ins_data' in request.session:
+            ins_data = request.session['ins_data']
+            if ins_data['primaryGender'] == 'Male':
+                ins_data['primaryGender'] = 'm'
+            elif ins_data['primaryGender'] == 'Female':
+                ins_data['primaryGender'] = 'f'
+            if ins_data['canada_province'] == 'Canada':
+                ins_data['canada_province'] = 'on'
+            res = InsuranceDiscussion.objects.filter(pk=ins_data['id']).update(**ins_data)
         return HttpResponse(json.dumps({'exit': 'success'}), content_type="application/json")
+
+
+def update_session_with_form_data(request):
+    session_data = request.session['ins_data']
+    form_data = request.POST
+    for key, v in session_data.items():
+        if key in form_data:
+            request.session['ins_data'][key] = form_data[key]
+
+    return True
 

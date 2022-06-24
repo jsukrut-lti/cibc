@@ -45,9 +45,9 @@ for (var i = 0; i < arrow.length; i++) {
 let sidebar = document.querySelector(".sidebar");
 let sidebarBtn = document.querySelector(".bx.bx-menu");
 
-sidebarBtn.addEventListener("click", () => {
-    sidebar.classList.toggle("close");
-});
+//sidebarBtn.addEventListener("click", () => {
+//    sidebar.classList.toggle("close");
+//});
 
 
 // SideBar Navigation for Mobile
@@ -203,7 +203,7 @@ var timer;
 function myTimeout () {
     console.log('new timeout started!!')
     clearTimeout(timer)
-    timer = setTimeout(checkSession, 10000);
+    timer = setTimeout(checkSession, 100000);
 };
 myTimeout();
 
@@ -227,53 +227,45 @@ document.onclick = function (){
     myTimeout();
 };
 
-
-window.onload = function() {
-    if (sessionStorage.instances) {
-        sessionStorage = Number(sessionStorage.instances) + 1;
-        console.log('instance', sessionStorage);
-    } else {
-        sessionStorage.instances = 1
-        console.log('instance', sessionStorage);
-    }
-}
-
-window.onbeforeunload = function() {
-    var instances;
-    debugger;
-    if (sessionStorage.instances) {
+$(document).ready(function (){
         debugger;
-        instances = Number(sessionStorage.instances) - 1;
-        sessionStorage.instances = instances;
-        if (0 === instances) {
-            // all instances closed.
-            debugger;
-            saveDB();
-        }
-    };
-}
+        var validNavigation = false;
 
-function saveDB(){
-//    var km;
-//    $.ajax({
-//        url: window.location.protocol+"//"+window.location.host+'/insurance/start_session',
-//        type: "GET",
-//        async: false,
-//        success: function(data){
-//            var x = JSON.stringify(data);
-//            console.log(11,x);
-//            debugger;
-//            km = 1;
-//        },
-//        error: function(error){
-//            km = 0;
-//            console.log(`Error ${error}`);
-//            }
-//    });
+
+//         Attach the event submit for all forms in the page
+        $("form").bind("submit", function() {
+          debugger;
+          validNavigation = true;
+        });
+
+//         Attach the event click for all inputs in the page
+        $("input[type=submit]").bind("click", function() {
+          debugger;
+          validNavigation = true;
+        });
+
+//         Attach the event button for all inputs in the page
+        $("a[role=button]").bind("click", function() {
+          validNavigation = true;
+        });
+
+        window.onbeforeunload = function() {
+            debugger;
+            if (!validNavigation) {
+                saveDB();
+            } else {
+                validNavigation = false;
+            }
+        };
+
+  });
+
+
+function saveDB() {
 
         var formData = new FormData();
-  		//Required by Django for form post
+  		// sending update Insurance discussion call.
         formData.append('csrfmiddlewaretoken', csrf_token);
-        const url = window.location.protocol+"//"+window.location.host+'/insurance/start_session'
+        const url = window.location.protocol+"//"+window.location.host+'/insurance/save_session'
         navigator.sendBeacon(url, formData);
 }

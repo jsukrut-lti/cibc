@@ -64,6 +64,21 @@ class DISCUSSION_SECTION_TYPE(Enum):
     def get_value(cls,member):
         return cls[member].value[0]
 
+
+class InsurancePreProcessData(TimeStampedModel):
+    STATUS_CHOICES =(
+        ('draft', 'DRAFT'),
+        ('active', 'ACTIVE'),
+        ('deactivate', 'DEACTIVATE'),
+    )
+
+    application_number = models.CharField(max_length=100, verbose_name=u"Application Number", help_text=u"Application Number",blank=False)
+    status = models.CharField(max_length=10, choices=STATUS_CHOICES, default='draft')
+    data = models.JSONField()
+
+    def __str__(self):
+        return '{}'.format(self.application_number)
+
 """
 Scenario States
 0. Inital State: Set inital totals: Expense, Income, and Savings
@@ -92,23 +107,25 @@ class SCENARIO_TYPE(Enum):
 class InsuranceDiscussion(TimeStampedModel):
     insProduct = models.ForeignKey(InsuranceProduct, on_delete=models.CASCADE,null=False,blank=False)
     agent = models.ForeignKey(CustomUser, related_name='agent', on_delete=models.CASCADE,null=False,blank=False)
-    # unique = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
-
 
     # Primary Demographics
     primaryFirstName = models.CharField(_("First Name"), max_length=50,blank=True)
     primaryMiddleName = models.CharField(_("Middle Name"), max_length=50,blank=True)
     primaryLastName = models.CharField(_("Last Name"), max_length=50,blank=True)
+    primaryPreferredName = models.CharField(_("Preferred Name"), max_length=50,blank=True)
+    primaryEmail = models.CharField(_("Email"), max_length=50,blank=True)
     primaryAge = models.PositiveSmallIntegerField(_("Age"),null=True,blank=True)
     primaryGender = models.CharField(_("Gender"), max_length=2, choices=[x.value for x in GENDER], null=True, blank=True)
+    primaryApplicantId = models.CharField(_("Primary Applicant Id"), max_length=50, blank=True)
 
     coFirstName = models.CharField(_("Co Borrower - First Name"), max_length=50,blank=True)
     coMiddleName = models.CharField(_("Co Borrower - Middle Name"), max_length=50,blank=True)
     coLastName = models.CharField(_("Co Borrower - Last Name"), max_length=50,blank=True)
     coAge = models.PositiveSmallIntegerField(_("Age"),null=True,blank=True)
     coGender = models.CharField(_("Co Borrower - Gender"), max_length=2, choices=[x.value for x in GENDER], null=True, blank=True)
+    coApplicantId = models.CharField(_("Co Applicant Id"), max_length=50, blank=True)
 
-    canada_provence = models.CharField(_("Province"), max_length=2, choices=[x.value for x in CANADA_PROVENCES],null=True,blank=True)
+    canada_province = models.CharField(_("Province"), max_length=2, choices=[x.value for x in CANADA_PROVENCES],null=True,blank=True)
     hoursWeekWorking = models.IntegerField(_("Hours a Week Working"), null=True, blank=True)
 
     #Loved Ones financial responsibility
@@ -118,10 +135,6 @@ class InsuranceDiscussion(TimeStampedModel):
     hasOthersFinResponsibility = models.CharField(_("Other Financial Responsibility"), max_length=2, choices=[x.value for x in YES_NO],null=True, blank=True)
 
     #Creditor Information
-    mortgageBalance = models.DecimalField(_("Mortgage Balance"),max_digits=8, decimal_places=2,null=True, blank=True)
-    mortgagePmtAmount = models.DecimalField(_("Mortgage Payment Amount"),max_digits=8, decimal_places=2,null=True, blank=True)
-    mortgagePmtFrequency = models.CharField(_("Mortgage Payment Frequency"), max_length=2,choices=[x.value for x in PAYMENT_FREQUENCY], null=True, blank=True)
-
     hlocLimit = models.DecimalField(_("HLOC Limit"),max_digits=8, decimal_places=2,null=True, blank=True)
     hlocBalance = models.DecimalField(_("HLOC Balance"),max_digits=8, decimal_places=2,null=True, blank=True)
     hlocMonthlyPmt = models.DecimalField(_("HLOC Monthly Payment"),max_digits=8, decimal_places=2,null=True, blank=True)
@@ -161,12 +174,10 @@ class InsuranceDiscussion(TimeStampedModel):
     disabilityInsurancePercentCoveredByEmployer = models.PositiveSmallIntegerField(_("Disability Insurance Percent Covered By Employer"), null=True, blank=True)
     disabilityInsuranceUnknownEmployerCoverage = models.CharField(_("Not sure what my employer covers"), max_length=2, choices=[x.value for x in YES_NO],null=True, blank=True)
 
-
     # Coverage Costs
     lifeInsurancePremiumPerMonth = models.DecimalField(_("Life Insurance Premium Per Month"), max_digits=8, decimal_places=2, null=True, blank=True)
     criticalIllnessPremiumPerMonth = models.DecimalField(_("Critical Illness Premium Per Month"), max_digits=8, decimal_places=2, null=True, blank=True)
     disabilityPremiumPerMonth = models.DecimalField(_("Disability Insurance Premium Per Month"), max_digits=8, decimal_places=2, null=True, blank=True)
-
 
     # Tracking
     agentOverallPerceptionOfCustomerResp = models.CharField(_("Agent Perception of customer response"),  choices=[x.value for x in AGENT_PERCEPTION_OF_CUSTOMER_RESPONSE_TYPE], null=True, blank=True, max_length=20)
@@ -183,7 +194,27 @@ class InsuranceDiscussion(TimeStampedModel):
     totalMonthlyPmt = models.DecimalField(_("Total Monthly Payment"), max_digits=8, decimal_places=2, null=True, blank=True)
     savingsEmergencyFund = models.DecimalField(_("Saving & Emergency Fund"), max_digits=8, decimal_places=2, null=True, blank=True)
 
-    sssavingsEmergencyFund = models.DecimalField(_("Saving & Emergency Fund"), max_digits=8, decimal_places=2, null=True, blank=True)
+    hppMaxRebalancingLmt = models.DecimalField(_("HPP Re-balancing Limit"),max_digits=8, decimal_places=2,null=True, blank=True)
+    hppCreditLmt = models.DecimalField(_("HPP Credit Limit"),max_digits=8, decimal_places=2,null=True, blank=True)
+    plcCLassNumber = models.CharField(_("PLC Class Number"), max_length=50,blank=True)
+    plcMMortgageNumber = models.CharField(_("PLC mMortgage Number"), max_length=50,blank=True)
+    plcRepaymentType = models.CharField(_("PLC repayment Type"), max_length=50,blank=True)
+    plcCreditLmt = models.DecimalField(_("PLC Credit Limit"),max_digits=8, decimal_places=2,null=True, blank=True)
+    plcInterestRate = models.DecimalField(_("PLC Interest Rates"),max_digits=8, decimal_places=2,null=True, blank=True)
+    mortgageCLassNumber = models.CharField(_("Mortgage Class Number"), max_length=50,blank=True)
+    mortgageNumber = models.CharField(_("Mortgage Number"), max_length=50,blank=True)
+    mortgageBalance = models.DecimalField(_("Mortgage Balance"), max_digits=8, decimal_places=2, null=True, blank=True)
+    mortgagePmtAmt = models.DecimalField(_("Mortgage Payment Amount"), max_digits=8, decimal_places=2, null=True, blank=True)
+    mortgagePmtFrequency = models.CharField(_("Mortgage Payment Frequency"), max_length=2, choices=[x.value for x in PAYMENT_FREQUENCY], null=True, blank=True)
+
+    loanClassNumber = models.CharField(_("Loan Class Number"), max_length=50,blank=True)
+    loanAmt = models.DecimalField(_("Loan Amount"), max_digits=8, decimal_places=2, null=True, blank=True)
+    loanPmtAmt = models.DecimalField(_("Loan Payment Amount"), max_digits=8, decimal_places=2, null=True, blank=True)
+    loanPmtFrequency = models.CharField(_("Mortgage Payment Frequency"), max_length=2, choices=[x.value for x in PAYMENT_FREQUENCY], null=True, blank=True)
+
+    status = models.CharField(_("Current Status"), max_length=10, blank=True)
+    isJoint = models.CharField(_("Joint application"), max_length=2, choices=[x.value for x in YES_NO],null=True, blank=True)
+    preProcessData = models.ForeignKey(InsurancePreProcessData, related_name='preProcessData', on_delete=models.CASCADE, null=False, blank=False)
 
     def __str__(self):
         return '{}'.format(self.insProduct)
@@ -195,19 +226,7 @@ class InsuranceDiscussion(TimeStampedModel):
         return self.lifeInsurancePremiumPerMonth + self.criticalIllnessPremiumPerMonth + self.disabilityPremiumPerMonth
 
 
-class InsurancePreProcessData(TimeStampedModel):
-    STATUS_CHOICES =(
-        ('draft', 'DRAFT'),
-        ('active', 'ACTIVE'),
-        ('deactivate', 'DEACTIVATE'),
-    )
 
-    application_number = models.CharField(max_length=100, verbose_name=u"Application Number", help_text=u"Application Number",blank=False)
-    status = models.CharField(max_length=10, choices=STATUS_CHOICES, default='draft')
-    data = models.JSONField()
-
-    def __str__(self):
-        return '{}'.format(self.application_number)
 
 class ProvinceResidence(TimeStampedModel):
 

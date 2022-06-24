@@ -32,12 +32,6 @@
         "monthlyExpensePropTaxFees": 2500,
         "monthlyExpenseOtherHousing": 2500
       },
-      "mortgage": {
-        "limit": 67676,
-        "balance": 2500,
-        "pmtAmount": 3000,
-        "pmtFrequency": "m"
-      },
       "FirstName": "Jimmmy",
       "MiddleName": "sr.Jack",
       "creditCard": {
@@ -126,6 +120,14 @@
       "monthlyIncomeAfterTaxes": 250
     }
   ],
+  "mortgage": {
+        "mortgageNumber": "MT12345",
+        "classNumber": "AD12345",
+        "limit": 67676,
+        "balance": 2500,
+        "pmtAmount": 78,
+        "pmtFrequency": "m"
+      },
   "insProducts_details" : [ 
 		{ 
 			"insProduct": "Mortgage Life Insurance",

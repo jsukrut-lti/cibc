@@ -71,19 +71,61 @@ class CreditInsurance(object):
     def get_agent_id(self):
         return 1
 
-    def get_ins_product_id(self,prod_code):
-        p = InsuranceProduct.objects.filter(product_cibc_code=prod_code).values("id")
-        return p[0].get('id')
+    def get_ins_product(self,prod_code):
+        p = InsuranceProduct.objects.filter(product_cibc_code=prod_code)
+        return p[0]
 
     def format_raw_data_for_insdisc(self,queryset, select):
 
         raw_data = json.loads(queryset['data'])
         appl_details = raw_data.get('applicants', list())
-        d = dict()
-        d['insProduct_id'] = CreditInsurance.get_ins_product_id(self,raw_data['insProducts_details'][0]['insProduct_ID'])
+
+        ins_product = CreditInsurance.get_ins_product(self,raw_data['insProducts_details'][0]['insProduct_ID'])
+        ins_product_type = ins_product.creditProduct_code.credit_product_name.lower()
+        d = CreditInsurance.create_ins_disc_template(self, ins_product_type)
+        # d = dict()
+        d['preProcessData_id'] = queryset['id']
+        d['insProduct_id'] = ins_product.id
         d['agent_id'] = CreditInsurance.get_agent_id(self)
-        d['canada_provence'] = raw_data['canada_province']
+        # todo - Need to change 'canada_provence' to 'canada_province' in model
+        d['canada_province'] = raw_data['canada_province']
         d['currentApplicationPmt'] = raw_data['currentApplicationPmt']
+
+        if ins_product_type == 'hpp':
+            # HPP
+            d['hppMaxRebalancingLmt'] = raw_data['hpp']['hppMaxRebalancingLmt']
+            d['hppCreditLmt'] = raw_data['hpp']['hppCreditLmt']
+            d['plcCLassNumber'] = raw_data['hpp']['plcCLassNumber']
+            d['plcMMortgageNumber'] = raw_data['hpp']['plcMMortgageNumber']
+            d['plcRepaymentType'] = raw_data['hpp']['plcRepaymentType']
+            d['plcCreditLmt'] = raw_data['hpp']['plcCreditLmt']
+            d['plcInterestRate'] = raw_data['hpp']['plcInterestRate']
+            d['mortgageCLassNumber'] = raw_data['hpp']['mortgageCLassNumber']
+            d['mortgageNumber'] = raw_data['hpp']['mortgageNumber']
+            d['mortgageBalance'] = raw_data['hpp']['mortgageAmt']
+            d['mortgagePmtAmt'] = raw_data['hpp']['mortgagePmtAmt']
+            d['mortgagePmtFrequency'] = raw_data['hpp']['mortgagePmtFrequency']
+
+        elif ins_product_type == 'loan':
+            d['loanClassNumber'] = raw_data['loan']['loanClassNumber']
+            d['loanAmt'] = raw_data['loan']['loanAmt']
+            d['loanPmtAmt'] = raw_data['loan']['loanPmtAmt']
+            d['loanPmtFrequency'] = raw_data['loan']['loanPmtFrequency']
+
+        elif ins_product_type == 'plc':
+            d['plcCLassNumber'] = raw_data['plc']['plcCLassNumber']
+            d['plcMMortgageNumber'] = raw_data['plc']['plcMMortgageNumber']
+            d['plcRepaymentType'] = raw_data['plc']['plcRepaymentType']
+            d['plcCreditLmt'] = raw_data['plc']['plcCreditLmt']
+            d['plcInterestRate'] = raw_data['plc']['plcInterestRate']
+
+        elif ins_product_type == 'mortgage':
+            d['mortgageCLassNumber'] = raw_data['mortgage']['classNumber']
+            d['mortgageNumber'] = raw_data['mortgage']['mortgageNumber']
+            d['mortgageBalance'] = raw_data['mortgage']['balance']
+            d['mortgagePmtAmt'] = raw_data['mortgage']['pmtAmount']
+            d['mortgagePmtFrequency'] = raw_data['mortgage']['pmtFrequency']
+
         for index, appl in enumerate(appl_details):
             if appl['applicantId'] in select:
                 if index == 0:
@@ -101,6 +143,7 @@ class CreditInsurance(object):
                     d['savingsEmergencyFund'] = appl['savingsEmergencyFund']
                     d['creditCardBalance'] = appl['creditCard']['balance']
                     d['totalMonthlyExpenses'] = appl['expenses']['totalMonthlyExpenses']
+                    d['isJoint'] = 'n'
                 if index == 1:
                     d['coFirstName'] = appl['FirstName']
                     d['coMiddleName'] = appl['MiddleName']
@@ -116,9 +159,96 @@ class CreditInsurance(object):
                     d['savingsEmergencyFund'] += appl['savingsEmergencyFund']
                     d['creditCardBalance'] += appl['creditCard']['balance']
                     d['totalMonthlyExpenses'] += appl['expenses']['totalMonthlyExpenses']
+                    d['isJoint'] = 'y'
 
         return d
 
+    def create_ins_disc_template(self, ins_product_type):
+        temp = {
+            # demographics
+            'primaryFirstName': '',
+            'primaryMiddleName': '',
+            'primaryLastName': '',
+            'primaryPreferredName': '',
+            'primaryAge': None,
+            'primaryGender': '',
+            'primaryEmail': '',
+            'coFirstName': '',
+            'coMiddleName': '',
+            'coLastName': '',
+            'coAge': None,
+            'coGender': '',
+            'isJoint': '',
+            'canada_province': '',
+            # source info
+            'agent_id': None,
+            'insProduct_id': None,
+            'preProcessData_id': None,
+            # approx net income
+            'approxNetIncome': None,
+            # existing debt
+            'totalExistingDebt': None,
+            # current application payment
+            'currentApplicationPmt': None,
+            # monthly payment
+            'totalMonthlyPmt': None,
+            # saving and emergency fund
+            'savingsEmergencyFund': None,
+            # current insurance coverage
+            'lifeInsuranceLimit': None,
+            'criticalIllnessLimit': None,
+            'disabilityInsuranceMonthlyBenefit': None,
+            'disabilityInsurancePercentCoveredByEmployer': None,
+            # existing fields / extras
+            'totalUnsecuredAmt': None,
+            'totalSecuredAmt': None,
+            'creditCardBalance': None,
+            'totalMonthlyExpenses': None,
+        }
+        # current application details
+        t = dict()
+        if ins_product_type == 'hpp':
+            # HPP
+            t = {
+                'hppMaxRebalancingLmt': None,
+                'hppCreditLmt': None,
+                'plcCLassNumber': '',
+                'plcMMortgageNumber': '',
+                'plcRepaymentType': '',
+                'plcCreditLmt': None,
+                'plcInterestRate': None,
+                'mortgageCLassNumber': '',
+                'mortgageNumber': '',
+                'mortgageBalance': None,
+                'mortgagePmtAmt': None,
+                'mortgagePmtFrequency': None
+                }
+        elif ins_product_type == 'loan':
+            t = {
+                'loanClassNumber': '',
+                'loanAmt': None,
+                'loanPmtAmt': None,
+                'loanPmtFrequency': None
+            }
+        elif ins_product_type == 'plc':
+            t = {
+                'plcCLassNumber': '',
+                'plcMMortgageNumber': '',
+                'plcRepaymentType': None,
+                'plcCreditLmt': None,
+                'plcInterestRate': None
+            }
+        elif ins_product_type == 'mortgage':
+            t = {
+                'mortgageCLassNumber': '',
+                'mortgageNumber': '',
+                'mortgageBalance': None,
+                'mortgagePmtAmt': None,
+                'mortgagePmtFrequency': None
+            }
+        if t:
+            temp.update(t)
+        return temp
 
 class EligibilityCheck(object):
 
