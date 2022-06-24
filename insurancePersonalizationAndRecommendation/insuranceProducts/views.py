@@ -602,3 +602,12 @@ class FAQ(View):
             'id': kwargs['pk'],
         }
         return render(request, template_name=self.template_name, context=context)
+
+class TypeOfApplication(View):
+    template_name = 'creditInsurance/typeOfApplication.html'
+
+    def get(self, request, *args, **kwargs):
+        context = {
+            'id': kwargs['pk'],
+        }
+        return render(request, template_name=self.template_name, context=context)

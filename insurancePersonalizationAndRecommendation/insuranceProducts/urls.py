@@ -31,5 +31,6 @@ urlpatterns = [
     path('anecdotesArchetypeInformation/<int:pk>', AnecdotesArchetypeInformation.as_view(), name='ins-exit'),
     path('anecdotesArchetypeSelection/<int:pk>', AnecdotesArchetypeSelection.as_view(), name='ins-exit'),
     path('faq/<int:pk>', FAQ.as_view(), name='ins-exit'),
+    path('typeOfApplication/<int:pk>', TypeOfApplication.as_view(), name='ins-exit'),
 
 ]
