@@ -25,70 +25,78 @@
                                             <div class="col-md-6 col-12">
                                                 <div class="mb-3">
                                                     <label for="firstName" class="form-label mb-1">First Name</label>
-                                                    <input type="text" class="form-control rounded-0" id="firstName" placeholder="Enter first name..." value="{{ discussion.primaryFirstName }}">
+                                                    <input type="text" class="form-control rounded-0 notEditable" id="firstName" placeholder="Enter first name..." value="{{ discussion.primaryFirstName }}" readonly>
                                                 </div>
                                             </div>
                                             <div class="col-md-6 col-12">
                                                 <div class="mb-3">
                                                     <label for="lastName" class="form-label mb-1">Last Name</label>
-                                                    <input type="text" class="form-control rounded-0" id="lastName" placeholder="Enter last name..." value="{{ discussion.primaryLastName }}">
+                                                    <input type="text" class="form-control rounded-0 notEditable" id="lastName" placeholder="Enter last name..." value="{{ discussion.primaryLastName }}" readonly>
                                                 </div>
                                             </div>
                                             <div class="col-md-6 col-12">
                                                 <div class="mb-3">
                                                     <label for="middleName" class="form-label mb-1">Middle Initial</label>
-                                                    <input type="text" class="form-control rounded-0" id="middleName" placeholder="Enter middle initial..." value="{{ discussion.primaryMiddleName }}">
+                                                    <input type="text" class="form-control rounded-0 notEditable" id="middleName" placeholder="Enter middle initial..." value="{{ discussion.primaryMiddleName }}" readonly>
                                                 </div>
                                             </div>
                                             <div class="col-md-6 col-12">
                                                 <div class="mb-3">
                                                     <label for="preferredName" class="form-label mb-1">Preferred Name</label>
-                                                    <input type="text" class="form-control rounded-0" id="preferredName" placeholder="Enter name...">
+                                                    <input type="text" class="form-control rounded-0 notEditable" id="preferredName" placeholder="Enter name..." readonly>
                                                 </div>
                                             </div>
                                             <div class="col-md-6 col-12">
                                                 <div class="mb-3">
                                                     <label for="gender" class="form-label mb-1">Gender</label>
-                                                    <input type="text" class="form-control rounded-0" id="gender" placeholder="Gender" value="{{ discussion.primaryGender }}">
+                                                    <input type="text" class="form-control rounded-0 notEditable" id="gender" placeholder="Gender" value="{{ discussion.primaryGender }}" readonly>
                                                 </div>
                                             </div>
                                             <div class="col-md-6 col-12">
                                                 <div class="mb-3">
                                                     <label for="province" class="form-label mb-1">Province</label>
-                                                    <input type="text" class="form-control rounded-0" id="province" placeholder="Enter province code..." value="{{ discussion.canada_provence }}">
+                                                    <input type="text" class="form-control rounded-0 notEditable" id="province" placeholder="Enter province code..." value="{{ discussion.canada_provence }}" readonly>
                                                 </div>
                                             </div>
-                                            <div class="col-12">
+                                            <div class="col-md-6 col-12">
                                                 <div class="mb-3">
                                                     <label for="email" class="form-label mb-1">Email</label>
-                                                    <input type="email" class="form-control rounded-0" id="email" placeholder="Enter email id..." autocomplete="off">
+                                                    <input type="email" class="form-control rounded-0 notEditable" id="email" placeholder="Enter email id..." autocomplete="off" readonly>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6 col-12">
+                                                <div class="mb-3">
+                                                    <label for="age" class="form-label mb-1">Age</label>
+                                                    <input type="text" class="form-control rounded-0 notEditable" id="age" placeholder="Age..." readonly>
                                                 </div>
                                             </div>
                                             
-                                            <div class="row">
-                                                <div class="col-md-3 col-12 mb-3">
-                                                    <p class="mb-1">Joint Application</p>
-                                                    <div class="jointApplicantDemographic">
-                                                        <div class="form-check form-check-inline">
-                                                            <input class="form-check-input" type="radio" name="jointApplicantDemographic" id="yes" value="yes">
-                                                            <label class="form-check-label" for="yes">Yes</label>
-                                                        </div>
-                                                        <div class="form-check form-check-inline">
-                                                            <input class="form-check-input" type="radio" name="jointApplicantDemographic" id="no" value="no">
-                                                            <label class="form-check-label" for="no">No</label>
+                                            <div>
+                                                <div class="row">
+                                                    <div class="col-md-3 col-12 mb-3">
+                                                        <p class="mb-1">Joint Application</p>
+                                                        <div class="jointApplicantDemographic">
+                                                            <div class="form-check form-check-inline">
+                                                                <input class="form-check-input" type="radio" name="jointApplicantDemographic" id="yes" value="yes">
+                                                                <label class="form-check-label" for="yes">Yes</label>
+                                                            </div>
+                                                            <div class="form-check form-check-inline">
+                                                                <input class="form-check-input" type="radio" name="jointApplicantDemographic" id="no" value="no">
+                                                                <label class="form-check-label" for="no">No</label>
+                                                            </div>
                                                         </div>
                                                     </div>
-                                                </div>
-                                                <div class="col-md-7 col-12">
-                                                    <div class="mb-3">
-                                                        <label for="applicant" class="form-label mb-1">Applicant</label>
-                                                        <input type="text" class="form-control rounded-0" id="applicant" placeholder="Applicant Name...">
+                                                    <div class="col-md-7 col-12">
+                                                        <div class="mb-3">
+                                                            <label for="applicant" class="form-label mb-1">Applicant</label>
+                                                            <input type="text" class="form-control rounded-0 notEditable" id="applicant" placeholder="Applicant Name..." readonly>
+                                                        </div>
                                                     </div>
-                                                </div>
-                                                <div class="col-md-2 col-12">
-                                                    <div class="mb-3">
-                                                        <label for="age" class="form-label mb-1">Age</label>
-                                                        <input type="text" class="form-control rounded-0" id="age" placeholder="Age...">
+                                                    <div class="col-md-2 col-12">
+                                                        <div class="mb-3">
+                                                            <label for="applicantAge" class="form-label mb-1">Age</label>
+                                                            <input type="text" class="form-control rounded-0 notEditable" id="applicantAge" placeholder="Age..." readonly>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
