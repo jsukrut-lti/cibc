@@ -526,7 +526,6 @@ class DashbboardView(View):
 
     def post(self, request, *args, **kwargs):
         context = {
-            'id': request.POST.get("pk_id"),
             'exit_id': request.POST.get("pk_id")
         }
         return render(request, template_name=self.template_name, context=context)
