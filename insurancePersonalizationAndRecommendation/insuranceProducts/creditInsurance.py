@@ -129,6 +129,7 @@ class CreditInsurance(object):
         for index, appl in enumerate(appl_details):
             if appl['applicantId'] in select:
                 if index == 0:
+                    d['primaryApplicantId'] = appl['applicantId']
                     d['primaryFirstName'] = appl['FirstName']
                     d['primaryMiddleName'] = appl['MiddleName']
                     d['primaryLastName'] = appl['LastName']
@@ -145,6 +146,7 @@ class CreditInsurance(object):
                     d['totalMonthlyExpenses'] = appl['expenses']['totalMonthlyExpenses']
                     d['isJoint'] = 'n'
                 if index == 1:
+                    d['coApplicantId'] = appl['applicantId']
                     d['coFirstName'] = appl['FirstName']
                     d['coMiddleName'] = appl['MiddleName']
                     d['coLastName'] = appl['LastName']

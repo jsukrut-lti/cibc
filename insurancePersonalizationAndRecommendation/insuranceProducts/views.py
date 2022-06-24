@@ -479,6 +479,7 @@ class PrevSessionView(View):
                 'prev_disc': None,
                 'selected_applicants': [primaryApplicantId, coApplicantId]
             }
+            request.POST = request.POST.copy()
             request.POST.update(pre_)
             return InsuranceApplicantDemographicView().post(request)
         return HttpResponse({'prev_disc': prev_discs}, status=200)
