@@ -440,8 +440,8 @@ class InsuranceApplicantSelectionView(View):
 
 @method_decorator(login_required, name='dispatch')
 class PrevSessionView(View):
-    # template_name = 'creditInsurance/applicantSelection.html'
-    # context_object_name = 'Applicant Selection'
+    template_name = 'creditInsurance/applicantSelection.html'
+    context_object_name = 'Applicant Selection'
 
     def post(self, request, *args, **kwargs):
         payload = request.POST
@@ -482,7 +482,13 @@ class PrevSessionView(View):
             request.POST = request.POST.copy()
             request.POST.update(pre_)
             return InsuranceApplicantDemographicView().post(request)
-        return HttpResponse({'prev_disc': prev_discs}, status=200)
+
+        context = {'menu_name': self.context_object_name,
+                   'applicant_details': appl_details,
+                   'pk_id': kwargs['pk'],
+                   'prev_discs': list(prev_discs)
+                   }
+        return render(request, template_name=self.template_name, context=context)
 
 
 @method_decorator(login_required, name='dispatch')
