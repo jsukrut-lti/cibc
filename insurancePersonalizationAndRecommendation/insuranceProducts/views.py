@@ -21,7 +21,12 @@ from rest_framework import status, permissions, serializers
 from .serializers import InsuranceDiscussionSerializers, InsuranceProductSerializers
 from drf_yasg.utils import swagger_auto_schema
 import sys
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, HttpResponse
+from django.forms.models import model_to_dict
+from django.db import connection
+cursor = connection.cursor()
+
+
 
 
 sys.path.append('../../')
@@ -381,8 +386,8 @@ class InsuranceEligibilityCheckView(object):
             input_data['applicants'] = insurance_data["applicants"]
 
             get_response = True
-            eligibility_instance = EligibilityCheck()
-            get_response = eligibility_instance.get_eligibility(request,**input_data)
+            # eligibility_instance = EligibilityCheck()
+            # get_response = eligibility_instance.get_eligibility(request,**input_data)
 
             if get_response == True:            #if eligible
 
@@ -435,7 +440,9 @@ class InsuranceApplicantSelectionView(View):
 
 
 @method_decorator(login_required, name='dispatch')
-class InsuranceApplicantDemographicView(View):
+class PrevSessionView(View):
+    template_name = 'creditInsurance/applicantSelection.html'
+    context_object_name = 'Applicant Selection'
 
     def post(self, request, *args, **kwargs):
         payload = request.POST
@@ -444,23 +451,87 @@ class InsuranceApplicantDemographicView(View):
         joint_applicant = payload.get('jointApplicant')
         select = multi_select if joint_applicant == 'Yes' else single_select
 
+        pk = CrypticSetting.decrypt(self,payload['pk_id'])
+        queryset = InsurancePreProcessData.objects.filter(id=pk).values()[0]
+        raw_data = json.loads(queryset['data'])
+        appl_details = raw_data.get('applicants', list())
+
+        appli_number = raw_data['application_number']
+        primaryApplicantId = None
+        coApplicantId = None
+        for index, appl in enumerate(appl_details):
+            if appl['applicantId'] in select:
+                if not primaryApplicantId:
+                    primaryApplicantId = appl['applicantId']
+                else:
+                    coApplicantId = appl['applicantId']
+        status = 'inprogress'
+
+        if joint_applicant == 'Yes':
+            cursor.execute('''select b.id FROM public."insuranceProducts_insurancediscussionapplicantdetails" a right join 
+            public."insuranceProducts_insurancediscussion" b on a."insDiscussion_id"=b.id and a.application_number='{0}' 
+            and a."application_status"='{1}' where (b."applicantID"='{2}' and b."type"='{3}') and (b."applicantID"='{4}' 
+            and b."type"='{5}') '''.format(appli_number, status, primaryApplicantId, 'primary', coApplicantId, 'co'))
+        else:
+            cursor.execute('''select b.id FROM public."insuranceProducts_insurancediscussionapplicantdetails" a right join
+            public."insuranceProducts_insurancediscussion" b on a."insDiscussion_id"=b.id and b.application_number='{0}'
+            and b."application_status"='{1}' where a."applicantID"='{2}' and a."type"='{3}'
+            '''.format(appli_number, status, primaryApplicantId, 'primary'))
+        prev_discs = cursor.fetchone()
+        if not prev_discs:
+            pre_ = {
+                'is_new': True,
+                'prev_disc': None,
+                'selected_applicants': [primaryApplicantId, coApplicantId]
+            }
+            request.POST = request.POST.copy()
+            request.POST.update(pre_)
+            return InsuranceApplicantDemographicView().post(request)
+
+        context = {'menu_name': self.context_object_name,
+                   'applicant_details': appl_details,
+                   'pk_id': kwargs['pk'],
+                   'prev_discs': list(prev_discs)
+                   }
+        return render(request, template_name=self.template_name, context=context)
+
+
+@method_decorator(login_required, name='dispatch')
+class InsuranceApplicantDemographicView(View):
+
+    def post(self, request, *args, **kwargs):
+        payload = request.POST
+        start_new = payload.get('is_new')
+        prev_disc = payload.get('prev_disc')
+        selected_applicants = payload.get('selected_applicants')
+
         pk = CrypticSetting.decrypt(self, payload.get("pk_id"))
         queryset = InsurancePreProcessData.objects.filter(id=pk).values()[0]
-        filter_data, appDetails = CreditInsurance.format_raw_data_for_insdisc(self,queryset, select)
+        if start_new:
+            filter_data, appDetails = CreditInsurance.format_raw_data_for_insdisc(self, queryset, selected_applicants)
+            if prev_disc:
+                discussionDetails = InsuranceDiscussion.objects.filter(pk=prev_disc, status='incomplete').update(**filter_data)
+            else:
+                filter_data['application_status'] = 'incomplete'
+                discussionDetails = InsuranceDiscussion.objects.create(**filter_data)
+                discussionDetails.save()
 
-        discussionDetails = InsuranceDiscussion.objects.create(**filter_data)
-        discussionDetails.save()
+                discussion_appDetails = dict()
+                for app_type, app_id in appDetails.items():
+                    discussion_appDetails['insDiscussion_id'] = discussionDetails.pk
+                    discussion_appDetails['application_number'] = filter_data['application_number']
+                    discussion_appDetails['applicantID'] = app_id
+                    discussion_appDetails['type'] = app_type
 
-        discussion_appDetails = dict()
-        for app_id in appDetails:
-            discussion_appDetails['insDiscussion_id'] = discussionDetails.pk
-            discussion_appDetails['application_number'] = filter_data['application_number']
-            discussion_appDetails['applicantID'] = app_id
+                    applicantDetails = InsuranceDiscussionApplicantDetails.objects.create(**discussion_appDetails)
+                    applicantDetails.save()
 
-            applicantDetails = InsuranceDiscussionApplicantDetails.objects.create(**discussion_appDetails)
-            applicantDetails.save()
-
+        else:
+            discussionDetails = InsuranceDiscussion.objects.filter(id=prev_disc).values()[0]
         discussion_pk = CrypticSetting.encrypt(self, discussionDetails.pk)
+
+        # session data inserted here
+        request.session['ins_data'] = model_to_dict(discussionDetails)
         return HttpResponseRedirect('/insurance/clientInformation/{}'.format(discussion_pk))
 
 
@@ -469,8 +540,9 @@ class InsuranceClientInformationView(View):
     context_object_name = 'Client'
 
     def get(self, request, *args, **kwargs):
-        pk = CrypticSetting.decrypt(self, kwargs['pk'])
-        queryset = InsuranceDiscussion.objects.filter(id=pk).values()[0]
+        # pk = CrypticSetting.decrypt(self, kwargs['pk'])
+        # queryset = InsuranceDiscussion.objects.filter(id=pk).values()[0]
+        queryset = request.session['ins_data']
         if queryset['primaryGender'] == 'm':
             queryset['primaryGender'] = 'Male'
         elif queryset['primaryGender'] == 'f':
@@ -478,8 +550,8 @@ class InsuranceClientInformationView(View):
         else:
             queryset['primaryGender'] = 'Other'
 
-        if queryset['canada_provence'] == 'on':
-            queryset['canada_provence'] = 'Canada'
+        if queryset['canada_province'] == 'on':
+            queryset['canada_province'] = 'Canada'
 
         context = {
             'id': kwargs['pk'],
@@ -489,8 +561,9 @@ class InsuranceClientInformationView(View):
         return render(request, template_name=self.template_name, context=context)
 
     def post(self, request, *args, **kwargs):
-        form = request.POST.form()
-        return render(request, template_name=self.template_name, context=context)
+        update_session_with_form_data(request)
+        request.session.modified = True
+        return HttpResponse('successfully updated', status=204)
 
 
 class InsuranceClient(View):
@@ -682,3 +755,78 @@ class PaymentDetails(View):
             'id': kwargs['pk'],
         }
         return render(request, template_name=self.template_name, context=context)
+
+def format_raw_data_for_insdisc(queryset, select):
+    raw_data = queryset['data']
+    appl_details = raw_data.get('applicants', list())
+    d = dict()
+    d['insProduct_id'] = get_ins_product_id(raw_data['insProduct'])
+    d['agent_id'] = get_agent_id()
+    d['canada_provence'] = raw_data['canada_province']
+    d['currentApplicationPmt'] = raw_data['currentApplicationPmt']
+    for index, appl in enumerate(appl_details):
+        if appl['applicantId'] in select:
+            if index == 0:
+                d['primaryFirstName'] = appl['FirstName']
+                d['primaryMiddleName'] = appl['MiddleName']
+                d['primaryLastName'] = appl['LastName']
+                d['primaryAge'] = appl['Age']
+                d['primaryGender'] = appl['Gender']
+                d['approxNetIncome'] = appl['monthlyGrossIncome']
+                d['totalUnsecuredAmt'] = appl['existingDebts']['cibcUnsecured']
+                d['totalSecuredAmt'] = appl['existingDebts']['cibcSecured']
+                d['totalExistingDebt'] = appl['existingDebts']['cibcSecured'] + appl['existingDebts']['cibcUnsecured']
+                d['totalMonthlyPmt'] = appl['monthlyIncomeAfterTaxes']
+                d['savingsEmergencyFund'] = appl['savingsEmergencyFund']
+                d['creditCardBalance'] = appl['creditCard']['balance']
+                d['totalMonthlyExpenses'] = appl['expenses']['totalMonthlyExpenses']
+            if index == 1:
+                d['coFirstName'] = appl['FirstName']
+                d['coMiddleName'] = appl['MiddleName']
+                d['coLastName'] = appl['LastName']
+                d['coAge'] = appl['Age']
+                d['coGender'] = appl['Gender']
+                d['approxNetIncome'] += appl['monthlyGrossIncome']
+                d['totalUnsecuredAmt'] += appl['existingDebts']['cibcUnsecured']
+                d['totalSecuredAmt'] += appl['existingDebts']['cibcSecured']
+                d['totalExistingDebt'] += appl['existingDebts']['cibcSecured'] + appl['existingDebts']['cibcUnsecured']
+                d['totalMonthlyPmt'] += appl['monthlyIncomeAfterTaxes']
+                d['savingsEmergencyFund'] += appl['savingsEmergencyFund']
+                d['creditCardBalance'] += appl['creditCard']['balance']
+                d['totalMonthlyExpenses'] += appl['expenses']['totalMonthlyExpenses']
+
+    return d
+
+def get_agent_id():
+    return 1
+
+
+def get_ins_product_id(prod_name):
+    p = InsuranceProduct.objects.filter(title=prod_name)
+    return p[0].id
+
+
+class SaveSession(View):
+
+    def post(self, request, *args, **kwargs):
+        if 'ins_data' in request.session:
+            ins_data = request.session['ins_data']
+            if ins_data['primaryGender'] == 'Male':
+                ins_data['primaryGender'] = 'm'
+            elif ins_data['primaryGender'] == 'Female':
+                ins_data['primaryGender'] = 'f'
+            if ins_data['canada_province'] == 'Canada':
+                ins_data['canada_province'] = 'on'
+            res = InsuranceDiscussion.objects.filter(pk=ins_data['id']).update(**ins_data)
+        return HttpResponse(json.dumps({'exit': 'success'}), content_type="application/json")
+
+
+def update_session_with_form_data(request):
+    session_data = request.session['ins_data']
+    form_data = request.POST
+    for key, v in session_data.items():
+        if key in form_data:
+            request.session['ins_data'][key] = form_data[key]
+
+    return True
+

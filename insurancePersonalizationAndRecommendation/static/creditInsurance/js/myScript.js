@@ -61,46 +61,83 @@ function closeNavMob() {
     document.getElementsByTagName('body')[0].classList.remove('hidden');
 }
 
-// Select Applicant Script as per radio button selection
 
-let radioBtns = document.querySelectorAll('.jointApplicantDetails .form-check-input[name="jointApplicant"]');
-let selectBox = document.querySelector('.selectBox');
-let selectBoxMultiple = document.querySelector('.selectBoxMultiple');
-
-selectBox.addEventListener('change', () => {
-    if(error.classList.contains('d-block') == true){
-        error.classList.remove('d-block');
-    }
-    error.classList.add('d-none');
-})
-
-selectBoxMultiple.addEventListener('change', () => {
-    if(error.classList.contains('d-block') == true){
-        error.classList.remove('d-block');
-    }
-    error.classList.add('d-none');
-})
-
-function selectedItem(e) {
-    if(e.currentTarget.checked && e.currentTarget.value == "Yes") {
-        selectBox.style.display = "none";
-        selectBoxMultiple.style.display = "block"; 
-    }
-
-    else if(e.currentTarget.checked && e.currentTarget.value == "No") {
-        selectBox.style.display = "block";
-        selectBoxMultiple.style.display = "none";
-    }
-    if(error.classList.contains('d-block') == true){
-        error.classList.remove('d-block');
-    }
-    error.classList.add('d-none');
-}
-
-radioBtns.forEach(item => {
-    item.addEventListener('change', selectedItem);
-})
 
 function exitApplication(e){
     document.location.href="/insurance/exit/{{ exit_id }}";
+}
+
+
+
+
+//session development
+var timer;
+function myTimeout () {
+    console.log('new timeout started!!')
+    clearTimeout(timer)
+    timer = setTimeout(checkSession, 100000);
+};
+myTimeout();
+
+function checkSession (){
+    console.log('success');
+    console.log('timer', timer);
+    var retVal = confirm("Session timeout!! Do you want to continue ?");
+    if (retVal == true) {
+        console.log('session extended');
+        myTimeout ();
+    } else {
+        console.log('click cancel');
+        clearTimeout(timer);
+        window.location = window.location.protocol + "//" + window.location.host + '/insurance/exit';
+    }
+
+};
+
+
+document.onclick = function (){
+    myTimeout();
+};
+
+$(document).ready(function (){
+        debugger;
+        var validNavigation = false;
+
+
+//         Attach the event submit for all forms in the page
+        $("form").bind("submit", function() {
+          debugger;
+          validNavigation = true;
+        });
+
+//         Attach the event click for all inputs in the page
+        $("input[type=submit]").bind("click", function() {
+          debugger;
+          validNavigation = true;
+        });
+
+//         Attach the event button for all inputs in the page
+        $("a[role=button]").bind("click", function() {
+          validNavigation = true;
+        });
+
+        window.onbeforeunload = function() {
+            debugger;
+            if (!validNavigation) {
+                saveDB();
+            } else {
+                validNavigation = false;
+            }
+        };
+
+  });
+
+
+function saveDB() {
+
+        var formData = new FormData();
+  		// sending update Insurance discussion call.
+        formData.append('csrfmiddlewaretoken', csrf_token);
+        const url = window.location.protocol+"//"+window.location.host+'/insurance/save_session'
+        navigator.sendBeacon(url, formData);
 }
