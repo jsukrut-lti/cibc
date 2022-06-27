@@ -83,13 +83,14 @@ class CreditInsurance(object):
         ins_product = CreditInsurance.get_ins_product(self,raw_data['insProducts_details'][0]['insProduct_ID'])
         ins_product_type = ins_product.creditProduct_code.credit_product_name.lower()
         d = CreditInsurance.create_ins_disc_template(self, ins_product_type)
-        # d = dict()
+        appDetails = []
         d['preProcessData_id'] = queryset['id']
         d['insProduct_id'] = ins_product.id
         d['agent_id'] = CreditInsurance.get_agent_id(self)
         # todo - Need to change 'canada_provence' to 'canada_province' in model
         d['canada_province'] = raw_data['canada_province']
         d['currentApplicationPmt'] = raw_data['currentApplicationPmt']
+        d['application_number'] = raw_data['application_number']
 
         if ins_product_type == 'hpp':
             # HPP
@@ -145,6 +146,8 @@ class CreditInsurance(object):
                     d['creditCardBalance'] = appl['creditCard']['balance']
                     d['totalMonthlyExpenses'] = appl['expenses']['totalMonthlyExpenses']
                     d['isJoint'] = 'n'
+                    appDetails.append(appl['applicantId'])
+
                 if index == 1:
                     d['coApplicantId'] = appl['applicantId']
                     d['coFirstName'] = appl['FirstName']
@@ -163,7 +166,8 @@ class CreditInsurance(object):
                     d['totalMonthlyExpenses'] += appl['expenses']['totalMonthlyExpenses']
                     d['isJoint'] = 'y'
 
-        return d
+
+        return d,appDetails
 
     def create_ins_disc_template(self, ins_product_type):
         temp = {
@@ -356,4 +360,28 @@ class AssessmentQuestionnaire(object):
         return assessment_detail
 
 
+class ApplicantDetails(object):
 
+    def __init__(self):
+        pass
+
+    def get_applicant_details(self,**kwargs):
+
+        pk = CrypticSetting.decrypt(self, kwargs['pk'])
+        queryset = InsurancePreProcessData.objects.filter(id=pk).values()[0]
+        raw_data = json.loads(queryset['data'])
+        appl_details = raw_data.get('applicants', list())
+
+        discAppl_details = InsuranceDiscussionApplicantDetails.objects.filter(
+            application_number=raw_data.get('application_number')).values('applicantID')
+        discAppl_details_rec = discAppl_details and list(discAppl_details) or []
+
+        discApp_list = [a['applicantID'] for a in discAppl_details_rec]
+
+        appl_details_remaining = []
+
+        for appl in appl_details:
+            if appl['applicantId'] not in discApp_list:
+                appl_details_remaining.append(appl)
+
+        return appl_details_remaining

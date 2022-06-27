@@ -1,14 +1,15 @@
 /*Not Eligible Page CSS*/
 
 .notEligible {
-    height: inherit;
-    background-color: $white;
-    position: relative;
+    // height: inherit;
+    // background-color: $white;
+    // position: relative;
 
     .content {
         h4 {
-            font-weight: 400;
+            font-weight: 400 !important;
             margin-bottom: 14px;
+            color: #212529 !important;
         }
 
         form {
@@ -37,7 +38,8 @@
 
         h4 {
             font-size: 36px;
-            font-weight: 500;
+            font-weight: 500 !important;
+            color: #212529 !important;
         }
 
         .exitReason {
@@ -48,6 +50,7 @@
             h4 {
                 font-size: 24px;
                 font-weight: 500 !important;
+                color: #212529 !important;
             }
 
             .form-check {
@@ -90,8 +93,9 @@
 .exitPlatform {
     .content {
         h4 {
-            font-weight: 300;
+            font-weight: 300 !important;
             position: relative;
+            color: #212529 !important;
 
             &::before {
                 content: '';

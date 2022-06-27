@@ -6,85 +6,148 @@
             </div>
 
             <div class="container-lg px-4">
-                <div class="accountScreen notEligible exitPage my-4">
-                    <div class="content text-center">
-                        <!-- <div class="closeIcon">
-                            <i class="bi bi-x-lg"></i>
-                        </div> -->
-                        <form>
-                            <div class="mb-3">
-                                <h4>Let's stay in touch</h4>
-                                <p class="estimateValue mb-5">We appreciate your business, please contact us for additional information or to review your profile with an advisor near you.</p>
+                <div class="commonLayout notEligible exitPage my-4">
+                    <div class="content">
+                        <div class="row">
+                            <div class="col-md-8">
+                                <div class="leftSec text-center">
+                                    <div class="refreshBtn">
+                                        <img src="{% static 'creditInsurance/images/reload.png' %}" alt="reload icon">
+                                    </div>
+                                    <form>
+                                        <div class="mb-3">
+                                            <h4>Let's stay in touch</h4>
+                                            <p class="estimateValue mb-5">We appreciate your business, please contact us for additional information or to review your profile with an advisor near you.</p>
+                                        </div>
+            
+                                        <div class="mb-3 exitReason text-start">
+                                            <div class="row">
+                                                <h4>Primary reason you declined assessment?</h4>
+                                                <div class="col-md-6 col-12">
+                                                    <div class="form-check">
+                                                        <input class="form-check-input" type="radio" name="exitAssessmentReason" id="laterDate" value="laterDate">
+                                                        <label class="form-check-label" for="laterDate">
+                                                            Lender to complete at a later date
+                                                        </label>
+                                                    </div>
+                                                    <div class="form-check">
+                                                        <input class="form-check-input" type="radio" name="exitAssessmentReason" id="think" value="think">
+                                                        <label class="form-check-label" for="think">
+                                                            Need to think about it
+                                                        </label>
+                                                    </div>
+                                                    <div class="form-check">
+                                                        <input class="form-check-input" type="radio" name="exitAssessmentReason" id="coverage" value="coverage">
+                                                        <label class="form-check-label" for="coverage">
+                                                            Already covered
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                                
+                                                <div class="col-md-6 col-12">
+                                                    <div class="form-check">
+                                                        <input class="form-check-input" type="radio" name="exitAssessmentReason" id="interested" value="interested">
+                                                        <label class="form-check-label" for="interested">
+                                                            Not interested
+                                                        </label>
+                                                    </div>
+                                                    <div class="form-check">
+                                                        <input class="form-check-input" type="radio" name="exitAssessmentReason" id="noTime" value="noTime">
+                                                        <label class="form-check-label" for="noTime">
+                                                            No time
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                                
+                                            </div>
+                                            <div class="row">
+                                                <p class="objectionData my-3"></p>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="closePage text-center">
+                                            <button type="button" class="btn commonBtn" onclick="closeCurrentTab()"> Exit </button>
+                                            <div class="returnToCI">
+                                                <a href="#" onclick="history.back()">I changed my mind, return to dashboard tool</a>
+                                            </div>
+                                            <hr class="my-4">
+                                            <div class="contactSec">
+                                                <p class="mb-2 text-capitalize">Feel free to contact us with any questions</p>
+                                                <div class="contactDetails d-flex justify-content-center">
+                                                    <div class="mail mb-2">
+                                                        <img src="{% static 'creditInsurance/images/mail.png' %}" alt="mail icon">
+                                                        <a href="mailto:info_ci@cibc.com">info_ci@cibc.com</a>
+                                                    </div>
+                                                    <div class="call">
+                                                        <img src="{% static 'creditInsurance/images/phone.png' %}" alt="call icon">
+                                                        <span>1.877.448.6500</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
                             </div>
 
-                            <div class="mb-3 exitReason text-start">
-                                <div class="row">
-                                    <h4>Primary reason you declined assessment?</h4>
-                                    <div class="col-md-6 col-12">
-                                        <div class="form-check">
-                                            <input class="form-check-input" type="radio" name="exitAssessmentReason" id="laterDate" value="laterDate">
-                                            <label class="form-check-label" for="laterDate">
-                                                Lender to complete at a later date
-                                            </label>
-                                        </div>
-                                        <div class="form-check">
-                                            <input class="form-check-input" type="radio" name="exitAssessmentReason" id="think" value="think">
-                                            <label class="form-check-label" for="think">
-                                                Need to think about it
-                                            </label>
-                                        </div>
-                                        <div class="form-check">
-                                            <input class="form-check-input" type="radio" name="exitAssessmentReason" id="coverage" value="coverage">
-                                            <label class="form-check-label" for="coverage">
-                                                Already covered
-                                            </label>
-                                        </div>
-                                    </div>
-                                    
-                                    <div class="col-md-6 col-12">
-                                        <div class="form-check">
-                                            <input class="form-check-input" type="radio" name="exitAssessmentReason" id="interested" value="interested">
-                                            <label class="form-check-label" for="interested">
-                                                Not interested
-                                            </label>
-                                        </div>
-                                        <div class="form-check">
-                                            <input class="form-check-input" type="radio" name="exitAssessmentReason" id="noTime" value="noTime">
-                                            <label class="form-check-label" for="noTime">
-                                                No time
-                                            </label>
-                                        </div>
-                                    </div>
-                                    
-                                </div>
-                                <div class="row">
-                                    <p class="obejctionData my-3"></p>
-                                </div>
+                            <div class="col-md-4">
+                                {% include 'creditInsurance/commonRelevantLinks.html' %}
                             </div>
-                            
-                            <div class="closePage text-center">
-                                <button type="button" class="btn commonBtn">Exit</button>
-                                <div class="returnToCI">
-                                    <a href="#">I changed my mind, return to dashboard tool</a>
-                                </div>
-                                <hr class="my-4">
-                                <div class="contactSec">
-                                    <p class="mb-2 text-capitalize">Feel free to contact us with any questions</p>
-                                    <div class="contactDetails d-flex justify-content-center">
-                                        <div class="mail mb-2">
-                                            <img src="{% static 'creditInsurance/images/mail.png' %}" alt="mail icon">
-                                            <a href="mailto:info_ci@cibc.com">info_ci@cibc.com</a>
-                                        </div>
-                                        <div class="call">
-                                            <img src="{% static 'creditInsurance/images/phone.png' %}" alt="call icon">
-                                            <span>1.877.448.6500</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </form>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
+<!--        <script>function closeCurrentTab() {-->
+<!--        // write a simple wrapper around window.open that allows legal-->
+<!--        closeconst openWindow = () => {-->
+<!--          const wind =  window.open('','_blank','');-->
+
+<!--          // save the old close-->
+<!--          functionconst actualClose = wind.close;-->
+
+<!--          // Override wind.close and setup a promise that is resolved on-->
+<!--          wind.closeconst closePromise = new Promise(r=>{wind.close = ()=>{r(undefined);}});-->
+
+<!--          // Setup an async function// that closes the window after resolution of the above promise-->
+<!--          (async ()=>{-->
+<!--            await closePromise; // wait for promise resolutionactualClose(); // closing the window here is legal-->
+<!--          })();-->
+
+<!--          return wind;-->
+<!--        }-->
+
+
+<!--        // call wind.close-->
+<!--        anywheredocument.getElementById('myButton').addEventListener('click', wind.close)-->
+
+<!--        }-->
+<!--        </script>-->
+
+        <script>
+            // Exit Assessment - Show Objection as per radio button selection
+
+            var exitAssessmentReason = document.querySelectorAll('.exitReason .form-check-input[name="exitAssessmentReason"]');
+            var objectionData = document.querySelector('.objectionData');
+            var clientExit = {{ data|safe }};
+            var exitSurveyJson = JSON.parse(JSON.stringify(clientExit))
+            var keyList = Object.keys(exitSurveyJson)
+            function reasonChange(e) {
+                keyList.forEach(item => {
+
+                    if(e.currentTarget.checked && e.currentTarget.value in keyList) {
+                        item = e.currentTarget.checked
+                        console.log(item)
+                        objectionData.innerHTML = `
+                        <p>${exitSurveyJson.item[0]}</p>
+                        <p>${exitSurveyJson.item[1]}</p>
+                        <p class="mb-0">${exitSurveyJson.item[2]}</p>`;
+                        }
+                    objectionData.style.display = "block";
+                    })
+                }
+
+            exitAssessmentReason.forEach(reason => {
+                reason.addEventListener('change', reasonChange);
+            })
+        </script>
 {% endblock %}

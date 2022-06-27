@@ -2,7 +2,7 @@
 {% block content %}
 {% load static %}
         <div class="main">
-            <div class="d-flex justify-content-end align-items-center topBar">     
+            <div class="d-flex justify-content-end align-items-center topBar">
             </div>
 
             <div class="container-lg px-4">
@@ -31,14 +31,14 @@
 
                                         <div class="applicantList mb-5">
                                             <p class="text-uppercase mb-1">APPLICANT</p>
-                                            <div class="selectBox">
+                                            <div class="selectBox applicantCheck">
                                                 <select class="form-select" id="checkSelect" aria-label="Select Applicant" name="singleSelect">
                                                     {% for appl in applicant_details %}
                                                         <option value="{{ appl.applicantId }}">{{ appl.FirstName }} {{ appl.LastName }}</option>
                                                     {% endfor %}
                                                 </select>
                                             </div>
-                                            <div class="selectBoxMultiple">
+                                            <div class="selectBoxMultiple applicantCheck">
                                                 <select class="form-select" id="checkSelectMultiple" aria-label="Select Applicant" multiple="multiple" name="multiSelect">
                                                     {% for appl in applicant_details %}
                                                         <option value="{{ appl.applicantId }}">{{ appl.FirstName }} {{ appl.LastName }}</option>
@@ -64,6 +64,9 @@
                                                 </label>
                                             </div>
                                         </div>
+                                        <div class="error mt-3 mb-1 d-none">
+                                            <p class="m-0 error_applicantSelection">Kindly select one of the applicant</p>
+                                        </div>
 
                                         <div class="mt-5 d-flex align-items-center justify-content-end">
                                             <button type="submit" class="btn commonBtn">Proceed</button>
@@ -75,69 +78,8 @@
                                 <div class="col-md-12 mb-3">
                                     {% include 'creditInsurance/commonRelevantLinks.html' %}
                                 </div>
-
                                 <div class="col-md-12">
-                                    <div class="rightsec">
-                                        <p>Common questions & answers</p>
-                                        <div class="faqSectionByPage">
-                                            <div class="accordion" id="faqRightSec">
-                                                <div class="accordion-item">
-                                                    <h2 class="accordion-header" id="faqOne">
-                                                        <button class="accordion-button collapsed" type="button"
-                                                            data-bs-toggle="collapse" data-bs-target="#collapseOne"
-                                                            aria-expanded="false" aria-controls="collapseOne">
-                                                            <i class='bx bx-plus'></i>
-                                                            <span>Question 001</span>
-                                                        </button>
-                                                    </h2>
-                                                    <div id="collapseOne" class="accordion-collapse collapse"
-                                                        aria-labelledby="faqOne" data-bs-parent="#faqRightSec">
-                                                        <div class="accordion-body">
-                                                            <strong>This is the first item's accordion body.</strong> It is
-                                                            shown by default, until the collapse plugin adds the appropriate
-                                                            classes that we use to style each element.
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="accordion-item">
-                                                    <h2 class="accordion-header" id="faqTwo">
-                                                        <button class="accordion-button collapsed" type="button"
-                                                            data-bs-toggle="collapse" data-bs-target="#collapseTwo"
-                                                            aria-expanded="false" aria-controls="collapseTwo">
-                                                            <i class='bx bx-plus'></i>
-                                                            <span>Question 002</span>
-                                                        </button>
-                                                    </h2>
-                                                    <div id="collapseTwo" class="accordion-collapse collapse"
-                                                        aria-labelledby="faqTwo" data-bs-parent="#faqRightSec">
-                                                        <div class="accordion-body">
-                                                            <strong>This is the second item's accordion body.</strong> It is
-                                                            hidden by default, until the collapse plugin adds the
-                                                            appropriate classes that we use to style each element.
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="accordion-item">
-                                                    <h2 class="accordion-header" id="faqThree">
-                                                        <button class="accordion-button collapsed" type="button"
-                                                            data-bs-toggle="collapse" data-bs-target="#collapseThree"
-                                                            aria-expanded="false" aria-controls="collapseThree">
-                                                            <i class='bx bx-plus'></i>
-                                                            <span>Question 003</span>
-                                                        </button>
-                                                    </h2>
-                                                    <div id="collapseThree" class="accordion-collapse collapse"
-                                                        aria-labelledby="faqThree" data-bs-parent="#faqRightSec">
-                                                        <div class="accordion-body">
-                                                            <strong>This is the third item's accordion body.</strong> It is
-                                                            hidden by default, until the collapse plugin adds the
-                                                            appropriate classes that we use to style each element.
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
+                                    {% include 'creditInsurance/commonFAQ.html' %}
                                 </div>
                             </div>
                         </div>
@@ -145,6 +87,37 @@
                 </div>
             </div>
         </div>
+
+<script>
+
+let error = document.querySelector('.error');
+
+
+let form = document.querySelector('.applicantSelection form');
+form.addEventListener('submit', (e) => {
+
+            var applicantJoinSelectionCount = document.querySelector('input[name="jointApplicant"]:checked').value;
+            var applicantSelectionCount = 0;
+
+            if(applicantJoinSelectionCount == "Yes" && document.getElementById("checkSelectMultiple").selectedIndex >= 0){
+                applicantSelectionCount = 1;
+
+            }
+            else if(applicantJoinSelectionCount == "No" && document.getElementById("checkSelect").selectedIndex >= 0) {
+                applicantSelectionCount = 1;
+
+            }
+
+        if(applicantSelectionCount == 0){
+            error.classList.remove('d-none');
+            error.classList.add('d-block');
+            e.preventDefault();
+            return false;
+        }
+
+
+})
+</script>
 
 
 {% endblock %}

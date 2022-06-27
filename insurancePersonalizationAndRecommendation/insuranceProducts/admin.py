@@ -2,8 +2,11 @@ from django.contrib import admin
 from ..stories.admin import ModelAdmin
 
 # Register your models here.
-from .models import InsuranceProduct, InsuranceDiscussion,InsurancePreProcessData,InsuranceEligibility,InsuranceCreditProduct,\
-    ProvinceResidence,OccupationMaster,InsuranceNonEligibleContent,ClientDetails,AssessmentQuestionnaireMaster
+from .models import InsuranceProduct, InsuranceDiscussion, InsurancePreProcessData, InsuranceEligibility, \
+    InsuranceCreditProduct, \
+    ProvinceResidence, OccupationMaster, InsuranceNonEligibleContent, ClientDetails, AssessmentQuestionnaireMaster, \
+    ExitSurveyMaster
+
 
 @admin.register(InsuranceProduct)
 class InsuranceProductModelAdmin(admin.ModelAdmin):
@@ -52,3 +55,7 @@ class InsuranceNonEligibleContentModelAdmin(admin.ModelAdmin):
 class AssessmentQuestionnaireMasterModelAdmin(admin.ModelAdmin):
     list_display = ['assessment_id', 'assessment_details','effective_start_date','effective_end_date', 'active', 'created', 'modified']
 
+
+@admin.register(ExitSurveyMaster)
+class ExitSurveyMasterModelAdmin(admin.ModelAdmin):
+    list_filter = ['exit_id', 'exit_selector', 'exit_radio_display', 'exit_msg_line0', 'exit_msg_line1', 'exit_msg_line2']

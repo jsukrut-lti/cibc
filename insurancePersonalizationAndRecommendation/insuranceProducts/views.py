@@ -1,4 +1,6 @@
-from django.shortcuts import render
+import webbrowser
+
+from django.shortcuts import render, redirect
 from .forms import *
 from .api import *
 from .creditInsurance import *
@@ -12,6 +14,7 @@ from .models import *
 from django.views.generic.detail import SingleObjectMixin
 import logging
 from django.http import JsonResponse
+import json
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status, permissions, serializers
@@ -19,11 +22,9 @@ from .serializers import InsuranceDiscussionSerializers, InsuranceProductSeriali
 from drf_yasg.utils import swagger_auto_schema
 import sys
 from django.http import HttpResponseRedirect, HttpResponse
-import json
 from django.forms.models import model_to_dict
 from django.db import connection
 cursor = connection.cursor()
-from django.shortcuts import redirect, reverse
 
 
 
@@ -328,7 +329,7 @@ class InsuranceConvoUpdateView(SingleObjectMixin, InsuranceConvoView):
 @method_decorator(login_required, name='dispatch')
 class InsuranceCiPreApplicationView(View):
 
-    def get(self, request, *args, **kwargs):
+    def get(self, request, *args, **kwargs): 
         eligibility_check_instance = InsuranceEligibilityCheckView()
         return eligibility_check_instance.get(request)
 
@@ -364,7 +365,7 @@ class InsuranceWelcomeView(View):
 
     def get_template(self, request, *args, **kwargs):
         pk_id = CrypticSetting.encrypt(self, args[0])
-        context = {'menu_name': self.context_object_name, 'pk_id': pk_id}
+        context = {'menu_name': self.context_object_name, 'pk_id': pk_id, 'exit_id': request.POST.get("pk_id")}
         return render(request, template_name=self.template_name, context=context)
 
 
@@ -385,8 +386,8 @@ class InsuranceEligibilityCheckView(object):
             input_data['applicants'] = insurance_data["applicants"]
 
             get_response = True
-            # eligibility_instance = EligibilityCheck()
-            # get_response = eligibility_instance.get_eligibility(request,**input_data)
+            eligibility_instance = EligibilityCheck()
+            get_response = eligibility_instance.get_eligibility(request,**input_data)
 
             if get_response == True:            #if eligible
 
@@ -408,7 +409,7 @@ class InsuranceQuestionnaireView(View):
 
         self.assessment_details = AssessmentQuestionnaire.assessment_data(self, request)
 
-        context = {'menu_name': self.context_object_name,'assessment': self.assessment_details,'pk_id': request.POST.get("pk_id")}
+        context = {'menu_name': self.context_object_name,'assessment': self.assessment_details,'pk_id': request.POST.get("pk_id"), 'exit_id': request.POST.get("pk_id")}
         return render(request, template_name=self.template_name, context=context)
 
 
@@ -419,7 +420,7 @@ class InsuranceTermConditionView(View):
 
     def post(self, request, *args, **kwargs):
 
-        context = {'menu_name': self.context_object_name,'id' :  request.POST.get("pk_id")}
+        context = {'menu_name': self.context_object_name,'id' :  request.POST.get("pk_id"), 'exit_id': request.POST.get("pk_id")}
         return render(request, template_name=self.template_name, context=context)
 
 
@@ -429,11 +430,11 @@ class InsuranceApplicantSelectionView(View):
     context_object_name = 'Applicant Selection'
 
     def get(self, request, *args, **kwargs):
-        pk = CrypticSetting.decrypt(self,kwargs['pk'])
-        queryset = InsurancePreProcessData.objects.filter(id=pk).values()[0]
-        raw_data = json.loads(queryset['data'])
-        appl_details = raw_data.get('applicants', list())
-        context = {'menu_name': self.context_object_name, 'applicant_details': appl_details, 'pk_id': kwargs['pk']}
+
+        appl_details_remaining = []
+        appl_details_remaining = ApplicantDetails.get_applicant_details(self,**kwargs)
+
+        context = {'menu_name': self.context_object_name, 'applicant_details': appl_details_remaining, 'pk_id': kwargs['pk'], 'exit_id': request.POST.get("pk_id")}
 
         return render(request, template_name=self.template_name, context=context)
 
@@ -505,7 +506,7 @@ class InsuranceApplicantDemographicView(View):
         if start_new:
             if prev_disc:
                 res = InsuranceDiscussion.objects.filter(pk=prev_disc, status='inprogress').update(status='cancelled')
-            filter_data = CreditInsurance.format_raw_data_for_insdisc(self, queryset, selected_applicants)
+            filter_data, appDetails = CreditInsurance.format_raw_data_for_insdisc(self, queryset, select)
             filter_data['status'] = 'inprogress'
             discussionDetails = InsuranceDiscussion.objects.create(**filter_data)
             discussionDetails.save()
@@ -554,7 +555,7 @@ class InsuranceClient(View):
 
     def get(self, request, *args, **kwargs):
         context = {
-            'id': kwargs['pk']
+            'id': kwargs['pk'],'exit_id': request.POST.get("pk_id")
         }
         return render(request, template_name=self.template_name, context=context)
 
@@ -564,7 +565,7 @@ class InsuranceExitApplicationView(View):
     context_object_name = 'Exit'
 
     def get(self, request, *args, **kwargs):
-        context = {'menu_name': self.context_object_name}
+        context = {'menu_name': self.context_object_name, 'exit_id': request.POST.get("pk_id")}
         return render(request, template_name=self.template_name, context=context)
 
 
@@ -583,8 +584,8 @@ class DashbboardView(View):
     def post(self, request, *args, **kwargs):
         context = {
             'id': request.POST.get("pk_id"),
+            'exit_id': request.POST.get("pk_id")
         }
-
         return render(request, template_name=self.template_name, context=context)
 
 
@@ -594,6 +595,7 @@ class InsuranceTermCondition2View(View):
     def get(self, request, *args, **kwargs):
         context = {
             'id': kwargs['pk'],
+            'exit_id': request.POST.get("pk_id")
         }
         return render(request, template_name=self.template_name, context=context)
 
@@ -603,17 +605,113 @@ class SummaryView(View):
     def get(self, request, *args, **kwargs):
         context = {
             'id': kwargs['pk'],
+            'exit_id': request.POST.get("pk_id")
         }
         return render(request, template_name=self.template_name, context=context)
 
 class ExitView(View):
     template_name = 'creditInsurance/clientExitSurvey.html'
+    queryset = ExitSurveyMaster.objects.all().values()
+
+    def get(self, request, *args, **kwargs):
+        data = {}
+        for query in self.queryset:
+            data[query["exit_selector"]] = [query["exit_radio_display"], query["exit_msg_line0"], query["exit_msg_line1"], query["exit_msg_line2"]]
+        context = {
+            'data': data,
+            'exit_id': request.POST.get("pk_id"),
+        }
+        return render(request, template_name=self.template_name, context=context)
+
+
+class ExitApplication(View):
+    template_name = 'creditInsurance/exitApplication.html'
 
     def get(self, request, *args, **kwargs):
         context = {
-            'id': kwargs.get('pk', None),
+            'exit_id': request.POST.get("pk_id"),
         }
-        update_session_with_form_data(request)
+        return render(request, template_name=self.template_name, context=context)
+
+class AnecdotesArchetypeInformation(View):
+    template_name = 'creditInsurance/anecdotesArchetypeInformation.html'
+
+    def get(self, request, *args, **kwargs):
+        context = {
+            'id': kwargs['pk'],
+        }
+        return render(request, template_name=self.template_name, context=context)
+
+class AnecdotesArchetypeSelection(View):
+    template_name = 'creditInsurance/anecdotesArchetypeSelection.html'
+
+    def get(self, request, *args, **kwargs):
+        context = {
+            'id': kwargs['pk'],
+        }
+        return render(request, template_name=self.template_name, context=context)
+
+class FAQ(View):
+    template_name = 'creditInsurance/faq.html'
+
+    def get(self, request, *args, **kwargs):
+        context = {
+            'id': kwargs['pk'],
+        }
+        return render(request, template_name=self.template_name, context=context)
+
+class TypeOfApplication(View):
+    template_name = 'creditInsurance/typeOfApplication.html'
+
+    def get(self, request, *args, **kwargs):
+        context = {
+            'id': kwargs['pk'],
+        }
+        return render(request, template_name=self.template_name, context=context)
+
+class PreliminaryEligibility(View):
+    template_name = 'creditInsurance/eligibility.html'
+
+    def get(self, request, *args, **kwargs):
+        context = {
+            'id': kwargs['pk'],
+        }
+        return render(request, template_name=self.template_name, context=context)
+
+class PreliminaryEligibilityMortgage(View):
+    template_name = 'creditInsurance/eligibilityQMortgage.html'
+
+    def get(self, request, *args, **kwargs):
+        context = {
+            'id': kwargs['pk'],
+        }
+        return render(request, template_name=self.template_name, context=context)
+
+class PreliminaryEligibilityMortgagePlus(View):
+    template_name = 'creditInsurance/eligibilityQMortgagePlus.html'
+
+    def get(self, request, *args, **kwargs):
+        context = {
+            'id': kwargs['pk'],
+        }
+        return render(request, template_name=self.template_name, context=context)
+
+class PreliminaryEligibilityPLC(View):
+    template_name = 'creditInsurance/eligibilityQPLC.html'
+
+    def get(self, request, *args, **kwargs):
+        context = {
+            'id': kwargs['pk'],
+        }
+        return render(request, template_name=self.template_name, context=context)
+
+class PaymentDetails(View):
+    template_name = 'creditInsurance/paymentDetails.html'
+
+    def get(self, request, *args, **kwargs):
+        context = {
+            'id': kwargs['pk'],
+        }
         return render(request, template_name=self.template_name, context=context)
 
 

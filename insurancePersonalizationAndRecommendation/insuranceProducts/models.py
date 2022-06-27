@@ -64,21 +64,6 @@ class DISCUSSION_SECTION_TYPE(Enum):
     def get_value(cls,member):
         return cls[member].value[0]
 
-
-class InsurancePreProcessData(TimeStampedModel):
-    STATUS_CHOICES =(
-        ('draft', 'DRAFT'),
-        ('active', 'ACTIVE'),
-        ('deactivate', 'DEACTIVATE'),
-    )
-
-    application_number = models.CharField(max_length=100, verbose_name=u"Application Number", help_text=u"Application Number",blank=False)
-    status = models.CharField(max_length=10, choices=STATUS_CHOICES, default='draft')
-    data = models.JSONField()
-
-    def __str__(self):
-        return '{}'.format(self.application_number)
-
 """
 Scenario States
 0. Inital State: Set inital totals: Expense, Income, and Savings
@@ -105,8 +90,22 @@ class SCENARIO_TYPE(Enum):
 
 
 class InsuranceDiscussion(TimeStampedModel):
+
+    STATUS_CHOICES = (
+        ('inprocess', 'INPROCESS'),
+        ('complete', 'COMPLETE'),
+        ('incomplete', 'INCOMPLETE'),
+    )
+
     insProduct = models.ForeignKey(InsuranceProduct, on_delete=models.CASCADE,null=False,blank=False)
     agent = models.ForeignKey(CustomUser, related_name='agent', on_delete=models.CASCADE,null=False,blank=False)
+    # unique = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+
+    #Application Details
+    application_number = models.CharField(max_length=100, verbose_name=u"Application Number",
+                                          help_text=u"Application Number",null=True,blank=True)
+
+    application_status = models.CharField(max_length=10, choices=STATUS_CHOICES, default='inprocess')
 
     # Primary Demographics
     primaryFirstName = models.CharField(_("First Name"), max_length=50,blank=True)
@@ -226,7 +225,28 @@ class InsuranceDiscussion(TimeStampedModel):
         return self.lifeInsurancePremiumPerMonth + self.criticalIllnessPremiumPerMonth + self.disabilityPremiumPerMonth
 
 
+class InsuranceDiscussionApplicantDetails(TimeStampedModel):
+    insDiscussion = models.ForeignKey(InsuranceDiscussion, on_delete=models.CASCADE, null=False, blank=False)
+    application_number = models.CharField(max_length=100, verbose_name=u"Application Number",
+                                          help_text=u"Application Number", blank=False)
+    applicantID = models.CharField(max_length=100, verbose_name=u"Applicant ID",
+                                          help_text=u"Applicant ID", blank=False)
+    active = models.BooleanField(verbose_name=u"Active", default=True)
 
+
+class InsurancePreProcessData(TimeStampedModel):
+    STATUS_CHOICES =(
+        ('draft', 'DRAFT'),
+        ('active', 'ACTIVE'),
+        ('deactivate', 'DEACTIVATE'),
+    )
+
+    application_number = models.CharField(max_length=100, verbose_name=u"Application Number", help_text=u"Application Number",blank=False)
+    status = models.CharField(max_length=10, choices=STATUS_CHOICES, default='draft')
+    data = models.JSONField()
+
+    def __str__(self):
+        return '{}'.format(self.application_number)
 
 class ProvinceResidence(TimeStampedModel):
 
@@ -321,3 +341,21 @@ class AssessmentQuestionnaireMaster(TimeStampedModel):
 
     def __str__(self):
         return '{}'.format(self.assessment_details)
+
+
+class ExitSurveyMaster(TimeStampedModel):
+    exit_id = models.CharField(max_length=11, verbose_name=u"Exit ID",
+                            help_text=u"Exit ID", unique=True,blank=False)
+    exit_selector = models.CharField(max_length=100, verbose_name=u"Exit Selector",
+                            help_text=u"Exit Selector", unique=True,blank=False)
+    exit_radio_display = models.CharField(max_length=500, verbose_name=u"Radio Msg",
+                                          help_text=u"Radio Message", unique=False, blank=True)
+    exit_msg_line0 = models.CharField(max_length=500, verbose_name=u"Exit Msg0",
+                                help_text=u"Exit Message0", unique=False, blank=True)
+    exit_msg_line1 = models.CharField(max_length=500, verbose_name=u"Exit Msg1",
+                                              help_text=u"Exit Message1", unique=False, blank=True)
+    exit_msg_line2 = models.CharField(max_length=500, verbose_name=u"Exit Msg2",
+                                              help_text=u"Exit Message2", unique=False, blank=True)
+
+    def __str__(self):
+        return '{}'.format(self.exit_selector)

@@ -26,50 +26,57 @@
                                             <div class="col-md-6 col-12">
                                                 <div class="mb-3">
                                                     <label for="firstName" class="form-label mb-1">First Name</label>
-                                                    <input type="text" class="form-control rounded-0" id="firstName" name="primaryFirstName"
-                                                           placeholder="Enter first name..." value="{{ discussion.primaryFirstName }}">
+                                                    <input type="text" class="form-control rounded-0 notEditable" id="firstName" name="primaryFirstName"
+                                                           placeholder="Enter first name..." value="{{ discussion.primaryFirstName }}" readonly>
                                                 </div>
                                             </div>
                                             <div class="col-md-6 col-12">
                                                 <div class="mb-3">
                                                     <label for="lastName" class="form-label mb-1">Last Name</label>
-                                                    <input type="text" class="form-control rounded-0" id="lastName" name="primaryLastName"
-                                                           placeholder="Enter last name..." value="{{ discussion.primaryLastName }}">
+                                                    <input type="text" class="form-control rounded-0 notEditable" id="lastName" name="primaryLastName"
+                                                           placeholder="Enter last name..." value="{{ discussion.primaryLastName }}" readonly>
                                                 </div>
                                             </div>
                                             <div class="col-md-6 col-12">
                                                 <div class="mb-3">
                                                     <label for="middleName" class="form-label mb-1">Middle Initial</label>
-                                                    <input type="text" class="form-control rounded-0" id="middleName" name="primaryMiddleName"
-                                                           placeholder="Enter middle initial..." value="{{ discussion.primaryMiddleName }}">
+                                                    <input type="text" class="form-control rounded-0 notEditable" id="middleName" name="primaryMiddleName"
+                                                           placeholder="Enter middle initial..." value="{{ discussion.primaryMiddleName }}" readonly>
                                                 </div>
                                             </div>
                                             <div class="col-md-6 col-12">
                                                 <div class="mb-3">
                                                     <label for="preferredName" class="form-label mb-1">Preferred Name</label>
-                                                    <input type="text" class="form-control rounded-0" id="preferredName" name="primaryPreferredName"
-                                                           placeholder="Enter name...">
+                                                    <input type="text" class="form-control rounded-0 notEditable" id="preferredName" name="primaryPreferredName"
+                                                           placeholder="Enter name..." readonly>
                                                 </div>
                                             </div>
                                             <div class="col-md-6 col-12">
                                                 <div class="mb-3">
                                                     <label for="gender" class="form-label mb-1">Gender</label>
-                                                    <input type="text" class="form-control rounded-0" id="gender" name="primaryGender"
-                                                           placeholder="Gender" value="{{ discussion.primaryGender }}">
+                                                    <input type="text" class="form-control rounded-0 notEditable" id="gender" name="primaryGender"
+                                                           placeholder="Gender" value="{{ discussion.primaryGender }}" readonly>
                                                 </div>
                                             </div>
                                             <div class="col-md-6 col-12">
                                                 <div class="mb-3">
                                                     <label for="province" class="form-label mb-1">Province</label>
-                                                    <input type="text" class="form-control rounded-0" id="province" name="canada_province"
-                                                           placeholder="Enter province code..." value="{{ discussion.canada_province }}">
+                                                    <input type="text" class="form-control rounded-0 notEditable" id="province" name="canada_province"
+                                                           placeholder="Enter province code..." value="{{ discussion.canada_province }}" readonly>
                                                 </div>
                                             </div>
-                                            <div class="col-12">
+                                            <div class="col-md-6 col-12">
                                                 <div class="mb-3">
                                                     <label for="email" class="form-label mb-1">Email</label>
-                                                    <input type="email" class="form-control rounded-0" id="email" name="primaryEmail"
-                                                           placeholder="Enter email id..." autocomplete="off">
+                                                    <input type="email" class="form-control rounded-0 notEditable" id="email" name="primaryEmail"
+                                                           placeholder="Enter email id..." autocomplete="off" readonly>
+                                                    <input type="email" class="form-control rounded-0 notEditable" id="email" placeholder="Enter email id..." autocomplete="off" readonly>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6 col-12">
+                                                <div class="mb-3">
+                                                    <label for="age" class="form-label mb-1">Age</label>
+                                                    <input type="text" class="form-control rounded-0 notEditable" id="age" placeholder="Age..." readonly>
                                                 </div>
                                             </div>
                                             
@@ -90,15 +97,15 @@
                                                 <div class="col-md-7 col-12">
                                                     <div class="mb-3">
                                                         <label for="applicant" class="form-label mb-1">Applicant</label>
-                                                        <input type="text" class="form-control rounded-0" id="applicant" name="CoApplicant"
-                                                               placeholder="Applicant Name...">
+                                                        <input type="text" class="form-control rounded-0 notEditable" id="applicant" name="CoApplicant"
+                                                               placeholder="Applicant Name..." readonly>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-2 col-12">
                                                     <div class="mb-3">
                                                         <label for="age" class="form-label mb-1">Age</label>
-                                                        <input type="text" class="form-control rounded-0" id="age" name="CoAge"
-                                                               placeholder="Age...">
+                                                        <input type="text" class="form-control rounded-0 notEditable" id="age" name="CoAge"
+                                                               placeholder="Age..." readonly>
                                                     </div>
                                                 </div>
                                             </div>
