@@ -18,6 +18,8 @@ import json
 logger = logging.getLogger(__name__)
 import logging
 import traceback
+from django.db import connection
+cursor = connection.cursor()
 
 class CreditInsurance(object):
 
@@ -83,8 +85,7 @@ class CreditInsurance(object):
         ins_product = CreditInsurance.get_ins_product(self,raw_data['insProducts_details'][0]['insProduct_ID'])
         ins_product_type = ins_product.creditProduct_code.credit_product_name.lower()
         d = CreditInsurance.create_ins_disc_template(self, ins_product_type)
-        appDetails = []
-        d['preProcessData_id'] = queryset['id']
+        appDetails = dict()
         d['insProduct_id'] = ins_product.id
         d['agent_id'] = CreditInsurance.get_agent_id(self)
         # todo - Need to change 'canada_provence' to 'canada_province' in model
@@ -130,7 +131,6 @@ class CreditInsurance(object):
         for index, appl in enumerate(appl_details):
             if appl['applicantId'] in select:
                 if index == 0:
-                    d['primaryApplicantId'] = appl['applicantId']
                     d['primaryFirstName'] = appl['FirstName']
                     d['primaryMiddleName'] = appl['MiddleName']
                     d['primaryLastName'] = appl['LastName']
@@ -146,10 +146,9 @@ class CreditInsurance(object):
                     d['creditCardBalance'] = appl['creditCard']['balance']
                     d['totalMonthlyExpenses'] = appl['expenses']['totalMonthlyExpenses']
                     d['isJoint'] = 'n'
-                    appDetails.append(appl['applicantId'])
+                    appDetails['primary'] = appl['applicantId']
 
                 if index == 1:
-                    d['coApplicantId'] = appl['applicantId']
                     d['coFirstName'] = appl['FirstName']
                     d['coMiddleName'] = appl['MiddleName']
                     d['coLastName'] = appl['LastName']
@@ -165,9 +164,9 @@ class CreditInsurance(object):
                     d['creditCardBalance'] += appl['creditCard']['balance']
                     d['totalMonthlyExpenses'] += appl['expenses']['totalMonthlyExpenses']
                     d['isJoint'] = 'y'
+                    appDetails['co'] = appl['applicantId']
 
-
-        return d,appDetails
+        return d, appDetails
 
     def create_ins_disc_template(self, ins_product_type):
         temp = {
@@ -189,7 +188,6 @@ class CreditInsurance(object):
             # source info
             'agent_id': None,
             'insProduct_id': None,
-            'preProcessData_id': None,
             # approx net income
             'approxNetIncome': None,
             # existing debt
@@ -259,7 +257,7 @@ class CreditInsurance(object):
 class EligibilityCheck(object):
 
     def __init__(self, *args, **kwargs):
-        self.list_credit_product = {"mortgage" : ["mortgage", "plc"], "compass" : ["loan"]}
+        self.list_credit_product = {"mortgage" : ["mortgage", "plc"], "loan" : ["loan"]}
         self.insurance_details = {}
         self.insurance_product_rec = defaultdict(list)
 
@@ -370,17 +368,21 @@ class ApplicantDetails(object):
         pk = CrypticSetting.decrypt(self, kwargs['pk'])
         queryset = InsurancePreProcessData.objects.filter(id=pk).values()[0]
         raw_data = json.loads(queryset['data'])
-        appl_details = raw_data.get('applicants', list())
+        appl_ids = [appli['applicantId'] for appli in raw_data.get('applicants', list())]
+        complete_status = 'complete'
 
-        discAppl_details = InsuranceDiscussionApplicantDetails.objects.filter(
-            application_number=raw_data.get('application_number')).values('applicantID')
-        discAppl_details_rec = discAppl_details and list(discAppl_details) or []
+        # discAppl_details = InsuranceDiscussionApplicantDetails.objects.filter(
+        #     application_number=raw_data.get('application_number')).values('applicantID')
+        cursor.execute('''select a."applicantID" from public."insuranceProducts_insurancediscussionapplicantdetails" a inner join
+                public."insuranceProducts_insurancediscussion" b on a."insDiscussion_id"=b.id where
+                a.application_number='{0}' and a."applicantID" in {1} and b.application_status='{2}'
+                 '''.format(raw_data.get('application_number'), tuple(appl_ids), complete_status))
+        discAppl_details = cursor.fetchone()
 
-        discApp_list = [a['applicantID'] for a in discAppl_details_rec]
-
+        discApp_list = discAppl_details and list(discAppl_details) or []
         appl_details_remaining = []
 
-        for appl in appl_details:
+        for appl in raw_data.get('applicants', list()):
             if appl['applicantId'] not in discApp_list:
                 appl_details_remaining.append(appl)
 

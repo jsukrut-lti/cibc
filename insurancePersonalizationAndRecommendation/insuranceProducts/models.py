@@ -107,7 +107,6 @@ class InsurancePreProcessData(TimeStampedModel):
 class InsuranceDiscussion(TimeStampedModel):
 
     STATUS_CHOICES = (
-        ('inprocess', 'INPROCESS'),
         ('complete', 'COMPLETE'),
         ('incomplete', 'INCOMPLETE'),
     )
@@ -119,7 +118,6 @@ class InsuranceDiscussion(TimeStampedModel):
     #Application Details
     application_number = models.CharField(max_length=100, verbose_name=u"Application Number",
                                           help_text=u"Application Number",null=True,blank=True)
-
     application_status = models.CharField(max_length=10, choices=STATUS_CHOICES, default='inprocess')
 
     # Primary Demographics
@@ -130,14 +128,12 @@ class InsuranceDiscussion(TimeStampedModel):
     primaryEmail = models.CharField(_("Email"), max_length=50,blank=True)
     primaryAge = models.PositiveSmallIntegerField(_("Age"),null=True,blank=True)
     primaryGender = models.CharField(_("Gender"), max_length=2, choices=[x.value for x in GENDER], null=True, blank=True)
-    primaryApplicantId = models.CharField(_("Primary Applicant Id"), max_length=50, blank=True)
 
     coFirstName = models.CharField(_("Co Borrower - First Name"), max_length=50,blank=True)
     coMiddleName = models.CharField(_("Co Borrower - Middle Name"), max_length=50,blank=True)
     coLastName = models.CharField(_("Co Borrower - Last Name"), max_length=50,blank=True)
     coAge = models.PositiveSmallIntegerField(_("Age"),null=True,blank=True)
     coGender = models.CharField(_("Co Borrower - Gender"), max_length=2, choices=[x.value for x in GENDER], null=True, blank=True)
-    coApplicantId = models.CharField(_("Co Applicant Id"), max_length=50, blank=True)
 
     canada_province = models.CharField(_("Province"), max_length=2, choices=[x.value for x in CANADA_PROVENCES],null=True,blank=True)
     hoursWeekWorking = models.IntegerField(_("Hours a Week Working"), null=True, blank=True)
@@ -226,9 +222,7 @@ class InsuranceDiscussion(TimeStampedModel):
     loanPmtAmt = models.DecimalField(_("Loan Payment Amount"), max_digits=8, decimal_places=2, null=True, blank=True)
     loanPmtFrequency = models.CharField(_("Mortgage Payment Frequency"), max_length=2, choices=[x.value for x in PAYMENT_FREQUENCY], null=True, blank=True)
 
-    status = models.CharField(_("Current Status"), max_length=10, blank=True)
     isJoint = models.CharField(_("Joint application"), max_length=2, choices=[x.value for x in YES_NO],null=True, blank=True)
-    preProcessData = models.ForeignKey(InsurancePreProcessData, related_name='preProcessData', on_delete=models.CASCADE, null=False, blank=False)
 
     def __str__(self):
         return '{}'.format(self.insProduct)
@@ -241,14 +235,16 @@ class InsuranceDiscussion(TimeStampedModel):
 
 
 class InsuranceDiscussionApplicantDetails(TimeStampedModel):
+    TYPE_CHOICES = (
+        ('primary', 'PRIMARY APPLICANT'),
+        ('co', 'CO-APPLICANT'),
+    )
     insDiscussion = models.ForeignKey(InsuranceDiscussion, on_delete=models.CASCADE, null=False, blank=False)
     application_number = models.CharField(max_length=100, verbose_name=u"Application Number",
                                           help_text=u"Application Number", blank=False)
     applicantID = models.CharField(max_length=100, verbose_name=u"Applicant ID",
                                           help_text=u"Applicant ID", blank=False)
-    active = models.BooleanField(verbose_name=u"Active", default=True)
-
-
+    type = models.CharField(max_length=10, choices=TYPE_CHOICES, default='primary')
 
 
 class ProvinceResidence(TimeStampedModel):

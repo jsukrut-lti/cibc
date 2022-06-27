@@ -386,8 +386,8 @@ class InsuranceEligibilityCheckView(object):
             input_data['applicants'] = insurance_data["applicants"]
 
             get_response = True
-            eligibility_instance = EligibilityCheck()
-            get_response = eligibility_instance.get_eligibility(request,**input_data)
+            # eligibility_instance = EligibilityCheck()
+            # get_response = eligibility_instance.get_eligibility(request,**input_data)
 
             if get_response == True:            #if eligible
 
@@ -457,7 +457,6 @@ class PrevSessionView(View):
         appl_details = raw_data.get('applicants', list())
 
         appli_number = raw_data['application_number']
-        ins_product = CreditInsurance.get_ins_product(self,raw_data['insProducts_details'][0]['insProduct_ID'])
         primaryApplicantId = None
         coApplicantId = None
         for index, appl in enumerate(appl_details):
@@ -469,10 +468,15 @@ class PrevSessionView(View):
         status = 'inprogress'
 
         if joint_applicant == 'Yes':
-            cursor.execute('''select b.id FROM public."insuranceProducts_insurancepreprocessdata" a right join public."insuranceProducts_insurancediscussion" b on a.id=b."preProcessData_id" where a.application_number='{0}' and b."insProduct_id"='{1}' and b."primaryApplicantId"='{2}' and b."coApplicantId"='{3}' and b.status='{4}' '''.format(appli_number, ins_product.id, primaryApplicantId, coApplicantId, status))
+            cursor.execute('''select b.id FROM public."insuranceProducts_insurancediscussionapplicantdetails" a right join 
+            public."insuranceProducts_insurancediscussion" b on a."insDiscussion_id"=b.id and a.application_number='{0}' 
+            and a."application_status"='{1}' where (b."applicantID"='{2}' and b."type"='{3}') and (b."applicantID"='{4}' 
+            and b."type"='{5}') '''.format(appli_number, status, primaryApplicantId, 'primary', coApplicantId, 'co'))
         else:
-            cursor.execute('''select b.id FROM public."insuranceProducts_insurancepreprocessdata" a right join public."insuranceProducts_insurancediscussion" b on a.id=b."preProcessData_id" where a.application_number='{0}' and b."insProduct_id"='{1}' and b."primaryApplicantId"='{2}' and b.status='{4}' '''.format(appli_number, ins_product.id, primaryApplicantId, coApplicantId, status))
-
+            cursor.execute('''select b.id FROM public."insuranceProducts_insurancediscussionapplicantdetails" a right join
+            public."insuranceProducts_insurancediscussion" b on a."insDiscussion_id"=b.id and b.application_number='{0}'
+            and b."application_status"='{1}' where a."applicantID"='{2}' and a."type"='{3}'
+            '''.format(appli_number, status, primaryApplicantId, 'primary'))
         prev_discs = cursor.fetchone()
         if not prev_discs:
             pre_ = {
@@ -504,12 +508,24 @@ class InsuranceApplicantDemographicView(View):
         pk = CrypticSetting.decrypt(self, payload.get("pk_id"))
         queryset = InsurancePreProcessData.objects.filter(id=pk).values()[0]
         if start_new:
+            filter_data, appDetails = CreditInsurance.format_raw_data_for_insdisc(self, queryset, selected_applicants)
             if prev_disc:
-                res = InsuranceDiscussion.objects.filter(pk=prev_disc, status='inprogress').update(status='cancelled')
-            filter_data, appDetails = CreditInsurance.format_raw_data_for_insdisc(self, queryset, select)
-            filter_data['status'] = 'inprogress'
-            discussionDetails = InsuranceDiscussion.objects.create(**filter_data)
-            discussionDetails.save()
+                discussionDetails = InsuranceDiscussion.objects.filter(pk=prev_disc, status='incomplete').update(**filter_data)
+            else:
+                filter_data['application_status'] = 'incomplete'
+                discussionDetails = InsuranceDiscussion.objects.create(**filter_data)
+                discussionDetails.save()
+
+                discussion_appDetails = dict()
+                for app_type, app_id in appDetails.items():
+                    discussion_appDetails['insDiscussion_id'] = discussionDetails.pk
+                    discussion_appDetails['application_number'] = filter_data['application_number']
+                    discussion_appDetails['applicantID'] = app_id
+                    discussion_appDetails['type'] = app_type
+
+                    applicantDetails = InsuranceDiscussionApplicantDetails.objects.create(**discussion_appDetails)
+                    applicantDetails.save()
+
         else:
             discussionDetails = InsuranceDiscussion.objects.filter(id=prev_disc).values()[0]
         discussion_pk = CrypticSetting.encrypt(self, discussionDetails.pk)

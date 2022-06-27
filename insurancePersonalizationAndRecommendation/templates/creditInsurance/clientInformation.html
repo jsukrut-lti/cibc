@@ -69,14 +69,14 @@
                                                 <div class="mb-3">
                                                     <label for="email" class="form-label mb-1">Email</label>
                                                     <input type="email" class="form-control rounded-0 notEditable" id="email" name="primaryEmail"
-                                                           placeholder="Enter email id..." autocomplete="off" readonly>
-                                                    <input type="email" class="form-control rounded-0 notEditable" id="email" placeholder="Enter email id..." autocomplete="off" readonly>
+                                                           placeholder="Enter email id..." autocomplete="off" value="{{ discussion.primaryEmail }}" readonly>
                                                 </div>
                                             </div>
                                             <div class="col-md-6 col-12">
                                                 <div class="mb-3">
                                                     <label for="age" class="form-label mb-1">Age</label>
-                                                    <input type="text" class="form-control rounded-0 notEditable" id="age" placeholder="Age..." readonly>
+                                                    <input type="text" class="form-control rounded-0 notEditable" id="age" name="primaryAge"
+                                                           placeholder="Age..." value="{{ discussion.primaryAge }}" readonly>
                                                 </div>
                                             </div>
                                             
@@ -85,11 +85,11 @@
                                                     <p class="mb-1">Joint Application</p>
                                                     <div class="jointApplicantDemographic">
                                                         <div class="form-check form-check-inline">
-                                                            <input class="form-check-input" type="radio" name="jointApplicantDemographic" id="yes" value="yes">
+                                                            <input class="form-check-input " type="radio" name="jointApplicantDemographic" id="yes" value="yes" checked="checked" disabled>
                                                             <label class="form-check-label" for="yes">Yes</label>
                                                         </div>
                                                         <div class="form-check form-check-inline">
-                                                            <input class="form-check-input" type="radio" name="jointApplicantDemographic" id="no" value="no">
+                                                            <input class="form-check-input " type="radio" name="jointApplicantDemographic" id="no" value="no" disabled>
                                                             <label class="form-check-label" for="no">No</label>
                                                         </div>
                                                     </div>
@@ -98,14 +98,14 @@
                                                     <div class="mb-3">
                                                         <label for="applicant" class="form-label mb-1">Applicant</label>
                                                         <input type="text" class="form-control rounded-0 notEditable" id="applicant" name="CoApplicant"
-                                                               placeholder="Applicant Name..." readonly>
+                                                               placeholder="Applicant Name..." value="{{ discussion.coFirstName }} {{ discussion.coLastName }}" readonly>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-2 col-12">
                                                     <div class="mb-3">
                                                         <label for="age" class="form-label mb-1">Age</label>
                                                         <input type="text" class="form-control rounded-0 notEditable" id="age" name="CoAge"
-                                                               placeholder="Age..." readonly>
+                                                               placeholder="Age..." value="{{ discussion.coAge }}" readonly>
                                                     </div>
                                                 </div>
                                             </div>

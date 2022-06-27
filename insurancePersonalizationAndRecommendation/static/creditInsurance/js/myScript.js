@@ -61,45 +61,7 @@ function closeNavMob() {
     document.getElementsByTagName('body')[0].classList.remove('hidden');
 }
 
-// Select Applicant Script as per radio button selection
 
-let radioBtns = document.querySelectorAll('.jointApplicantDetails .form-check-input[name="jointApplicant"]');
-let selectBox = document.querySelector('.selectBox');
-let selectBoxMultiple = document.querySelector('.selectBoxMultiple');
-
-selectBox.addEventListener('change', () => {
-    if(error.classList.contains('d-block') == true){
-        error.classList.remove('d-block');
-    }
-    error.classList.add('d-none');
-})
-
-selectBoxMultiple.addEventListener('change', () => {
-    if(error.classList.contains('d-block') == true){
-        error.classList.remove('d-block');
-    }
-    error.classList.add('d-none');
-})
-
-function selectedItem(e) {
-    if(e.currentTarget.checked && e.currentTarget.value == "Yes") {
-        selectBox.style.display = "none";
-        selectBoxMultiple.style.display = "block"; 
-    }
-
-    else if(e.currentTarget.checked && e.currentTarget.value == "No") {
-        selectBox.style.display = "block";
-        selectBoxMultiple.style.display = "none";
-    }
-    if(error.classList.contains('d-block') == true){
-        error.classList.remove('d-block');
-    }
-    error.classList.add('d-none');
-}
-
-radioBtns.forEach(item => {
-    item.addEventListener('change', selectedItem);
-})
 
 function exitApplication(e){
     document.location.href="/insurance/exit/{{ exit_id }}";
