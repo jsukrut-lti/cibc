@@ -18,92 +18,101 @@
                                     <div class="refreshBtn">
                                         <img src="{% static 'creditInsurance/images/reload.png' %}" alt="reload icon">
                                     </div>
-                                    <form>
+                                    <form method="POST" action="/insurance/clientInformation/{{ id }}">
+                                        {% csrf_token %}
                                         <h4 class="mb-4">Let's begin with a few questions about yourself</h4>
-                                        
+
                                         <div class="row">
                                             <div class="col-md-6 col-12">
                                                 <div class="mb-3">
                                                     <label for="firstName" class="form-label mb-1">First Name</label>
-                                                    <input type="text" class="form-control rounded-0 notEditable" id="firstName" placeholder="Enter first name..." value="{{ discussion.primaryFirstName }}" readonly>
+                                                    <input type="text" class="form-control rounded-0 notEditable" id="firstName" name="primaryFirstName"
+                                                           placeholder="Enter first name..." value="{{ discussion.primaryFirstName }}" readonly>
                                                 </div>
                                             </div>
                                             <div class="col-md-6 col-12">
                                                 <div class="mb-3">
                                                     <label for="lastName" class="form-label mb-1">Last Name</label>
-                                                    <input type="text" class="form-control rounded-0 notEditable" id="lastName" placeholder="Enter last name..." value="{{ discussion.primaryLastName }}" readonly>
+                                                    <input type="text" class="form-control rounded-0 notEditable" id="lastName" name="primaryLastName"
+                                                           placeholder="Enter last name..." value="{{ discussion.primaryLastName }}" readonly>
                                                 </div>
                                             </div>
                                             <div class="col-md-6 col-12">
                                                 <div class="mb-3">
                                                     <label for="middleName" class="form-label mb-1">Middle Initial</label>
-                                                    <input type="text" class="form-control rounded-0 notEditable" id="middleName" placeholder="Enter middle initial..." value="{{ discussion.primaryMiddleName }}" readonly>
+                                                    <input type="text" class="form-control rounded-0 notEditable" id="middleName" name="primaryMiddleName"
+                                                           placeholder="Enter middle initial..." value="{{ discussion.primaryMiddleName }}" readonly>
                                                 </div>
                                             </div>
                                             <div class="col-md-6 col-12">
                                                 <div class="mb-3">
                                                     <label for="preferredName" class="form-label mb-1">Preferred Name</label>
-                                                    <input type="text" class="form-control rounded-0 notEditable" id="preferredName" placeholder="Enter name..." readonly>
+                                                    <input type="text" class="form-control rounded-0 notEditable" id="preferredName" name="primaryPreferredName"
+                                                           placeholder="Enter name..." readonly>
                                                 </div>
                                             </div>
                                             <div class="col-md-6 col-12">
                                                 <div class="mb-3">
                                                     <label for="gender" class="form-label mb-1">Gender</label>
-                                                    <input type="text" class="form-control rounded-0 notEditable" id="gender" placeholder="Gender" value="{{ discussion.primaryGender }}" readonly>
+                                                    <input type="text" class="form-control rounded-0 notEditable" id="gender" name="primaryGender"
+                                                           placeholder="Gender" value="{{ discussion.primaryGender }}" readonly>
                                                 </div>
                                             </div>
                                             <div class="col-md-6 col-12">
                                                 <div class="mb-3">
                                                     <label for="province" class="form-label mb-1">Province</label>
-                                                    <input type="text" class="form-control rounded-0 notEditable" id="province" placeholder="Enter province code..." value="{{ discussion.canada_provence }}" readonly>
+                                                    <input type="text" class="form-control rounded-0 notEditable" id="province" name="canada_province"
+                                                           placeholder="Enter province code..." value="{{ discussion.canada_province }}" readonly>
                                                 </div>
                                             </div>
                                             <div class="col-md-6 col-12">
                                                 <div class="mb-3">
                                                     <label for="email" class="form-label mb-1">Email</label>
-                                                    <input type="email" class="form-control rounded-0 notEditable" id="email" placeholder="Enter email id..." autocomplete="off" readonly>
+                                                    <input type="email" class="form-control rounded-0 notEditable" id="email" name="primaryEmail"
+                                                           placeholder="Enter email id..." autocomplete="off" value="{{ discussion.primaryEmail }}" readonly>
                                                 </div>
                                             </div>
                                             <div class="col-md-6 col-12">
                                                 <div class="mb-3">
                                                     <label for="age" class="form-label mb-1">Age</label>
-                                                    <input type="text" class="form-control rounded-0 notEditable" id="age" placeholder="Age..." readonly>
+                                                    <input type="text" class="form-control rounded-0 notEditable" id="age" name="primaryAge"
+                                                           placeholder="Age..." value="{{ discussion.primaryAge }}" readonly>
                                                 </div>
                                             </div>
                                             
-                                            <div>
-                                                <div class="row">
-                                                    <div class="col-md-3 col-12 mb-3">
-                                                        <p class="mb-1">Joint Application</p>
-                                                        <div class="jointApplicantDemographic">
-                                                            <div class="form-check form-check-inline">
-                                                                <input class="form-check-input" type="radio" name="jointApplicantDemographic" id="yes" value="yes">
-                                                                <label class="form-check-label" for="yes">Yes</label>
-                                                            </div>
-                                                            <div class="form-check form-check-inline">
-                                                                <input class="form-check-input" type="radio" name="jointApplicantDemographic" id="no" value="no">
-                                                                <label class="form-check-label" for="no">No</label>
-                                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-3 col-12 mb-3">
+                                                    <p class="mb-1">Joint Application</p>
+                                                    <div class="jointApplicantDemographic">
+                                                        <div class="form-check form-check-inline">
+                                                            <input class="form-check-input " type="radio" name="jointApplicantDemographic" id="yes" value="yes" checked="checked" disabled>
+                                                            <label class="form-check-label" for="yes">Yes</label>
+                                                        </div>
+                                                        <div class="form-check form-check-inline">
+                                                            <input class="form-check-input " type="radio" name="jointApplicantDemographic" id="no" value="no" disabled>
+                                                            <label class="form-check-label" for="no">No</label>
                                                         </div>
                                                     </div>
-                                                    <div class="col-md-7 col-12">
-                                                        <div class="mb-3">
-                                                            <label for="applicant" class="form-label mb-1">Applicant</label>
-                                                            <input type="text" class="form-control rounded-0 notEditable" id="applicant" placeholder="Applicant Name..." readonly>
-                                                        </div>
+                                                </div>
+                                                <div class="col-md-7 col-12">
+                                                    <div class="mb-3">
+                                                        <label for="applicant" class="form-label mb-1">Applicant</label>
+                                                        <input type="text" class="form-control rounded-0 notEditable" id="applicant" name="CoApplicant"
+                                                               placeholder="Applicant Name..." value="{{ discussion.coFirstName }} {{ discussion.coLastName }}" readonly>
                                                     </div>
-                                                    <div class="col-md-2 col-12">
-                                                        <div class="mb-3">
-                                                            <label for="applicantAge" class="form-label mb-1">Age</label>
-                                                            <input type="text" class="form-control rounded-0 notEditable" id="applicantAge" placeholder="Age..." readonly>
-                                                        </div>
+                                                </div>
+                                                <div class="col-md-2 col-12">
+                                                    <div class="mb-3">
+                                                        <label for="age" class="form-label mb-1">Age</label>
+                                                        <input type="text" class="form-control rounded-0 notEditable" id="age" name="CoAge"
+                                                               placeholder="Age..." value="{{ discussion.coAge }}" readonly>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
 
                                         <div class="mt-5 d-flex align-items-center justify-content-end commonBtnContainer">
-                                            <button type="button" id="nextBtn" class="btn commonBtn" onclick="nextPrev(1)">Next</button>
+                                            <input type="submit" id="nextBtn" class="btn commonBtn" onclick="nextPrev(1)" value="Next">
                                         </div>
                                     </form>
                                 </div>
@@ -183,7 +192,8 @@
                                     <div class="refreshBtn">
                                         <img src="{% static 'creditInsurance/images/reload.png' %}" alt="reload icon">
                                     </div>
-                                    <form>
+                                    <form method="POST" action="/insurance/clientInformation/{{ id }}">
+                                        {% csrf_token %}
                                         <h4 class="mb-4">This section will address your net income</h4>
                                         
                                         <div class="row">
@@ -191,14 +201,15 @@
                                                 <p id="applicantName">{{ discussion.primaryFirstName }} {{ discussion.primaryLastName }}</p>
                                                 <div class="mb-3">
                                                     <label for="approximateNetIncome" class="form-label mb-1">Approximate Net Income</label>
-                                                    <input type="text" class="form-control rounded-0" id="approximateNetIncome" placeholder="Ex: salary, bonus, support, investment, pension..." value="{{ discussion.approxNetIncome | floatformat:'0' }}">
+                                                    <input type="text" class="form-control rounded-0" id="approximateNetIncome" name="approxNetIncome"
+                                                           placeholder="Ex: salary, bonus, support, investment, pension..." value="{{ discussion.approxNetIncome | floatformat:'0' }}">
                                                 </div>
                                             </div>
                                             <p class="condition">*Please note - Net income represents 60% gross annual income </p>
                                         </div>
 
                                         <div class="mt-5 d-flex align-items-center justify-content-end commonBtnContainer">
-                                            <button type="button" id="nextBtn" class="btn commonBtn" onclick="nextPrev(1)">Next</button>
+                                            <input type="submit" id="nextBtn" class="btn commonBtn" onclick="nextPrev(1)" value="Next">
                                         </div>
                                     </form>
                                 </div>
@@ -279,81 +290,82 @@
                                     <div class="refreshBtn">
                                         <img src="{% static 'creditInsurance/images/reload.png' %}" alt="reload icon">
                                     </div>
-                                    <form>
+                                    <form method="POST" action="/insurance/clientInformation/{{ id }}">
+                                        {% csrf_token %}
                                         <h4 class="mb-2">Current application details</h4>
                                         <p class="mb-4 totalDebtInfo">Information is from your CIBC account</p>
                                         <div class="row">
                                             <div class="col-md-6 col-12">
                                                 <div class="mb-3">
                                                     <label for="lifeHPPClassNumber" class="form-label mb-1">Class Number (PLC)</label>
-                                                    <input type="text" class="form-control rounded-0" id="lifeHPPClassNumber" placeholder="Class Number...">
+                                                    <input type="text" class="form-control rounded-0" id="lifeHPPClassNumber" name="lifeHPPClassNumber" placeholder="Class Number...">
                                                 </div>
                                             </div>
                                             <div class="col-md-6 col-12">
                                                 <div class="mb-3">
                                                     <label for="lifeHPPMortgageNumber" class="form-label mb-1">mMortgage Number (PLC)</label>
-                                                    <input type="text" class="form-control rounded-0" id="lifeHPPMortgageNumber" placeholder="Mortgage Number...">
+                                                    <input type="text" class="form-control rounded-0" id="lifeHPPMortgageNumber" name="lifeHPPMortgageNumber" placeholder="Mortgage Number...">
                                                 </div>
                                             </div>
                                             <div class="col-md-6 col-12">
                                                 <div class="mb-3">
                                                     <label for="lifeHPPRepaymenttype" class="form-label mb-1">Repayment type</label>
-                                                    <input type="text" class="form-control rounded-0" id="lifeHPPRepaymenttype" placeholder="Repayment type (e.g. Interest only)">
+                                                    <input type="text" class="form-control rounded-0" id="lifeHPPRepaymenttype" name="lifeHPPRepaymenttype" placeholder="Repayment type (e.g. Interest only)">
                                                 </div>
                                             </div>
                                             <div class="col-md-6 col-12">
                                                 <div class="mb-3">
                                                     <label for="lifeHPPHPPMaximumRebalancing" class="form-label mb-1">HPP Maximum Rebalancing Credit Limit</label>
-                                                    <input type="text" class="form-control rounded-0" id="lifeHPPHPPMaximumRebalancing" placeholder="HPP Maximum Rebalancing Credit Limit...">
+                                                    <input type="text" class="form-control rounded-0" id="lifeHPPHPPMaximumRebalancing" name="lifeHPPHPPMaximumRebalancing" placeholder="HPP Maximum Rebalancing Credit Limit...">
                                                 </div>
                                             </div>
                                             <div class="col-md-6 col-12">
                                                 <div class="mb-3">
                                                     <label for="lifeHPPPLCCreditLimit" class="form-label mb-1">PLC credit limit</label>
-                                                    <input type="text" class="form-control rounded-0" id="lifeHPPPLCCreditLimit" placeholder="PLC credit limit...">
+                                                    <input type="text" class="form-control rounded-0" id="lifeHPPPLCCreditLimit" name="lifeHPPPLCCreditLimit" placeholder="PLC credit limit...">
                                                 </div>
                                             </div>
                                             <div class="col-md-6 col-12">
                                                 <div class="mb-3">
                                                     <label for="lifeHPPHPPCreditLimit" class="form-label mb-1">HPP Credit Limit</label>
-                                                    <input type="text" class="form-control rounded-0" id="lifeHPPHPPCreditLimit" placeholder="HPP Credit Limit...">
+                                                    <input type="text" class="form-control rounded-0" id="lifeHPPHPPCreditLimit" name="lifeHPPHPPCreditLimit" placeholder="HPP Credit Limit...">
                                                 </div>
                                             </div>
                                             <div class="col-md-6 col-12">
                                                 <div class="mb-3">
                                                     <label for="lifeHPPInterestRate" class="form-label mb-1">Interest Rate (PLC)</label>
-                                                    <input type="text" class="form-control rounded-0" id="lifeHPPInterestRate" placeholder="Interest Rate...">
+                                                    <input type="text" class="form-control rounded-0" id="lifeHPPInterestRate" name="lifeHPPInterestRate" placeholder="Interest Rate...">
                                                 </div>
                                             </div>
                                             <div class="col-md-6 col-12">
                                                 <div class="mb-3">
                                                     <label for="lifeHPPClassNumberMTG" class="form-label mb-1">Class Number (MTG)</label>
-                                                    <input type="text" class="form-control rounded-0" id="lifeHPPClassNumberMTG" placeholder="Class Number...">
+                                                    <input type="text" class="form-control rounded-0" id="lifeHPPClassNumberMTG" name="lifeHPPClassNumberMTG" placeholder="Class Number...">
                                                 </div>
                                             </div>
                                             <div class="col-md-6 col-12">
                                                 <div class="mb-3">
                                                     <label for="lifeHPPMortgageNumberMTG" class="form-label mb-1">Mortgage Number (MTG)</label>
-                                                    <input type="text" class="form-control rounded-0" id="lifeHPPMortgageNumberMTG" placeholder="Mortgage Number...">
+                                                    <input type="text" class="form-control rounded-0" id="lifeHPPMortgageNumberMTG" name="lifeHPPMortgageNumberMTG" placeholder="Mortgage Number...">
                                                 </div>
                                             </div>
                                             <div class="col-md-6 col-12">
                                                 <div class="mb-3">
                                                     <label for="lifeHPPMortgageAmount" class="form-label mb-1">Mortgage Amount</label>
-                                                    <input type="text" class="form-control rounded-0" id="lifeHPPMortgageAmount" placeholder="Mortgage Amount...">
+                                                    <input type="text" class="form-control rounded-0" id="lifeHPPMortgageAmount" name="lifeHPPMortgageAmount" placeholder="Mortgage Amount...">
                                                 </div>
                                             </div>
                                             <div class="col-md-6 col-12">
                                                 <div class="mb-3">
                                                     <label for="lifeHPPMortgagePaymentAmount" class="form-label mb-1">Mortgage Payment Amount</label>
-                                                    <input type="text" class="form-control rounded-0" id="lifeHPPMortgagePaymentAmount" placeholder="Mortgage Payment Amount...">
+                                                    <input type="text" class="form-control rounded-0" id="lifeHPPMortgagePaymentAmount" name="lifeHPPMortgagePaymentAmount" placeholder="Mortgage Payment Amount...">
                                                 </div>
                                             </div>
                                             <div class="col-md-6 col-12">
                                                 <div class="mb-3">
                                                     <label class="mb-1" for="lifeHPPSelect">Mortgage Payment Frequency</label>
                                                     <div class="lifeHPPSelectBox">
-                                                        <select class="form-select rounded-0" id="lifeHPPSelect" aria-label="Mortgage Payment Frequency">
+                                                        <select class="form-select rounded-0" id="lifeHPPSelect" name="lifeHPPSelect" aria-label="Mortgage Payment Frequency">
                                                             <option value="w">Weekly</option>
                                                             <option value="b">Bi-Weekly</option>
                                                             <option value="s">Semi-Monthly</option>
@@ -368,7 +380,7 @@
                                         </div>
 
                                         <div class="mt-5 d-flex align-items-center justify-content-end commonBtnContainer">
-                                            <button type="button" id="nextBtn" class="btn commonBtn" onclick="nextPrev(1)">Next</button>
+                                            <input type="submit" id="nextBtn" class="btn commonBtn" onclick="nextPrev(1)" value="Next">
                                         </div>
                                     </form>
                                 </div>
@@ -449,33 +461,34 @@
                                     <div class="refreshBtn">
                                         <img src="{% static 'creditInsurance/images/reload.png' %}" alt="reload icon">
                                     </div>
-                                    <form>
+                                    <form method="POST" action="/insurance/clientInformation/{{ id }}">
+                                        {% csrf_token %}
                                         <h4 class="mb-2">Current application details</h4>
                                         <p class="mb-4 totalDebtInfo">Information is from your CIBC account</p>
                                         <div class="row">
                                             <div class="col-md-6 col-12">
                                                 <div class="mb-3">
                                                     <label for="lifeLoanClassNumber" class="form-label mb-1">Class Number</label>
-                                                    <input type="text" class="form-control rounded-0" id="lifeLoanClassNumber" placeholder="Class Number...">
+                                                    <input type="text" class="form-control rounded-0" id="lifeLoanClassNumber" name="lifeLoanClassNumber" placeholder="Class Number...">
                                                 </div>
                                             </div>
                                             <div class="col-md-6 col-12">
                                                 <div class="mb-3">
                                                     <label for="lifeLoanAmount" class="form-label mb-1">Loan Amount</label>
-                                                    <input type="text" class="form-control rounded-0" id="lifeLoanAmount" placeholder="Loan Amount...">
+                                                    <input type="text" class="form-control rounded-0" id="lifeLoanAmount" name="lifeLoanAmount" placeholder="Loan Amount...">
                                                 </div>
                                             </div>
                                             <div class="col-md-6 col-12">
                                                 <div class="mb-3">
                                                     <label for="lifeLoanPaymentAmount" class="form-label mb-1">Loan Payment Amount</label>
-                                                    <input type="text" class="form-control rounded-0" id="lifeLoanPaymentAmount" placeholder="Loan Payment Amount...">
+                                                    <input type="text" class="form-control rounded-0" id="lifeLoanPaymentAmount" name="lifeLoanPaymentAmount" placeholder="Loan Payment Amount...">
                                                 </div>
                                             </div>
                                             <div class="col-md-6 col-12">
                                                 <div class="mb-3">
                                                     <label class="mb-1" for="lifeLoanSelect">Loan Payment Frequency</label>
                                                     <div class="lifeLoanSelectBox">
-                                                        <select class="form-select rounded-0" id="lifeLoanSelect" aria-label="Loan Payment Frequency">
+                                                        <select class="form-select rounded-0" id="lifeLoanSelect" name="lifeLoanSelect" aria-label="Loan Payment Frequency">
                                                             <option value="w">Weekly</option>
                                                             <option value="b">Bi-Weekly</option>
                                                             <option value="s">Semi-Monthly</option>
@@ -490,7 +503,7 @@
                                         </div>
 
                                         <div class="mt-5 d-flex align-items-center justify-content-end commonBtnContainer">
-                                            <button type="button" id="nextBtn" class="btn commonBtn" onclick="nextPrev(1)">Next</button>
+                                            <input type="submit" id="nextBtn" class="btn commonBtn" onclick="nextPrev(1)" value="Next">
                                         </div>
                                     </form>
                                 </div>
@@ -571,43 +584,44 @@
                                     <div class="refreshBtn">
                                         <img src="{% static 'creditInsurance/images/reload.png' %}" alt="reload icon">
                                     </div>
-                                    <form>
+                                    <form method="POST" action="/insurance/clientInformation/{{ id }}">
+                                        {% csrf_token %}
                                         <h4 class="mb-2">Current application details</h4>
                                         <p class="mb-4 totalDebtInfo">Information is from your CIBC account</p>
                                         <div class="row">
                                             <div class="col-md-6 col-12">
                                                 <div class="mb-3">
                                                     <label for="lifeMortgageClassNumber" class="form-label mb-1">Class Number</label>
-                                                    <input type="text" class="form-control rounded-0" id="lifeMortgageClassNumber" placeholder="Class Number...">
+                                                    <input type="text" class="form-control rounded-0" id="lifeMortgageClassNumber" name="mortgageCLassNumber" placeholder="Class Number..." value="{{ discussion.mortgageCLassNumber }}">
                                                 </div>
                                             </div>
                                             <div class="col-md-6 col-12">
                                                 <div class="mb-3">
                                                     <label for="lifeMortgageNumber" class="form-label mb-1">Mortgage Number</label>
-                                                    <input type="text" class="form-control rounded-0" id="lifeMortgageNumber" placeholder="Mortgage Number...">
+                                                    <input type="text" class="form-control rounded-0" id="lifeMortgageNumber" name="mortgageNumber" placeholder="Mortgage Number..." value="{{ discussion.mortgageNumber }}">
                                                 </div>
                                             </div>
                                             <div class="col-md-6 col-12">
                                                 <div class="mb-3">
                                                     <label for="lifeMortageBalance" class="form-label mb-1">Mortage Balance</label>
-                                                    <input type="text" class="form-control rounded-0" id="lifeMortageBalance" placeholder="Mortage Balance...">
+                                                    <input type="text" class="form-control rounded-0" id="lifeMortageBalance" name="mortgageBalance" placeholder="Mortage Balance..." value="{{ discussion.mortgageBalance }}">
                                                 </div>
                                             </div>
                                             <div class="col-md-6 col-12">
                                                 <div class="mb-3">
                                                     <label for="lifeMortgagePaymentAmount" class="form-label mb-1">Mortgage Payment Amount</label>
-                                                    <input type="text" class="form-control rounded-0" id="lifeMortgagePaymentAmount" placeholder="Mortgage Payment Amount...">
+                                                    <input type="text" class="form-control rounded-0" id="lifeMortgagePaymentAmount" name="mortgagePmtAmt" placeholder="Mortgage Payment Amount..." value="{{ discussion.mortgagePmtAmt }}">
                                                 </div>
                                             </div>
                                             <div class="col-md-6 col-12">
                                                 <div class="mb-3">
                                                     <label class="mb-1" for="lifeMortgageSelect">Mortgage Payment Frequency</label>
                                                     <div class="lifeMortgageSelectBox">
-                                                        <select class="form-select rounded-0" id="lifeMortgageSelect" aria-label="Mortgage Payment Frequency">
+                                                        <select class="form-select rounded-0" id="lifeMortgageSelect" name="mortgagePmtFrequency" aria-label="Mortgage Payment Frequency" >
                                                             <option value="w">Weekly</option>
                                                             <option value="b">Bi-Weekly</option>
-                                                            <option value="s">Semi-Monthly</option>
-                                                            <option value="m" selected="selected">Monthly</option>
+                                                            <option value="s" selected="selected">Semi-Monthly</option>
+                                                            <option value="m" >Monthly</option>
                                                             <option value="q">Quarterly</option>
                                                             <option value="h">Semi-Annually</option>
                                                             <option value="a">Annually</option>
@@ -618,7 +632,7 @@
                                         </div>
 
                                         <div class="mt-5 d-flex align-items-center justify-content-end commonBtnContainer">
-                                            <button type="button" id="nextBtn" class="btn commonBtn" onclick="nextPrev(1)">Next</button>
+                                            <input type="submit" id="nextBtn" class="btn commonBtn" onclick="nextPrev(1)" value="Next">
                                         </div>
                                     </form>
                                 </div>
@@ -699,44 +713,45 @@
                                     <div class="refreshBtn">
                                         <img src="{% static 'creditInsurance/images/reload.png' %}" alt="reload icon">
                                     </div>
-                                    <form>
+                                    <form method="POST" action="/insurance/clientInformation/{{ id }}">
+                                        {% csrf_token %}
                                         <h4 class="mb-2">Current application details</h4>
                                         <p class="mb-4 totalDebtInfo">Information is from your CIBC account</p>
                                         <div class="row">
                                             <div class="col-md-6 col-12">
                                                 <div class="mb-3">
                                                     <label for="lifePLCClassNumber" class="form-label mb-1">Class Number</label>
-                                                    <input type="text" class="form-control rounded-0" id="lifePLCClassNumber" placeholder="Class Number...">
+                                                    <input type="text" class="form-control rounded-0" id="lifePLCClassNumber" name="lifePLCClassNumber" placeholder="Class Number...">
                                                 </div>
                                             </div>
                                             <div class="col-md-6 col-12">
                                                 <div class="mb-3">
                                                     <label for="lifePLCMortgageNumber" class="form-label mb-1">mMortgage Number</label>
-                                                    <input type="text" class="form-control rounded-0" id="lifePLCMortgageNumber" placeholder="Mortgage Number...">
+                                                    <input type="text" class="form-control rounded-0" id="lifePLCMortgageNumber" name="lifePLCMortgageNumber" placeholder="Mortgage Number...">
                                                 </div>
                                             </div>
                                             <div class="col-md-6 col-12">
                                                 <div class="mb-3">
                                                     <label for="lifePLCCreditLimit" class="form-label mb-1">Credit Limit</label>
-                                                    <input type="text" class="form-control rounded-0" id="lifePLCCreditLimit" placeholder="Credit Limit...">
+                                                    <input type="text" class="form-control rounded-0" id="lifePLCCreditLimit" name="lifePLCCreditLimit" placeholder="Credit Limit...">
                                                 </div>
                                             </div>
                                             <div class="col-md-6 col-12">
                                                 <div class="mb-3">
                                                     <label for="lifePLCInterestRate" class="form-label mb-1">Interest Rate</label>
-                                                    <input type="text" class="form-control rounded-0" id="lifePLCInterestRate" placeholder="Interest Rate...">
+                                                    <input type="text" class="form-control rounded-0" id="lifePLCInterestRate" name="lifePLCInterestRate" placeholder="Interest Rate...">
                                                 </div>
                                             </div>
                                             <div class="col-md-6 col-12">
                                                 <div class="mb-3">
                                                     <label for="lifePLCRepaymentType" class="form-label mb-1">Repayment Type</label>
-                                                    <input type="text" class="form-control rounded-0" id="lifePLCRepaymentType" placeholder="Repayment Type (e.g.Interest only)">
+                                                    <input type="text" class="form-control rounded-0" id="lifePLCRepaymentType" name="lifePLCRepaymentType" placeholder="Repayment Type (e.g.Interest only)">
                                                 </div>
                                             </div>
                                         </div>
 
                                         <div class="mt-5 d-flex align-items-center justify-content-end commonBtnContainer">
-                                            <button type="button" id="nextBtn" class="btn commonBtn" onclick="nextPrev(1)">Next</button>
+                                            <input type="submit" id="nextBtn" class="btn commonBtn" onclick="nextPrev(1)" value="Next">
                                         </div>
                                     </form>
                                 </div>
@@ -816,7 +831,8 @@
                                     <div class="refreshBtn">
                                         <img src="{% static 'creditInsurance/images/reload.png' %}" alt="reload icon">
                                     </div>
-                                    <form>
+                                    <form method="POST" action="/insurance/clientInformation/{{ id }}">
+                                        {% csrf_token %}
                                         <h4 class="mb-2">Your total existing debt</h4>
                                         <p class="mb-4 totalDebtInfo">Based on the credit application, your outstanding credit balances are approximately <strong>$x</strong>. Would you like me to base our analysis off of this?
                                         </p>
@@ -824,14 +840,14 @@
                                             <div class="col-md-8 col-12">
                                                 <div class="mb-3">
                                                     <label for="totalExistingDebt" class="form-label mb-1">Total existing debt</label>
-                                                    <input type="text" class="form-control rounded-0" id="totalExistingDebt" placeholder="Enter total existing debt" value="{{ discussion.totalExistingDebt | floatformat:'0' }}">
+                                                    <input type="text" class="form-control rounded-0" id="totalExistingDebt" name="totalExistingDebt" placeholder="Enter total existing debt" value="{{ discussion.totalExistingDebt | floatformat:'0' }}">
                                                 </div>
                                             </div>
                                             <p class="condition">*All credit balances reflect credit cards, loans, PLC balances & motgages which have been validated through the credit application process</p>
                                         </div>
 
                                         <div class="mt-5 d-flex align-items-center justify-content-end commonBtnContainer">
-                                            <button type="button" id="nextBtn" class="btn commonBtn" onclick="nextPrev(1)">Next</button>
+                                            <input type="submit" id="nextBtn" class="btn commonBtn" onclick="nextPrev(1)" value="Next">
                                         </div>
                                     </form>
                                 </div>
@@ -911,7 +927,8 @@
                                     <div class="refreshBtn">
                                         <img src="{% static 'creditInsurance/images/reload.png' %}" alt="reload icon">
                                     </div>
-                                    <form>
+                                    <form method="POST" action="/insurance/clientInformation/{{ id }}">
+                                        {% csrf_token %}
                                         <h4 class="mb-2">Current application payments</h4>
                                         <p class="mb-4 totalDebtInfo">Information will is from your CIBC account
                                         </p>
@@ -919,13 +936,14 @@
                                             <div class="col-md-8 col-12">
                                                 <div class="mb-3">
                                                     <label for="disability" class="form-label mb-1">Approximate</label>
-                                                    <input type="text" class="form-control rounded-0" id="disability" placeholder="Increment amount rounded to the nearest $100" value="{{ discussion.currentApplicationPmt | floatformat:'0' }}">
+                                                    <input type="text" class="form-control rounded-0" id="disability" name="currentApplicationPmt"
+                                                           placeholder="Increment amount rounded to the nearest $100" value="{{ discussion.currentApplicationPmt | floatformat:'0' }}">
                                                 </div>
                                             </div>
-                                        </div>.
+                                        </div>
 
                                         <div class="mt-5 d-flex align-items-center justify-content-end commonBtnContainer">
-                                            <button type="button" id="nextBtn" class="btn commonBtn" onclick="nextPrev(1)">Next</button>
+                                            <input type="submit" id="nextBtn" class="btn commonBtn" onclick="nextPrev(1)" value="Next">
                                         </div>
                                     </form>
                                 </div>
@@ -1005,7 +1023,8 @@
                                     <div class="refreshBtn">
                                         <img src="{% static 'creditInsurance/images/reload.png' %}" alt="reload icon">
                                     </div>
-                                    <form>
+                                    <form method="POST" action="/insurance/clientInformation/{{ id }}">
+                                        {% csrf_token %}
                                         <h4 class="mb-2">Your monthly payments</h4>
                                         <p class="mb-4 totalDebtInfo">Based on the credit application, your outstanding CIBC monthly payments are approximatley <strong>$x</strong> and your non-CIBC payments of approximately <strong>$b</strong>. Would you like me to base our analysis off of this?
                                         </p>
@@ -1013,14 +1032,15 @@
                                             <div class="col-md-8 col-12">
                                                 <div class="mb-3">
                                                     <label for="monthlyPayments" class="form-label mb-1">Approximate</label>
-                                                    <input type="text" class="form-control rounded-0" id="monthlyPayments" placeholder="Increment amount rounded to the nearest $1,000" value="{{ discussion.totalMonthlyPmt | floatformat:'0' }}">
+                                                    <input type="text" class="form-control rounded-0" id="monthlyPayments" name="totalMonthlyPmt"
+                                                           placeholder="Increment amount rounded to the nearest $1,000" value="{{ discussion.totalMonthlyPmt | floatformat:'0' }}">
                                                 </div>
                                             </div>
                                             <p class="condition">*All credit balances reflect credit cards, loans, PLC balances & motgages which have been validated through the credit application process</p>
                                         </div>
 
                                         <div class="mt-5 d-flex align-items-center justify-content-end commonBtnContainer">
-                                            <button type="button" id="nextBtn" class="btn commonBtn" onclick="nextPrev(1)">Next</button>
+                                            <input type="submit" id="nextBtn" class="btn commonBtn" onclick="nextPrev(1)" value="Next">
                                         </div>
                                     </form>
                                 </div>
@@ -1100,7 +1120,8 @@
                                     <div class="refreshBtn">
                                         <img src="{% static 'creditInsurance/images/reload.png' %}" alt="reload icon">
                                     </div>
-                                    <form>
+                                    <form method="POST" action="/insurance/clientInformation/{{ id }}">
+                                        {% csrf_token %}
                                         <h4 class="mb-2">Your savings and emergency funds</h4>
                                         <p class="mb-4 totalDebtInfo">Do you have any other savings you draw on to support your family's immediate and long term needs should your income be reduced or eliminated?
                                         </p>
@@ -1108,13 +1129,14 @@
                                             <div class="col-md-8 col-12">
                                                 <div class="mb-3">
                                                     <label for="savingEmergencyFund" class="form-label mb-1">Approximate</label>
-                                                    <input type="text" class="form-control rounded-0" id="savingEmergencyFund" placeholder="Current value of 0..." value="{{ discussion.savingsEmergencyFund | floatformat:'0' }}">
+                                                    <input type="text" class="form-control rounded-0" id="savingEmergencyFund" name="savingsEmergencyFund"
+                                                           placeholder="Current value of 0..." value="{{ discussion.savingsEmergencyFund | floatformat:'0' }}">
                                                 </div>
                                             </div>
                                         </div>
 
                                         <div class="mt-5 d-flex align-items-center justify-content-end commonBtnContainer">
-                                            <button type="button" id="nextBtn" class="btn commonBtn" onclick="nextPrev(1)">Next</button>
+                                            <input type="submit" id="nextBtn" class="btn commonBtn" onclick="nextPrev(1)" value="Next">
                                         </div>
                                     </form>
                                 </div>
@@ -1203,19 +1225,19 @@
                                             <div class="col-md-6 col-12">
                                                 <div class="mb-3">
                                                     <label for="lifeInsurance" class="form-label mb-1">Life Insurance</label>
-                                                    <input type="text" class="form-control rounded-0" id="lifeInsurance" placeholder="Enter value here..." value="{{ discussion.lifeInsuranceLimit | floatformat:'0' }}">
+                                                    <input type="text" class="form-control rounded-0" id="lifeInsurance" name="lifeInsurance" placeholder="Enter value here..." value="{{ discussion.lifeInsuranceLimit | floatformat:'0' }}">
                                                 </div>
                                             </div>
                                             <div class="col-md-6 col-12">
                                                 <div class="mb-3">
                                                     <label for="criticalIllness" class="form-label mb-1">Critical Illness</label>
-                                                    <input type="text" class="form-control rounded-0" id="criticalIllness" placeholder="Enter value here..." value="{{ discussion.criticalIllnessLimit | floatformat:'0' }}">
+                                                    <input type="text" class="form-control rounded-0" id="criticalIllness" name="criticalIllness" placeholder="Enter value here..." value="{{ discussion.criticalIllnessLimit | floatformat:'0' }}">
                                                 </div>
                                             </div>
                                             <div class="col-md-6 col-12">
                                                 <div class="mb-2">
                                                     <label for="disability" class="form-label mb-1">Disability</label>
-                                                    <input type="text" class="form-control rounded-0" id="disability" placeholder="Enter value here..." value="{{ discussion.disabilityInsuranceMonthlyBenefit | floatformat:'0' }}">
+                                                    <input type="text" class="form-control rounded-0" id="disability" name="disability" placeholder="Enter value here..." value="{{ discussion.disabilityInsuranceMonthlyBenefit | floatformat:'0' }}">
                                                 </div>
                                                 <p class="condition">*Coverage tied to current employment
                                                     records</p>
@@ -1223,7 +1245,7 @@
                                             <div class="col-md-6 col-12">
                                                 <div class="mb-2">
                                                     <label for="disabilityPercentage" class="form-label mb-1">Disability Percentage Of Income</label>
-                                                    <input type="text" class="form-control rounded-0" id="disabilityPercentage" placeholder="Enter value here..." value="{{ discussion.disabilityInsurancePercentCoveredByEmployer }}">
+                                                    <input type="text" class="form-control rounded-0" id="disabilityPercentage" name="disabilityPercentage" placeholder="Enter value here..." value="{{ discussion.disabilityInsurancePercentCoveredByEmployer }}">
                                                 </div>
                                                 <p class="condition">*n= % value within input field (disability %)</p>
                                             </div>
@@ -1231,7 +1253,7 @@
                                         </div>
 
                                         <div class="mt-5 d-flex align-items-center justify-content-end commonBtnContainer">
-                                            <button type="submit" class="btn commonBtn" >Next</button>
+                                            <input type="submit" class="btn commonBtn" value="Next">
                                         </div>
                                     </form>
                                 </div>
