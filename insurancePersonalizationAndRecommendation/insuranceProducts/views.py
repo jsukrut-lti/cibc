@@ -610,8 +610,26 @@ class TypeOfApplication(View):
         payload = request.POST
         application_type1 = payload.getlist('typeOfApplicant1')
         application_type2 = payload.getlist('typeOfApplicant2')
+        pk = CrypticSetting.decrypt(self, payload.get("pk_id"))
+        queryset = InsuranceCreditProduct.objects.filter(id=pk).values()
+        filter_data, appDetails = CreditInsurance.format_raw_data_for_insdisc(self, queryset, application_type2)
 
-        return HttpResponseRedirect('/insurance/typeOfApplicant/{}'.format())
+        discussionDetails = InsuranceDiscussion.objects.create(**filter_data)
+        discussionDetails.save()
+
+        discussion_appDetails = dict()
+        for app_id in appDetails:
+            discussion_appDetails['insDiscussion_id'] = discussionDetails.pk
+            discussion_appDetails['application_number'] = filter_data['application_number']
+            discussion_appDetails['applicantID'] = app_id
+            discussion_appDetails['application_type'] = application_type2
+
+            applicantDetails = InsuranceDiscussionApplicantDetails.objects.create(**discussion_appDetails)
+            applicantDetails.save()
+
+        discussion_pk = CrypticSetting.encrypt(self, discussionDetails.pk)
+
+        return HttpResponseRedirect('/insurance/typeOfApplicant/{}'.format(discussion_pk))
 
     def get(self, request, *args, **kwargs):
         context = {
