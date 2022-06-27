@@ -465,13 +465,13 @@ class PrevSessionView(View):
                     primaryApplicantId = appl['applicantId']
                 else:
                     coApplicantId = appl['applicantId']
-        status = 'inprogress'
+        status = 'incomplete'
 
         if joint_applicant == 'Yes':
             cursor.execute('''select b.id FROM public."insuranceProducts_insurancediscussionapplicantdetails" a right join 
             public."insuranceProducts_insurancediscussion" b on a."insDiscussion_id"=b.id and a.application_number='{0}' 
-            and a."application_status"='{1}' where (b."applicantID"='{2}' and b."type"='{3}') and (b."applicantID"='{4}' 
-            and b."type"='{5}') '''.format(appli_number, status, primaryApplicantId, 'primary', coApplicantId, 'co'))
+            where b."application_status"='{1}' and (a."applicantID"='{2}' and a."type"='{3}') and (a."applicantID"='{4}' 
+            and a."type"='{5}') '''.format(appli_number, status, primaryApplicantId, 'primary', coApplicantId, 'co'))
         else:
             cursor.execute('''select b.id FROM public."insuranceProducts_insurancediscussionapplicantdetails" a right join
             public."insuranceProducts_insurancediscussion" b on a."insDiscussion_id"=b.id and b.application_number='{0}'

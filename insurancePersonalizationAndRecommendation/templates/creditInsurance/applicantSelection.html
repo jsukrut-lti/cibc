@@ -15,7 +15,7 @@
                                         <img src="{% static 'creditInsurance/images/reload.png' %}" alt="reload icon">
                                     </div>
 
-                                    <form action="/insurance/confirm_prev_session/" method="post" class="form">
+                                    <form action="/insurance/confirm_prev_session/{{ pk_id }}" method="post" class="form">
                                         {% csrf_token %}
                                         <input type="hidden" name="pk_id" value="{{ pk_id }}">
                                         <div class="userImg">
