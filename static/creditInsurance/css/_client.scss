@@ -17,6 +17,10 @@
                                 background-color: #000000;
                                 box-shadow: none;
                             }
+
+                            &:disabled ~ .form-check-label {
+                                opacity: 0.8;
+                            }
                         }
                     }
                 }
