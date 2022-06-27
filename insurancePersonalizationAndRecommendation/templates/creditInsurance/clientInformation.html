@@ -85,7 +85,7 @@
                                                     <p class="mb-1">Joint Application</p>
                                                     <div class="jointApplicantDemographic">
                                                         <div class="form-check form-check-inline">
-                                                            <input class="form-check-input " type="radio" name="jointApplicantDemographic" id="yes" value="yes" checked="checked" disabled>
+                                                            <input class="form-check-input " type="radio" name="jointApplicantDemographic" id="yes" value="yes" disabled>
                                                             <label class="form-check-label" for="yes">Yes</label>
                                                         </div>
                                                         <div class="form-check form-check-inline">
@@ -1331,5 +1331,21 @@
                 </div>
             </div>
 
+            <script>
+                // Base on applicant selection Yes/No show change on demograpic page
+
+                let applicantSelectionType = "{{ discussion.isJoint|safe }}";
+                    jointApplicantEle = document.querySelectorAll('.jointApplicantDemographic .form-check-input');
+
+                    for (let i = 0; i < jointApplicantEle.length; i++) {
+                        if(jointApplicantEle[i].id == "no" && applicantSelectionType == "n") {
+                            jointApplicantEle[i].setAttribute("checked","checked");
+                        }
+                        else if(jointApplicantEle[i].id == "yes" && applicantSelectionType == "y") {
+                            jointApplicantEle[i].setAttribute("checked","checked");
+                        }
+                    }
+            </script>
             <script src="{% static 'creditInsurance/js/multistepForm.js' %}"></script>
+            
 {% endblock %}
