@@ -49,7 +49,7 @@ class PrimaryInsuranceDiscussionForm(InsuranceDiscussionForm):
 
     class Meta:
         model = InsuranceDiscussion
-        fields = ['primaryFirstName', 'primaryMiddleName', 'primaryLastName', 'primaryAge','canada_provence','hoursWeekWorking']
+        fields = ['primaryFirstName', 'primaryMiddleName', 'primaryLastName', 'primaryAge','canada_province','hoursWeekWorking']
 
 
 class CoBorrowerInsuranceDiscussionForm(InsuranceDiscussionForm):
@@ -71,7 +71,7 @@ class CreditProductInsuranceDiscussionForm(InsuranceDiscussionForm):
 
     class Meta:
         model = InsuranceDiscussion
-        fields = ['mortgageBalance', 'mortgagePmtAmount', 'mortgagePmtFrequency',]
+        fields = ['mortgageBalance', 'mortgagePmtAmt', 'mortgagePmtFrequency',]
 
 class IncomeExpenseSvgTotalsInsuranceDiscussionForm(InsuranceDiscussionForm):
     formID = INS_SHEET_SECTION_AREAS.incomeExpenseSavingsTotals

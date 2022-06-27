@@ -176,9 +176,13 @@
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <script src="{% static 'creditInsurance/js/myScript.js' %}"></script>
     <script src="{% static 'creditInsurance/js/jquery.multi-select.js' %}"></script>
-
+    <script>
+        var request_obj = "{{ request.session.session_key }}";
+        var csrf_token = "{{ csrf_token }}";
+        var checkNavigation = true;
+    </script>
+    <script src="{% static 'creditInsurance/js/myScript.js' %}">request_obj</script>
 <!--    <script src="{% static 'creditInsurance/js/base.js' %}"></script>-->
    <script>
         $('#checkSelectMultiple').multiSelect({

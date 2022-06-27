@@ -18,6 +18,8 @@ import json
 logger = logging.getLogger(__name__)
 import logging
 import traceback
+from django.db import connection
+cursor = connection.cursor()
 
 class CreditInsurance(object):
 
@@ -71,65 +73,191 @@ class CreditInsurance(object):
     def get_agent_id(self):
         return 1
 
-    def get_ins_product_id(self,prod_code):
-        p = InsuranceProduct.objects.filter(product_cibc_code=prod_code).values("id")
-        return p[0].get('id')
+    def get_ins_product(self,prod_code):
+        p = InsuranceProduct.objects.filter(product_cibc_code=prod_code)
+        return p[0]
 
     def format_raw_data_for_insdisc(self,queryset, select):
 
         raw_data = json.loads(queryset['data'])
         appl_details = raw_data.get('applicants', list())
-        d = dict()
-        appDetails = []
-        d['insProduct_id'] = CreditInsurance.get_ins_product_id(self,raw_data['insProducts_details'][0]['insProduct_ID'])
+
+        ins_product = CreditInsurance.get_ins_product(self,raw_data['insProducts_details'][0]['insProduct_ID'])
+        ins_product_type = ins_product.creditProduct_code.credit_product_name.lower()
+        d = CreditInsurance.create_ins_disc_template(self, ins_product_type)
+        appDetails = dict()
+        d['insProduct_id'] = ins_product.id
         d['agent_id'] = CreditInsurance.get_agent_id(self)
-        d['canada_provence'] = raw_data['canada_province']
+        # todo - Need to change 'canada_provence' to 'canada_province' in model
+        d['canada_province'] = raw_data['canada_province']
         d['currentApplicationPmt'] = raw_data['currentApplicationPmt']
         d['application_number'] = raw_data['application_number']
 
+        if ins_product_type == 'hpp':
+            # HPP
+            d['hppMaxRebalancingLmt'] = raw_data['hpp']['hppMaxRebalancingLmt']
+            d['hppCreditLmt'] = raw_data['hpp']['hppCreditLmt']
+            d['plcCLassNumber'] = raw_data['hpp']['plcCLassNumber']
+            d['plcMMortgageNumber'] = raw_data['hpp']['plcMMortgageNumber']
+            d['plcRepaymentType'] = raw_data['hpp']['plcRepaymentType']
+            d['plcCreditLmt'] = raw_data['hpp']['plcCreditLmt']
+            d['plcInterestRate'] = raw_data['hpp']['plcInterestRate']
+            d['mortgageCLassNumber'] = raw_data['hpp']['mortgageCLassNumber']
+            d['mortgageNumber'] = raw_data['hpp']['mortgageNumber']
+            d['mortgageBalance'] = raw_data['hpp']['mortgageAmt']
+            d['mortgagePmtAmt'] = raw_data['hpp']['mortgagePmtAmt']
+            d['mortgagePmtFrequency'] = raw_data['hpp']['mortgagePmtFrequency']
+
+        elif ins_product_type == 'loan':
+            d['loanClassNumber'] = raw_data['loan']['loanClassNumber']
+            d['loanAmt'] = raw_data['loan']['loanAmt']
+            d['loanPmtAmt'] = raw_data['loan']['loanPmtAmt']
+            d['loanPmtFrequency'] = raw_data['loan']['loanPmtFrequency']
+
+        elif ins_product_type == 'plc':
+            d['plcCLassNumber'] = raw_data['plc']['plcCLassNumber']
+            d['plcMMortgageNumber'] = raw_data['plc']['plcMMortgageNumber']
+            d['plcRepaymentType'] = raw_data['plc']['plcRepaymentType']
+            d['plcCreditLmt'] = raw_data['plc']['plcCreditLmt']
+            d['plcInterestRate'] = raw_data['plc']['plcInterestRate']
+
+        elif ins_product_type == 'mortgage':
+            d['mortgageCLassNumber'] = raw_data['mortgage']['classNumber']
+            d['mortgageNumber'] = raw_data['mortgage']['mortgageNumber']
+            d['mortgageBalance'] = raw_data['mortgage']['balance']
+            d['mortgagePmtAmt'] = raw_data['mortgage']['pmtAmount']
+            d['mortgagePmtFrequency'] = raw_data['mortgage']['pmtFrequency']
+
         for index, appl in enumerate(appl_details):
             if appl['applicantId'] in select:
-                d['primaryFirstName'] = appl['FirstName']
-                d['primaryMiddleName'] = appl['MiddleName']
-                d['primaryLastName'] = appl['LastName']
-                d['primaryAge'] = CreditInsurance.calculate_age(appl["birth_date"])
-                d['primaryGender'] = appl['Gender']
-                d['approxNetIncome'] = appl['monthlyGrossIncome']
-                d['totalUnsecuredAmt'] = appl['existingDebts']['cibcUnsecured']
-                d['totalSecuredAmt'] = appl['existingDebts']['cibcSecured']
-                d['totalExistingDebt'] = appl['existingDebts']['cibcSecured'] + appl['existingDebts'][
-                    'cibcUnsecured']
-                d['totalMonthlyPmt'] = appl['monthlyIncomeAfterTaxes']
-                d['savingsEmergencyFund'] = appl['savingsEmergencyFund']
-                d['creditCardBalance'] = appl['creditCard']['balance']
-                d['totalMonthlyExpenses'] = appl['expenses']['totalMonthlyExpenses']
+                if index == 0:
+                    d['primaryFirstName'] = appl['FirstName']
+                    d['primaryMiddleName'] = appl['MiddleName']
+                    d['primaryLastName'] = appl['LastName']
+                    d['primaryAge'] = CreditInsurance.calculate_age(appl["birth_date"])
+                    d['primaryGender'] = appl['Gender']
+                    d['approxNetIncome'] = appl['monthlyGrossIncome']
+                    d['totalUnsecuredAmt'] = appl['existingDebts']['cibcUnsecured']
+                    d['totalSecuredAmt'] = appl['existingDebts']['cibcSecured']
+                    d['totalExistingDebt'] = appl['existingDebts']['cibcSecured'] + appl['existingDebts'][
+                        'cibcUnsecured']
+                    d['totalMonthlyPmt'] = appl['monthlyIncomeAfterTaxes']
+                    d['savingsEmergencyFund'] = appl['savingsEmergencyFund']
+                    d['creditCardBalance'] = appl['creditCard']['balance']
+                    d['totalMonthlyExpenses'] = appl['expenses']['totalMonthlyExpenses']
+                    d['isJoint'] = 'n'
+                    appDetails['primary'] = appl['applicantId']
 
-                appDetails.append(appl['applicantId'])
+                if index == 1:
+                    d['coFirstName'] = appl['FirstName']
+                    d['coMiddleName'] = appl['MiddleName']
+                    d['coLastName'] = appl['LastName']
+                    d['coAge'] = CreditInsurance.calculate_age(appl["birth_date"])
+                    d['coGender'] = appl['Gender']
+                    d['approxNetIncome'] += appl['monthlyGrossIncome']
+                    d['totalUnsecuredAmt'] += appl['existingDebts']['cibcUnsecured']
+                    d['totalSecuredAmt'] += appl['existingDebts']['cibcSecured']
+                    d['totalExistingDebt'] += appl['existingDebts']['cibcSecured'] + appl['existingDebts'][
+                        'cibcUnsecured']
+                    d['totalMonthlyPmt'] += appl['monthlyIncomeAfterTaxes']
+                    d['savingsEmergencyFund'] += appl['savingsEmergencyFund']
+                    d['creditCardBalance'] += appl['creditCard']['balance']
+                    d['totalMonthlyExpenses'] += appl['expenses']['totalMonthlyExpenses']
+                    d['isJoint'] = 'y'
+                    appDetails['co'] = appl['applicantId']
 
-            if len(select) > 1 and index == 1:
-                d['coFirstName'] = appl['FirstName']
-                d['coMiddleName'] = appl['MiddleName']
-                d['coLastName'] = appl['LastName']
-                d['coAge'] = CreditInsurance.calculate_age(appl["birth_date"])
-                d['coGender'] = appl['Gender']
-                d['approxNetIncome'] += appl['monthlyGrossIncome']
-                d['totalUnsecuredAmt'] += appl['existingDebts']['cibcUnsecured']
-                d['totalSecuredAmt'] += appl['existingDebts']['cibcSecured']
-                d['totalExistingDebt'] += appl['existingDebts']['cibcSecured'] + appl['existingDebts'][
-                    'cibcUnsecured']
-                d['totalMonthlyPmt'] += appl['monthlyIncomeAfterTaxes']
-                d['savingsEmergencyFund'] += appl['savingsEmergencyFund']
-                d['creditCardBalance'] += appl['creditCard']['balance']
-                d['totalMonthlyExpenses'] += appl['expenses']['totalMonthlyExpenses']
+        return d, appDetails
 
-
-        return d,appDetails
-
+    def create_ins_disc_template(self, ins_product_type):
+        temp = {
+            # demographics
+            'primaryFirstName': '',
+            'primaryMiddleName': '',
+            'primaryLastName': '',
+            'primaryPreferredName': '',
+            'primaryAge': None,
+            'primaryGender': '',
+            'primaryEmail': '',
+            'coFirstName': '',
+            'coMiddleName': '',
+            'coLastName': '',
+            'coAge': None,
+            'coGender': '',
+            'isJoint': '',
+            'canada_province': '',
+            # source info
+            'agent_id': None,
+            'insProduct_id': None,
+            # approx net income
+            'approxNetIncome': None,
+            # existing debt
+            'totalExistingDebt': None,
+            # current application payment
+            'currentApplicationPmt': None,
+            # monthly payment
+            'totalMonthlyPmt': None,
+            # saving and emergency fund
+            'savingsEmergencyFund': None,
+            # current insurance coverage
+            'lifeInsuranceLimit': None,
+            'criticalIllnessLimit': None,
+            'disabilityInsuranceMonthlyBenefit': None,
+            'disabilityInsurancePercentCoveredByEmployer': None,
+            # existing fields / extras
+            'totalUnsecuredAmt': None,
+            'totalSecuredAmt': None,
+            'creditCardBalance': None,
+            'totalMonthlyExpenses': None,
+        }
+        # current application details
+        t = dict()
+        if ins_product_type == 'hpp':
+            # HPP
+            t = {
+                'hppMaxRebalancingLmt': None,
+                'hppCreditLmt': None,
+                'plcCLassNumber': '',
+                'plcMMortgageNumber': '',
+                'plcRepaymentType': '',
+                'plcCreditLmt': None,
+                'plcInterestRate': None,
+                'mortgageCLassNumber': '',
+                'mortgageNumber': '',
+                'mortgageBalance': None,
+                'mortgagePmtAmt': None,
+                'mortgagePmtFrequency': None
+                }
+        elif ins_product_type == 'loan':
+            t = {
+                'loanClassNumber': '',
+                'loanAmt': None,
+                'loanPmtAmt': None,
+                'loanPmtFrequency': None
+            }
+        elif ins_product_type == 'plc':
+            t = {
+                'plcCLassNumber': '',
+                'plcMMortgageNumber': '',
+                'plcRepaymentType': None,
+                'plcCreditLmt': None,
+                'plcInterestRate': None
+            }
+        elif ins_product_type == 'mortgage':
+            t = {
+                'mortgageCLassNumber': '',
+                'mortgageNumber': '',
+                'mortgageBalance': None,
+                'mortgagePmtAmt': None,
+                'mortgagePmtFrequency': None
+            }
+        if t:
+            temp.update(t)
+        return temp
 
 class EligibilityCheck(object):
 
     def __init__(self, *args, **kwargs):
-        self.list_credit_product = {"mortgage" : ["mortgage", "plc"], "compass" : ["loan"]}
+        self.list_credit_product = {"mortgage" : ["mortgage", "plc"], "loan" : ["loan"]}
         self.insurance_details = {}
         self.insurance_product_rec = defaultdict(list)
 
@@ -240,17 +368,21 @@ class ApplicantDetails(object):
         pk = CrypticSetting.decrypt(self, kwargs['pk'])
         queryset = InsurancePreProcessData.objects.filter(id=pk).values()[0]
         raw_data = json.loads(queryset['data'])
-        appl_details = raw_data.get('applicants', list())
+        appl_ids = [appli['applicantId'] for appli in raw_data.get('applicants', list())]
+        complete_status = 'complete'
 
-        discAppl_details = InsuranceDiscussionApplicantDetails.objects.filter(
-            application_number=raw_data.get('application_number')).values('applicantID')
-        discAppl_details_rec = discAppl_details and list(discAppl_details) or []
+        # discAppl_details = InsuranceDiscussionApplicantDetails.objects.filter(
+        #     application_number=raw_data.get('application_number')).values('applicantID')
+        cursor.execute('''select a."applicantID" from public."insuranceProducts_insurancediscussionapplicantdetails" a inner join
+                public."insuranceProducts_insurancediscussion" b on a."insDiscussion_id"=b.id where
+                a.application_number='{0}' and a."applicantID" in {1} and b.application_status='{2}'
+                 '''.format(raw_data.get('application_number'), tuple(appl_ids), complete_status))
+        discAppl_details = cursor.fetchone()
 
-        discApp_list = [a['applicantID'] for a in discAppl_details_rec]
-
+        discApp_list = discAppl_details and list(discAppl_details) or []
         appl_details_remaining = []
 
-        for appl in appl_details:
+        for appl in raw_data.get('applicants', list()):
             if appl['applicantId'] not in discApp_list:
                 appl_details_remaining.append(appl)
 
