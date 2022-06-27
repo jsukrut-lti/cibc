@@ -100,19 +100,16 @@ document.onclick = function (){
 };
 
 $(document).ready(function (){
-        debugger;
         var validNavigation = false;
 
 
 //         Attach the event submit for all forms in the page
         $("form").bind("submit", function() {
-          debugger;
           validNavigation = true;
         });
 
 //         Attach the event click for all inputs in the page
         $("input[type=submit]").bind("click", function() {
-          debugger;
           validNavigation = true;
         });
 
@@ -122,7 +119,6 @@ $(document).ready(function (){
         });
 
         window.onbeforeunload = function() {
-            debugger;
             if (!validNavigation) {
                 saveDB();
             } else {

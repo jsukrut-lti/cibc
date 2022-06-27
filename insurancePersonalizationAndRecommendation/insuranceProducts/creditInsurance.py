@@ -88,10 +88,9 @@ class CreditInsurance(object):
         appDetails = dict()
         d['insProduct_id'] = ins_product.id
         d['agent_id'] = CreditInsurance.get_agent_id(self)
-        # todo - Need to change 'canada_provence' to 'canada_province' in model
         d['canada_province'] = raw_data['canada_province']
         d['currentApplicationPmt'] = raw_data['currentApplicationPmt']
-        d['application_number'] = raw_data['application_number']
+        d['application_number'] = str(raw_data['application_number'])
 
         if ins_product_type == 'hpp':
             # HPP
@@ -128,9 +127,10 @@ class CreditInsurance(object):
             d['mortgagePmtAmt'] = raw_data['mortgage']['pmtAmount']
             d['mortgagePmtFrequency'] = raw_data['mortgage']['pmtFrequency']
 
+        is_primray = False
         for index, appl in enumerate(appl_details):
             if appl['applicantId'] in select:
-                if index == 0:
+                if not is_primray:
                     d['primaryFirstName'] = appl['FirstName']
                     d['primaryMiddleName'] = appl['MiddleName']
                     d['primaryLastName'] = appl['LastName']
@@ -147,8 +147,9 @@ class CreditInsurance(object):
                     d['totalMonthlyExpenses'] = appl['expenses']['totalMonthlyExpenses']
                     d['isJoint'] = 'n'
                     appDetails['primary'] = appl['applicantId']
+                    is_primray = True
 
-                if index == 1:
+                if is_primray:
                     d['coFirstName'] = appl['FirstName']
                     d['coMiddleName'] = appl['MiddleName']
                     d['coLastName'] = appl['LastName']
