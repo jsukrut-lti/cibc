@@ -29,7 +29,7 @@ urlpatterns = [
     path('summary/<int:pk>', SummaryView.as_view(), name='ins-summary'),
     path('exit/<int:pk>', ExitView.as_view(), name='ins-exit'),
     path('exit/', ExitView.as_view(), name='ins-exit'),
-    path('save_session', SaveSession.as_view(), name='start-session')
+    path('save_session', SaveSession.as_view(), name='start-session'),
     path('exitApplication/<str:pk>', ExitApplication.as_view(), name='ins-exit'),
     path('anecdotesArchetypeInformation/<int:pk>', AnecdotesArchetypeInformation.as_view(), name='ins-exit'),
     path('anecdotesArchetypeSelection/<int:pk>', AnecdotesArchetypeSelection.as_view(), name='ins-exit'),
@@ -39,5 +39,5 @@ urlpatterns = [
     path('preliminaryEligibilityMortgage/<int:pk>', PreliminaryEligibilityMortgage.as_view(), name='ins-exit'),
     path('preliminaryEligibilityMortgagePlus/<int:pk>', PreliminaryEligibilityMortgagePlus.as_view(), name='ins-exit'),
     path('preliminaryEligibilityPLC/<int:pk>', PreliminaryEligibilityPLC.as_view(), name='ins-exit'),
-    path('paymentDetails/<int:pk>', PaymentDetails.as_view(), name='ins-exit'),
+    path('paymentDetails/<int:pk>', PaymentDetails.as_view(), name='ins-exit')
 ]

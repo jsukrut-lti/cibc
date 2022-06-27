@@ -89,6 +89,21 @@ class SCENARIO_TYPE(Enum):
         return cls[member].value[0]
 
 
+class InsurancePreProcessData(TimeStampedModel):
+    STATUS_CHOICES =(
+        ('draft', 'DRAFT'),
+        ('active', 'ACTIVE'),
+        ('deactivate', 'DEACTIVATE'),
+    )
+
+    application_number = models.CharField(max_length=100, verbose_name=u"Application Number", help_text=u"Application Number",blank=False)
+    status = models.CharField(max_length=10, choices=STATUS_CHOICES, default='draft')
+    data = models.JSONField()
+
+    def __str__(self):
+        return '{}'.format(self.application_number)
+
+
 class InsuranceDiscussion(TimeStampedModel):
 
     STATUS_CHOICES = (
@@ -234,19 +249,7 @@ class InsuranceDiscussionApplicantDetails(TimeStampedModel):
     active = models.BooleanField(verbose_name=u"Active", default=True)
 
 
-class InsurancePreProcessData(TimeStampedModel):
-    STATUS_CHOICES =(
-        ('draft', 'DRAFT'),
-        ('active', 'ACTIVE'),
-        ('deactivate', 'DEACTIVATE'),
-    )
 
-    application_number = models.CharField(max_length=100, verbose_name=u"Application Number", help_text=u"Application Number",blank=False)
-    status = models.CharField(max_length=10, choices=STATUS_CHOICES, default='draft')
-    data = models.JSONField()
-
-    def __str__(self):
-        return '{}'.format(self.application_number)
 
 class ProvinceResidence(TimeStampedModel):
 
