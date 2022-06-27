@@ -618,3 +618,49 @@ class TypeOfApplication(View):
             'id': kwargs['pk'],
         }
         return render(request, template_name=self.template_name, context=context)
+
+
+class PreliminaryEligibility(View):
+    template_name = 'creditInsurance/eligibility.html'
+
+    def get(self, request, *args, **kwargs):
+        context = {
+            'id': kwargs['pk'],
+        }
+        return render(request, template_name=self.template_name, context=context)
+
+class PreliminaryEligibilityMortgage(View):
+    template_name = 'creditInsurance/eligibilityQMortgage.html'
+
+    def get(self, request, *args, **kwargs):
+        context = {
+            'id': kwargs['pk'],
+        }
+        return render(request, template_name=self.template_name, context=context)
+
+class PreliminaryEligibilityMortgagePlus(View):
+    template_name = 'creditInsurance/eligibilityQMortgagePlus.html'
+
+    def get(self, request, *args, **kwargs):
+        context = {
+            'id': kwargs['pk'],
+        }
+        return render(request, template_name=self.template_name, context=context)
+
+class PreliminaryEligibilityPLC(View):
+    template_name = 'creditInsurance/eligibilityQPLC.html'
+
+    def get(self, request, *args, **kwargs):
+        context = {
+            'id': kwargs['pk'],
+        }
+        return render(request, template_name=self.template_name, context=context)
+
+class PaymentDetails(View):
+    template_name = 'creditInsurance/paymentDetails.html'
+
+    def get(self, request, *args, **kwargs):
+        context = {
+            'id': kwargs['pk'],
+        }
+        return render(request, template_name=self.template_name, context=context)
