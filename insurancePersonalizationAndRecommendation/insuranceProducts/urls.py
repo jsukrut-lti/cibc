@@ -32,5 +32,9 @@ urlpatterns = [
     path('anecdotesArchetypeSelection/<int:pk>', AnecdotesArchetypeSelection.as_view(), name='ins-exit'),
     path('faq/<int:pk>', FAQ.as_view(), name='ins-exit'),
     path('typeOfApplication/<int:pk>', TypeOfApplication.as_view(), name='ins-exit'),
-
+    path('preliminaryEligibility/<int:pk>', PreliminaryEligibility.as_view(), name='ins-exit'),
+    path('preliminaryEligibilityMortgage/<int:pk>', PreliminaryEligibilityMortgage.as_view(), name='ins-exit'),
+    path('preliminaryEligibilityMortgagePlus/<int:pk>', PreliminaryEligibilityMortgagePlus.as_view(), name='ins-exit'),
+    path('preliminaryEligibilityPLC/<int:pk>', PreliminaryEligibilityPLC.as_view(), name='ins-exit'),
+    path('paymentDetails/<int:pk>', PaymentDetails.as_view(), name='ins-exit'),
 ]
