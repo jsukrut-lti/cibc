@@ -8,7 +8,7 @@
 	  "occupation_code" : "6117", 
 	  "province_residence" : "AB",
       "hloc": {
-        "limit": 67676,
+        "limit": 6767,
         "balance": 2500,
         "pmtAmount": 3000,
         "pmtFrequency": "m"
@@ -35,7 +35,7 @@
       "FirstName": "Jimmmy",
       "MiddleName": "sr.Jack",
       "creditCard": {
-        "limit": 67676,
+        "limit": 6776,
         "balance": 2500,
         "pmtAmount": 3000,
         "pmtFrequency": "m"
@@ -48,14 +48,14 @@
         "pmtFrequency": "m"
       },
       "existingDebts": {
-        "cibcSecured": 43434,
-        "cibcUnsecured": 654656
+        "cibcSecured": 434,
+        "cibcUnsecured": 678
       },
       "monthlyGrossIncome": 2500,
       "eligible_insProducts": [
         "Mortgage Creditor Insurance"
       ],
-      "savingsEmergencyFund": 50000,
+      "savingsEmergencyFund": 6565,
       "monthlyIncomeAfterTaxes": 2500
     },
     {
@@ -63,7 +63,7 @@
       "occupation_code" : "6117", 
 	  "province_residence" : "AB",
       "hloc": {
-        "limit": 67676,
+        "limit": 6776,
         "balance": 2500,
         "pmtAmount": 3000,
         "pmtFrequency": "m"
@@ -88,7 +88,7 @@
         "monthlyExpenseOtherHousing": 2500
       },
       "mortgage": {
-        "limit": 67676,
+        "limit": 6676,
         "balance": 2500,
         "pmtAmount": 3000,
         "pmtFrequency": "m"
@@ -96,14 +96,14 @@
       "FirstName": "Ronny",
       "MiddleName": "K",
       "creditCard": {
-        "limit": 67676,
+        "limit": 6766,
         "balance": 2500,
         "pmtAmount": 3000,
         "pmtFrequency": "m"
       },
       "applicantId": "Q124",
       "personalLoan": {
-        "limit": 67676,
+        "limit": 6676,
         "balance": 2500,
         "pmtAmount": 3000,
         "pmtFrequency": "m"
@@ -123,7 +123,7 @@
   "mortgage": {
         "mortgageNumber": "MT12345",
         "classNumber": "AD12345",
-        "limit": 67676,
+        "limit": 6676,
         "balance": 2500,
         "pmtAmount": 78,
         "pmtFrequency": "m"

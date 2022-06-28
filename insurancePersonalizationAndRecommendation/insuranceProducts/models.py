@@ -118,7 +118,7 @@ class InsuranceDiscussion(TimeStampedModel):
     #Application Details
     application_number = models.CharField(max_length=100, verbose_name=u"Application Number",
                                           help_text=u"Application Number",null=True,blank=True)
-    application_status = models.CharField(max_length=10, choices=STATUS_CHOICES, default='inprocess')
+    application_status = models.CharField(max_length=10, choices=STATUS_CHOICES, default='incomplete')
 
     # Primary Demographics
     primaryFirstName = models.CharField(_("First Name"), max_length=50,blank=True)
