@@ -468,15 +468,16 @@ class PrevSessionView(View):
         status = 'incomplete'
 
         if joint_applicant == 'Yes':
-            cursor.execute('''select b.id FROM public."insuranceProducts_insurancediscussionapplicantdetails" a right join 
-            public."insuranceProducts_insurancediscussion" b on a."insDiscussion_id"=b.id and a.application_number='{0}' 
-            where b."application_status"='{1}' and (a."applicantID"='{2}' and a."type"='{3}') and (a."applicantID"='{4}' 
-            and a."type"='{5}') '''.format(appli_number, status, primaryApplicantId, 'primary', coApplicantId, 'co'))
+            cursor.execute('''select distinct(b.id) FROM public."insuranceProducts_insurancediscussionapplicantdetails" a right join 
+            public."insuranceProducts_insurancediscussion" b on a."insDiscussion_id"=b.id and b.application_number='{0}' 
+            where b."application_status"='{1}' and (a."applicantID"='{2}' and a."type"='{3}') or (a."applicantID"='{4}' 
+            and a."type"='{5}') and b."isJoint"='{6}' '''.format(appli_number, status, primaryApplicantId, 'primary',
+                                                                 coApplicantId, 'co', 'y'))
         else:
             cursor.execute('''select b.id FROM public."insuranceProducts_insurancediscussionapplicantdetails" a right join
             public."insuranceProducts_insurancediscussion" b on a."insDiscussion_id"=b.id and b.application_number='{0}'
-            and b."application_status"='{1}' where a."applicantID"='{2}' and a."type"='{3}'
-            '''.format(appli_number, status, primaryApplicantId, 'primary'))
+            and b."application_status"='{1}' where a."applicantID"='{2}' and a."type"='{3}' and b."isJoint"='{4}'
+            '''.format(appli_number, status, primaryApplicantId, 'primary', 'n'))
         prev_discs = cursor.fetchone()
         if not prev_discs:
             pre_ = {
@@ -491,7 +492,8 @@ class PrevSessionView(View):
         context = {'menu_name': self.context_object_name,
                    'applicant_details': appl_details,
                    'pk_id': kwargs['pk'],
-                   'prev_discs': list(prev_discs)
+                   'prev_discs': list(prev_discs),
+                   'already_exists': True
                    }
         return render(request, template_name=self.template_name, context=context)
 

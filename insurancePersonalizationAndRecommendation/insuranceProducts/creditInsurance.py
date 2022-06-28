@@ -127,10 +127,10 @@ class CreditInsurance(object):
             d['mortgagePmtAmt'] = raw_data['mortgage']['pmtAmount']
             d['mortgagePmtFrequency'] = raw_data['mortgage']['pmtFrequency']
 
-        is_primray = False
+        is_co = False
         for index, appl in enumerate(appl_details):
             if appl['applicantId'] in select:
-                if not is_primray:
+                if not is_co:
                     d['primaryFirstName'] = appl['FirstName']
                     d['primaryMiddleName'] = appl['MiddleName']
                     d['primaryLastName'] = appl['LastName']
@@ -147,9 +147,10 @@ class CreditInsurance(object):
                     d['totalMonthlyExpenses'] = appl['expenses']['totalMonthlyExpenses']
                     d['isJoint'] = 'n'
                     appDetails['primary'] = appl['applicantId']
-                    is_primray = True
+                    is_co = True
+                    continue
 
-                if is_primray:
+                if is_co:
                     d['coFirstName'] = appl['FirstName']
                     d['coMiddleName'] = appl['MiddleName']
                     d['coLastName'] = appl['LastName']
