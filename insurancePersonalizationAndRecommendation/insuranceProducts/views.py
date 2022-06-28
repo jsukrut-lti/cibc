@@ -446,44 +446,15 @@ class PrevSessionView(View):
 
     def post(self, request, *args, **kwargs):
         payload = request.POST
-        single_select = payload.getlist('singleSelect')
-        multi_select = payload.getlist('multiSelect')
-        joint_applicant = payload.get('jointApplicant')
-        select = multi_select if joint_applicant == 'Yes' else single_select
+        pk = CrypticSetting.decrypt(self, payload['pk_id'])
+        prev_discs, selected_applicants, appl_details = \
+            CreditInsurance.get_prev_session_data_on_applicant_sel(self, payload, pk)
 
-        pk = CrypticSetting.decrypt(self,payload['pk_id'])
-        queryset = InsurancePreProcessData.objects.filter(id=pk).values()[0]
-        raw_data = json.loads(queryset['data'])
-        appl_details = raw_data.get('applicants', list())
-
-        appli_number = raw_data['application_number']
-        primaryApplicantId = None
-        coApplicantId = None
-        for index, appl in enumerate(appl_details):
-            if appl['applicantId'] in select:
-                if not primaryApplicantId:
-                    primaryApplicantId = appl['applicantId']
-                else:
-                    coApplicantId = appl['applicantId']
-        status = 'incomplete'
-
-        if joint_applicant == 'Yes':
-            cursor.execute('''select distinct(b.id) FROM public."insuranceProducts_insurancediscussionapplicantdetails" a right join 
-            public."insuranceProducts_insurancediscussion" b on a."insDiscussion_id"=b.id and b.application_number='{0}' 
-            where b."application_status"='{1}' and (a."applicantID"='{2}' and a."type"='{3}') or (a."applicantID"='{4}' 
-            and a."type"='{5}') and b."isJoint"='{6}' '''.format(appli_number, status, primaryApplicantId, 'primary',
-                                                                 coApplicantId, 'co', 'y'))
-        else:
-            cursor.execute('''select b.id FROM public."insuranceProducts_insurancediscussionapplicantdetails" a right join
-            public."insuranceProducts_insurancediscussion" b on a."insDiscussion_id"=b.id and b.application_number='{0}'
-            and b."application_status"='{1}' where a."applicantID"='{2}' and a."type"='{3}' and b."isJoint"='{4}'
-            '''.format(appli_number, status, primaryApplicantId, 'primary', 'n'))
-        prev_discs = cursor.fetchone()
         if not prev_discs:
             pre_ = {
                 'is_new': True,
                 'prev_disc': None,
-                'selected_applicants': [primaryApplicantId, coApplicantId]
+                'selected_applicants': selected_applicants
             }
             request.POST = request.POST.copy()
             request.POST.update(pre_)
@@ -503,33 +474,10 @@ class InsuranceApplicantDemographicView(View):
 
     def post(self, request, *args, **kwargs):
         payload = request.POST
-        start_new = payload.get('is_new')
-        prev_disc = payload.get('prev_disc')
-        selected_applicants = payload.get('selected_applicants')
-
         pk = CrypticSetting.decrypt(self, payload.get("pk_id"))
-        queryset = InsurancePreProcessData.objects.filter(id=pk).values()[0]
-        if start_new:
-            filter_data, appDetails = CreditInsurance.format_raw_data_for_insdisc(self, queryset, selected_applicants)
-            if prev_disc:
-                discussionDetails = InsuranceDiscussion.objects.filter(pk=prev_disc, status='incomplete').update(**filter_data)
-            else:
-                filter_data['application_status'] = 'incomplete'
-                discussionDetails = InsuranceDiscussion.objects.create(**filter_data)
-                discussionDetails.save()
+        prev_disc = payload.get('prev_disc')
 
-                discussion_appDetails = dict()
-                for app_type, app_id in appDetails.items():
-                    discussion_appDetails['insDiscussion_id'] = discussionDetails.pk
-                    discussion_appDetails['application_number'] = filter_data['application_number']
-                    discussion_appDetails['applicantID'] = app_id
-                    discussion_appDetails['type'] = app_type
-
-                    applicantDetails = InsuranceDiscussionApplicantDetails.objects.create(**discussion_appDetails)
-                    applicantDetails.save()
-
-        else:
-            discussionDetails = InsuranceDiscussion.objects.filter(id=prev_disc).values()[0]
+        discussionDetails = ClientJourney(payload, pk).get_applicant_demographic(prev_disc)
         discussion_pk = CrypticSetting.encrypt(self, discussionDetails.pk)
 
         # session data inserted here
