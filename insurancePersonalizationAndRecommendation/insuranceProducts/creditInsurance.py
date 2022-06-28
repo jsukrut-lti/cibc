@@ -85,7 +85,6 @@ class CreditInsurance(object):
         ins_product = CreditInsurance.get_ins_product(self,raw_data['insProducts_details'][0]['insProduct_ID'])
         ins_product_type = ins_product.creditProduct_code.credit_product_name.lower()
         d = CreditInsurance.create_ins_disc_template(self, ins_product_type)
-        appDetails = dict()
         d['insProduct_id'] = ins_product.id
         d['agent_id'] = CreditInsurance.get_agent_id(self)
         d['canada_province'] = raw_data['canada_province']
@@ -127,10 +126,11 @@ class CreditInsurance(object):
             d['mortgagePmtAmt'] = raw_data['mortgage']['pmtAmount']
             d['mortgagePmtFrequency'] = raw_data['mortgage']['pmtFrequency']
 
-        is_primray = False
+        is_co = False
+        appDetails = dict()
         for index, appl in enumerate(appl_details):
             if appl['applicantId'] in select:
-                if not is_primray:
+                if not is_co:
                     d['primaryFirstName'] = appl['FirstName']
                     d['primaryMiddleName'] = appl['MiddleName']
                     d['primaryLastName'] = appl['LastName']
@@ -147,9 +147,10 @@ class CreditInsurance(object):
                     d['totalMonthlyExpenses'] = appl['expenses']['totalMonthlyExpenses']
                     d['isJoint'] = 'n'
                     appDetails['primary'] = appl['applicantId']
-                    is_primray = True
+                    is_co = True
+                    continue
 
-                if is_primray:
+                if is_co:
                     d['coFirstName'] = appl['FirstName']
                     d['coMiddleName'] = appl['MiddleName']
                     d['coLastName'] = appl['LastName']
@@ -254,6 +255,41 @@ class CreditInsurance(object):
         if t:
             temp.update(t)
         return temp
+    
+    def get_prev_session_data_on_applicant_sel(self, payload, pk):
+        single_select = payload.getlist('singleSelect')
+        multi_select = payload.getlist('multiSelect')
+        joint_applicant = payload.get('jointApplicant')
+        select = multi_select if joint_applicant == 'Yes' else single_select
+        queryset = InsurancePreProcessData.objects.filter(id=pk).values()[0]
+        raw_data = json.loads(queryset['data'])
+        appl_details = raw_data.get('applicants', list())
+        appli_number = raw_data['application_number']
+
+        primary_applicant_id = None
+        co_applicant_id = None
+        for index, appl in enumerate(appl_details):
+            if appl['applicantId'] in select:
+                if not primary_applicant_id:
+                    primary_applicant_id = appl['applicantId']
+                else:
+                    co_applicant_id = appl['applicantId']
+        status = 'incomplete'
+
+        if joint_applicant == 'Yes':
+            cursor.execute('''select distinct(b.id) FROM public."insuranceProducts_insurancediscussionapplicantdetails" 
+            a right join public."insuranceProducts_insurancediscussion" b on a."insDiscussion_id"=b.id 
+            and b.application_number='{0}' where b."application_status"='{1}' and (a."applicantID"='{2}' 
+            and a."type"='{3}') or (a."applicantID"='{4}' and a."type"='{5}') and b."isJoint"='{6}' '''.format(
+                appli_number, status, primary_applicant_id, 'primary', co_applicant_id, 'co', 'y'))
+        else:
+            cursor.execute('''select b.id FROM public."insuranceProducts_insurancediscussionapplicantdetails" 
+            a right join public."insuranceProducts_insurancediscussion" b on a."insDiscussion_id"=b.id 
+            and b.application_number='{0}' and b."application_status"='{1}' where a."applicantID"='{2}' 
+            and a."type"='{3}' and b."isJoint"='{4}' '''.format(appli_number, status, primary_applicant_id, 'primary', 'n'))
+        prev_discs = cursor.fetchone()
+        return prev_discs, [primary_applicant_id, co_applicant_id], appl_details
+        
 
 class EligibilityCheck(object):
 
@@ -372,8 +408,6 @@ class ApplicantDetails(object):
         appl_ids = [appli['applicantId'] for appli in raw_data.get('applicants', list())]
         complete_status = 'complete'
 
-        # discAppl_details = InsuranceDiscussionApplicantDetails.objects.filter(
-        #     application_number=raw_data.get('application_number')).values('applicantID')
         cursor.execute('''select a."applicantID" from public."insuranceProducts_insurancediscussionapplicantdetails" a inner join
                 public."insuranceProducts_insurancediscussion" b on a."insDiscussion_id"=b.id where
                 a.application_number='{0}' and a."applicantID" in {1} and b.application_status='{2}'
@@ -388,3 +422,39 @@ class ApplicantDetails(object):
                 appl_details_remaining.append(appl)
 
         return appl_details_remaining
+
+
+class ClientJourney:
+
+    def __init__(self, payload, pk):
+        self.preprocess_pk = pk
+        self.payload = payload
+        self.start_new = payload.get('is_new')
+        self.selected_applicants = payload.get('selected_applicants')
+
+    def get_applicant_demographic(self, prev_disc):
+        queryset = InsurancePreProcessData.objects.filter(id=self.preprocess_pk).values()[0]
+        if self.start_new:
+            filter_data, appDetails = CreditInsurance.format_raw_data_for_insdisc(self, queryset,
+                                                                                  self.selected_applicants)
+            if prev_disc:
+                discussionDetails = InsuranceDiscussion.objects.filter(pk=prev_disc, status='incomplete').update(
+                    **filter_data)
+            else:
+                filter_data['application_status'] = 'incomplete'
+                discussionDetails = InsuranceDiscussion.objects.create(**filter_data)
+                discussionDetails.save()
+
+                discussion_appDetails = dict()
+                for app_type, app_id in appDetails.items():
+                    discussion_appDetails['insDiscussion_id'] = discussionDetails.pk
+                    discussion_appDetails['application_number'] = filter_data['application_number']
+                    discussion_appDetails['applicantID'] = app_id
+                    discussion_appDetails['type'] = app_type
+
+                    applicantDetails = InsuranceDiscussionApplicantDetails.objects.create(**discussion_appDetails)
+                    applicantDetails.save()
+
+        else:
+            discussionDetails = InsuranceDiscussion.objects.filter(id=prev_disc).values()[0]
+        return discussionDetails
